@@ -1,0 +1,51 @@
+.Navbar{
+    background-color: rgba(2, 62, 138, 1);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    padding: 0 300px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.navitems{
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    margin: 0 100px;
+    font-weight: bold;
+    padding: 10px 10px;
+
+}
+
+.navitems:hover{
+    color: #120303;
+    background-color: white;
+    border-radius: 50px;
+    
+    
+}
+
+.logo{
+    width: 80px;
+    height: 80px;
+    margin-left: -280px;
+}
+
+.loginlogo{
+    width: 80px;
+    height: 80px;
+    margin-left: 120px;
+    
+}
+
+.login{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}

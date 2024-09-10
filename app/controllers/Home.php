@@ -2,7 +2,7 @@
 
 class Home extends Controller{
     public function index(){
-        echo "This is Home Controller";
+        // echo "This is Home Controller";
         $this->view('home');
     }
 }
