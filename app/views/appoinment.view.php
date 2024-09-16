@@ -1,7 +1,7 @@
 
 <?php require APPROOT.'/views/Components/header.php' ?>
 <?php require APPROOT.'/views/Components/Navbar.php' ?>
-<div>
+<div class="container">
     <div class="topic">
         <img src="<?php echo URLROOT; ?>/assets/images/stethoscope.jpeg" class="stethoscope">
         <h1 class="title">Make an Appoinment</h1>
