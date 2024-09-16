@@ -1,0 +1,73 @@
+
+
+.frame{
+    width: 300px;
+    height: 500px;
+    background-color: rgb(31, 116, 145);
+    margin: 20px;
+    
+}
+
+.doctorpic{
+    width: 300px;
+    height: 300px;
+    margin-top: -20px;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.doctorname{
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: -50px;
+}
+
+.gender{
+    font-size: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.specialization{
+    font-size: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.channelbutton{
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 30px;
+    font-size: 20px;
+    background-color: #021b99;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 50px;
+    padding: 10px 10px;
+}
+
+.viewbutton{
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 20px;
+    font-size: 20px;
+    background-color: #118ddf;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 50px;
+    padding: 10px 10px;
+}
+
