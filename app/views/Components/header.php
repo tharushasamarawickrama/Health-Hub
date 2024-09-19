@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/homepage.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/components/doctorcard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/appoinment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/channel.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/timeslot.css">
 </head>
 <body>
     
