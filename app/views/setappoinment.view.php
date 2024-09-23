@@ -3,6 +3,7 @@
 
 <div class="screen">
     <div class="outrectangle">
+        <form action="">
         <div class="channeltextdiv">
             <span class="channeldoctortext">Channel Your Doctor</span>
         </div>
@@ -82,6 +83,8 @@
         <div class="div5">
             <input type="submit" class="continuebtn" value="Continue">
         </div>  
+        </form>
+        
     </div>
 </div>
 
