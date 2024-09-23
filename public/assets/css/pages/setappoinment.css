@@ -1,0 +1,166 @@
+.outrectangle{
+    width: 1450px;
+    height: 670px;
+    background-color: #00c8ff;
+    border-radius: 20px;
+    margin-top: 80px;
+}
+
+.screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.channeldoctortext{
+    font-size: 25px;
+    color: #000000;
+}
+
+.channeltextdiv{
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.titletext{
+    font-size: 20px;
+    color: #000000;
+   
+}
+
+.div1{
+    margin-top: 30px;
+    margin-left: 80px;
+    display: flex;
+}
+
+.titleselect{
+    padding: 5px;
+}
+
+.pname{
+    font-size: 20px;
+    color: #000000;
+    margin-left: 100px;
+}
+
+.pnameinput{
+    margin-left: 100px;
+    padding: 5px;
+    width: 200px;
+}
+
+.div2{
+    display: flex;
+    margin-top: 50px;
+}
+
+.pnic{
+    font-size: 20px;
+    color: #000000;
+    margin-left: 80px;
+}
+
+.pnicinput{
+    margin-left: 80px;
+    padding: 5px;
+    width: 200px;
+}
+
+.pnumber{
+    font-size: 20px;
+    color: #000000;
+    margin-left: 300px;
+}
+
+.pnumberinput{
+    margin-left: 300px;
+    padding: 5px;
+    width: 200px;
+}
+
+.div3{
+    margin-left: 80px;
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
+}
+
+.checkboxtext{
+    font-size: 30px;
+    color: #000000;
+}
+
+
+.para1{
+    font-size: 20px;
+    color: #000000;
+    margin-left: 80px;
+}
+
+.para2{
+    font-size: 20px;
+    color: #ff0000;
+    margin-left: 5px;
+}
+
+.div4{
+    margin-left: 80px;
+}
+
+.continuebtn{
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 20px;
+    font-size: 20px;
+    background-color: #021b99;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 600px;
+    padding: 10px 10px;
+}
+
+.continuebtn:hover{
+    background-color: #00c8ff;
+    color: #021b99;
+}
+
+.middlediv{
+    display: flex;
+    margin-top: 50px;
+}
+
+.button-section {
+    margin-top: 20px; /* Adjust as necessary */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 buttons per row */
+    grid-gap: 10px;
+}
+
+.button-grid button {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.button-grid button:hover {
+    background-color: #00aaff;
+    color: white;
+}
