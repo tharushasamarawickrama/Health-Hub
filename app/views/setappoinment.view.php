@@ -17,7 +17,7 @@
                             <option value="" disabled selected hidden>Select Title</option>
                             <option value="Mr">Mr</option>
                             <option value="Mrs">Mrs</option>
-                            <option value="Ms">Ms</option>
+                            <option value="Ms">Miss</option>
                             <option value="Dr">Dr</option>
                         </select>
                     </div>
