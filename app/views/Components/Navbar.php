@@ -12,7 +12,7 @@
     <a href="#">
         <img src="<?php echo URLROOT;?>/assets/images/loginlogo.jpg"  class="loginlogo">
     </a>
-    <a href="#" class="login">Login</a>
+    <a href="<?php echo URLROOT;?>/patientregister" class="login">Login</a>
 </div>
 
 
