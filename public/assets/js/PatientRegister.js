@@ -2,6 +2,7 @@ let currentFocusedField = null; // Variable to track the currently focused field
 
 // Function to validate all required fields in the specified section
 function isSectionValid(sectionId) {
+    if(sectionId === "loginSection") return true; // Skip validation for login section
     let isValid = true;
 
     // Validate all fields in the specified section
@@ -179,3 +180,4 @@ document.querySelector('#additionalInfoSection .regbutton[onclick*="nextSection"
     event.preventDefault(); // Prevent default button action
     nextSection("additionalInfoSection", "successSection"); // Validate and go to Success Section
 });
+

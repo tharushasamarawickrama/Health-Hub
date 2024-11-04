@@ -15,23 +15,30 @@
                 <div class="logindiv">
                     <span class="reglogintext">Login</span>
                     <div class="loginemaildiv">
+
+                    <?php if(!empty($errors)):?>
+                        <div class="errordiv">
+                            <?=implode("<br>", $errors)?>
+                        </div>
+                    <?php endif;?>    
+
                         <span class="regpname">NIC</span><br>
-                        <input type="text" class="regemailinput" placeholder="Enter Email">
+                        <input type="text" class="regemailinput" placeholder="Enter NIC" name="logNIC" required>
                     </div>
                     <div class="loginpassworddiv">
                         <span class="regpname">Password</span><br>
-                        <input type="password" class="regemailinput" placeholder="Enter Password">
+                        <input type="password" class="regemailinput" placeholder="Enter Password" name="logPassword" required>
                     </div>
                         <a href="#" class="forgotpassword">Forgot Password?</a>
                     <div>
-                        <button class="regnewuserbutton" onclick="event.preventDefault(); nextSection('loginSection','personalInfoSection')" id="newUserButton">New User</button>
+                        <button class="regnewuserbutton" onclick="event.preventDefault(); nextSection('loginSection','personalInfoSection')">New User</button>
                     </div>
                 </div>
             
            
             
                 <div class="regbuttondiv">
-                    <button class="regbutton">Login</button>
+                    <button class="regbutton" name="login">Login</button>
                 </div>
             </form>
         </div>
@@ -150,4 +157,4 @@
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
 
-<script src="<?php echo URLROOT;?>/assets/js/PatientRegister.js"></script>
+<script src="<?php echo URLROOT;?>/assets/js/Patientregister.js"></script>
