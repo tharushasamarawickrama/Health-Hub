@@ -302,3 +302,9 @@
     border: 1px solid red;
 }
 
+.errordiv{
+    color: red;
+    margin-bottom: 4px;
+    margin-left: 40px;
+}
+

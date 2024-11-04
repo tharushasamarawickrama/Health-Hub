@@ -1,4 +1,11 @@
-
+<!-- <?php
+    session_start();
+    if (isset($_SESSION['user_name'])) {
+        $user_name = $_SESSION['user_name'];
+    } else {
+        $user_name = '';
+    }
+?> -->
 
 <div class="Navbar">
     <a href="#">
@@ -14,5 +21,3 @@
     </a>
     <a href="<?php echo URLROOT;?>/patientregister" class="login">Login</a>
 </div>
-
-
