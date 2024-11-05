@@ -7,28 +7,19 @@ class PatientRegister {
         $user = new User;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Check if this is a login or registration request
             if (isset($_POST['login'])) {
-                
-                    // Login logic
-                    $arr['NIC'] = $_POST['logNIC'] ?? '';
-                
-                    $row = $user->first($arr);
-            
-                    // Check if the array $row has a password and validate it
-                    if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
-                        show($row);  // Show row details for debugging
-                        $_SESSION['user'] = $row;
-                        redirect('searchappoinment'); // Redirect after successful login
-                    } else {
-                        $user->errors['Email'] = "Invalid Email or Password";
-                        $data['errors'] = $user->errors;
-                        $this->view('patientregister', $data); // Redirect after unsuccessful login
-                    }
-                
-                
-            
+                // Login logic
+                $arr['NIC'] = $_POST['logNIC'] ?? '';
+                $row = $user->first($arr);
 
+                if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
+                    $_SESSION['user'] = $row;
+                    redirect('searchappoinment'); // Redirect after successful login
+                } else {
+                    $user->errors['Email'] = "Invalid NIC or Password";
+                    $data['errors'] = $user->errors;
+                    $this->view('patientregister', $data);
+                }
             } else {
                 // Registration logic
                 $data = [
@@ -39,28 +30,26 @@ class PatientRegister {
                     'PhoneNumber' => $_POST['PhoneNumber'] ?? '',
                     'NIC' => $_POST['NIC'] ?? '',
                     'Gender' => $_POST['gender'] ?? '',
-                    'Password' => password_hash($_POST['Password'], PASSWORD_DEFAULT), // Hash password
+                    'Password' => $_POST['Password'],
                     'Address' => $_POST['Address'] ?? '',
                     'Age' => $_POST['Age'] ?? ''
                 ];
+
                 $arr['NIC'] = $_POST['NIC'] ?? '';
                 $row = $user->first($arr);
-                if($row){
+
+                if ($row) {
                     $user->errors['NIC'] = "NIC already exists, please login";
                     $data['errors'] = $user->errors;
-                    $this->view('patientregister', $data);
-                }else{
+                } else {
                     $user->insert($data);
-                    $this->view('patientregister');
+                    $data['registration_success'] = true; // Set the success flag
                 }
-                // Attempt to insert the new user
-                
+
+                $this->view('patientregister', $data);
             }
         } else {
-            // Show the registration form
             $this->view('patientregister');
         }
-
-        
     }
 }
