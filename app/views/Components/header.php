@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/channel.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/timeslot.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/setappoinment.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/patientregister.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Patientregister.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/admindashboard.css">
+    
 </head>
 <body>
     
