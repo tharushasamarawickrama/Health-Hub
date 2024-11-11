@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/patientregister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescription.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Patientregister.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/admindashboard.css">
+    
 </head>
 <body>
     
