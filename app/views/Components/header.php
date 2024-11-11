@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/timeslot.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/setappoinment.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/patientregister.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/pharmacistdashboard.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdashboard.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescription.css">
 </head>
 <body>
     

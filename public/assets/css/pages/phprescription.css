@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.search-box{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-box input[type="text"] {
+    padding: 10px;
+    border: 1px solid #c4aeae;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.search-box button {
+    border: rgb(165, 161, 161)
+    cursor: pointer;
+}
+.search-box button img {
+    width: 31px;
+    height: 31px;
+}
