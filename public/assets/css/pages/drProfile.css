@@ -1,0 +1,65 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    margin-top: 100px;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.doctor-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: -70px;
+    margin-right: 300px;
+    position: relative;
+    gap: 10px;
+}
+
+.back-arrow {
+    margin-right: 200px;
+}
+
+
+h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.doctor-profile-container {
+    max-width: 600px;
+    padding: 40px;
+    border: 2px solid #d2e7ec;
+    border-radius: 10px;
+    background-color: #d7e7f4;
+    margin-top: 40px;
+}
+
+.doctor-description {
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.doctor-details p {
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+}
+
+.contact-info li {
+    font-size: 0.9em;
+    color: #333;
+}

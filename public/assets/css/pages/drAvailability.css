@@ -1,0 +1,148 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f8fb;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 100px;
+    padding-left: 20px;
+    padding-bottom: 50px;
+}
+
+.availability-container {
+    max-width: 1000px;
+    margin: auto;
+    border: 2px solid #d2e7ec;
+    border-radius: 10px;
+    display: flex;
+    gap: 50px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.date-time-picker, .dates-list {
+    background-color: #c5d7df;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.date-time-picker h2, .dates-list h3 {
+    margin-top: 0;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+input {
+    border-radius: 10px;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+}
+
+button {
+    background-color: #7fa1b9;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #87c0eb;
+}
+
+#availabilityList {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#availabilityList li {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+#availabilityList li span {
+    cursor: pointer;
+    color: #ff5c5c;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: 10px;
+    border: 1px solid #000000;
+    border-radius: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #656464;
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-top: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-top: 200px;
+    }
+}

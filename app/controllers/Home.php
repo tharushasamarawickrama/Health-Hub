@@ -3,7 +3,7 @@
 class Home {
     use Controller;
     public function index(){
-        $user = new User;
+        // $user = new User;
         //$arr['UserId'] = 1;
         // $arr['Title'] = "Mr";
         // $arr['FirstName'] = "Thisara";
@@ -16,8 +16,8 @@ class Home {
         // $arr['Address'] = "colombo";
         // $arr['Age'] = "28";
         
-        $result = $user->findAll();
-        show($result);
+        // $result = $user->findAll();
+        // show($result);
         $this->view('home');
     }
 

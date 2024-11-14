@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drLabTests.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drMedicalHistory.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drPrescription.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drProfile.css">
 </head>
 <body>
     
