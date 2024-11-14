@@ -1,6 +1,7 @@
 <?php
+require APPROOT . '/views/Components/header.php';
+require APPROOT . '/views/Components/drNavbar.php';
 
-define('URLROOT', 'http://localhost/healthHub');
 
 $appointments = [
     ["id" => "#0001", "name" => "Mr. G. Peiris"],
@@ -18,24 +19,10 @@ $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $startIndex = ($currentPage - 1) * $appointmentsPerPage;
 $paginatedAppointments = array_slice($appointments, $startIndex, $appointmentsPerPage);
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Appointments</title>
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/assets/css/fonts.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/assets/css/dr-view-appointments.css?v=<?php echo time(); ?>">
-</head>
-<body>
-    <?php
-        include 'Components/dr-navbar.php';
-    ?>
     <div class="container">
     
         <div class="header">
-        <a href="#"><img src="<?php echo URLROOT; ?>/public/assets/images/arrow-back.png" alt="arrow-back" class="arrow-back"></a>
+        <a href="#"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="arrow-back" class="arrow-back"></a>
             <label><input type="date" class="date" id="dateInput"></label>
             <div class="filters">
                 <input type="radio" name="filter" id="all" checked>
@@ -57,8 +44,8 @@ $paginatedAppointments = array_slice($appointments, $startIndex, $appointmentsPe
                     <span class="appointment-id"><?= $appointment['id'] ?></span>
                     <span class="appointment-name"><?= $appointment['name'] ?></span>
                     <span class="action-icons">
-                        <a href="#"><img src="<?php echo URLROOT; ?>/public/assets/images/check-black.png" alt="Check Icon" class="check-icon"></a> <!-- Placeholder for Check Icon -->
-                        <a href="#"><img src="<?php echo URLROOT; ?>/public/assets/images/xmark-black.png" alt="Check Icon" class="check-icon" alt="Cross Icon"></a> <!-- Placeholder for Cross Icon -->
+                        <a href="#"><img src="<?php echo URLROOT; ?>/assets/images/check-black.png" alt="Check Icon" class="check-icon"></a> <!-- Placeholder for Check Icon -->
+                        <a href="#"><img src="<?php echo URLROOT; ?>/assets/images/xmark-black.png" alt="Check Icon" class="check-icon" alt="Cross Icon"></a> <!-- Placeholder for Cross Icon -->
                     </span>
                 </div>
             <?php endforeach; ?>
@@ -87,5 +74,5 @@ $paginatedAppointments = array_slice($appointments, $startIndex, $appointmentsPe
             dateInput.value = today;
         });
     </script>
-</body>
-</html>
+
+<?php require APPROOT . '/views/Components/footer.php' ?>
