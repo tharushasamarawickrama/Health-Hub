@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescription.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Patientregister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/admindashboard.css">
-    
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drDashboard.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
 </head>
 <body>
     
