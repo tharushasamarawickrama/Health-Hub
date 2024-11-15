@@ -40,8 +40,8 @@ $appointment = [
             </div>
 
             <div class="action-buttons">
-                <button class="button">Prescription &rarr;</button>
-                <button class="button">Order Lab Tests &rarr;</button>
+                <button class="drButton">Prescription &rarr;</button>
+                <button class="drButton">Order Lab Tests &rarr;</button>
             </div>
         </div>
     </div>

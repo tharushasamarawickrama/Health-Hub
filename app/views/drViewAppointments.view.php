@@ -19,9 +19,9 @@ $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $startIndex = ($currentPage - 1) * $appointmentsPerPage;
 $paginatedAppointments = array_slice($appointments, $startIndex, $appointmentsPerPage);
 ?>
-    <div class="container">
+    <div class="view-appointements-container">
     
-        <div class="header">
+        <div class="appointments-header">
         <a href="#"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="arrow-back" class="arrow-back"></a>
             <label><input type="date" class="date" id="dateInput"></label>
             <div class="filters">
