@@ -30,7 +30,7 @@ class PatientRegister {
                     'PhoneNumber' => $_POST['PhoneNumber'] ?? '',
                     'NIC' => $_POST['NIC'] ?? '',
                     'Gender' => $_POST['gender'] ?? '',
-                    'Password' => $_POST['Password'],
+                    'Password' =>$_POST['Password'], // Hash password
                     'Address' => $_POST['Address'] ?? '',
                     'Age' => $_POST['Age'] ?? '',
                     
