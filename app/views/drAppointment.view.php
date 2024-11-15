@@ -15,7 +15,7 @@ $appointment = [
     'reason_for_visit' => 'Routine Check-Up and Asthma Management'
 ];
 ?>
-    <div class="container">
+    <div class="dr-appointment-container">
         <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="appointment-container">
             
