@@ -32,7 +32,8 @@ class PatientRegister {
                     'Gender' => $_POST['gender'] ?? '',
                     'Password' => $_POST['Password'],
                     'Address' => $_POST['Address'] ?? '',
-                    'Age' => $_POST['Age'] ?? ''
+                    'Age' => $_POST['Age'] ?? '',
+                    
                 ];
 
                 $arr['NIC'] = $_POST['NIC'] ?? '';

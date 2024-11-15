@@ -16,7 +16,8 @@ class User {
         'NIC',
         'Password',
         'Address',
-        'Age'
+        'Age',
+        'ProfilePic'
     ];
 
     // public function validate($data){

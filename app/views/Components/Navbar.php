@@ -36,7 +36,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 <?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?>
             </a>
             <div class="dropdown-content">
-                <a href="<?php echo URLROOT; ?>/profile">Profile</a>
+                <a href="<?php echo URLROOT; ?>/patientprofile">Profile</a>
                 <a href="?action=logout">Logout</a>
             </div>
         </div>
