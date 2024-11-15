@@ -5,9 +5,9 @@
         <!-- Doctor Card -->
         <div class="admin-card">
             <h3>Doctors</h3>
-            <p>Add new doctors to the system.</p>
+            <p>View Doctors' Profiles.</p>
             <a href="<?php echo URLROOT;?>AdminDrRegister">
-                <button onclick="window.location.href='add_doctor.php'">Add Doctor</button>
+                <button onclick="window.location.href='add_doctor.php'">View Doctors</button>
             </a>
             
         </div>
@@ -15,9 +15,9 @@
         <!-- Receptionist Card -->
         <div class="admin-card">
             <h3>Receptionists</h3>
-            <p>Add new receptionists to the system.</p>
+            <p>View Receptionists' Profiles.</p>
             <a href="<?php echo URLROOT;?>AdminRecepRegister">
-            <button onclick="window.location.href='add_receptionist.php'">Add Receptionist</button>
+            <button onclick="window.location.href='add_receptionist.php'">View Receptionists</button>
             </a>
         </div>
 
@@ -26,18 +26,18 @@
         <!-- Lab Assistant Card -->
         <div class="admin-card">
             <h3>Lab Assistants</h3>
-            <p>Add new lab assistants to the system.</p>
+            <p>View Lab Assistants' Profiles.</p>
             <a href="<?php echo URLROOT;?>AdminLabRegister">
-            <button onclick="window.location.href='add_lab_assistant.php'">Add Lab Assistant</button>
+            <button onclick="window.location.href='add_lab_assistant.php'">View Lab Assistants</button>
             </a>
         </div>
 
         <!-- Pharmacist Card -->
         <div class="admin-card">
             <h3>Pharmacists</h3>
-            <p>Add new pharmacists to the system.</p>
+            <p>View Pharmacists' Profiles.</p>
             <a href="<?php echo URLROOT;?>AdminPhRegister">
-            <button onclick="window.location.href='add_pharmacist.php'">Add Pharmacist</button>
+            <button onclick="window.location.href='add_pharmacist.php'">View Pharmacists</button>
             </a>
         </div>
    </div>

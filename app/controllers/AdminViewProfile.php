@@ -1,10 +1,10 @@
 <?php
 
-class Channel {
+class AdminViewProfile{
     use Controller;
     public function index(){
         // echo "This is Home Controller";
-        $this->view('channel');
+        $this->view('AdminViewProfile');
     }
     
 }
