@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<?php require APPROOT . '/views/Components/Navbar.php' ?>
-<div class="dashboard-container">
+<?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<div class="AdminDashboard-container">
     <div class="up-row">
         <!-- Doctor Card -->
         <div class="admin-card">

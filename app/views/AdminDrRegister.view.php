@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<?php require APPROOT . '/views/Components/Navbar.php' ?>
+<?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
 <div>
     register the doctor
 </div>
