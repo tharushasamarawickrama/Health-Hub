@@ -5,10 +5,16 @@ body {
     background-color: #f4f4f4;
 }
 .search-box{
-    margin-top: 20px;
+    margin-top: 80px;
+    margin-left: 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: 30px;
+    width: 100%;
+    position: relative;
     gap: 5px;
+    z-index: 1;
 }
 
 .search-box input[type="text"] {

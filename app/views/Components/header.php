@@ -21,8 +21,12 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drDashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
  
+=======
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css?v=<?php echo time(); ?>">
+>>>>>>> 76ef2654d0fe1fb10c042a6c58b37f8ae06d349a
 </head>
 
 <body>
