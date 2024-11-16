@@ -1,11 +1,11 @@
-body {
+.ViewProfile-body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
 }
 
-.container {
+.ViewProfile-container {
     width: 80%;
     margin: 30px auto;
     background-color: #fff;
@@ -20,7 +20,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-.doctor-card {
+.ViewProfile-doctor-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,37 +31,45 @@ h1 {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.doctor-info {
+.ViewProfile-doctor-info {
     flex: 1;
     font-size: 1.1em;
     color: #333;
     margin-right: 20px;
 }
 
-.view-btn, .delete-btn {
+
+.ViewProfile-view-btn{
     border: none;
     padding: 8px 15px;
     font-size: 0.9em;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.view-btn {
     background-color: #4caf50;
     color: white;
     margin-right: 10px;
 }
 
-.view-btn:hover {
-    background-color: #45a049;
-}
 
-.delete-btn {
+.ViewProfile-delete-btn{
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     background-color: #f44336;
     color: white;
 }
 
-.delete-btn:hover {
+
+.ViewProfile-view-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+.ViewProfile-delete-btn:hover {
     background-color: #e53935;
 }

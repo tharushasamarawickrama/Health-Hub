@@ -1,12 +1,14 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
-<div class="container">
-        <h1>Receptionists List</h1>
-        
-        <?php require APPROOT.'/views/Components/ViewProfileCard.php' ?>
-        <?php require APPROOT.'/views/Components/ViewProfileCard.php' ?>
-        
-        
+<div class="ViewProfile-body">
+    <div class="ViewProfile-container">
+            <h1>Receptionists List</h1>
+            
+            <?php require APPROOT.'/views/Components/ViewProfileCard.php' ?>
+            <?php require APPROOT.'/views/Components/ViewProfileCard.php' ?>
+            
+            
+    </div>
 </div>
 
 
