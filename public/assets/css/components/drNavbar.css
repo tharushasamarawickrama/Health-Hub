@@ -1,6 +1,6 @@
 .drNavbar{
     font-family: 'Poppins', sans-serif;
-    background-color: rgba(72, 143, 171, 0.8);
+    background-color: #64A7B3;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     height: 60px;
     display: flex;
@@ -13,7 +13,7 @@
 }
 
 .drNavitems{
-    font-size: 20px;
+    font-size: 18px;
     color: black;
     text-decoration: none;
     margin: 0 0 0 150px;

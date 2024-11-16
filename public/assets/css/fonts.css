@@ -1,6 +1,9 @@
 @font-face {
     font-family: 'Poppins';
-    src: url('<?php echo URLROOT; ?>/public/assets/fonts/Poppins-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
+    src: url("../../assets/fonts/Poppins-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Handlee';
+    src: url("../../assets/fonts/Handlee.ttf") format('truetype');
 }
