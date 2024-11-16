@@ -1,10 +1,10 @@
 <?php
 
-class AdminResepRegister  {
+class AdminRecepRegister  {
     use Controller;
     public function index(){
         // echo "This is Home Controller";
-        $this->view('AdminResepRegister');
+        $this->view('AdminRecepRegister');
     }
     
 }
