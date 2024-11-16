@@ -1,6 +1,8 @@
 <?php
 // Start the session to enable session management
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Logout functionality
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
