@@ -15,7 +15,7 @@ $appointment = [
     'reason_for_visit' => 'Routine Check-Up and Asthma Management'
 ];
 ?>
-    <div class="container">
+    <div class="dr-appointment-container">
         <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="appointment-container">
             
@@ -40,8 +40,8 @@ $appointment = [
             </div>
 
             <div class="action-buttons">
-                <button class="button">Prescription &rarr;</button>
-                <button class="button">Order Lab Tests &rarr;</button>
+                <button class="drButton">Prescription &rarr;</button>
+                <button class="drButton">Order Lab Tests &rarr;</button>
             </div>
         </div>
     </div>
