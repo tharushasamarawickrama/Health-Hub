@@ -10,7 +10,7 @@ $availabilityData = [
 ];
 ?>
 
-    <div class="container">
+    <div class="dr-availability-container">
         <a href="./dr-dashboard.php" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="availability-container">
             <!-- Date and Time Selection Section -->

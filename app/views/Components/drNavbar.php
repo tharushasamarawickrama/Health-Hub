@@ -9,19 +9,19 @@
 </head>
 <body>
 
-<div class="Navbar">
+<div class="drNavbar">
     <a href="#">
-        <img src="<?php echo URLROOT;?>/assets/images/12345.png"  class="logo">
+        <img src="<?php echo URLROOT;?>/assets/images/12345.png"  class="drlogo">
     </a>
     
-    <a href="#" class="navitems">Dashboard</a>
-    <a href="#" class="navitems">Update Availability</a>
-    <a href="#" class="navitems">View Appointments</a>
+    <a href="#" class="drNavitems">Dashboard</a>
+    <a href="#" class="drNavitems">Update Availability</a>
+    <a href="#" class="drNavitems">View Appointments</a>
 
     <a href="#">
-        <img src="<?php echo URLROOT;?>/assets/images/loginlogo.jpg"  class="loginlogo">
+        <img src="<?php echo URLROOT;?>/assets/images/loginlogo.jpg"  class="drloginlogo">
     </a>
-    <a href="#" class="login">Login</a>
+    <a href="#" class="drlogin">Login</a>
 </div>
 
 </body>

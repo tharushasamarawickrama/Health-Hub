@@ -1,21 +1,7 @@
-body {
-    font-family: 'Poppins';
+.medical-history-container{
+    font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
-}
-
-/* .container {
-    width: 80%;
-    max-width: 700px;
-    margin-top: 100px;
-    background-color: #ffffff;
-    border: 2px solid #b3d7ff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
-
-.container{
     margin-top: 100px;
     display: flex;
     gap: 10px;
@@ -68,7 +54,7 @@ body {
     margin-bottom: 0.5em;
 }
 
-.action-buttons {
+/* .action-buttons {
     text-align: center;
     margin-top: 20px;
 }
@@ -87,4 +73,4 @@ body {
 
 .action-buttons .button:hover {
     background-color: #d0e0f0;
-}
+} */

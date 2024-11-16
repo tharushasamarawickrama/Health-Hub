@@ -38,7 +38,7 @@ $history = [
 ];
 ?>
 
-    <div class="container">
+    <div class="medical-history-container">
         <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="history-container">
             <h2><?php echo $history['patient_name']; ?></h2>

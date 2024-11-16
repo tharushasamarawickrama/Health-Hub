@@ -8,7 +8,7 @@ $isEditable = false; // Toggle this to true when editing
 
 ?>
 
-    <div class="container">
+    <div class="dr-prescription-container">
         <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="prescription-container">
             <h2>Prescription</h2>
@@ -19,11 +19,11 @@ $isEditable = false; // Toggle this to true when editing
                 <?php echo $fetchedPrescription ? htmlspecialchars($fetchedPrescription) : ''; ?>
             </textarea>
 
-            <div class="action-buttons">
+            <div class="prescription-actions">
                 <?php if ($fetchedPrescription && !$isEditable): ?>
-                    <button class="button" id="edit-button" onclick="toggleEdit(true)">Edit</button>
+                    <button class="prescription-button" id="edit-button" onclick="toggleEdit(true)">Edit</button>
                 <?php endif; ?>
-                <button class="button" id="save-button" onclick="savePrescription()" <?php echo ($fetchedPrescription && !$isEditable) ? 'style="display:none;"' : ''; ?>>Save</button>
+                <button class="prescription-button" id="save-button" onclick="savePrescription()" <?php echo ($fetchedPrescription && !$isEditable) ? 'style="display:none;"' : ''; ?>>Save</button>
             </div>
         </div>
     </div>

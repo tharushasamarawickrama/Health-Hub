@@ -28,7 +28,7 @@ $doctorData = [
 ];
 ?>
 
-    <div class="container">
+    <div class="dr-profile-content">
             <div class="doctor-header">
                 <a href="./dr-dashboard.php" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
                 <img src="<?php echo URLROOT; ?>/assets/images/doctor.png" alt="Doctor Avatar" class="doctor-pic">
@@ -48,7 +48,7 @@ $doctorData = [
                 
                 <!-- Contact Information -->
                 <p><strong>Contact:</strong></p>
-                <ul class="contact-info">
+                <ul class="dr-contact-info">
                     <li>Phone: <?php echo htmlspecialchars($doctorData['contact']['phone']); ?></li>
                     <li>Email: <a href="mailto:<?php echo htmlspecialchars($doctorData['contact']['email']); ?>"><?php echo htmlspecialchars($doctorData['contact']['email']); ?></a></li>
                 </ul>

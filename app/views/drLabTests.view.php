@@ -6,7 +6,7 @@ $fetchedLabTests = ["TFT", "Allergy Test"];
 
 ?>
 
-    <div class="container">
+    <div class="dr-labtest-container">
         <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="labtests-container">
             <h2>Lab Tests</h2>
@@ -27,9 +27,9 @@ $fetchedLabTests = ["TFT", "Allergy Test"];
 
             <h3>Order Lab Test</h3>
             <div class="test-options">
-                <div class="dropdown">
+                <div class="labtest-dropdown">
                     <button class="test-option-btn" onclick="toggleDropdown('bloodTests')">Blood Tests <span>&#x25BC;</span></button>
-                    <div id="bloodTests" class="dropdown-content">
+                    <div id="bloodTests" class="labtest-dropdown-content">
                         <a href="#" onclick="addTest('Complete Blood Count (CBC)')">Complete Blood Count (CBC)</a>
                         <a href="#" onclick="addTest('Liver Function Test (LFT)')">Liver Function Test (LFT)</a>
                         <a href="#" onclick="addTest('Kidney Function Test (KFT)')">Kidney Function Test (KFT)</a>
@@ -38,17 +38,17 @@ $fetchedLabTests = ["TFT", "Allergy Test"];
                         <a href="#" onclick="addTest('Hemoglobin A1C (HbA1c)')">Hemoglobin A1C (HbA1c)</a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="labtest-dropdown">
                     <button class="test-option-btn" onclick="toggleDropdown('urineTests')">Urine Tests <span>&#x25BC;</span></button>
-                    <div id="urineTests" class="dropdown-content">
+                    <div id="urineTests" class="labtest-dropdown-content">
                         <a href="#" onclick="addTest('Urinalysis')">Urinalysis</a>
                         <a href="#" onclick="addTest('Urine Culture')">Urine Culture</a>
                         <a href="#" onclick="addTest('Pregnancy Test (hCG)')">Pregnancy Test (hCG)</a>
                     </div>
                 </div>
-                <div class="dropdown">
+                <div class="labtest-dropdown">
                     <button class="test-option-btn" onclick="toggleDropdown('imagingTests')">Imaging Tests <span>&#x25BC;</span></button>
-                    <div id="imagingTests" class="dropdown-content">
+                    <div id="imagingTests" class="labtest-dropdown-content">
                         <a href="#" onclick="addTest('X-Ray')">X-Ray</a>
                         <a href="#" onclick="addTest('MRI (Magnetic Resonance Imaging)')">MRI (Magnetic Resonance Imaging)</a>
                         <a href="#" onclick="addTest('CT Scan (Computed Tomography)')">CT Scan (Computed Tomography)</a>
@@ -64,9 +64,9 @@ $fetchedLabTests = ["TFT", "Allergy Test"];
                 <button class="test-option-btn" onclick="addTest('Bone Density Test')">Bone Density Test</button>
             </div>
 
-            <div class="action-buttons">
-                <button class="button" onclick="clearTests()">Clear</button>
-                <button class="button" onclick="saveTests()">Save</button>
+            <div class="labtest-actions">
+                <button class="labtest-button" onclick="clearTests()">Clear</button>
+                <button class="labtest-button" onclick="saveTests()">Save</button>
             </div>
         </div>
     </div>
@@ -123,7 +123,7 @@ $fetchedLabTests = ["TFT", "Allergy Test"];
 
         window.onclick = function(event) {
             if (!event.target.matches('.test-option-btn')) {
-                const dropdowns = document.getElementsByClassName("dropdown-content");
+                const dropdowns = document.getElementsByClassName("labtest-dropdown-content");
                 for (let i = 0; i < dropdowns.length; i++) {
                     const openDropdown = dropdowns[i];
                     if (openDropdown.classList.contains('show')) {

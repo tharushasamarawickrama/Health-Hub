@@ -1,11 +1,8 @@
-body {
+.dr-availability-container {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f8fb;
     margin: 0;
     padding: 0;
-}
-
-.container {
     margin-top: 100px;
     padding-left: 20px;
     padding-bottom: 50px;
@@ -136,13 +133,13 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 768px) {
-    .container {
+    .dr-availability-container {
         padding-top: 250px;
     }
 }
 
 @media (max-width: 576px) {
-    .container {
+    .dr-availability-container {
         padding-top: 200px;
     }
 }

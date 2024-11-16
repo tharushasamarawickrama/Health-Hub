@@ -1,13 +1,10 @@
-body {
+.dr-dashboard {
     font-family: 'Poppins', sans-serif;
-}
-
-.content {
     margin-top: 100px;
     text-align: center;
 }
 
-.action-buttons {
+.dr-dashboard-actions {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +12,7 @@ body {
     gap: 50px;
 }
 
-.btn {
+.dr-dashboard-button {
     display: inline-block;
     padding: 20px 40px;
     background-color: rgba(199, 221, 230, 0.8);
@@ -27,7 +24,7 @@ body {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.btn:hover {
+.dr-dashboard-button:hover {
     background-color: rgba(199, 221, 230, 1);
     transform: translateY(-5px);
 }

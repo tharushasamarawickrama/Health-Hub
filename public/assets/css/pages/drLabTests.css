@@ -1,10 +1,7 @@
-body {
+.dr-labtest-container{
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
-}
-
-.container{
     margin-top: 100px;
     display: flex;
     padding-left: 50px;
@@ -78,12 +75,12 @@ body {
     background-color: #eaeaea;
 }
 
-.action-buttons {
+.labtest-actions {
     text-align: center;
     margin-top: 20px;
 }
 
-.action-buttons .button {
+.labtest-actions .labtest-button {
     background-color: #b5c7db;
     color: #333;
     border: none;
@@ -95,16 +92,16 @@ body {
     min-width: 80px;
 }
 
-.action-buttons .button:hover {
+.labtest-actions .labtest-button:hover {
     background-color: #d0e0f0;
 }
 
-.dropdown {
+.labtest-dropdown {
     position: relative;
     display: inline-block;
 }
 
-.dropdown-content {
+.labtest-dropdown-content {
     display: none;
     position: absolute;
     background-color: white;
@@ -115,7 +112,7 @@ body {
     z-index: 1;
 }
 
-.dropdown-content a {
+.labtest-dropdown-content a {
     color: #333;
     padding: 8px 12px;
     text-decoration: none;
@@ -124,7 +121,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.dropdown-content a:hover {
+.labtest-dropdown-content a:hover {
     background-color: #dad6d6;
 }
 
