@@ -1,4 +1,4 @@
-body {
+.admin-dashboard {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -7,7 +7,7 @@ body {
     margin: 0;
     background-color: #f4f4f4;
 }
-.AdminDashboard-container {
+.dashboard-container {
     
     gap: 20px;
     flex-wrap: wrap;

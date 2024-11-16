@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/AdminNavbar.css">
 </head>
 <body>
     
