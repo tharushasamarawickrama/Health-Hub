@@ -1,0 +1,100 @@
+/* General Styles */
+.AdminRegister-body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Form Container */
+.AdminRegister-form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+
+.AdminRegister-form-container h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+/* Form Layout */
+.AdminRegister-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.AdminRegister-form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.AdminRegister-form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.AdminRegister-form-group-full-width {
+    flex: 100%;
+}
+
+.AdminLabel {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #555555;
+}
+.AdminInput{
+    padding: 10px;
+    font-size: 0.95rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.AdminSelect{
+    padding: 10px;
+    font-size: 0.95rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.AdminTextarea {
+    padding: 10px;
+    font-size: 0.95rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+}
+
+
+
+/* Button Styles */
+.add-doctor-btn {
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+.add-doctor-btn:hover {
+    background-color: #0056b3;
+}
