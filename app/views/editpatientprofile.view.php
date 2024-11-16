@@ -12,7 +12,9 @@
         <div>
             <div>
                 <input type="file" id="file" name="ProfilePic" accept="image/*" style="display: none;">
-                <img src="<?php echo URLROOT; ?>/<?php echo htmlspecialchars($_SESSION['user']['ProfilePic'] ?? 'assets/images/profile-men.png'); ?>"
+                <img src="<?php echo isset($_SESSION['user']['ProfilePic']) && !empty($_SESSION['user']['ProfilePic'])
+                                ? htmlspecialchars($_SESSION['user']['ProfilePic'])
+                                : URLROOT . '/assets/images/profile-men.png'; ?>"
                     class="profileimg" id="profileImage"
                     alt="Profile" style="cursor: pointer;">
 

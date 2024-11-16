@@ -24,7 +24,7 @@ body {
     font-size: 16px;
 }
 .search-box button {
-    border: rgb(165, 161, 161)
+    border: rgb(165, 161, 161);
     cursor: pointer;
 }
 .search-box button img {

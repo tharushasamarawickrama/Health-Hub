@@ -9,7 +9,10 @@
     <div>
         <div>
 
-            <img src="<?php echo htmlspecialchars($_SESSION['user']['ProfilePic']); ?>" class="profileimg">
+            <img src="<?php echo isset($_SESSION['user']['ProfilePic']) && !empty($_SESSION['user']['ProfilePic'])
+                            ? htmlspecialchars($_SESSION['user']['ProfilePic'])
+                            : URLROOT . '/assets/images/profile-men.png'; ?>"
+                class="profileimg">
         </div>
         <h1 class="profilename"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></h1>
     </div>
