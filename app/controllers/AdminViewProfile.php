@@ -1,10 +1,10 @@
 <?php
 
-class AdminDashboard{
+class AdminViewProfile{
     use Controller;
     public function index(){
         // echo "This is Home Controller";
-        $this->view('Admindashboard');
+        $this->view('AdminViewProfile');
     }
     
 }
