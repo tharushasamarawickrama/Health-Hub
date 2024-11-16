@@ -10,7 +10,7 @@
                 
             </div>
         </div>
-        <div class="form-section active" id="loginSection">
+        <div class="form-section <?= empty($data['registration_success']) ? 'active' : '' ?>" id="loginSection">
             <form action="" method="post">
                 <div class="logindiv">
                     <span class="reglogintext">Login</span>
@@ -139,7 +139,7 @@
         </div>
     </div>
 </form>
-        <div class="form-section" id="successSection">
+        <div class="form-section <?= !empty($data['registration_success']) ? 'active' : '' ?>" id="successSection">
             <div class="successlogodiv">
                 <img src="<?php echo URLROOT; ?>/assets/images/check-mark.png" class="success">
                 <span class="registersuccesstext">Registration Successfully</span>
@@ -147,7 +147,7 @@
             </div>
            
             <div class="regbuttondiv">
-                <a href="/" class="reggohomebutton">Home</a>
+                <a href="<?php echo URLROOT; ?>patientregister" class="reggohomebutton">Login</a>
             </div>
         </div>
 
