@@ -80,7 +80,16 @@
     resize: none;
 }
 
-
+.AdminFileInput {
+    font-size: 0.95rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
 
 /* Button Styles */
 .add-doctor-btn {
