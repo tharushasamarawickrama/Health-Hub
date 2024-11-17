@@ -30,7 +30,7 @@ $doctorData = [
 
     <div class="dr-profile-content">
             <div class="doctor-header">
-                <a href="./dr-dashboard.php" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
+                <a href="./dr-dashboard.php" class="profile-back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
                 <img src="<?php echo URLROOT; ?>/assets/images/doctor.png" alt="Doctor Avatar" class="doctor-pic">
                 <h1><?php echo htmlspecialchars($doctorData['name']); ?></h1>
             </div>
@@ -52,6 +52,7 @@ $doctorData = [
                     <li>Phone: <?php echo htmlspecialchars($doctorData['contact']['phone']); ?></li>
                     <li>Email: <a href="mailto:<?php echo htmlspecialchars($doctorData['contact']['email']); ?>"><?php echo htmlspecialchars($doctorData['contact']['email']); ?></a></li>
                 </ul>
+                <button type="button" class="dr-profile-btn">Edit Profile</button>
             </div>
         </div>
     </div>

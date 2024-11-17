@@ -18,7 +18,7 @@ class Home {
         
         // $result = $user->findAll();
         // show($result);
-        $this->view('home');
+        $this->view('drProfile');
     }
 
     

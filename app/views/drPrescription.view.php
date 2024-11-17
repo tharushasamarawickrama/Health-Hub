@@ -9,7 +9,7 @@ $isEditable = false; // Toggle this to true when editing
 ?>
 
     <div class="dr-prescription-container">
-        <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
+        <a href="#" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="prescription-container">
             <h2>Prescription</h2>
             
