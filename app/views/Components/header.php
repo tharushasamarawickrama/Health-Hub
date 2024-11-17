@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/AdminNavbar.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/AdminDrRegister.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drProfile.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drMedicalHistory.css?v=<?php echo time(); ?>">
 </head>
 <body>
 

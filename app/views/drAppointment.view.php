@@ -11,12 +11,11 @@ $appointment = [
     'phone' => '0711234567',
     'email' => 'sarah.johnson@email.com',
     'medical_history' => 'Asthma, Mild Allergies, Previous Surgery for Appendicitis (2023)',
-    'full_medical_history_link' => '#',
-    'reason_for_visit' => 'Routine Check-Up and Asthma Management'
+    'full_medical_history_link' => '#'
 ];
 ?>
     <div class="dr-appointments-container">
-        <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
+        <a href="#" class="appointment-back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
         <div class="appointment-container">
             
             <div class="appointment-details">
@@ -35,7 +34,6 @@ $appointment = [
                         <li>Overview - <?php echo $appointment['medical_history']; ?></li>
                         <li><a href="<?php echo $appointment['full_medical_history_link']; ?>">Link to Full Medical History</a></li>
                     </ul>
-                    <li>Reason for Visit - <?php echo $appointment['reason_for_visit']; ?></li>
                 </ul>
             </div>
 

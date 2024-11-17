@@ -2,13 +2,14 @@
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
-    margin-top: 100px;
+    margin-top: 60px;
     display: flex;
     gap: 10px;
     padding-left: 50px;
+    padding-top: 60px;
 }
 
-.back-arrow img {
+.history-back-arrow img {
     width: 24px;
     cursor: pointer;
     margin-bottom: 20px;
@@ -54,23 +55,64 @@
     margin-bottom: 0.5em;
 }
 
-/* .action-buttons {
-    text-align: center;
+.edit-button, .save-button {
+    background-color: #54a1b4;
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    transition: ease 0.2s;
+}
+
+.edit-button:hover, .save-button:hover {
+    background-color: #327ac7;
+}
+
+.edit-mode {
+    display: none;
+}
+
+.edit-mode input{
+    padding: 5px;
+    border-radius: 10px;
+    min-width: 40%;
+    background-color: #c8d1dc;
+    margin-right: 20px;
+}
+
+.editing .edit-mode {
+    display: block;
+}
+
+.editing .display-mode {
+    display: none;
+}
+
+.save-button {
     margin-top: 20px;
 }
 
-.action-buttons .button {
-    background-color: #e0ebf7;
-    color: #333;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    display: inline-flex;
+.section-header {
+    display: flex;
     align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
 }
 
-.action-buttons .button:hover {
-    background-color: #d0e0f0;
-} */
+.add-item-button {
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    font-size: 1em;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
