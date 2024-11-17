@@ -1,9 +1,6 @@
-*{
+.drNavbar{
     font-family: 'Poppins', sans-serif;
-}
-
-.dr-navbar{
-    background-color: rgba(72, 143, 171, 0.8);
+    background-color: #64A7B3;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     height: 60px;
     display: flex;
@@ -15,8 +12,8 @@
     z-index: 1000;
 }
 
-.dr-navitems{
-    font-size: 20px;
+.drNavitems{
+    font-size: 18px;
     color: black;
     text-decoration: none;
     margin: 0 0 0 150px;
@@ -26,26 +23,26 @@
     transition: background-color 0.3s, transform 0.3s, ease 0.3s;;
 }
 
-.dr-navitems:hover{
+.drNavitems:hover{
     background-color: white;
     border-radius: 30px;
     
     
 }
 
-.dr-logo{
+.drlogo{
     width: 45px;
     height: 35px;
     margin-left: 10px;
 }
 
-.dr-loginlogo{
+.drloginlogo{
     width: 80px;
     height: 80px;
     margin-left: 380px;
 }
 
-.dr-login{
+.drlogin{
     text-decoration: none;
     color: black;
     font-weight: bold;
