@@ -55,6 +55,12 @@
                 </div>
             </div>
             <div class="AdminRegister-form-row">
+                <div class="AdminRegister-form-group-full-width">
+                    <label class="AdminLabel" for="photo">Lab Assistant's Photo</label>
+                    <input class="AdminFileInput" type="file" id="photo" name="photo" accept="image/*" required>
+                </div>
+            </div>
+            <div class="AdminRegister-form-row">
                 <button type="submit" class="add-doctor-btn">Add Pharmacist</button>
             </div>
         </form>
