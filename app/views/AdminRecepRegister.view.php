@@ -3,7 +3,7 @@
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
         <h1>New Receptionist</h1>
-        <form class="AdminRegister-form" id="addDoctorForm" action="add_doctor.php" method="POST">
+        <form class="AdminRegister-form" id="addDoctorForm" action="" method="POST">
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="firstName">First Name</label>
@@ -16,12 +16,18 @@
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
-                    <label class="AdminLabel" for="email">Email</label>
-                    <input class="AdminInput" type="email" id="email" name="email" required>
+                    <label class="AdminLabel" for="password">Password</label>
+                    <input class="AdminInput" type="password" id="passwordl" name="password" required>
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="phoneNumber">Phone Number</label>
                     <input class="AdminInput" type="text" id="phoneNumber" name="phoneNumber" required>
+                </div>
+            </div>
+            <div class="AdminRegister-form-row">
+                <div class="AdminRegister-form-group">
+                    <label class="AdminLabel" for="email">Email</label>
+                    <input class="AdminInput" type="email" id="email" name="email" required>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -40,8 +46,8 @@
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
-                    <label class="AdminLabel" for="slmcNo">Employee ID</label>
-                    <input class="AdminInput" type="text" id="slmcNo" name="slmcNo" required>
+                    <label class="AdminLabel" for="employeeNo">Employee ID</label>
+                    <input class="AdminInput" type="text" id="employeeNo" name="employeeNo" required>
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="nic">NIC</label>
@@ -57,7 +63,7 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group-full-width">
                     <label class="AdminLabel" for="photo">Lab Assistant's Photo</label>
-                    <input class="AdminFileInput" type="file" id="photo" name="photo" accept="image/*" required>
+                    <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" required>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
