@@ -1,0 +1,124 @@
+.profiletopic{
+    font-size: 40px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 20px;
+    align-content: center;
+}
+
+.profiletopicdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.profileimg{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-top: 150px;
+    margin-left: 50px;
+    background-image: url('<?php echo URLROOT; ?>assets/images/profile-men.png');
+}
+
+.profilename{
+    font-size: 40px;
+    font-weight:400;
+    color: #000;
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+.line-image-div{
+    display: flex;
+}
+
+.line-div{
+    width: 5px;
+    height: 550px;
+    background-color: #7d7c7c;
+    margin-left: 100px;
+    margin-top: 50px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.patientdetails{
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+}
+
+.patientinfo-first-div{
+    margin-top: 60px;
+    margin-left: 80px;
+}
+
+.patientinfo-div{
+    margin-top: 40px;
+    margin-left: 80px;
+}
+
+.infovalue{
+    font-size: 30px;
+    font-weight: 400;
+    color: #625f5f;
+}
+
+.profilepagelogo{
+    margin-top: 20px;
+    margin-left: 80px;
+}
+
+.profilebtn{
+    margin-top: 20px;
+    margin-left: 80px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #2169e5;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+/*edit profile page*/
+
+.patientdetails-name{
+    display: flex;
+}
+
+.updatefield{
+    width: 300px;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border: 2px solid #2169e5;
+    font-size: 20px;
+}
+
+.edittitlebox{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #2169e5;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.updatebtn{
+    margin-top: 550px;
+    margin-left: -100px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #2169e5;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+.dlte-update-btn-div{
+    display: flex;
+}
