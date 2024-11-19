@@ -8,10 +8,10 @@ if (session_status() === PHP_SESSION_NONE) {
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     // Unset all of the session variables
     $_SESSION = array();
-    
+
     // Destroy the session
     session_destroy();
-    
+
     // Redirect to the login page or homepage
     header("Location: " . URLROOT . "/patientregister");
     exit; // Ensure no further code is executed after redirect
@@ -22,23 +22,28 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <a href="#">
         <img src="<?php echo URLROOT; ?>/assets/images/logohealth.png" class="logo">
     </a>
-    
+
     <a href="#" class="navitems">Home</a>
     <a href="#" class="navitems">Appointment</a>
     <a href="#" class="navitems">Inbox</a>
 
-    <a href="#">
-        <img src="<?php echo URLROOT; ?>/assets/images/loginlogo.jpg" class="loginlogo">
+    <?php if(isset($_SESSION['user'])): ?>
+    <a href="#" class="logname dropdown-toggle">
+        
+        <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['ProfilePic']); ?>"  class="loginlogo">
     </a>
-
+    <?php else: ?>
+        <img src="<?php echo URLROOT; ?>/assets/images/loginlogo.jpg" class="loginlogo">
+    <?php endif; ?>    
     <?php if (isset($_SESSION['user'])): ?>
         <!-- User dropdown -->
         <div class="dropdown">
-            <a href="#" class="logname dropdown-toggle">
-                <?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?>
-            </a>
+
+            
+            <p class="username"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></p>
+
             <div class="dropdown-content">
-                <a href="<?php echo URLROOT; ?>/patientprofile">Profile</a>
+                <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
                 <a href="?action=logout">Logout</a>
             </div>
         </div>
