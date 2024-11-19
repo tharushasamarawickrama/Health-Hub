@@ -1,4 +1,4 @@
-.dr-availability-container {
+/* .dr-availability-container {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f8fb;
     margin: 0;
@@ -83,7 +83,6 @@ button:hover {
     color: #ff5c5c;
 }
 
-/* Toggle Switch */
 .switch {
     position: relative;
     display: inline-block;
@@ -142,4 +141,47 @@ input:checked + .slider:before {
     .dr-availability-container {
         padding-top: 200px;
     }
+} */
+
+.container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-section, .right-section {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.selected-slots {
+    margin-bottom: 10px;
+}
+
+.selected-slot {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.selected-slot .delete-btn {
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.timeslot-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.timeslot {
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.timeslot.occupied {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

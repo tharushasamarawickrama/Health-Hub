@@ -4,8 +4,9 @@
     background-repeat: repeat;
     background-position: top left;
     font-family: 'Poppins', sans-serif;
-    margin-top: 100px;
+    margin-top: 60px;
     padding-left: 50px;
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,14 +28,14 @@
 }
 
 
-h1 {
+.doctor-header h1 {
     font-size: 1.5em;
     font-weight: bold;
     margin-left: 15px;
 }
 
 .doctor-profile-container {
-    max-width: 600px;
+    width: 50%;
     padding: 40px;
     border: 2px solid #d2e7ec;
     border-radius: 10px;
@@ -86,4 +87,21 @@ h1 {
 
 .dr-profile-btn:hover{
     background-color: #7cabb5;
+}
+
+input[readonly], textarea[readonly] {
+    font-family: 'Poppins';
+    width: 100%;
+    background-color: #CDE1E5;
+    border: none;
+    pointer-events: none;
+}
+
+input:not([readonly]), textarea:not([readonly]) {
+    padding: 5px;
+    width: 100%;
+    font-family: 'Poppins';
+    border-radius: 10px;
+    background-color: #cad4e2;
+    border: 0.5px solid #4e4d4d5c;
 }

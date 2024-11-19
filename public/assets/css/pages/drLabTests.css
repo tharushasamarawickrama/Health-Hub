@@ -1,11 +1,15 @@
 .dr-labtest-container{
+    background-image: url(../../images/background.png);
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: contain;
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
-    margin-top: 100px;
+    margin-top: 60px;
     display: flex;
     padding-left: 50px;
-    padding-top: 50px;
+    padding-top: 70px;
 }
 
 .labtests-container {
@@ -19,7 +23,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.back-arrow img {
+.labtest-back-arrow img {
     width: 24px;
     cursor: pointer;
     margin-bottom: 20px;
