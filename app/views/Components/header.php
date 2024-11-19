@@ -26,6 +26,10 @@
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/AdminNavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/AdminDrRegister.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/ViewAllProfile.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Profiledetails.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/PrevLog.css">
 </head>
 <body>
 

@@ -3,7 +3,7 @@
 class AdminDashboard{
     use Controller;
     public function index(){
-        // echo "This is Home Controller";
+        // echo "This is AdminDashboard Controller";
         $this->view('Admindashboard');
     }
     
