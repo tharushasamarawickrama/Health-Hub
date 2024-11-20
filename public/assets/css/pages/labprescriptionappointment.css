@@ -1,0 +1,55 @@
+
+.labappcontent {
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.prescription-details {
+    display: flex;
+    justify-content: space-between;
+    background-color: #c5ecf1;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.prescription-details .details-left,
+.prescription-details .details-right {
+    width: 48%;
+}
+
+.prescription-details p,
+.prescription-details li {
+    margin: 5px 0;
+}
+
+.prescription-details ul {
+    padding-left: 20px;
+}
+
+.file-upload {
+    background-color: #c5ecf1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px dashed #aaa;
+}
+
+.file-upload p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+.upload-btn {
+    background-color: #257a8b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-btn:hover {
+    background-color: #205e70;
+}

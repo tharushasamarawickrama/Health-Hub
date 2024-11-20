@@ -1,0 +1,14 @@
+.upsection{
+    margin-top: 100px;
+    display: flex;
+}
+
+.availabletext{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 400px;
+    font-family: 'popins', sans-serif;
+}
+
+
+

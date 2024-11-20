@@ -1,0 +1,56 @@
+.timeslot {
+    background-color: rgb(15, 172, 178);
+    width: 1000px;
+    height: 200px;
+    margin-left: 100px;
+    margin-top: 10px;
+    align-content: center;
+    border-radius: 20px;
+}
+
+.inrectangle {
+    background-color: rgb(180, 186, 186);
+    width: 960px;
+    height: 160px;
+    margin-left: 20px;
+    border-radius: 20px;
+}
+
+.date{
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.slots{
+    margin-left: 80px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+
+}
+
+.time{
+    margin-left: 500px;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.schedulebutton{
+    width: 400px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: #021b99;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 300px;
+    padding: 10px 10px;
+}
+
+.slotcard{
+    margin-top: 20px;
+}
