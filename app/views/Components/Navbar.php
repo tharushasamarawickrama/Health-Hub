@@ -13,7 +13,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     session_destroy();
 
     // Redirect to the login page or homepage
-    header("Location: " . URLROOT . "/patientregister");
+    header("Location: " . URLROOT . "/patientregister?id=1");
     exit; // Ensure no further code is executed after redirect
 }
 ?>
@@ -24,7 +24,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     </a>
 
     <a href="#" class="navitems">Home</a>
-    <a href="#" class="navitems">Appointment</a>
+    <a href="<?php if(isset($_SESSION['user'])):?> <?php echo URLROOT; ?>searchappoinment <?php else:?> <?php echo URLROOT; ?>patientregister?id=1 <?php endif; ?>" class="navitems">Appointment</a>
     <a href="#" class="navitems">Inbox</a>
 
     <?php if(isset($_SESSION['user'])): ?>

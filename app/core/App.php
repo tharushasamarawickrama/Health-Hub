@@ -1,16 +1,19 @@
 <?php
 
-class APP {
+class APP
+{
     private $controller = "Home"; // Default controller
     private $method = "index"; // Default method
 
-    private function splitURL() {
+    private function splitURL()
+    {
         $URL = $_GET['url'] ?? 'home';
         $URL = explode("/", trim($URL, "/"));
         return $URL;
     }
 
-    public function loadController() {
+    public function loadController()
+    {
         $URL = $this->splitURL();
         $controllerPath = "../app/controllers/";
 
@@ -31,9 +34,15 @@ class APP {
             $this->controller = $controllerName;
         } else {
             // Load 404 controller if the specified controller does not exist
-            require "../app/controllers/_404.php";
-            $this->controller = "_404";
+
+            // require "../app/controllers/_404.php";
+            // $this->controller = "_404";
+            require __DIR__ . "/../controllers/_404.php";
+            $controller = new _404();
+            $controller->index();
+            exit(1);
         }
+
 
         /* Instantiate the controller */
         $controller = new $this->controller();
@@ -45,23 +54,32 @@ class APP {
                 unset($URL[2]);
             } else {
                 // If the method does not exist, use the 404 controller's default method
-                $this->controller = "_404";
-                $controller = new $this->controller(); // Reinstantiate 404 controller
-                $this->method = "index"; // Default to index method in 404 controller
+
+                // $this->controller = "_404";
+                // $controller = new $this->controller(); // Reinstantiate 404 controller
+                // $this->method = "index"; // Default to index method in 404 controller
+                require __DIR__ . "/../controllers/_404.php";
+                $controller = new _404();
+                $controller->index();
+                exit(1);
             }
-        }else{
+        } else {
             if (!empty($URL[1])) {
                 if (method_exists($controller, $URL[1])) {
                     $this->method = $URL[1]; // Set the method
                     unset($URL[1]);
                 } else {
-                    $this->controller = "_404";
-                    $controller = new $this->controller(); // Reinstantiate 404 controller
-                    $this->method = "index";
+                    // $this->controller = "_404";
+                    // $controller = new $this->controller(); // Reinstantiate 404 controller
+                    // $this->method = "index";
+                    require __DIR__ . "/../controllers/_404.php";
+                    $controller = new _404();
+                    $controller->index();
+                    exit(1);
                 }
             }
         }
-        
+
         /* Remaining parts of the URL are parameters */
         $params = $URL ? array_values($URL) : [];
 
