@@ -13,6 +13,7 @@ class Doctor {
         'password',
         'phoneNumber',
         'email',
+        'specialization',
         'gender',
         'dob',
         'slmcNo',

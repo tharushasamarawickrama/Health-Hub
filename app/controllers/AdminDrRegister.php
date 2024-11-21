@@ -11,6 +11,7 @@ class AdminDrRegister  {
                 'password' => $_POST['password'] ?? '',
                 'phoneNumber' => $_POST['phoneNumber'] ?? '',
                 'email' => $_POST['email'] ?? '',
+                'specialization' => $_POST['specialization'] ?? '',
                 'gender' => $_POST['gender'] ?? '',
                 'dob' => $_POST['dob'] ?? '',
                 'slmcNo' => $_POST['slmcNo'] ?? '',

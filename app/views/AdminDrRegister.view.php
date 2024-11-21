@@ -29,6 +29,17 @@
                     <label class="AdminLabel" for="email">Email</label>
                     <input class="AdminInput" type="email" id="email" name="email" required>
                 </div>
+                <div class="AdminRegister-form-group">
+                    <label class="AdminLabel" for="specialization">Specialization</label>
+                    <select class="AdminSelect" id="specialization" name="specialization" required>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Neurologist">Neurologist </option>
+                        <option value="Dermatologist">Dermatologist</option>
+                        <option value="Gastroenterologist">Gastroenterologist </option>
+                        <option value="Endocrinologist">Endocrinologist</option>
+                        <option value="Pulmonologist">Pulmonologist</option>
+                    </select>
+                </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
