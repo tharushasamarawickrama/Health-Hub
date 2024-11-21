@@ -1,12 +1,12 @@
 <?php
 
-class Profiledetails  {
+class ReProfiledetails  {
     use Controller;
     public function index(){
         
         
       
-        $this->view('Profiledetails');
+        $this->view('ReProfiledetails');
     }
     
 }

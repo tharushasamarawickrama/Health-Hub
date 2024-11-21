@@ -73,3 +73,7 @@ h1 {
 .ViewProfile-delete-btn:hover {
     background-color: #e53935;
 }
+.ViewProfile-button-group{
+    display: flex;
+    margin-top: 20px;
+}

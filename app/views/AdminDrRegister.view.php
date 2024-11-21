@@ -3,7 +3,7 @@
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
         <h1>New Doctor</h1>
-        <form class="AdminRegister-form" id="addDoctorForm" action="" method="POST">
+        <form class="AdminRegister-form" id="addDoctorForm" action="" method="POST" enctype="multipart/form-data">
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="firstName">First Name</label>
@@ -28,6 +28,17 @@
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="email">Email</label>
                     <input class="AdminInput" type="email" id="email" name="email" required>
+                </div>
+                <div class="AdminRegister-form-group">
+                    <label class="AdminLabel" for="specialization">Specialization</label>
+                    <select class="AdminSelect" id="specialization" name="specialization" required>
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Neurologist">Neurologist </option>
+                        <option value="Dermatologist">Dermatologist</option>
+                        <option value="Gastroenterologist">Gastroenterologist </option>
+                        <option value="Endocrinologist">Endocrinologist</option>
+                        <option value="Pulmonologist">Pulmonologist</option>
+                    </select>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -64,6 +75,7 @@
                 <div class="AdminRegister-form-group-full-width">
                     <label class="AdminLabel" for="photo">Doctor's Photo</label>
                     <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" required>
+                    
                 </div>
             </div>
             <div class="AdminRegister-form-row">

@@ -17,14 +17,10 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/patientregister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/Patientprofile.css">
 
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdashboard.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/phprescription.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/admindashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drDashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
-
-
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/components/AdminNavbar.css">
@@ -37,12 +33,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Ewert&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/DrProfiledetails.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/PatientChannel.css">
+
+
+    
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdashboard.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprocessedprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdailyusage.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescriptionappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/labprescriptionappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/phnavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/labnavbar.css">
+
+
+
 </head>
 
 <body>
 
 
 
-    </head>
-
-    <body>
+    

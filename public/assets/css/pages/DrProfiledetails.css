@@ -1,0 +1,97 @@
+
+
+.DrProfiledetails-body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.DrProfiledetails-profile-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 900px;
+    padding: 20px;
+    flex: 1;
+}
+
+.DrProfiledetails-profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.DrProfiledetails-profile-header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.DrProfiledetails-profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    
+    border: 2px solid #ccc;
+    
+}
+
+.DrProfiledetails-profile-details-form {
+    width: 100%;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+.DrProfiledetails-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.DrProfiledetails-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+.DrProfiledetails-input[readonly] {
+    background-color: #e9e9e9;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.save-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+}

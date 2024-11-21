@@ -1,22 +1,20 @@
 <?php
 
 
-class Doctor {
+class Admin {
     use Model;
 
-    protected $table = "doctors";
+    protected $table = "admins";
 
     protected $Allowedcolumns = [
-        'doctor_id',
+        'admin_id',
         'firstName',
         'lastName',
         'password',
         'phoneNumber',
         'email',
-        'specialization',
         'gender',
         'dob',
-        'slmcNo',
         'nic',
         'address',
         'photo_path',
@@ -32,11 +30,5 @@ class Doctor {
         return $this->query($query);
     }
 
-    public function delete($id)
-    {
-        $query = "delete from $this->table where doctor_id = :doctor_id";
-        $data = ['doctor_id' => $id];
-        return $this->query($query, $data);
-    }
 
 }

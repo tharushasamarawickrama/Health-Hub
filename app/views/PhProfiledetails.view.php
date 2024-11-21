@@ -2,7 +2,7 @@
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
 
 <div class="profiletopicdiv">
-    <h1 class="profiletopic">Doctor Profile</h1>
+    <h1 class="profiletopic">Pharmacist Profile</h1>
 </div>
 
 
