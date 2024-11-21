@@ -3,7 +3,6 @@
 class PatientProfile{
     use Controller;
     public function index(){
-       
         
             if(isset($_POST['delete'])){
                 $user = new User;
