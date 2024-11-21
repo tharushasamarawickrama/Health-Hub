@@ -52,13 +52,6 @@
                 </div>
             </div>
 
-            <!-- Channel Number Section (Number Buttons 1 to 25) -->
-            <div class="button-section">
-                <div class="button-grid">
-                    <!-- JavaScript will populate the buttons here -->
-                </div>
-            </div>
-            <!-- End of Channel Number Section -->
 
            
         </div>
@@ -90,4 +83,3 @@
 
 <?php require APPROOT.'/views/Components/footer.php' ?>
 
-<script src="<?php echo URLROOT; ?>assets/js/ButtonScript.js"></script>

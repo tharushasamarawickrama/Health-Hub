@@ -4,13 +4,13 @@
 
     <div class="dashboard-content">
         <div class="dashboard-section">
-            <a href="<?php echo URLROOT; ?>/phprescription" class="section-card">Prescriptions</a>
-            <a href="<?php echo URLROOT; ?>/pharmacist/processed" class="section-card">Processed Prescriptions</a>
-            <a href="<?php echo URLROOT; ?>/pharmacist/dailyusage" class="section-card">Inventory</a>
+            <a href="<?php echo URLROOT; ?>/phprescriptions" class="section-card">Prescriptions</a>
+            <a href="<?php echo URLROOT; ?>/phprocessedprescriptions" class="section-card">Processed Prescriptions</a>
+            <a href="<?php echo URLROOT; ?>/phdailyusage" class="section-card">Daily Usage</a>
         </div>
     </div>
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>
-<!--<script src="<?php echo URLROOT;?>/assets/js/PhDashboard.js"></script>-->
+<script src="<?php echo URLROOT;?>/assets/js/PhDashboard.js"></script>
 
