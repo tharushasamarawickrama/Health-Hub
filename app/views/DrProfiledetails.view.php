@@ -55,6 +55,10 @@
                     <label class="DrProfiledetails-lable" for="address">Address</label>
                     <input class="DrProfiledetails-input" type="text" id="address" name="address" value="<?php echo $data['address']?>" readonly>
                 </div>
+                <div class="form-group">
+                    <label class="DrProfiledetails-lable" for="address">Specialization</label>
+                    <input class="DrProfiledetails-input" type="text" id="specialization" name="specialization" value="<?php echo $data['specialization']?>" readonly>
+                </div>
             </div>
             <div class="form-actions">
                 <button type="button" class="save-btn">Update</button>
