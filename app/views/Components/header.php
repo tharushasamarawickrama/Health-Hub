@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Profiledetails.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/PrevLog.css">
 
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/DrProfiledetails.css">
+
+
     
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescriptions.css">

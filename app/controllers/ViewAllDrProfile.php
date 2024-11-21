@@ -8,8 +8,17 @@ class ViewAllDrProfile  {
         $data=$doctor->findAlldata();
         print_r($data[0]['firstName']);
         $this->view('ViewAllDrProfile',$data);
+
+        if(isset($_POST['delete_doctor_button'])){
+            $doctor=new Doctor;
+            $id=$data[0]['doctor_id'];
+            if($doctor->delete($id)){
+                redirect('ViewAllDrProfile');
+            }
+           
+        }
     }
-    
+       
 }
 
 

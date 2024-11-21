@@ -7,8 +7,10 @@
             <div class="ViewProfile-doctor-card">
                 <span class="ViewProfile-doctor-info">SLMC <?php echo $doctor['slmcNo'] ?> - Mr.<?php echo $doctor['firstName'] ?></span>
                 <div class="ViewProfile-button-group">
-                    <button class="ViewProfile-view-btn" onclick="viewProfile(1)">VIEW</button>
-                    <button class="ViewProfile-delete-btn" onclick="deleteProfile(1)">DELETE</button>
+                    <a href="<?php echo URLROOT;?>DrProfiledetails?id=<?php echo $doctor['doctor_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
+                    <form action="" method="POST" class="">
+                        <button class="ViewProfile-delete-btn" name="delete_doctor_button" id="delete_doctor_button" type="submit">DELETE</button>
+                    </form>
                 </div>
             </div>
             <?php endforeach ?>            
@@ -19,13 +21,3 @@
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
 
-<script>
-        function viewProfile(id) {
-            window.location.href = `view_profile.php?id=${id}`;
-        }
-        function deleteProfile(id) {
-            if (confirm("Are you sure you want to delete this doctor?")) {
-                window.location.href = `delete_doctor.php?id=${id}`;
-            }
-        }
-</script>
