@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Profiledetails.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/PrevLog.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/DrProfiledetails.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/PatientChannel.css">
 </head>
 <body>
 
