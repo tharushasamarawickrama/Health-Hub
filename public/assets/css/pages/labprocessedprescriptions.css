@@ -1,0 +1,136 @@
+.lab-pp-content {
+    display: flex;
+    padding: 30px;
+    gap: 40px;
+    margin-top: 80px;
+    background-color: #f0f4f8;
+    border-radius: 15px;
+}
+
+.lab-pp-calendar-container {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+}
+
+#lab-pp-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+.lab-pp-month-nav {
+    background: linear-gradient(135deg, #61669e 0%, #337eb3 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lab-pp-month-nav:hover {
+    transform: scale(1.05);
+}
+
+#lab-pp-calendarDates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    background: linear-gradient(to right, #f5f7fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.lab-pp-calendar-date, .empty {
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 22px;
+    border: 1px solid #e1e5eb;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.lab-pp-calendar-date:hover {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.lab-pp-calendar-date.today {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+}
+
+.lab-pp-calendar-date.selected {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.empty {
+    background-color: transparent;
+    border: none;
+}
+/* Container Styling */
+.lab-pp-appappointments-container {
+    padding: 20px;
+}
+
+.lab-pp-appointments-container h2 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Card Styling */
+.lab-pp-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d9f0f2;
+    border: 1px solid #006666;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+}
+
+.lab-pp-card p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.lab-pp-view-btn {
+    background-color: #e6e6e6;
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.lab-pp-view-btn:hover {
+    background-color: #ccc;
+}

@@ -1,10 +1,10 @@
 
-.labappcontent {
+.lab-pres-app-appcontent {
     padding: 20px;
     margin-top: 50px;
 }
 
-.prescription-details {
+.lab-pres-app-prescription-details {
     display: flex;
     justify-content: space-between;
     background-color: #c5ecf1;
@@ -13,21 +13,21 @@
     margin-bottom: 20px;
 }
 
-.prescription-details .details-left,
-.prescription-details .details-right {
+.lab-pres-app-prescription-details .lab-pres-app-details-left,
+.lab-pres-app-prescription-details .lab-pres-app-details-right {
     width: 48%;
 }
 
-.prescription-details p,
-.prescription-details li {
+.lab-pres-app-prescription-details p,
+.lab-pres-app-prescription-details li {
     margin: 5px 0;
 }
 
-.prescription-details ul {
+.lab-pres-app-prescription-details ul {
     padding-left: 20px;
 }
 
-.file-upload {
+.lab-pres-app-file-upload {
     background-color: #c5ecf1;
     padding: 20px;
     text-align: center;
@@ -35,13 +35,13 @@
     border: 1px dashed #aaa;
 }
 
-.file-upload p {
+.lab-pres-app-file-upload p {
     margin-bottom: 20px;
     font-size: 16px;
     color: #555;
 }
 
-.upload-btn {
+.lab-pres-app-upload-btn {
     background-color: #257a8b;
     color: white;
     padding: 10px 20px;
@@ -50,6 +50,6 @@
     cursor: pointer;
 }
 
-.upload-btn:hover {
+.lab-pres-app-upload-btn:hover {
     background-color: #205e70;
 }

@@ -1,0 +1,72 @@
+.AdminNavbar{
+    background-color: rgb(51, 104, 173);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    padding: 0 290px;
+    height: 60px;
+    display: flex;
+    width: 75%;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.fullcontainer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.AdminNav{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+.AdminNavitems{
+    font-size: 20px;
+    color: white;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.7s;
+
+}
+.adminlogodiv{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+.AdminNavitems:hover{
+    background-color: white;
+    color: #120303;
+    
+    
+}
+
+.Adminlogo{
+    width: 80px;
+    height: 80px;
+    margin-left: -280px;
+}
+
+.Adminloginlogo{
+    width: 80px;
+    height: 80px;
+    margin-left: 120px;
+    
+}
+
+.Adminlogin{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+

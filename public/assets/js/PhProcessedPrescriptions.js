@@ -10,8 +10,8 @@ class Calendar {
     }
 
     init() {
-        document.getElementById('prevMonth').addEventListener('click', () => this.previousMonth());
-        document.getElementById('nextMonth').addEventListener('click', () => this.nextMonth());
+        document.getElementById('ph-pp-prevMonth').addEventListener('click', () => this.previousMonth());
+        document.getElementById('ph-pp-nextMonth').addEventListener('click', () => this.nextMonth());
         this.generateCalendar();
     }
 
@@ -28,14 +28,14 @@ class Calendar {
         const startingDay = firstDay.getDay();
         const totalDays = lastDay.getDate();
 
-        document.getElementById('currentMonth').textContent = 
+        document.getElementById('ph-pp-currentMonth').textContent = 
             `${this.monthNames[this.currentMonth]} ${this.currentYear}`;
 
         let calendarHTML = '';
 
         // Empty cells for days before the 1st
         for (let i = 0; i < startingDay; i++) {
-            calendarHTML += '<div class="empty"></div>';
+            calendarHTML += '<div class="ph-pp-empty"></div>';
         }
 
         // Generate days of the month
@@ -44,14 +44,14 @@ class Calendar {
             const isToday = this.isToday(day);
 
             calendarHTML += `
-                <div class="calendar-date${isToday ? ' today' : ''}" 
+                <div class="ph-pp-calendar-date${isToday ? ' ph-pp-today' : ''}" 
                      data-date="${dateString}">
                     ${day}
                 </div>`;
         }
 
         // Add generated HTML to the calendar container
-        document.getElementById('calendarDates').innerHTML = calendarHTML;
+        document.getElementById('ph-pp-calendarDates').innerHTML = calendarHTML;
 
         // Attach event listeners to each date
         this.addDateListeners();
@@ -76,12 +76,12 @@ class Calendar {
     }
 
     addDateListeners() {
-        document.querySelectorAll('.calendar-date').forEach(date => {
+        document.querySelectorAll('.ph-pp-calendar-date').forEach(date => {
             date.addEventListener('click', (e) => {
                 // Remove previous selection
-                document.querySelectorAll('.calendar-date').forEach(d => d.classList.remove('selected'));
+                document.querySelectorAll('.ph-pp-calendar-date').forEach(d => d.classList.remove('ph-pp-selected'));
                 // Add selected class to clicked date
-                e.target.classList.add('selected');
+                e.target.classList.add('ph-pp-selected');
                 // Here you can add code to fetch appointments for the selected date
                 const selectedDate = e.target.dataset.date;
                 // Add your appointment fetching logic here

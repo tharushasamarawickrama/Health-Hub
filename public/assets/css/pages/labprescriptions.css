@@ -1,0 +1,70 @@
+.lab-pres-search-box{
+    margin-top: 60px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    width: 100%;
+    position: relative;
+    gap: 5px;
+    z-index: 1;
+}
+
+.lab-pres-search-box input[type="text"] {
+    padding: 10px;
+    border: 1px solid #c4aeae;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.lab-pres-search-box button {
+    border: rgb(165, 161, 161);
+
+    cursor: pointer;
+}
+.lab-pres-search-box button img {
+    width: 31px;
+    height: 31px;
+}
+
+.lab-pres-search-result {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.lab-pres-resultcontainer {
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+}
+
+.lab-pres-result-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #d4e5e5;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    width: 500px;
+    height: auto;
+    margin-bottom: 50px;
+    gap: 10px;
+}
+
+.lab-pres-result-item:hover{
+    transform: scale(1.05);
+    background-color: #62a7c7;
+}

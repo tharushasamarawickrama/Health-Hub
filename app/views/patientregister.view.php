@@ -10,7 +10,7 @@
                 
             </div>
         </div>
-        <div class="form-section active" id="loginSection">
+        <div class="form-section <?= empty($data['registration_success']) ? 'active' : '' ?>" id="loginSection">
             <form action="" method="post">
                 <div class="logindiv">
                     <span class="reglogintext">Login</span>
@@ -126,6 +126,7 @@
             <span class="regaddress">Address</span><br>
             <input type="text" class="regaddressinput" placeholder="Enter Address" name="Address" required>
             <span class="error" id="addressError"></span>
+            
         </div>
         <div class="regaddressdiv">
             <span class="regaddress">Age</span><br>
@@ -139,7 +140,7 @@
         </div>
     </div>
 </form>
-        <div class="form-section" id="successSection">
+        <div class="form-section <?= !empty($data['registration_success']) ? 'active' : '' ?>" id="successSection">
             <div class="successlogodiv">
                 <img src="<?php echo URLROOT; ?>/assets/images/check-mark.png" class="success">
                 <span class="registersuccesstext">Registration Successfully</span>
@@ -147,12 +148,14 @@
             </div>
            
             <div class="regbuttondiv">
-                <a href="/" class="reggohomebutton">Home</a>
+                <a href="<?php echo URLROOT; ?>patientregister" class="reggohomebutton">Login</a>
             </div>
         </div>
 
     </div>
 </div>
+<!-- <div id="toast-container" class="toast-container"></div>
+<script src="<?php echo URLROOT; ?>/assets/js/Toast.js"></script> -->
 
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
