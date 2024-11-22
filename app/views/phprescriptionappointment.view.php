@@ -44,7 +44,7 @@
                     <input type="number" name="durationDays" placeholder="Days" min="0"  required>
                     <input type="number" name="durationTotal" placeholder="Total" min="0" required>
                 </div>
-                <div class="buttons">
+                <div class="phbuttons">
                     <button type="button" onclick="addRow()">Add more...</button>
                     <button type="reset">Clear</button>
                     <button type="submit">Done</button>
