@@ -32,11 +32,6 @@ class Doctor {
         return $this->query($query);
     }
 
-    public function delete($id)
-    {
-        $query = "delete from $this->table where doctor_id = :doctor_id";
-        $data = ['doctor_id' => $id];
-        return $this->query($query, $data);
-    }
+   
 
 }

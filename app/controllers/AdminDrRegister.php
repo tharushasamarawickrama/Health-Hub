@@ -46,6 +46,8 @@ class AdminDrRegister  {
                     return;
                 }}
 
+               
+
             if($doctor->insert($data)){
                 header('Location: ' . URLROOT . '/AdminDrRegister');
         }}
