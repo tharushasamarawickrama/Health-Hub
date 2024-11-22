@@ -1,0 +1,76 @@
+/* styles.css */
+.PatientChannel-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+
+
+.PatientChannel-body h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.PatientChannel-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.PatientChannel-card {
+    flex: 1;
+    padding: 15px;
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.PatientChannel-card h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #444;
+}
+
+.PatientChannel-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.PatientChannel-hospital-icon {
+    width: 50px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.PatientChannel-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+.btn_edit {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn_continue {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
