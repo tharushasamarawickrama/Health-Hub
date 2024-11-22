@@ -1,8 +1,8 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/phNavbar.php'; ?>
-<div class="dashboard">
-        <div class="appcontent">
-            <div class="prescription-header">
+<div class="ph-pres-app-dashboard">
+        <div class="ph-pres-app-appcontent">
+            <div class="ph-pres-app-prescription-header">
                 <p>Appointment ID: <b>6465</b></p>
                 <p>Patient NIC: <b>200268300728</b></p>
                 <p>Age: <b>22</b></p>
@@ -11,7 +11,7 @@
                 <p>Doc ID: <b>103</b></p>
                 <p>Doc Name: <b>Dr. Krishantha Perera</b></p>
             
-            <table class="prescription-table">
+            <table class="ph-pres-app-prescription-table">
                 <tr>
                     <th>Medicine name</th>
                     <th>Dosage</th>
@@ -29,8 +29,8 @@
                 </tr>
             </table>
         </div>
-            <form class="inventory-form">
-                <div class="inventory-row">
+            <form class="ph-pres-app-inventory-form">
+                <div class="ph-pres-app-inventory-row">
                     <label><input type="radio" name="medType" value="Sy"> Syrup</label>
                     <label><input type="radio" name="medType" value="Tablet" checked> Tablet</label>
                     <input type="text" placeholder="Medicine Name" name="medicineName">
@@ -44,10 +44,13 @@
                     <input type="number" name="durationDays" placeholder="Days" min="0"  required>
                     <input type="number" name="durationTotal" placeholder="Total" min="0" required>
                 </div>
-                <div class="phbuttons">
+
+                <div class="ph-pres-app-buttons-container">
+                <div class="ph-pres-app-buttons">
                     <button type="button" onclick="addRow()">Add more...</button>
                     <button type="reset">Clear</button>
                     <button type="submit">Done</button>
+                </div>
                 </div>
             </form>
         </div>
