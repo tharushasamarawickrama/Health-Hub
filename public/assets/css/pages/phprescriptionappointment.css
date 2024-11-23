@@ -3,12 +3,19 @@
     flex-direction: column;
     align-items: center;
     font-family: Arial, sans-serif;
+    padding-top: 60px;
+    position: relative;
+    min-height: 100vh;
+    background-image: url("../../../assets/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .ph-pres-app-appcontent {
     flex: 1;
     padding: 20px;
     border: 1px solid #e0e0e0;
-
+    position: relative;
 }
 
 .ph-pres-app-prescription-header {
@@ -87,13 +94,36 @@
     border-radius: 4px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: #2f7a85;; /* Adds subtle shadow to make boxes stand out */
+    background-color: #2f7a85; /* Adds subtle shadow to make boxes stand out */
 
 }
 
 
 .ph-pres-app-buttons button:hover {
-    background-color: #003d46;
+    background-color: #0e6875;
     border-color: #002a31;
 
+}
+.ph-pres-app-back-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.ph-pres-app-back-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    background-color: #2f7a85;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ph-pres-app-back-button:hover {
+    background-color: #0e6875;
+    border-color: #002a31;
 }
