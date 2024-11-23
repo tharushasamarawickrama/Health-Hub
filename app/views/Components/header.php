@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdailyusage.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescriptionappointment.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/phnavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/phprocessedappointment.css">
     
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/labprescriptionappointment.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/labnavbar.css">

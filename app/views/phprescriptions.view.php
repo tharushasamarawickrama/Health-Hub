@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/phNavbar.php'; ?>
+<div class="ph-pres-dashboard">
     <div class = "ph-pres-search-box">
         <input type="text" id="ph-pres-searchInput" placeholder="Type Appointment Id...">
         <button onclick=searchAppointment()>
@@ -22,6 +23,6 @@
             </div>
         </div>
     </div>
-
+</div>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
 <script src="<?php echo URLROOT;?>/assets/js/PhPrescriptions.js"></script>

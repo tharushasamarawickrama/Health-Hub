@@ -1,7 +1,13 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/phNavbar.php'; ?>
-<div class="ph-pres-app-dashboard">
+    <div class="ph-pres-app-dashboard">
         <div class="ph-pres-app-appcontent">
+            <div class="ph-pres-app-back-button-container">
+                <a href="<?php echo URLROOT; ?>/phprescriptions" class="ph-pres-app-back-button">
+                <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+                Back
+                </a>
+            </div>  
             <div class="ph-pres-app-prescription-header">
                 <p>Appointment ID: <b>6465</b></p>
                 <p>Patient NIC: <b>200268300728</b></p>
@@ -28,7 +34,7 @@
                     <td>1/7</td>
                 </tr>
             </table>
-        </div>
+            </div>
             <form class="ph-pres-app-inventory-form">
                 <div class="ph-pres-app-inventory-row">
                     <label><input type="radio" name="medType" value="Sy"> Syrup</label>
