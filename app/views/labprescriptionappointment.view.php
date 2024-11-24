@@ -1,8 +1,14 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/labNavbar.php'; ?>
-<div class="labappcontent">
-        <div class="prescription-details">
-            <div class="details-left">
+<div class="lab-pres-app-appcontent">
+        <div class="lab-pres-app-back-button-container">
+            <a href="<?php echo URLROOT; ?>/labprescriptions" class="lab-pres-app-back-button">
+            <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+            Back
+            </a>
+        </div>
+        <div class="lab-pres-app-prescription-details">
+            <div class="lab-pres-app-details-left">
                 <p><strong>Appointment ID:</strong> 4565</p>
                 <p><strong>Patient NIC:</strong> 200213288759</p>
                 <p><strong>Age:</strong> 22</p>
@@ -13,16 +19,16 @@
                     <li>Urine test</li>
                 </ul>
             </div>
-            <div class="details-right">
+            <div class="lab-pres-app-details-right">
                 <p><strong>August 18, 2024</strong></p>
                 <p><strong>Doc ID:</strong> 103</p>
                 <p><strong>Doc name:</strong> Dr. Krishantha Perera</p>
             </div>
         </div>
 
-        <div class="file-upload">
+        <div class="lab-pres-app-file-upload">
             <p>You can drag and drop files here to add them</p>
-            <button class="upload-btn">Upload reports</button>
+            <button class="lab-pres-app-upload-btn">Upload reports</button>
         </div>
     </div>
 </body>

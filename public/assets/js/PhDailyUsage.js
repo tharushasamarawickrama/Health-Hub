@@ -10,8 +10,8 @@ class Calendar {
     }
 
     init() {
-        document.getElementById('ph-pp-prevMonth').addEventListener('click', () => this.previousMonth());
-        document.getElementById('ph-pp-nextMonth').addEventListener('click', () => this.nextMonth());
+        document.getElementById('ph-usage-prevMonth').addEventListener('click', () => this.previousMonth());
+        document.getElementById('ph-usage-nextMonth').addEventListener('click', () => this.nextMonth());
         this.generateCalendar();
     }
 
@@ -28,14 +28,14 @@ class Calendar {
         const startingDay = firstDay.getDay();
         const totalDays = lastDay.getDate();
 
-        document.getElementById('ph-pp-currentMonth').textContent = 
+        document.getElementById('ph-usage-currentMonth').textContent = 
             `${this.monthNames[this.currentMonth]} ${this.currentYear}`;
 
         let calendarHTML = '';
 
         // Empty cells for days before the 1st
         for (let i = 0; i < startingDay; i++) {
-            calendarHTML += '<div class="ph-pp-empty"></div>';
+            calendarHTML += '<div class="ph-usage-empty"></div>';
         }
 
         // Generate days of the month
@@ -44,14 +44,13 @@ class Calendar {
             const isToday = this.isToday(day);
 
             calendarHTML += `
-                <div class="ph-pp-calendar-date${isToday ? ' ph-pp-today' : ''}" 
+                <div class="ph-usage-calendar-date${isToday ? ' ph-usage-today' : ''}" 
                      data-date="${dateString}">
                     ${day}
                 </div>`;
         }
-
         // Add generated HTML to the calendar container
-        document.getElementById('ph-pp-calendarDates').innerHTML = calendarHTML;
+        document.getElementById('ph-usage-calendarDates').innerHTML = calendarHTML;
 
         // Attach event listeners to each date
         this.addDateListeners();
@@ -76,18 +75,17 @@ class Calendar {
     }
 
     addDateListeners() {
-        document.querySelectorAll('.ph-pp-calendar-date').forEach(date => {
-            date.addEventListener('click', (e) => {
-                // Remove previous selection
-                document.querySelectorAll('.ph-pp-calendar-date').forEach(d => d.classList.remove('ph-pp-selected'));
-                // Add selected class to clicked date
-                e.target.classList.add('ph-pp-selected');
-                // Here you can add code to fetch appointments for the selected date
-                const selectedDate = e.target.dataset.date;
-                // Add your appointment fetching logic here
-            });
+        const dates = document.querySelectorAll('.ph-usage-calendar-date');
+        dates.forEach(dateElement => {
+            dateElement.style.cursor = 'pointer';
+            dateElement.onclick = function() {
+                const selectedDate = this.getAttribute('data-date');
+                window.location.href = 'http://localhost/Health-Hub/public/phusagedate';
+            };
         });
     }
+    
+    
 }
 
 // Initialize the calendar when the DOM is loaded
