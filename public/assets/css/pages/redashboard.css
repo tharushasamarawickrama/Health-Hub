@@ -1,0 +1,167 @@
+.re-dash-container {
+    background-image: url("../../../assets/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.re-dash-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.re-dash-title {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.re-dash-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.re-dash-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.re-dash-form-group label {
+    display: block;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.re-dash-form-group select,
+.re-dash-form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #39CABB;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.re-dash-form-group select:focus,
+.re-dash-form-group input:focus {
+    outline: none;
+    border-color: #2BA99B;
+    box-shadow: 0 0 0 3px rgba(57, 202, 187, 0.2);
+}
+
+.re-dash-btn-search {
+    background-color: #64A7B3;
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+    margin: 2rem auto 0;
+    transition: all 0.3s ease;
+}
+
+.re-dash-btn-search:hover {
+    background-color: #4c818a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(57, 202, 187, 0.2);
+}
+
+.re-dash-doctors-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    margin-top: 120px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+.re-dash-search-results {
+    text-align: center;
+    padding: 20px;
+}
+
+.re-dash-search-results h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.re-dash-result-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-adjust columns */
+    gap: 50px; /* Space between cards */
+    justify-content: center; /* Center the grid horizontally */
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.re-dash-result-card {
+    background-color: #e0f7f8; /* Light blue background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 250px; /* Set a fixed width for consistent card sizes */
+    margin: 0 auto; /* Center the card horizontally */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center align content */
+}
+
+.re-dash-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #d9d9d9; /* Gray placeholder for the avatar */
+    margin-bottom: 15px; /* Space below avatar */
+}
+
+.re-dash-result-card h2 {
+    font-size: 18px;
+    font-weight: 700; /* Bold font for the name */
+    color: #333; /* Darker text for better readability */
+    margin: 10px 0; /* Space above and below the name */
+}
+
+.re-dash-result-card p {
+    font-size: 14px;
+    color: #555; /* Neutral gray for the text */
+    margin: 5px 0;
+}
+
+.re-dash-view-profile,
+.re-dash-channel-now {
+    background-color: #006C80; /* Blue for View Profile */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px; /* Slightly rounded corners */
+    padding: 10px;
+    width: 90%; /* Button width relative to the card */
+    margin: 10px 0; /* Space between buttons */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.re-dash-channel-now {
+    background-color: #49A8B9; /* Cyan for Channel Now */
+}
+
+.re-dash-view-profile:hover,
+.re-dash-channel-now:hover {
+    opacity: 0.8; /* Slight transparency on hover */
+}

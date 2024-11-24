@@ -55,6 +55,8 @@
     <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labpendingprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labpendingappointment.css">
 
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/renavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/redashboard.css">
 </head>
 
 <body>
