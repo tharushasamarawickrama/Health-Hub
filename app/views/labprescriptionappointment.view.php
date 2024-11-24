@@ -1,6 +1,12 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/labNavbar.php'; ?>
 <div class="lab-pres-app-appcontent">
+        <div class="lab-pres-app-back-button-container">
+            <a href="<?php echo URLROOT; ?>/labprescriptions" class="lab-pres-app-back-button">
+            <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+            Back
+            </a>
+        </div>
         <div class="lab-pres-app-prescription-details">
             <div class="lab-pres-app-details-left">
                 <p><strong>Appointment ID:</strong> 4565</p>
