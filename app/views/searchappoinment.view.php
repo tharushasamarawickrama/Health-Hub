@@ -8,35 +8,43 @@
         <form action="" method="POST">
             <div class="pt-selectdoctor-div">
                 <label class="pt-selectdoctor">Select Doctor :</label>
-                <select name="" id="" class="pt-searchdoctor">
+                <select name="doctor" id="" class="pt-searchdoctor">
                     <option value="" disabled selected hidden>--------Select Doctor--------</option>
-                    <?php foreach($data as $doctor):?><option value="1">Dr.<?php echo $doctor['firstName']." ".$doctor['lastName']?></option><?php endforeach ?>
-                    <!-- <option value="2">Dr. Jane Doe</option>
-                    <option value="3">Dr. James Doe</option> -->
+                    <?php foreach ($data as $doctor): ?><option value="<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?>">Dr.<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?></option><?php endforeach ?>
                 </select>
             </div>
             <div>
                 <label class="pt-selectspecialization">Select Specialization :</label>
-                <select name="" id="" class="pt-searchspecialization">
+                <select name="specialization" id="" class="pt-searchspecialization">
                     <option value="" disabled selected hidden>--------Select Specialization--------</option>
-                    <option value="1">Pediatrics</option>
-                    <option value="2">Dermatology</option>
-                    <option value="3">Radiology</option>
+                    <?php foreach ($data as $doctor): ?><option value="<?php echo $doctor['specialization'] ?>"><?php echo $doctor['specialization'] ?></option><?php endforeach ?>
+
                 </select>
             </div>
             <div>
                 <label class="pt-selectdate">Select Date :</label>
-                <input type="date" class="pt-searchdate">
+                <input type="date" class="pt-searchdate" name="appointment_date" >
             </div>
             <div>
-                <input type="submit" value="Search" class="pt-searchbtn">
+                <input type="submit" value="Search" class="pt-searchbtn" name="search">
             </div>
         </form>
     </div>
-    <div class="doctors">
-        <?php require APPROOT . '/views/Components/doctorcard.php' ?>
-    </div>
+    <?php if (!empty($data2)): ?>
+        <div class="doctors">
+            <?php foreach ($data2 as $doctor): ?>
+                
+                <?php
 
+
+                require APPROOT . '/views/Components/doctorcard.php' ?>
+            <?php endforeach ?>
+        </div>
+    <?php else: ?>
+        <div class="noresults">
+            <h1>No Results Found</h1>
+        </div>
+    <?php endif; ?>
 
 
 

@@ -38,7 +38,7 @@
                         </div>
                         <a href="#" class="forgotpassword">Forgot Password?</a>
                         <div>
-                            <button class="regnewuserbutton" onclick="event.preventDefault(); nextSection('loginSection','personalInfoSection')">New User</button>
+                            <button class="pt-regnewuserbutton" onclick="event.preventDefault(); nextSection('loginSection','personalInfoSection')">New User</button>
                         </div>
                     </div>
 

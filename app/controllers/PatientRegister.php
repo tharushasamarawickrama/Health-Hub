@@ -13,6 +13,7 @@ class PatientRegister {
                         $user = new User;
                         $arr['NIC'] = $_POST['logNIC'] ?? '';
                         $row = $user->first($arr);
+                        
                         if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
                             $_SESSION['user'] = $row;
                             redirect('searchappoinment'); // Redirect after successful login

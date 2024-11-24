@@ -3,7 +3,7 @@
 
 <div class="screen">
     <div class="outrectangle">
-        <form action="">
+        <form action="" method="POST">
         <div class="channeltextdiv">
             <span class="channeldoctortext">Channel Your Doctor</span>
         </div>
@@ -13,7 +13,7 @@
                 <div class="div1">
                     <div>
                         <span class="titletext">Title</span><br>
-                        <select class="titleselect">
+                        <select class="titleselect" name="Title" required>
                             <option value="" disabled selected hidden>Select Title</option>
                             <option value="Mr">Mr</option>
                             <option value="Mrs">Mrs</option>
@@ -23,31 +23,31 @@
                     </div>
                     <div>
                         <span class="pname">Patient's First Name</span><br>
-                        <input type="text" class="pnameinput" placeholder="Enter First Name">
+                        <input type="text" class="pnameinput" placeholder="Enter First Name" name="p_firstName" required>
                     </div>
                     <div>
                         <span class="pname">Patient's Last Name</span><br>
-                        <input type="text" class="pnameinput" placeholder="Enter First Name">
+                        <input type="text" class="pnameinput" placeholder="Enter Last Name" name="p_lastName" required>
                     </div>
                 </div>
                 <div class="div2">
                     <div>
                         <span class="pnic">Patient's NIC</span><br>
-                        <input type="text" class="pnicinput" placeholder="Enter NIC">
+                        <input type="text" class="pnicinput" placeholder="Enter NIC" name="nic" required>
                     </div>
                     <div>
                         <span class="pnumber">Patient's Contact Number</span><br>
-                        <input type="text" class="pnumberinput" placeholder="Enter Contact Number">
+                        <input type="text" class="pnumberinput" placeholder="Enter Contact Number" name="phoneNumber" required>
                     </div>
                 </div>
                 <div class="div2">
                     <div>
                         <span class="pnic">Patient's Address</span><br>
-                        <input type="text" class="pnicinput" placeholder="Enter Address">
+                        <input type="text" class="pnicinput" placeholder="Enter Address" name="address" required>
                     </div>
                     <div>
                         <span class="pnumber">Patient's Email</span><br>
-                        <input type="text" class="pnumberinput" placeholder="Enter Email">
+                        <input type="text" class="pnumberinput" placeholder="Enter Email" name="email" required>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
         </div>
         
         <div class="div3">
-            <input type="checkbox" class="checkbox"> 
+            <input type="checkbox" value="yes" class="checkbox" name="addservice" required> 
             <span class="checkboxtext">Add service Charge</span>
         </div>
         
@@ -69,12 +69,12 @@
         </div>
         
         <div class="div4">
-            <input type="checkbox" class="checkbox"> 
+            <input type="checkbox" value="yes" class="checkbox" name="terms" required> 
             <span class="checkboxtext">I Agree to the Terms & Conditions</span>
         </div>
         
         <div class="div5">
-            <input type="submit" class="continuebtn" value="Continue">
+            <input type="submit" class="continuebtn" value="Continue" name="continue">
         </div>  
         </form>
         

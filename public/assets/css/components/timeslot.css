@@ -1,5 +1,5 @@
 .timeslot {
-    background-color: rgb(15, 172, 178);
+    background-color: rgba(24, 205, 205, 1);
     width: 1000px;
     height: 200px;
     margin-left: 100px;
@@ -9,7 +9,7 @@
 }
 
 .inrectangle {
-    background-color: rgb(180, 186, 186);
+    background-color: rgb(205, 208, 208);
     width: 960px;
     height: 160px;
     margin-left: 20px;

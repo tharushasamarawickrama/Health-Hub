@@ -10,5 +10,20 @@
     font-family: 'popins', sans-serif;
 }
 
+.pt-noresults{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 400px;
+    color: white;
+}
+
+.pt-noresults-div{
+    margin-top: 200px;
+    background-color: red;
+    width: 1000px;
+    margin-left: 60px;
+}
+
+
 
 
