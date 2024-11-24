@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/phNavbar.php'; ?>
-
+<div class="ph-pp-container">
     <div class="ph-pp-content">
     <!-- Calendar Section - Left Side -->
     <div class="ph-pp-calendar-container">
@@ -25,19 +25,22 @@
     <div class="ph-pp-appointments-container">
         <a href="<?php echo URLROOT; ?>/phprocessedappointment" class="ph-pp-result-item">
         <div class="ph-pp-appointment-card">
+            01.
             <p class="ph-pp-appointment-id">Appointment ID: 4565</p>
             <p>NIC: 200213288759</p>
         </div></a>
         <div class="ph-pp-appointment-card">
+            02.
             <p class="ph-pp-appointment-id">Appointment ID: 4566</p>
             <p>NIC: 200213288760</p>
         </div>
         <div class="ph-pp-appointment-card">
+            03.
             <p class="ph-pp-appointment-id">Appointment ID: 4567</p>
             <p>NIC: 200213273709</p>
         </div>
     </div>
 </div>
-
+</div>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
 <script src="<?php echo URLROOT;?>/assets/js/PhProcessedPrescriptions.js"></script>
