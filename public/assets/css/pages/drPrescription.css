@@ -1,12 +1,13 @@
 .dr-prescription-container {
     background-image: url(../../images/background.png);
-    background-size: contain;
+    background-size: 80vh;
     background-repeat: repeat;
     background-position: top left;
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     padding-left: 50px;
     padding-top: 80px;
+    min-height: 86vh;
 }
 
 .prescription-header {

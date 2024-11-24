@@ -3,7 +3,7 @@
     font-family: 'Poppins', sans-serif;
     margin-top: 70px;
     background-repeat: repeat;
-    background-size: contain;
+    background-size: 80vh;
     background-position: top left;
     min-height: 630px;
 }

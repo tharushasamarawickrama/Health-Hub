@@ -16,7 +16,7 @@ require APPROOT . '/views/Components/drNavbar.php';
 
 <div class="dr-prescription-container">
     <div class="prescription-header">
-        <a href="#" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
+        <a href="drPrescription" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <h2>Edit Prescription Details</h2>
     </div>
     <form action="<?php echo URLROOT; ?>drEditPrescription" method="POST" class="doctor-prescription-form" id="doctor-prescription-form">

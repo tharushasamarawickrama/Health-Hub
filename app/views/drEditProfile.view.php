@@ -7,7 +7,7 @@ $doctorData = $doctorData ?? [];
 
 <div class="dr-profile-content">
     <div class="doctor-header">
-        <a href="<?php echo URLROOT; ?>drDashboard" class="profile-back-arrow">
+        <a href="<?php echo URLROOT; ?>drProfile" class="profile-back-arrow">
             <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
         </a>
         
