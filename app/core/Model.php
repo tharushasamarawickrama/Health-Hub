@@ -68,7 +68,7 @@ trait Model
         $query = "insert into  $this->table (" . implode(",", $keys) . ") values(:" . implode(",:", $keys) . ")";
 
         $this->query($query, $data);
-        return false;
+        return true;
     }
     public function update($id, $data, $id_column = 'id')
     {

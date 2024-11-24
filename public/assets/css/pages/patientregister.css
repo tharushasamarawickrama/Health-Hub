@@ -3,9 +3,9 @@
 }
 
 .mainblock{
-    margin-top: 80px;
+    margin-top: 60px;
     width: 1300px;
-    height: 600px;
+    height: 650px;
     background-color: rgb(255, 255, 255);
     border-radius: 20px; 
     display: flex;
@@ -20,7 +20,7 @@
 
 .mainblockleft{
     width: 650px;
-    height: 600px;
+    height: 650px;
     background-color: rgba(57, 202, 187, 1);;
     border-radius: 20px;
 }
@@ -274,7 +274,7 @@
     margin-bottom: 20px;
 }
 
-.regnewuserbutton{
+.pt-regnewuserbutton{
     color: rgb(25, 0, 255); /* White text */
     border: none;
     text-decoration: none;
