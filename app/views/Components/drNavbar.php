@@ -10,21 +10,25 @@
 <body>
 
 <div class="drNavbar">
-    <a href="#">
-        <img src="<?php echo URLROOT;?>/assets/images/12345.png"  class="drlogo">
+    <a href="<?php echo URLROOT; ?>Home">
+        <img src="<?php echo URLROOT; ?>assets/images/12345.png"  class="drlogo">
     </a>
-    
-    <a href="<?php echo URLROOT;?>/drDashboard" class="drNavitems">Dashboard</a>
-    <a href="<?php echo URLROOT;?>/drAvailability" class="drNavitems">Update Availability</a>
-    <a href="<?php echo URLROOT;?>/drViewAppointments" class="drNavitems">View Appointments</a>
+
+    <?php
+        $current_page = basename($_SERVER['REQUEST_URI']);
+    ?>
+
+    <a href="<?php echo URLROOT; ?>drDashboard" class="drNavitems <?php echo $current_page == 'drDashboard' ? 'active' : ''; ?>">Dashboard</a>
+    <a href="<?php echo URLROOT; ?>drAvailability" class="drNavitems <?php echo $current_page == 'drAvailability' ? 'active' : ''; ?>">Update Availability</a>
+    <a href="<?php echo URLROOT; ?>drViewAppointments" class="drNavitems <?php echo $current_page == 'drViewAppointments' ? 'active' : ''; ?>">View Appointments</a>
 
     <div class="dr-profile-dropdown">
         <a onclick="toggleDropdown()" class="dr-profile-link">
-            <img src="<?php echo URLROOT;?>/assets/images/loginlogo.jpg"  class="drloginlogo">
+            <img src="<?php echo URLROOT; ?>assets/images/loginlogo.jpg"  class="drloginlogo">
             <span class="drlogin">Login</span>
         </a>
         <div id="drDropdownMenu" class="dr-dropdown-content">
-            <a href="<?php echo URLROOT;?>/drProfile">View Profile</a>
+            <a href="<?php echo URLROOT;?>drProfile">View Profile</a>
             <a href="#">Logout</a>
         </div>
     </div>

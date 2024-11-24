@@ -38,8 +38,8 @@ $history = [
 ?>
 
 <div class="medical-history-container">
-    <a href="#" class="history-back-arrow">
-        <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back">
+    <a href="<?php echo URLROOT; ?>drAppointment" class="history-back-arrow">
+        <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
     </a>
     <div class="history-container">
         <h2><?php echo $history['patient_name']; ?></h2>
@@ -153,4 +153,4 @@ $history = [
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>
-<script src="<?php echo URLROOT; ?>/assets/js/drMedicalHistory.js"></script>
+<script src="<?php echo URLROOT; ?>assets/js/drMedicalHistory.js"></script>

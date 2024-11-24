@@ -2,96 +2,68 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
-// Simulated fetched data
-$diagnosis = "No diagnosis available.";
-$medications = [
-    ["name" => "Panadol 500 mg", "qty" => 2, "measurement" => "tab", "sig_code1" => "po", "sig_code2" => "mane", "duration_num" => 5, "duration_period" => 365],
-    ["name" => "Timolol", "qty" => 2, "measurement" => "gtt", "sig_code1" => "bd", "sig_code2" => "", "duration_num" => 1, "duration_period" => 52],
-];
+// Simulated fetched data (commented out for example)
+// $prescription = [
+//     'diagnosis' => 'Patient suffering from severe back pain due to muscle strain.',
+// ];
+
+// $medications = [
+//     ["name" => "Paracetamol", "quantity" => 1000, "measurement" => "mg", "sig_codes" => "po,mane", "duration" => "7,365"],
+//     ["name" => "Ibuprofen", "quantity" => 300, "measurement" => "mg", "sig_codes" => "bid", "duration" => "5,365"],
+// ];
 
 ?>
 
 <div class="dr-prescription-container">
-    <a href="#" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
+    <div class="prescription-header">
+        <a href="<?php echo URLROOT; ?>drAppointment" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
+        <h2>Prescription Details</h2>
+    </div>
     <div class="prescription-container">
         <h2>Diagnosis</h2>
-        <textarea id="diagnosis-text" readonly><?php echo htmlspecialchars($diagnosis); ?></textarea>
 
-        <h2>Medications</h2>
+        <?php if (empty($prescription['diagnosis'])): ?>
+            <p>No diagnosis available</p>
+        <?php else: ?>
+            <textarea id="diagnosis-text" readonly><?php echo $prescription['diagnosis']; ?></textarea>
+        <?php endif; ?>
+
         <div id="medications-container">
-            <?php foreach ($medications as $index => $medication): ?>
-                <div class="medication-row" data-index="<?php echo $index; ?>">
-                    <input type="text" value="<?php echo $medication['name']; ?>" class="med-name" readonly>
-                    <input type="number" value="<?php echo $medication['qty']; ?>" class="med-qty" readonly>
-                    <select class="med-measurement" disabled>
-                        <option <?php echo $medication['measurement'] === "mg" ? "selected" : ""; ?>>mg</option>
-                        <option <?php echo $medication['measurement'] === "ml" ? "selected" : ""; ?>>ml</option>
-                        <option <?php echo $medication['measurement'] === "gtt" ? "selected" : ""; ?>>gtt</option>
-                        <option <?php echo $medication['measurement'] === "tab" ? "selected" : ""; ?>>tab</option>
-                        <option <?php echo $medication['measurement'] === "cap" ? "selected" : ""; ?>>cap</option>
-                    </select>
-                    <select class="med-sig-code1" disabled>
-                        <option <?php echo $medication['sig_code1'] === "qd" ? "selected" : ""; ?>>qd</option>
-                        <option <?php echo $medication['sig_code1'] === "bd" ? "selected" : ""; ?>>bd</option>
-                        <option <?php echo $medication['sig_code1'] === "tds" ? "selected" : ""; ?>>tds</option>
-                        <option <?php echo $medication['sig_code1'] === "qid" ? "selected" : ""; ?>>qid</option>
-                        <option <?php echo $medication['sig_code1'] === "po" ? "selected" : ""; ?>>po</option>
-                        <option <?php echo $medication['sig_code1'] === "IV" ? "selected" : ""; ?>>IV</option>
-                        <option <?php echo $medication['sig_code1'] === "ou" ? "selected" : ""; ?>>ou</option>
-                        <option <?php echo $medication['sig_code1'] === "od" ? "selected" : ""; ?>>od</option>
-                        <option <?php echo $medication['sig_code1'] === "mane" ? "selected" : ""; ?>>mane</option>
-                        <option <?php echo $medication['sig_code1'] === "nocte" ? "selected" : ""; ?>>nocte</option>
-                    </select>
-                    <input type="number" value="<?php echo $medication['duration_num']; ?>" class="med-duration-num" readonly>
-                    <select class="med-duration-period" disabled>
-                        <option <?php echo $medication['duration_period'] === 365 ? "selected" : ""; ?>>365</option>
-                        <option <?php echo $medication['duration_period'] === 52 ? "selected" : ""; ?>>52</option>
-                        <option <?php echo $medication['duration_period'] === 12 ? "selected" : ""; ?>>12</option>
-                    </select>
-                    <button class="delete-medication-btn" style="display: none;">Delete</button>
-                </div>
-            <?php endforeach; ?>
+            <h2>Medications</h2>
+            <?php if (empty($medications)): ?>
+                <p>No medications prescribed</p>
+            <?php else: ?>
+                <table class="medications-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Qty</th>
+                            <th>Measurement</th>
+                            <th>Sig Codes</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($medications as $medication) {
+                            $duration = $medication['duration'];
+                            $duration_parts = explode(',', $duration);
+                            $formatted_duration = $duration_parts[0] . '/' . $duration_parts[1];
+                        ?>
+                        <tr>
+                            <td><?php echo $medication['name']; ?></td>
+                            <td><?php echo $medication['quantity']; ?></td>
+                            <td><?php echo $medication['measurement']; ?></td>
+                            <td><?php echo $medication['sig_codes']; ?></td>
+                            <td><?php echo $formatted_duration; ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
         </div>
-
-        <div id="add-medication" style="display: none;">
-            <input type="text" placeholder="Medication Name" class="med-name">
-            <input type="number" placeholder="Qty" class="med-qty">
-            <select class="med-measurement">
-                <option>mg</option>
-                <option>ml</option>
-                <option>gtt</option>
-                <option>tab</option>
-                <option>cap</option>
-            </select>
-            <select class="med-sig-code1">
-                <option>qd</option>
-                <option>bd</option>
-                <option>tds</option>
-                <option>qid</option>
-                <option>po</option>
-                <option>IV</option>
-                <option>ou</option>
-                <option>od</option>
-                <option>mane</option>
-                <option>nocte</option>
-            </select>
-            <input type="number" placeholder="Duration (Num)" class="med-duration-num">
-            <select class="med-duration-period">
-                <option>365</option>
-                <option>52</option>
-                <option>12</option>
-            </select>
-            <button id="add-medication-btn">Add</button>
-        </div>
-
-        <div class="prescription-actions">
-            <button id="edit-button">Edit</button>
-            <button id="save-button" style="display: none;">Save</button>
-        </div>
+        <a href="<?php echo URLROOT ; ?>drEditPrescription"><button class="prescription-actions">Edit</button></a>
     </div>
 </div>
 
-
-
-<script src="<?php echo URLROOT; ?>/assets/js/drPrescription.js"></script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>

@@ -20,34 +20,36 @@ $startIndex = ($currentPage - 1) * $appointmentsPerPage;
 $paginatedAppointments = array_slice($appointments, $startIndex, $appointmentsPerPage);
 ?>
     <div class="dr-view-appointments-container">
+        
     
         <div class="dr-view-appointments-header">
-        <a href="#"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="arrow-back" class="arrow-back"></a>
-            <label><input type="date" class="date" id="dateInput"></label>
+            <a href="<?php echo URLROOT; ?>drDashboard"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="back-arrow" class="view-appointments-back-arrow"></a>
+            <h2>Appointments</h2>
+            </div>
             <div class="appointment-filters">
+                <label><input type="date" class="view-appointments-date" id="dateInput"></label>
                 <input type="radio" name="filter" id="all" checked>
                 <label for="all">All</label>
                 <input type="radio" name="filter" id="upcoming">
                 <label for="upcoming">Upcoming</label>
                 <input type="radio" name="filter" id="past">
                 <label for="past">Past</label>
-            </div>
-            <div>
                 <input type="text" placeholder="Search" class="appointment-search-bar">
             </div>
-        </div>
 
         <!-- Appointments List -->
         <div class="view-appointments-list">
             <?php foreach ($paginatedAppointments as $appointment): ?>
-                <div class="view-appointment-card">
-                    <span class="appointment-id"><?= $appointment['id'] ?></span>
-                    <span class="appointment-name"><?= $appointment['name'] ?></span>
-                    <span class="action-icons">
-                        <a href="#"><img src="<?php echo URLROOT; ?>/assets/images/check-black.png" alt="Check Icon" class="appointment-check-icon"></a> <!-- Placeholder for Check Icon -->
-                        <a href="#"><img src="<?php echo URLROOT; ?>/assets/images/xmark-black.png" alt="Check Icon" class="appointment-check-icon" alt="Cross Icon"></a> <!-- Placeholder for Cross Icon -->
-                    </span>
-                </div>
+                    <div class="view-appointment-card">
+                        <a href="<?php echo URLROOT; ?>drAppointment" class="card-link">
+                            <span class="appointment-id"><?= $appointment['id'] ?></span>
+                            <span class="appointment-name"><?= $appointment['name'] ?></span>
+                        </a>
+                        <div class="appointment-action-icons">
+                            <a href="#"><img src="<?php echo URLROOT; ?>assets/images/check-black.png" alt="Check Icon" class="appointment-check-icon"></a>
+                            <a href="#"><img src="<?php echo URLROOT; ?>assets/images/xmark-black.png" alt="Check Icon" class="appointment-check-icon" alt="Cross Icon"></a>
+                        </div>
+                    </div>
             <?php endforeach; ?>
         </div>
 

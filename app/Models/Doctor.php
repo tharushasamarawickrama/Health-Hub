@@ -8,13 +8,20 @@ class Doctor
 
     protected $table = "doctors"; // Database table name
     protected $Allowedcolumns = [
-        "name",
+        "firstName",
+        "lastName",
+        "gender",
+        "slmcNo",
+        "dob",
+        "nic",
+        "address",
+        "profile_pic",
+        "created_at",
         "description",
         "experience",
         "specialties",
         "certifications",
-        "availability",
-        "phone",
+        "phoneNumber",
         "email"
     ];
 }

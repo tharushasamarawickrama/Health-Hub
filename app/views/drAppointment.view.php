@@ -15,7 +15,7 @@ $appointment = [
 ];
 ?>
     <div class="dr-appointments-container">
-        <a href="#" class="appointment-back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
+        <a href="<?php echo URLROOT; ?>drViewAppointments" class="appointment-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <div class="appointment-container">
             
             <div class="appointment-details">
@@ -32,14 +32,14 @@ $appointment = [
                     <li>Medical History Overview</li>
                     <ul>
                         <li>Overview - <?php echo $appointment['medical_history']; ?></li>
-                        <li><a href="<?php echo $appointment['full_medical_history_link']; ?>">Link to Full Medical History</a></li>
+                        <li><a href="<?php echo URLROOT; ?>drMedicalHistory">Link to Full Medical History</a></li>
                     </ul>
                 </ul>
             </div>
 
             <div class="appointment-actions">
-                <button class="appointment-action">Prescription &rarr;</button>
-                <button class="appointment-action">Order Lab Tests &rarr;</button>
+                <a href="<?php echo URLROOT; ?>drPrescription" class="appointment-action">Prescription &rarr;</button>
+                <a href="<?php echo URLROOT; ?>drLabTests" class="appointment-action">Order Lab Tests &rarr;</button>
             </div>
         </div>
     </div>

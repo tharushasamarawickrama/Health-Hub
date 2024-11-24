@@ -10,9 +10,14 @@
     left: 0;
     right: 0;
     z-index: 1000;
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .drNavitems{
+    flex-shrink: 0;
+    flex-grow: 0;
     font-size: 18px;
     color: black;
     text-decoration: none;
@@ -25,9 +30,11 @@
 
 .drNavitems:hover{
     background-color: white;
-    border-radius: 30px;
-    
-    
+    border-radius: 30px; 
+}
+
+.drNavitems.active {
+    box-shadow: #ffffff 2px 2px 2px;
 }
 
 .drlogo{
@@ -39,7 +46,7 @@
 .drloginlogo{
     width: 80px;
     height: 80px;
-    margin-left: 380px;
+    margin-left: 370px;
     cursor: pointer;
 }
 

@@ -7,7 +7,7 @@ $fetchedLabTests = ["TFT", "Allergy Test"];
 ?>
 
     <div class="dr-labtest-container">
-        <a href="#" class="labtest-back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
+        <a href="<?php echo URLROOT; ?>drAppointment" class="labtest-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <div class="labtests-container">
             <h2>Lab Tests</h2>
 

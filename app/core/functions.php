@@ -11,6 +11,6 @@ function esc($str){
 }
 
 function redirect($path){
-    header('location: ' . URLROOT . '/' . $path);
+    header('location: ' . URLROOT . $path);
     die();
 }

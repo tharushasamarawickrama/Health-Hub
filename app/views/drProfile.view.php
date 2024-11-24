@@ -29,51 +29,31 @@ $doctorData = $doctorData ?? [];
 ?>
 
 <div class="dr-profile-content">
-    <div class="doctor-header">
-        <a href="./dr-dashboard.php" class="profile-back-arrow">
-            <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back">
-        </a>
-        <img src="<?php echo URLROOT; ?>/assets/images/doctor.png" alt="Doctor Avatar" class="doctor-pic">
-        <h1 id="doctorName"><?php echo htmlspecialchars($doctorData['name'] ?? ''); ?></h1>
-    </div>
-    <div class="doctor-profile-container">
-        <form id="profileForm">
+            <div class="doctor-header">
+                <a href="<?php echo URLROOT; ?>drDashboard" class="profile-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
+                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($doctorData['profile_pic']) ? 'uploads/' . htmlspecialchars($doctorData['profile_pic']) : 'images/doctor.png'; ?>" class="doctor-pic">
+                <h1>Dr. <?php echo $doctorData['firstName'] . ' ' . $doctorData['lastName']; ?></h1>
+            </div>
+        <div class="doctor-profile-container">
             <div class="doctor-description">
-                <textarea name="description" readonly><?php echo htmlspecialchars($doctorData['description'] ?? ''); ?></textarea>
+                <p><?php echo $doctorData['description']; ?></p>
             </div>
 
+            <!-- Doctor Details -->
             <div class="doctor-details">
-                <!-- Hardcoded doctor ID -->
-                <input type="hidden" name="id" value="123">
+                <p><strong>Experience:</strong> <?php echo $doctorData['experience']; ?></p>
+                <p><strong>Specialties:</strong> <?php echo htmlspecialchars($doctorData['specialties'] ?? ''); ?></p>
+                <p><strong>Certifications:</strong> <?php echo htmlspecialchars($doctorData['certifications'] ?? ''); ?></p>
                 
-                <p><strong>Experience:</strong>
-                    <input type="text" name="experience" value="<?php echo htmlspecialchars($doctorData['experience'] ?? ''); ?>" readonly>
-                </p>
-                <p><strong>Specialties:</strong>
-                    <input type="text" name="specialties" value="<?php echo htmlspecialchars($doctorData['specialties'] ?? ''); ?>" readonly>
-                </p>
-                <p><strong>Certifications:</strong>
-                    <input type="text" name="certifications" value="<?php echo htmlspecialchars($doctorData['certifications'] ?? ''); ?>" readonly>
-                </p>
-                <p><strong>Availability:</strong>
-                    <input type="text" name="availability" value="<?php echo htmlspecialchars($doctorData['availability'] ?? ''); ?>" readonly>
-                </p>
+                <!-- Contact Information -->
                 <p><strong>Contact:</strong></p>
                 <ul class="dr-contact-info">
-                    <li>
-                        Phone: <input type="text" name="phone" value="<?php echo htmlspecialchars($doctorData['phone'] ?? ''); ?>" readonly>
-                    </li>
-                    <li>
-                        Email: <input type="text" name="email" value="<?php echo htmlspecialchars($doctorData['email'] ?? ''); ?>" readonly>
-                    </li>
+                    <li>Phone: <?php echo $doctorData['phoneNumber']; ?></li>
+                    <li>Email: <a href="mailto:<?php echo $doctorData['email']; ?>"><?php echo $doctorData['email']; ?></a></li>
                 </ul>
-                <button type="button" id="editProfileBtn" class="dr-profile-btn">Edit Profile</button>
-                <button type="button" id="saveProfileBtn" class="dr-profile-btn" style="display: none;">Save Profile</button>
-                <button type="button" id="cancelEditBtn" class="dr-profile-btn" style="display: none;">Cancel</button>
+                <a href="<?php echo URLROOT; ?>drEditProfile"><button class="dr-profile-btn">Edit Profile</button></a>
             </div>
-        </form>
+        </div>
     </div>
-</div>
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
-<script src="<?php echo URLROOT; ?>/assets/js/drProfile.js"></script>
