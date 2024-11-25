@@ -1,5 +1,11 @@
-
-.search-box{
+.ph-pres-dashboard{
+    background-image: url("../../../assets/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+.ph-pres-search-box{
     margin-top: 60px;
     margin-left: 20px;
     display: flex;
@@ -12,23 +18,23 @@
     z-index: 1;
 }
 
-.search-box input[type="text"] {
+.ph-pres-search-box input[type="text"] {
     padding: 10px;
     border: 1px solid #c4aeae;
     border-radius: 5px;
     font-size: 16px;
 }
-.search-box button {
+.ph-pres-search-box button {
     border: rgb(165, 161, 161);
 
     cursor: pointer;
 }
-.search-box button img {
+.ph-pres-search-box button img {
     width: 31px;
     height: 31px;
 }
 
-.search-result {
+.ph-pres-search-result {
     position: absolute;
     top: 100%;
     left: 0;
@@ -40,13 +46,13 @@
     width: 100%;
 }
 
-.resultcontainer {
+.ph-pres-resultcontainer {
     display: flex;
     flex-direction: column;
     gap:30px;
 }
 
-.result-item {
+.ph-pres-result-item {
     display: flex;
     flex-direction: column;
     background-color: #d4e5e5;
@@ -63,51 +69,9 @@
     height: auto;
     margin-bottom: 50px;
     gap: 10px;
-
-    /*
-    display: flex;
-    background-color: #d4e5e5;
-    padding: 20px;
-    border-radius: 10px;
-    text-align:left;
-    font-weight: bold;
-    font-size: 1.2em;
-    text-decoration: none;
-    color: #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-    width: 500px;
-    height: 50px;
-    margin-bottom: 50px;*/
 }
-
-.result-item:hover{
+   
+.ph-pres-result-item:hover{
     transform: scale(1.05);
     background-color: #62a7c7;
 }
-/*
-#resultContainer {
-    margin: 20px;
-}
-
-.result-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #e3f2fd;
-    padding: 20px;
-    margin: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.result-card:hover {
-    transform: scale(1.05);
-}
-
-.result-card p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #333;
-}*/

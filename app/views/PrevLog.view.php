@@ -7,7 +7,7 @@
             <div class="admin-card">
                 <h3>Patients</h3>
                 <p>Login as a Patient.</p>
-                <a href="<?php echo URLROOT;?>patientregister">
+                <a href="<?php echo URLROOT;?>patientregister?id=1">
                     <button > Go </button>
                 </a>
                 
@@ -17,7 +17,7 @@
             <div class="admin-card">
                 <h3>Doctors</h3>
                 <p>Login as a Doctor.</p>
-                <a href="<?php echo URLROOT;?>patientregister">
+                <a href="<?php echo URLROOT;?>patientregister?id=2">
                 <button > Go </button>
                 </a>
             </div>
@@ -26,7 +26,7 @@
             <div class="admin-card">
                 <h3>Admin</h3>
                 <p>Login as a Admin.</p>
-                <a href="<?php echo URLROOT;?>patientregister">
+                <a href="<?php echo URLROOT;?>patientregister?id=3">
                 <button > Go </button>
                 </a>
             </div>
@@ -37,7 +37,7 @@
                 <div class="admin-card">
                     <h3>Lab Assistants</h3>
                     <p>Login as a Lab Assistant.</p>
-                    <a href="<?php echo URLROOT;?>patientregister">
+                    <a href="<?php echo URLROOT;?>patientregister?id=4">
                     <button> Go </button>
                     </a>
                 </div>
@@ -46,7 +46,7 @@
                 <div class="admin-card">
                     <h3>Receptionists</h3>
                     <p>Login as a Receptionist.</p>
-                    <a href="<?php echo URLROOT;?>patientregister">
+                    <a href="<?php echo URLROOT;?>patientregister?id=5">
                     <button > Go </button>
                     </a>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="admin-card">
                     <h3>Pharmacists</h3>
                     <p>Login as a Pharmacist.</p>
-                    <a href="<?php echo URLROOT;?>patientregister">
+                    <a href="<?php echo URLROOT;?>patientregister?id=6">
                     <button > Go </button>
                     </a>
                 </div>

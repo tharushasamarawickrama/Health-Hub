@@ -1,0 +1,74 @@
+.pt-appoinment-section{
+    width: 650px;
+    height: 400px;
+    box-shadow:  0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 500px;
+}
+
+.pt-topic{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 80px;
+    margin-left: 20px;
+}
+
+.pt-selectdoctor{
+    font-size: 20px;
+    margin-top: 100px;
+    margin-left: 20px;
+}
+
+.pt-selectdoctor-div{
+    display: flex;
+}
+
+.pt-searchdoctor{
+    width: 350px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid rgba(57, 202, 187, 1);
+    margin-left: 90px;
+    margin-top: 100px;
+}
+
+.pt-selectspecialization{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.pt-searchspecialization{
+    width: 350px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid rgba(57, 202, 187, 1);
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.pt-selectdate{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.pt-searchdate{
+    width: 350px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid rgba(57, 202, 187, 1);
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+.pt-searchbtn{
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgba(57, 202, 187, 1);
+    color: white;
+    font-size: 20px;
+    margin-left: 280px;
+    margin-top: 60px;
+    border: none;
+}

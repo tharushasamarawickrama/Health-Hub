@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/channel.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/timeslot.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/setappoinment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/searchappoinment.css">
+
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/patientregister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/Patientprofile.css">
@@ -21,12 +23,16 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/AdminNavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/components/AdminNavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/AdminDrRegister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/ViewAllProfile.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Profiledetails.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/PrevLog.css">
 
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Ewert&family=Protest+Guerrilla&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/DrProfiledetails.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/PatientChannel.css">
 
@@ -37,17 +43,21 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprocessedprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdailyusage.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescriptionappointment.css">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/labprescriptionappointment.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/phnavbar.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/labnavbar.css">
-
-
-
-</head>
-<body>
-
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/phprocessedappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phusagedate.css">
     
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/labprescriptionappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/labnavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labprocessedappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labprocessedprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labpendingprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labpendingappointment.css">
 
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/renavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/redashboard.css">
 </head>
 
 <body>
+

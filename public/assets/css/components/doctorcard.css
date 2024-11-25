@@ -2,18 +2,28 @@
 
 .frame{
     width: 300px;
-    height: 500px;
-    background-color: rgb(31, 116, 145);
+    background-color: rgba(24, 205, 205, 1);
     margin: 20px;
+    padding: 20px; /* Adds padding inside the card for spacing */
+    border-radius: 10px; /* Optional: Rounds corners for aesthetics */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures all content is centered */
+    box-sizing: border-box; /* Includes padding in the size calculation */
     
 }
 
+.card{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
 .doctorpic{
-    width: 300px;
-    height: 300px;
-    margin-top: -20px;
-    /* display: flex;
-    justify-content: center; */
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 50%;
 }
 
 .doctorname{
@@ -22,7 +32,12 @@
     color: white;
     display: flex;
     justify-content: center;
+    text-align: center; /* Aligns text centrally */
     margin-top: -50px;
+    padding: 0 10px; /* Adds some spacing around text */
+    word-wrap: break-word; /* Ensures long words break into a new line */
+    overflow-wrap: break-word; /* Supports all modern browsers for breaking */
+    white-space: normal; /* Allows text to wrap to the next line */
 }
 
 .gender{
@@ -45,14 +60,14 @@
     width: 200px;
     height: 50px;
     border-radius: 100px;
-    margin-top: 30px;
+    margin-top: 10px;
     font-size: 20px;
     background-color: #021b99;
     color: white;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    margin-left: 50px;
+    margin-left: 40px;
     padding: 10px 10px;
 }
 
@@ -60,14 +75,17 @@
     width: 200px;
     height: 50px;
     border-radius: 100px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 20px;
-    background-color: #118ddf;
-    color: white;
+    background-color: white;
+    color: rgba(24, 205, 205, 1);
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    margin-left: 50px;
+    margin-left: 40px;
     padding: 10px 10px;
 }
 
+.pt-button-div{
+    align-items: center;
+}

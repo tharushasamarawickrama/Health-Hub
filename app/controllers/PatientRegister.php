@@ -4,24 +4,97 @@ class PatientRegister {
     use Controller;
 
     public function index() {
-        $user = new User;
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
-                // Login logic
-                $arr['NIC'] = $_POST['logNIC'] ?? '';
-                $row = $user->first($arr);
+                $id = $_GET['id'];
 
-                if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
-                    $_SESSION['user'] = $row;
-                    redirect('searchappoinment'); // Redirect after successful login
-                } else {
-                    $user->errors['Email'] = "Invalid NIC or Password";
-                    $data['errors'] = $user->errors;
-                    $this->view('patientregister', $data);
+                switch($id){
+                    case 1:
+                        $user = new User;
+                        $arr['NIC'] = $_POST['logNIC'] ?? '';
+                        $row = $user->first($arr);
+                        
+                        if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
+                            $_SESSION['user'] = $row;
+                            redirect('searchappoinment'); // Redirect after successful login
+                        } else {
+                            $user->errors['Email'] = "Invalid NIC or Password";
+                            $data['errors'] = $user->errors;
+                            $this->view('patientregister', $data);
+                        }
+                        break;
+                    case 2:
+                        $doctor = new Doctor;
+                        $arr['nic'] = $_POST['logNIC'] ?? '';
+                        $row = $doctor->first($arr);
+                        if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
+                            $_SESSION['user'] = $row;
+                            redirect('drDashboard'); // Redirect after successful login
+                        } else {
+                            $doctor->errors['Email'] = "Invalid NIC or Password";
+                            $data['errors'] = $doctor->errors;
+                            $this->view('patientregister', $data);
+                        }
+                        break;
+                    case 3:
+
+                        redirect('adminregister');
+                        break;
+                    case 4:
+                        $lab = new LabAssistant;
+                        $arr['nic'] = $_POST['logNIC'] ?? '';
+                        $row = $lab->first($arr);
+                        if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
+                            $_SESSION['user'] = $row;
+                            redirect('searchappoinment'); // Redirect after successful login
+                        } else {
+                            $lab->errors['Email'] = "Invalid NIC or Password";
+                            $data['errors'] = $lab->errors;
+                            $this->view('patientregister', $data);
+                        }
+                        break;
+                    case 5:
+                        $receptionist = new Receptionist;
+                        $arr['nic'] = $_POST['logNIC'] ?? '';
+                        $row = $receptionist->first($arr);
+                        if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
+                            $_SESSION['user'] = $row;
+                            redirect('searchappoinment'); // Redirect after successful login
+                        } else {
+                            $receptionist->errors['Email'] = "Invalid NIC or Password";
+                            $data['errors'] = $receptionist->errors;
+                            $this->view('patientregister', $data);
+                        }
+                        break;
+                    case 6:
+                        $pharmacist = new Pharmacist;
+                        $arr['nic'] = $_POST['logNIC'] ?? '';
+                        $row = $pharmacist->first($arr);
+                        if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
+                            $_SESSION['user'] = $row;
+                            redirect('phdashboard'); // Redirect after successful login
+                        } else {
+                            $pharmacist->errors['Email'] = "Invalid NIC or Password";
+                            $data['errors'] = $pharmacist->errors;
+                            $this->view('patientregister', $data);
+                        }
+                        break;            
                 }
+                // Login logic
+                // $arr['NIC'] = $_POST['logNIC'] ?? '';
+                // $row = $user->first($arr);
+
+                // if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
+                //     $_SESSION['user'] = $row;
+                //     redirect('searchappoinment'); // Redirect after successful login
+                // } else {
+                //     $user->errors['Email'] = "Invalid NIC or Password";
+                //     $data['errors'] = $user->errors;
+                //     $this->view('patientregister', $data);
+                // }
             } else {
                 // Registration logic
+                $user = new User;
                 $data = [
                     'Title' => $_POST['Title'] ?? '',
                     'FirstName' => $_POST['FirstName'] ?? '',
