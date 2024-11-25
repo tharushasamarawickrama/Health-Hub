@@ -61,7 +61,9 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" class="save-btn">Update</button>
+                <a href="<?php echo URLROOT;?>EditDrProfiledetails?id=<?php echo $data['doctor_id'] ?>">
+                    <button type="button" class="save-btn">Edit Profile</button>
+                </a>
             </div>
         </form>
     </div>

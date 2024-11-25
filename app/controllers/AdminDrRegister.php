@@ -21,6 +21,8 @@ class AdminDrRegister  {
                 
             ];
 
+            
+
             if(isset($_FILES['photo_path'])){
                 $target_dir = "profile-Photos/";
                 if(!is_dir($target_dir)){
@@ -50,7 +52,9 @@ class AdminDrRegister  {
 
             if($doctor->insert($data)){
                 header('Location: ' . URLROOT . '/AdminDrRegister');
-        }}
+            }
+            redirect('AdminDrRegister');
+         }
         
 
         $this->view('AdminDrRegister');

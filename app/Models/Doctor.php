@@ -32,6 +32,7 @@ class Doctor {
         return $this->query($query);
     }
 
+    
    
 
 }

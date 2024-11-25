@@ -20,6 +20,8 @@ class AdminLabRegister  {
                 
             ];
 
+           
+
             if(isset($_FILES['photo_path'])){
                 $target_dir = "profile-Photos/";
                 if(!is_dir($target_dir)){
@@ -48,7 +50,9 @@ class AdminLabRegister  {
 
             if($labassistant->insert($data)){
                 header('Location: ' . URLROOT . '/AdminLabRegister');
-        }}
+        }
+        redirect('AdminLabRegister');
+    }
         $this->view('AdminLabRegister');
     }
     

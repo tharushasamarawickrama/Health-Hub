@@ -17,7 +17,7 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="password">Password</label>
-                    <input class="AdminInput" type="password" id="password" name="password" required>
+                    <input class="AdminInput" type="password" id="password" name="password" >
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="phoneNumber">Phone Number</label>
@@ -74,7 +74,7 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group-full-width">
                     <label class="AdminLabel" for="photo">Doctor's Photo</label>
-                    <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" required>
+                    <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" >
                     
                 </div>
             </div>
