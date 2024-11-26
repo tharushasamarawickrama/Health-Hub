@@ -1,15 +1,20 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+
 <div class="DrProfiledetails-body">
     <div class="DrProfiledetails-profile-container">
         <div class="DrProfiledetails-profile-header">
-            <h1>Doctor Profile</h1>
-           
+            <h1>Edit Doctor Profile</h1>
+            <!-- <div>
+                <input class="AdminFileInput" type="file" id="file" name="photo_path" accept="image/*" style="display: none;" >
+                <img src="<?php echo URLROOT; ?>/<?php echo $data['photo_path']?>" alt="Profile" class="DrProfiledetails-profile-photo" style="cursor: pointer;" id="profileImage">
+            </div> -->
           
         </div>
-        <form class="DrProfiledetails-profile-details-form">
+        <form class="DrProfiledetails-profile-details-form" method="POST"  enctype="multipart/form-data">
             <div>
-                <img src="<?php echo URLROOT; ?>/<?php echo $data['photo_path']?>" alt="Doctor's Photo" class="DrProfiledetails-profile-photo">
+                <input class="AdminFileInput" type="file" id="file" name="photo_path" accept="image/*" style="display: none;" >
+                <img src="<?php echo URLROOT; ?>/<?php echo $data['photo_path']?>" alt="Profile" class="DrProfiledetails-profile-photo" style="cursor: pointer;" id="profileImage">
             </div>
             <div class="form-row">
                 <div class="form-group">
@@ -24,11 +29,11 @@
             <div class="form-row">
                 <div class="form-group">
                     <label class="DrProfiledetails-lable" for="email">Email</label>
-                    <input class="DrProfiledetails-input" type="email" id="email" name="email" value="<?php echo $data['email']?>" readonly>
+                    <input class="DrProfiledetails-input" type="email" id="email" name="email" value="<?php echo $data['email']?>" style="background-color:#8ec6ed">
                 </div>
                 <div class="form-group">
                     <label class="DrProfiledetails-lable" for="phoneNumber">Phone Number</label>
-                    <input class="DrProfiledetails-input" type="text" id="phoneNumber" name="phoneNumber" value="<?php echo $data['phoneNumber']?>" readonly>
+                    <input class="DrProfiledetails-input" type="text" id="phoneNumber" name="phoneNumber" value="<?php echo $data['phoneNumber']?>" style="background-color:#8ec6ed">
                 </div>
             </div>
             <div class="form-row">
@@ -54,7 +59,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <label class="DrProfiledetails-lable" for="address">Address</label>
-                    <input class="DrProfiledetails-input" type="text" id="address" name="address" value="<?php echo $data['address']?>" readonly>
+                    <input class="DrProfiledetails-input" type="text" id="address" name="address" value="<?php echo $data['address']?>" style="background-color:#8ec6ed">
                 </div>
                 <div class="form-group">
                     <label class="DrProfiledetails-lable" for="address">Specialization</label>
@@ -62,12 +67,11 @@
                 </div>
             </div>
             <div class="form-actions">
-                <a href="<?php echo URLROOT;?>EditDrProfiledetails?id=<?php echo $data['doctor_id'] ?>">
-                    <button type="button" class="save-btn">Edit Profile</button>
-                </a>
+                <button type="submit" class="save-btn" name="drbutton">Update Profile</button>
             </div>
         </form>
     </div>
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
+<script src="<?php echo URLROOT; ?>assets/js/patientprofile.js"></script>

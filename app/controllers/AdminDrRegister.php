@@ -22,7 +22,7 @@ class AdminDrRegister  {
             ];
 
             
-
+            
             if(isset($_FILES['photo_path'])){
                 $target_dir = "profile-Photos/";
                 if(!is_dir($target_dir)){
