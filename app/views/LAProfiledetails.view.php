@@ -5,7 +5,7 @@
         <div class="DrProfiledetails-profile-header">
             <h1>Lab Assistant Profile</h1>
             <div>
-                <img src="<?php echo URLROOT; ?>/assets/images/doctor.png" alt="Lab Assistant's Photo" class="DrProfiledetails-profile-photo">
+                <img src="<?php echo URLROOT; ?>/<?php echo $data['photo_path']?>" alt="Lab Assistant's Photo" class="DrProfiledetails-profile-photo">
             </div>
             
         </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label class="DrProfiledetails-lable" for="slmcNo">Employee No</label>
+                    <label class="DrProfiledetails-lable" for="employeeNo">Employee No</label>
                     <input class="DrProfiledetails-input" type="text" id="employeeNo" name="employeeNo" value="<?php echo $data['employeeNo']?>" readonly>
                 </div>
                 <div class="form-group">

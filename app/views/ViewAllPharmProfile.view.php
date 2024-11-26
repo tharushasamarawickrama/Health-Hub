@@ -8,7 +8,7 @@
                 <span class="ViewProfile-doctor-info">SLMC <?php echo $pharmacist['slmcNo'] ?> - Mr.<?php echo $pharmacist['firstName'] ?></span>
                 <div class="ViewProfile-button-group">
                     <a href="<?php echo URLROOT;?>PhProfiledetails?id=<?php echo $pharmacist['pharmacist_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
-                    <button class="ViewProfile-delete-btn" onclick="deleteProfile(1)">DELETE</button>
+                    <a href="<?php echo URLROOT;?>ViewAllPharmProfile/delete?id=<?php echo $pharmacist['pharmacist_id'] ?>"><button class="ViewProfile-delete-btn" >DELETE</button></a>
                 </div>
             </div>
             <?php endforeach ?>

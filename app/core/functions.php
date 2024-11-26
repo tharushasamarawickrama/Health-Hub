@@ -16,7 +16,7 @@ function redirect($path, $params='')
 
     // If there are parameters, build the query string
     if (!empty($params)) {
-        $queryString = '?' .'v1='.$params;
+        $queryString = '?' .'id='.$params;
     }
 
     // Redirect to the path with query string

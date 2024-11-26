@@ -8,8 +8,8 @@
             <div class="ViewProfile-doctor-card">
                 <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $receptionist['employeeNo'] ?> -<?php echo $receptionist['firstName'] ?></span>
                 <div class="ViewProfile-button-group">
-                <a href="<?php echo URLROOT;?>ReProfiledetails?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
-                    <button class="ViewProfile-delete-btn" onclick="deleteProfile(1)">DELETE</button>
+                    <a href="<?php echo URLROOT;?>ReProfiledetails?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
+                    <a href="<?php echo URLROOT;?>ViewAllRecepProfile/delete?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-delete-btn" >DELETE</button></a>
                 </div>
             </div>
             <?php endforeach ?> 
@@ -20,13 +20,3 @@
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
 
-<script>
-        function viewProfile(id) {
-            window.location.href = `view_profile.php?id=${id}`;
-        }
-        function deleteProfile(id) {
-            if (confirm("Are you sure you want to delete this doctor?")) {
-                window.location.href = `delete_doctor.php?id=${id}`;
-            }
-        }
-</script>

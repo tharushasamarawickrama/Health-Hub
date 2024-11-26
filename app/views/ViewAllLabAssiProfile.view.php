@@ -9,7 +9,7 @@
                 <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $labassistant['employeeNo'] ?> - Mr.<?php echo $labassistant['firstName'] ?></span>
                 <div class="ViewProfile-button-group">
                     <a href="<?php echo URLROOT;?>LAProfiledetails?id=<?php echo $labassistant['lab_assistant_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
-                    <button class="ViewProfile-delete-btn" onclick="deleteProfile(1)">DELETE</button>
+                    <a href="<?php echo URLROOT;?>ViewAllLabAssiProfile/delete?id=<?php echo $labassistant['lab_assistant_id'] ?>"><button class="ViewProfile-delete-btn" >DELETE</button></a>
                 </div>
             </div>
             <?php endforeach ?>
