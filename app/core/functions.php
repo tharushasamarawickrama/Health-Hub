@@ -1,16 +1,18 @@
 <?php
 
-function show($staff){
+function show($staff)
+{
     echo "<pre>";
     print_r($staff);
     echo "</pre>";
 }
 
-function esc($str){
+function esc($str)
+{
     return htmlspecialchars($str);
 }
 
-function redirect($path, $params='')
+function redirect($path, $params = '')
 {
     $queryString = '';
 

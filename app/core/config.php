@@ -6,7 +6,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
     define('DBUSER','root');
     define('DBPASS','');
     define('DBDRIVER','');
-    define('ROOT', 'http://localhost/Health-Hub/public/');
+    define('ROOT', 'http://localhost:8080/Health-Hub/public/');
 }else{
     define('DBNAME','health_hub');
     define('DBHOST','localhost');
@@ -17,6 +17,6 @@ if($_SERVER['SERVER_NAME'] == 'localhost') {
 }
 
 define('APPROOT', dirname(dirname(__FILE__)));
-define('URLROOT', 'http://localhost/Health-Hub/public/');
+define('URLROOT', 'http://localhost:8080/Health-Hub/public/');
 
 define('DEBUG',true);
