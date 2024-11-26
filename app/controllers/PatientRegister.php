@@ -37,8 +37,17 @@ class PatientRegister {
                         }
                         break;
                     case 3:
-
-                        redirect('adminregister');
+                        $admin = new Admin;
+                        $arr['nic'] = $_POST['logNIC'] ?? '';
+                        $row = $admin->first($arr);
+                        if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
+                            $_SESSION['user'] = $row;
+                            redirect('AdminDashboard'); // Redirect after successful login
+                        } else {
+                            $admin->errors['Email'] = "Invalid NIC or Password";
+                            $data['errors'] = $admin->errors;
+                            $this->view('patientregister', $data);
+                        }
                         break;
                     case 4:
                         $lab = new LabAssistant;
@@ -46,7 +55,7 @@ class PatientRegister {
                         $row = $lab->first($arr);
                         if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
                             $_SESSION['user'] = $row;
-                            redirect('searchappoinment'); // Redirect after successful login
+                            redirect('labdashboard'); // Redirect after successful login
                         } else {
                             $lab->errors['Email'] = "Invalid NIC or Password";
                             $data['errors'] = $lab->errors;

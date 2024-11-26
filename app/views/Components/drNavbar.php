@@ -1,26 +1,8 @@
 
-<?php
-// Start the session to enable session management
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Logout functionality
-if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    // Unset all of the session variables
-    $_SESSION = array();
-
-    // Destroy the session
-    session_destroy();
-
-    // Redirect to the login page or homepage
-    header("Location: " . URLROOT . "/patientregister?id=2");
-    exit; // Ensure no further code is executed after redirect
-}
-?>
 
 
-<!DOCTYPE html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +11,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/drNavbar.css?v=<?php echo time(); ?>">
 </head>
-<body>
+<body> -->
 
 <div class="drNavbar">
     <a href="#">
@@ -58,7 +40,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
             </div>
         </div>
     <?php else: ?>
-    <a href="<?php echo URLROOT; ?>/patientregister" class="drlogin">Login</a>
+    <a href="<?php echo URLROOT; ?>/Prevlog" class="drlogin">Login</a>
     <?php endif; ?>
 </div>
 
