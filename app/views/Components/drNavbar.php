@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/drNavbar.css?v=<?php echo time(); ?>">
 </head>
-<body>
+<body> 
 
 <div class="drNavbar">
     <a href="<?php echo URLROOT; ?>Home">
@@ -31,6 +31,7 @@
             <a href="<?php echo URLROOT;?>drProfile">View Profile</a>
             <a href="#">Logout</a>
         </div>
+    </div>
     </div>
 </div>
 
