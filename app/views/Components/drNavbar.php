@@ -1,8 +1,4 @@
-
-
-
-
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,38 +7,52 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/drNavbar.css?v=<?php echo time(); ?>">
 </head>
-<body> -->
+<body> 
 
 <div class="drNavbar">
-    <a href="#">
-        <img src="<?php echo URLROOT;?>/assets/images/12345.png"  class="drlogo">
+    <a href="<?php echo URLROOT; ?>Home">
+        <img src="<?php echo URLROOT; ?>assets/images/12345.png"  class="drlogo">
     </a>
-    
-    <a href="#" class="drNavitems">Dashboard</a>
-    <a href="#" class="drNavitems">Update Availability</a>
-    <a href="#" class="drNavitems">View Appointments</a>
 
-    <?php if(isset($_SESSION['user'])): ?>
-        <a href="#" class="logname dropdown-toggle">
-        
-        <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['photo_path']); ?>"  class="loginlogo">
-    </a> 
-    <?php else: ?>
-        <img src="<?php echo URLROOT;?>/assets/images/loginlogo.jpg"  class="drloginlogo"> 
-    <?php endif; ?>
-    <?php if (isset($_SESSION['user'])): ?>
-        <!-- User dropdown -->
-        <div class="dropdown">
-            <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
-            <div class="dropdown-content">
-                <a href="<?php echo URLROOT; ?>doctorprofile">Profile</a>
-                <a href="?action=logout">Logout</a>
-            </div>
+    <?php
+        $current_page = basename($_SERVER['REQUEST_URI']);
+    ?>
+
+    <a href="<?php echo URLROOT; ?>drDashboard" class="drNavitems <?php echo $current_page == 'drDashboard' ? 'active' : ''; ?>">Dashboard</a>
+    <a href="<?php echo URLROOT; ?>drAvailability" class="drNavitems <?php echo $current_page == 'drAvailability' ? 'active' : ''; ?>">Update Availability</a>
+    <a href="<?php echo URLROOT; ?>drViewAppointments" class="drNavitems <?php echo $current_page == 'drViewAppointments' ? 'active' : ''; ?>">View Appointments</a>
+
+    <div class="dr-profile-dropdown">
+        <a onclick="toggleDropdown()" class="dr-profile-link">
+            <img src="<?php echo URLROOT; ?>assets/images/loginlogo.jpg"  class="drloginlogo">
+            <span class="drlogin">Login</span>
+        </a>
+        <div id="drDropdownMenu" class="dr-dropdown-content">
+            <a href="<?php echo URLROOT;?>drProfile">View Profile</a>
+            <a href="#">Logout</a>
         </div>
-    <?php else: ?>
-    <a href="<?php echo URLROOT; ?>/Prevlog" class="drlogin">Login</a>
-    <?php endif; ?>
+    </div>
+    </div>
 </div>
+
+<script>
+    function toggleDropdown() {
+        document.getElementById("drDropdownMenu").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dr-profile-link') && !event.target.matches('.drloginlogo') && !event.target.matches('.drlogin')) {
+            var dropdowns = document.getElementsByClassName("dr-dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 
 </body>
 </html>

@@ -47,7 +47,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/drNavbar.css?v=<?php echo time(); ?>">
 
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
+    
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/components/AdminNavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/AdminDrRegister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/ViewAllProfile.css">
@@ -79,6 +79,19 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labprocessedprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labpendingprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labpendingappointment.css">
+
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/renavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/redashboard.css">
+
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drDashboard.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drProfile.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drMedicalHistory.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drPrescription.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drLabTests.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css?v=<?php echo time(); ?>">
 
 </head>
 
