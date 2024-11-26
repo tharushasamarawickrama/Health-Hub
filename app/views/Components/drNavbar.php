@@ -14,18 +14,17 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Logout functionality
 if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     // Unset all of the session variables
-    $_SESSION = array();
-
+    unset($_SESSION['user']);
+    //unset($_SESSION['appointment_date']);
     // Destroy the session
     session_destroy();
 
     // Redirect to the login page or homepage
-    header("Location: " . URLROOT . "prevLog");
-    exit; // Ensure no further code is executed after redirect
-} 
+    // header("Location: " . URLROOT . "/Prevlog");
+    redirect('/Prevlog');
+}
 ?>
 
 <div class="drNavbar">
@@ -53,7 +52,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
         </a>
         <div id="drDropdownMenu" class="dr-dropdown-content">
             <a href="<?php echo URLROOT;?>drProfile">View Profile</a>
-            <a href="#">Logout</a>
+            <a href="?action=logout">Logout</a>
         </div>
     </div>
 </div>
