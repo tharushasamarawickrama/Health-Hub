@@ -57,8 +57,8 @@ $doctorData = $doctorData ?? [];
                 <label for="experience"><strong>Experience:</strong></label>
                 <input type="text" name="experience" id="experience" class="form-control" value="<?php echo htmlspecialchars($doctorData['experience']); ?>">
 
-                <label for="specialties"><strong>Specialties:</strong></label>
-                <input type="text" name="specialties" id="specialties" class="form-control" value="<?php echo htmlspecialchars($doctorData['specialties'] ?? ''); ?>">
+                <label for="specialization"><strong>Specialization:</strong></label>
+                <input type="text" name="specialization" id="specialization" class="form-control" value="<?php echo htmlspecialchars($doctorData['specialization'] ?? ''); ?>">
 
                 <label for="certifications"><strong>Certifications:</strong></label>
                 <input type="text" name="certifications" id="certifications" class="form-control" value="<?php echo htmlspecialchars($doctorData['certifications'] ?? ''); ?>">

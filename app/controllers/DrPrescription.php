@@ -4,7 +4,7 @@ class DrPrescription {
     use Controller;
 
     public function index(){
-        $prescriptionId = 3;
+        $prescriptionId = 1;
         if (isset($_SESSION['success_message'])) {
             echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
             unset($_SESSION['success_message']);

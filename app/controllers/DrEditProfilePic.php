@@ -2,9 +2,9 @@
 
 class DrEditProfilePic {
     use Controller;
-    private $doctorId = 5;
 
     public function index() {
+        $doctorId = $_SESSION['user']['doctor_id'];
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_pic'])) {
             $file = $_FILES['profile_pic'];
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
@@ -18,17 +18,17 @@ class DrEditProfilePic {
                     mkdir($targetDir, 0755, true);
                 }
     
-                $fileName = 'doctor_' . $this->doctorId . '_' . uniqid() . '.' . $fileExtension;
+                $fileName = 'doctor_' . $doctorId . '_' . uniqid() . '.' . $fileExtension;
                 $targetFile = $targetDir . $fileName;
     
                 if (move_uploaded_file($file['tmp_name'], $targetFile)) {
                     require_once "../app/models/Doctor.php";
                     $doctorModel = new Doctor();
     
-                    if ($doctorModel->update($this->doctorId, ['profile_pic' => $fileName], 'doctor_id')) {
+                    if ($doctorModel->update($doctorId, ['profile_pic' => $fileName], 'doctor_id')) {
                         $this->view('drEditProfile', [
                             'success'    => 'Profile picture updated successfully!',
-                            'doctorData' => $this->getDoctorData($this->doctorId),
+                            'doctorData' => $this->getDoctorData($doctorId),
                         ]);
                     } else {
                         $errors = 'Database update failed. Please try again.';
@@ -42,7 +42,7 @@ class DrEditProfilePic {
     
             if ($errors) {
                 $this->view('drEditProfile', [
-                    'doctorData' => $this->getDoctorData($this->doctorId),
+                    'doctorData' => $this->getDoctorData($doctorId),
                     'error'      => $errors,
                 ]);
             }

@@ -5,8 +5,7 @@
     use Controller;
 
     public function index() {
-        $doctorId = 5; // Hardcoded doctor ID (can be dynamic based on session/login)
-            require_once "../app/models/Doctor.php";
+            $doctorId = $_SESSION['user']['doctor_id'];            require_once "../app/models/Doctor.php";
             $doctorModel = new Doctor();
             $doctorData = $doctorModel->first(['doctor_id' => $doctorId]);
         
@@ -16,7 +15,7 @@
                     'lastName'     => htmlspecialchars(trim($_POST['lastName']), ENT_QUOTES, 'UTF-8'),
                     'description'    => htmlspecialchars(trim($_POST['description']), ENT_QUOTES, 'UTF-8'),
                     'experience'     => htmlspecialchars(trim($_POST['experience']), ENT_QUOTES, 'UTF-8'),
-                    'specialties'    => htmlspecialchars(trim($_POST['specialties']), ENT_QUOTES, 'UTF-8'),
+                    'specialization'    => htmlspecialchars(trim($_POST['specialization']), ENT_QUOTES, 'UTF-8'),
                     'certifications' => htmlspecialchars(trim($_POST['certifications']), ENT_QUOTES, 'UTF-8'),
                     'phoneNumber'    => trim($_POST['phoneNumber']),
                     'email'          => trim($_POST['email']),
