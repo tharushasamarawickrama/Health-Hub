@@ -1,0 +1,121 @@
+.medical-history-container{
+    background-image: url("../../../assets/images/background.png");
+    background-repeat: repeat;
+    background-size: 80vh;
+    background-position: top left;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-top: 60px;
+    display: flex;
+    gap: 10px;
+    padding-left: 50px;
+}
+
+.history-back-arrow img {
+    cursor: pointer;
+    margin: 50px 0 0 40px;
+}
+
+.history-container {
+    width: 80%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    border: 2px solid #d2e7ec;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+}
+
+.history-container h2 {
+    font-size: 1.8em;
+    color: #333;
+    border-bottom: 2px solid #b3d7ff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.history-container p {
+    font-weight: bold;
+    color: #444;
+    margin-top: 15px;
+}
+
+.history-container ul {
+    list-style-type: none;
+    margin-top: 10px;
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.history-container ul ul {
+    margin-top: 5px;
+    padding-left: 15px;
+}
+
+.history-container li {
+    margin-bottom: 0.5em;
+}
+
+.edit-button, .save-button {
+    background-color: #54a1b4;
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    transition: ease 0.2s;
+}
+
+.edit-button:hover, .save-button:hover {
+    background-color: #327ac7;
+}
+
+.edit-mode {
+    display: none;
+}
+
+.edit-mode input{
+    padding: 5px;
+    border-radius: 10px;
+    min-width: 40%;
+    background-color: #c8d1dc;
+    margin-right: 20px;
+}
+
+.editing .edit-mode {
+    display: block;
+}
+
+.editing .display-mode {
+    display: none;
+}
+
+.save-button {
+    margin-top: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.add-item-button {
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    font-size: 1em;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}

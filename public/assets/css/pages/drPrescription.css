@@ -1,0 +1,141 @@
+.dr-prescription-container {
+    background-image: url(../../images/background.png);
+    background-size: 80vh;
+    background-repeat: repeat;
+    background-position: top left;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    padding-left: 50px;
+    padding-top: 80px;
+    min-height: 86vh;
+}
+
+.prescription-header {
+    display: flex;
+    gap: 50px;
+    margin: 0;
+}
+
+.prescription-header h2 {
+    color: black;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.prescription-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    border: 2px solid #d2e7ec;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px 50px;
+}
+
+#diagnosis-text {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    background-color: #d2e7ec;
+    resize: vertical;
+}
+
+.medications-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.medications-table th,
+.medications-table td {
+    padding: 10px;
+    border: 2px solid #d2e7ec;
+    align-items: center;
+}
+
+.medications-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.sig-codes{
+    display: flex;
+    position: relative;
+    padding-right: 80px;
+    align-items: center;
+    gap: 3px;
+}
+
+.add-sig-code {
+    color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+    left: 85%;
+    position: absolute;
+}
+
+.add-sig-code:hover {
+    background-color: rgba(126, 156, 168, 0.8);
+}
+
+#medications-list input, #medications-list select{
+    background-color: white;
+    width: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.588);
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 10px;
+}
+
+.duration{
+    gap: 8px;
+    display: flex;
+}
+
+.medication-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 20px;
+    padding-left: 10%;
+}
+
+#add-medication, #clear-medications {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-medication:hover, #clear-medications:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.prescription-actions {
+    margin-top: 20px;
+    background-color: rgba(138, 193, 215, 0.8);
+    color: black;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.prescription-actions:hover {
+    background-color: rgba(126, 156, 168, 0.8);
+}
+
+.prescription-container hr{
+    margin-top: 30px;
+}
