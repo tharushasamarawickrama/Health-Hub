@@ -1,187 +1,126 @@
-/* .dr-availability-container {
+.dr-availability-container {
+    background-image: url(../../images/background.png);
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: 80vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #f4f8fb;
-    margin: 0;
-    padding: 0;
-    margin-top: 100px;
-    padding-left: 20px;
-    padding-bottom: 50px;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-top: 30px;
+    padding: 50px;
+    padding-top: 25px;
+    min-height: 80vh;
 }
 
-.availability-container {
-    max-width: 1000px;
-    margin: auto;
-    border: 2px solid #d2e7ec;
-    border-radius: 10px;
+.dr-availability-header {
     display: flex;
-    gap: 50px;
-    padding: 20px;
-    justify-content: center;
-}
-
-.date-time-picker, .dates-list {
-    background-color: #c5d7df;
-    padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-}
-
-.date-time-picker h2, .dates-list h3 {
-    margin-top: 0;
-}
-
-label {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-input {
-    border-radius: 10px;
-    padding: 3px;
-    margin-bottom: 5px;
-}
-
-.calendar {
-    display: flex;
-    flex-direction: column;
+    gap: 20%;
     align-items: center;
-    margin: 15px 0;
+    margin-bottom: 20px;
 }
 
-button {
-    background-color: #7fa1b9;
+.availability-back-arrow img {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.timeslots-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 70vh;
+    position: relative;
+}
+
+.availability-left-section {
+    position: absolute;
+    left: 150px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #b3d7ff;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 60vh;
+    max-width: 400px;
+    width: 100%;
+}
+
+.selected-slots-display {
+    flex-direction: column;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.timeslot-tag {
+    display: inline-block;
+    background-color: #e0ebf7;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 0.9em;
+}
+
+.timeslot-remove-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    margin-left: 8px;
+    font-size: 0.9em;
+}
+
+.timeslot-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.timeslot-button {
+    background-color: #cccccc;
+    color: #333;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 16px;
-    margin: 5px;
+    font-size: 1em;
+    min-width: 120px;
     transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #87c0eb;
+.timeslot-button:hover {
+    background-color: #eaeaea;
 }
 
-#availabilityList {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-}
-
-#availabilityList li {
-    background-color: #f1f1f1;
-    padding: 10px;
-    margin: 5px 0;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 5px;
-}
-
-#availabilityList li span {
-    cursor: pointer;
-    color: #ff5c5c;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    margin-left: 10px;
-    border: 1px solid #000000;
-    border-radius: 30px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
+.timeslot-options {
     position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #656464;
-}
-
-input:checked + .slider:before {
-    transform: translateX(18px);
-}
-
-@media (max-width: 768px) {
-    .dr-availability-container {
-        padding-top: 250px;
-    }
-}
-
-@media (max-width: 576px) {
-    .dr-availability-container {
-        padding-top: 200px;
-    }
-} */
-
-.container {
-    margin-top: 100px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.left-section, .right-section {
-    border: 1px solid #ccc;
+    right: 50px;
+    max-width: 500px;
     padding: 20px;
-}
-
-.selected-slots {
-    margin-bottom: 10px;
-}
-
-.selected-slot {
+    background-color: #ffffff;
+    border: 2px solid #b3d7ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.selected-slot .delete-btn {
-    cursor: pointer;
-    margin-left: 5px;
-}
-
-.timeslot-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    min-height: 60vh;
     gap: 10px;
 }
 
-.timeslot {
-    border: 1px solid #ccc;
-    padding: 10px;
-    cursor: pointer;
+.timeslot-button.disabled {
+    background-color: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
 }
 
-.timeslot.occupied {
-    opacity: 0.5;
-    cursor: not-allowed;
+.timeslot-button:not(.disabled):hover {
+    background-color: #d9edf7;
+}
+
+#no-slots-msg {
+    font-size: 1em;
+    color: #999;
+    margin-top: 10px;
 }
