@@ -2,7 +2,7 @@
     background-color: #64A7B3;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     padding: 0 290px;
-    height: 60px;
+    height: 70px;
     display: flex;
     width: 75%;
     justify-content: space-between;
@@ -54,13 +54,14 @@
     width: 80px;
     height: 80px;
     margin-left: -280px;
+    /* border-radius: 50%; */
 }
 
 .Adminloginlogo{
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     margin-left: 120px;
-    
+    border-radius: 50%;
 }
 
 .Adminlogin{
