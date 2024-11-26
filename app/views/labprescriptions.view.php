@@ -8,11 +8,21 @@
         </button>
         <div class="lab-pres-search-result">
             <div id="lab-pres-resultContainer">
-                <a href="<?php echo URLROOT; ?>/labprescriptionappointment" class="lab-pres-result-item">
-                    <div>Appointment ID: 6465</div>
-                    <div>NIC:200268300728</div></a>
+            <?php if(!empty($data['appointments'])): ?>
+    <?php foreach($data['appointments'] as $appointment): ?>
+        <a href="<?php echo URLROOT; ?>/labprescriptionappointment/index/<?php echo $appointment['appointment_id']; ?>" class="lab-pres-result-item">
+            <div>Appointment ID: <?php echo $appointment['appointment_id']; ?></div>
+            <div>NIC: <?php echo $appointment['nic']; ?></div>
+        </a>
+    <?php endforeach; ?>
+<?php else: ?>
+    <div class="no-appointments">No pending appointments found</div>
+<?php endif; ?>
+
+
             </div>
         </div>
+
     </div>
 </div>
 <?php require APPROOT . '/views/Components/footer.php' ?>

@@ -57,6 +57,11 @@
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/renavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/redashboard.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rechannel.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rescheduleappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/reappointmentdetails.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/repaymentdetails.css">
+
 </head>
 
 <body>

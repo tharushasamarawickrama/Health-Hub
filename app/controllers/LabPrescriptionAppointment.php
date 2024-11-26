@@ -1,7 +1,24 @@
 <?php
-class LabPrescriptionAppointment{
+
+class Labprescriptionappointment {
     use Controller;
-    public function index(){
-        $this->view('labprescriptionappointment');
+    private $labAssistantModel;
+
+    public function __construct() {
+        $this->labAssistantModel = new LabAssistant();
     }
+
+    public function index($appointment_id)
+{
+    $labAssistant = new LabAssistant();
+    $prescription = $labAssistant->getLabPrescriptionDetails($appointment_id);
+    
+    $data = [
+        'prescription' => $prescription[0]
+    ];
+    
+    $this->view('labprescriptionappointment', $data);
+}
+
+    
 }
