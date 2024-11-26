@@ -6,7 +6,7 @@ class ViewAllPharmProfile  {
        
         $pharmacist=new Pharmacist;
         $data=$pharmacist->findAlldata();
-        print_r($data[0]['firstName']);
+        
         $this->view('ViewAllPharmProfile',$data);
     }
 

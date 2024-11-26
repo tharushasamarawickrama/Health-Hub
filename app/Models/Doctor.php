@@ -20,7 +20,11 @@ class Doctor {
         'nic',
         'address',
         'photo_path',
-        'created_at'
+        'created_at',
+        'profile_pic',
+        'experience',
+        'certifications',
+        'description'
         
     ];
 
