@@ -4,7 +4,7 @@ class DrEditPrescription {
     use Controller;
 
     public function index() {
-        $prescriptionId = 3; // Example
+        $prescriptionId = 1; // Example
         $prescriptionModel = new Prescription();
         $medicationModel = new Prescribed_Medications();
     

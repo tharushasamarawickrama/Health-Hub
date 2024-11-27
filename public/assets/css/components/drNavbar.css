@@ -48,6 +48,7 @@
     height: 80px;
     margin-left: 370px;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .drlogin{
