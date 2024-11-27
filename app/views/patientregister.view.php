@@ -38,8 +38,16 @@
                         </div>
                         <a href="#" class="forgotpassword">Forgot Password?</a>
                         <div>
-                            <button class="pt-regnewuserbutton" onclick="event.preventDefault(); nextSection('loginSection','personalInfoSection')">New User</button>
+                            <?php if ($data['login_id'] == 2): ?>
+                                <a href="<?php echo URLROOT; ?>DrRequest">
+                                    <div role="button" class="pt-regnewuserbutton" >New Doctor</div>
+                                </a>
+
+                            <?php elseif ($data['login_id'] == 1): ?>
+                                <div role="button" class="pt-regnewuserbutton" onclick="event.preventDefault(); nextSection('loginSection','personalInfoSection')">New User</div>
+                            <?php endif; ?>
                         </div>
+
                     </div>
 
 

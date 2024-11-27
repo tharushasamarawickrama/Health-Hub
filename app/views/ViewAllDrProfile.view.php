@@ -8,9 +8,7 @@
                 <span class="ViewProfile-doctor-info">SLMC <?php echo $doctor['slmcNo'] ?> - Mr.<?php echo $doctor['firstName'] ?></span>
                 <div class="ViewProfile-button-group">
                     <a href="<?php echo URLROOT;?>DrProfiledetails?id=<?php echo $doctor['doctor_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
-                    <form action="" method="POST" class="">
-                        <button class="ViewProfile-delete-btn" name="delete_doctor_button" id="delete_doctor_button" type="submit">DELETE</button>
-                    </form>
+                    <a href="<?php echo URLROOT;?>ViewAllDrProfile/delete?id=<?php echo $doctor['doctor_id'] ?>"><button class="ViewProfile-delete-btn" >DELETE</button></a>
                 </div>
             </div>
             <?php endforeach ?>            

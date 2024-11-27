@@ -1,22 +1,24 @@
 <?php
 
-function show($staff){
+function show($staff)
+{
     echo "<pre>";
     print_r($staff);
     echo "</pre>";
 }
 
-function esc($str){
+function esc($str)
+{
     return htmlspecialchars($str);
 }
 
-function redirect($path, $params='')
+function redirect($path, $params = '')
 {
     $queryString = '';
 
     // If there are parameters, build the query string
     if (!empty($params)) {
-        $queryString = '?' .'v1='.$params;
+        $queryString = '?' .'id='.$params;
     }
 
     // Redirect to the path with query string

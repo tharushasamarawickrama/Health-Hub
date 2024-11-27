@@ -68,20 +68,21 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprocessedprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdailyusage.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescriptionappointment.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/phnavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/components/phnavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/phprocessedappointment.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phusagedate.css">
-    
+
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/labprescriptionappointment.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/components/labnavbar.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labprescriptions.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labprocessedappointment.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labprocessedprescriptions.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labpendingprescriptions.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>./assets/css/pages/labpendingappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/components/labnavbar.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labprocessedappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labprocessedprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labpendingprescriptions.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labpendingappointment.css">
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/renavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/redashboard.css">
+
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rechannel.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rescheduleappointment.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/reappointmentdetails.css">

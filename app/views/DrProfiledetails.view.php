@@ -4,12 +4,13 @@
     <div class="DrProfiledetails-profile-container">
         <div class="DrProfiledetails-profile-header">
             <h1>Doctor Profile</h1>
-            <div>
-                <img src="<?php echo URLROOT; ?>/<?php echo $data['photo_path']?>" alt="Doctor's Photo" class="DrProfiledetails-profile-photo">
-            </div>
+           
           
         </div>
         <form class="DrProfiledetails-profile-details-form">
+            <div>
+                <img src="<?php echo URLROOT; ?>/<?php echo $data['photo_path']?>" alt="Doctor's Photo" class="DrProfiledetails-profile-photo">
+            </div>
             <div class="form-row">
                 <div class="form-group">
                     <label class="DrProfiledetails-lable" for="firstName">First Name</label>
@@ -61,7 +62,9 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" class="save-btn">Update</button>
+                <a href="<?php echo URLROOT;?>EditDrProfiledetails?id=<?php echo $data['doctor_id'] ?>">
+                    <button type="button" class="save-btn">Edit Profile</button>
+                </a>
             </div>
         </form>
     </div>

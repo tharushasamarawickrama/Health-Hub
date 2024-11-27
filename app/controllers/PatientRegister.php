@@ -4,9 +4,12 @@ class PatientRegister {
     use Controller;
 
     public function index() {
+        $data = [];
+        $data['login_id'] = $_GET['id'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
                 $id = $_GET['id'];
+                
 
                 switch($id){
                     case 1:
@@ -37,8 +40,17 @@ class PatientRegister {
                         }
                         break;
                     case 3:
-
-                        redirect('adminregister');
+                        $admin = new Admin;
+                        $arr['nic'] = $_POST['logNIC'] ?? '';
+                        $row = $admin->first($arr);
+                        if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
+                            $_SESSION['user'] = $row;
+                            redirect('AdminDashboard'); // Redirect after successful login
+                        } else {
+                            $admin->errors['Email'] = "Invalid NIC or Password";
+                            $data['errors'] = $admin->errors;
+                            $this->view('patientregister', $data);
+                        }
                         break;
                     case 4:
                         $lab = new LabAssistant;
@@ -46,7 +58,7 @@ class PatientRegister {
                         $row = $lab->first($arr);
                         if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
                             $_SESSION['user'] = $row;
-                            redirect('searchappoinment'); // Redirect after successful login
+                            redirect('labdashboard'); // Redirect after successful login
                         } else {
                             $lab->errors['Email'] = "Invalid NIC or Password";
                             $data['errors'] = $lab->errors;
@@ -123,7 +135,8 @@ class PatientRegister {
                 $this->view('patientregister', $data);
             }
         } else {
-            $this->view('patientregister');
+              
+            $this->view('patientregister', $data);
         }
     }
 }

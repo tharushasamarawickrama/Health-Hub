@@ -11,12 +11,11 @@ $appointment = [
     'phone' => '0711234567',
     'email' => 'sarah.johnson@email.com',
     'medical_history' => 'Asthma, Mild Allergies, Previous Surgery for Appendicitis (2023)',
-    'full_medical_history_link' => '#',
-    'reason_for_visit' => 'Routine Check-Up and Asthma Management'
+    'full_medical_history_link' => '#'
 ];
 ?>
-    <div class="dr-appointment-container">
-        <a href="#" class="back-arrow"><img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back"></a>
+    <div class="dr-appointments-container">
+        <a href="<?php echo URLROOT; ?>drViewAppointments" class="appointment-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <div class="appointment-container">
             
             <div class="appointment-details">
@@ -33,15 +32,14 @@ $appointment = [
                     <li>Medical History Overview</li>
                     <ul>
                         <li>Overview - <?php echo $appointment['medical_history']; ?></li>
-                        <li><a href="<?php echo $appointment['full_medical_history_link']; ?>">Link to Full Medical History</a></li>
+                        <li><a href="<?php echo URLROOT; ?>drMedicalHistory">Link to Full Medical History</a></li>
                     </ul>
-                    <li>Reason for Visit - <?php echo $appointment['reason_for_visit']; ?></li>
                 </ul>
             </div>
 
-            <div class="action-buttons">
-                <button class="drButton">Prescription &rarr;</button>
-                <button class="drButton">Order Lab Tests &rarr;</button>
+            <div class="appointment-actions">
+                <a href="<?php echo URLROOT; ?>drPrescription" class="appointment-action">Prescription &rarr;</button>
+                <a href="<?php echo URLROOT; ?>drLabTests" class="appointment-action">Order Lab Tests &rarr;</button>
             </div>
         </div>
     </div>

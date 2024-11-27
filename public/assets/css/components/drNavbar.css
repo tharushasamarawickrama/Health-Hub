@@ -1,6 +1,6 @@
 .drNavbar{
     font-family: 'Poppins', sans-serif;
-    background-color: rgba(57, 202, 187, 1);
+    background-color: #64A7B3;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     height: 60px;
     display: flex;
@@ -10,9 +10,14 @@
     left: 0;
     right: 0;
     z-index: 1000;
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .drNavitems{
+    flex-shrink: 0;
+    flex-grow: 0;
     font-size: 18px;
     color: black;
     text-decoration: none;
@@ -25,9 +30,11 @@
 
 .drNavitems:hover{
     background-color: white;
-    border-radius: 30px;
-    
-    
+    border-radius: 30px; 
+}
+
+.drNavitems.active {
+    box-shadow: #ffffff 2px 2px 2px;
 }
 
 .drlogo{
@@ -39,7 +46,9 @@
 .drloginlogo{
     width: 80px;
     height: 80px;
-    margin-left: 380px;
+    margin-left: 370px;
+    cursor: pointer;
+    border-radius: 50%;
 }
 
 .drlogin{
@@ -47,4 +56,48 @@
     color: black;
     font-weight: bold;
     font-size: 20px;
+    cursor: pointer;
+}
+
+.dr-profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dr-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(39, 28, 110, 0.2);
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dr-dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    border: 1px solid rgba(39, 28, 110, 0.2);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.dr-dropdown-content a:hover {
+    background-color: #d2caca;
+}
+
+.show {
+    display: block;
+}
+
+.dr-profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: -5px;
 }

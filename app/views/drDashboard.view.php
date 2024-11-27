@@ -12,7 +12,7 @@ $appointmentsToday = [
 $numberOfAppointmentsToday = count($appointmentsToday);
 
 // Check ongoing appointment based on time (placeholder logic)
-$currentAppointment = "#0003 - Mrs.Asitha Perera";
+$currentAppointment = "#0002 - Mrs.Asitha Perera";
 
 // Random values for appointments in past 4 time slots
 $pastAppointments = [
@@ -29,12 +29,12 @@ $pastAppointments = [
         <div class="left-section">
             <div class="dashboard-info">
                 <div class="appointments-today">
-                    <img src="<?php echo URLROOT; ?>/assets/images/appointments.png" alt="appointments" class="appointments-icon">
+                    <img src="<?php echo URLROOT; ?>assets/images/appointments.png" alt="appointments" class="appointments-icon">
                     <h3><?php echo $numberOfAppointmentsToday; ?> Appointments for Today</h3>
                 </div>
                 <div class="ongoing-appointment">
                     <div class="ongoing-header">
-                        <img src="<?php echo URLROOT; ?>/assets/images/clock.png" alt="clock" class="clock-icon">
+                        <img src="<?php echo URLROOT; ?>assets/images/clock.png" alt="clock" class="clock-icon">
                         <h3>Ongoing:</h3>
                     </div>
                     <hr>

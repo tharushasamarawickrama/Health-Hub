@@ -1,15 +1,19 @@
 .outrectangle{
     width: 1450px;
     height: 670px;
-    background-color: #00c8ff;
+    /* background-color: #afecea; */
     border-radius: 20px;
     margin-top: 80px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    background-image: url(../../images/background.png);
+    box-shadow: #e6dada;
 }
 
 .screen{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../../images/background.png);
 }
 
 .channeldoctortext{

@@ -6,6 +6,7 @@
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    background-image: url(../../images/background.png);
 }
 .dashboard-container {
     
@@ -39,7 +40,7 @@
     margin-bottom: 20px;
 }
 .admin-card button {
-    background-color: #2169e5;
+    background-color: #58b4e2;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -49,7 +50,7 @@
     transition: background-color 0.3s;
 }
 .admin-card button:hover {
-    background-color: #0d53cb;
+    background-color: #58b4e2;
 }
 
 .up-row{

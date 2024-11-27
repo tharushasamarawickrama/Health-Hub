@@ -1,10 +1,10 @@
 /* styles.css */
-.PatientChannel-body {
+/* .PatientChannel-body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-}
+} */
 
 
 
@@ -16,28 +16,44 @@
 
 .PatientChannel-details {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 15px;
     flex-wrap: wrap;
 }
 
 .PatientChannel-card {
-    flex: 1;
+    /* flex: 1; */
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 200px;
+}
+
+.PatientChannel-card2 {
+    
     padding: 15px;
     background-color: #e8e8e8;
     border-radius: 10px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 300px;
+    height: 200px;
+    
 }
 
 .PatientChannel-card h2 {
     margin-top: 0;
     font-size: 18px;
     color: #444;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.PatientChannel-card p {
-    margin: 5px 0;
+.PatientChannel-card-p{
     font-size: 14px;
+    margin-top: 20px;
 }
 
 .PatientChannel-hospital-icon {
@@ -51,26 +67,83 @@
     margin-top: 20px;
 }
 
-
+.PatientChannel-card-div{
+    display: flex;
+    justify-content: right;
+    /* align-items: center; */
+    width: 350px;
+    height: 230px;
+    background-color: #d7d6d6;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
 
 .btn_edit {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: #021b99;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 300px;
+    padding: 10px 10px;
 }
 
 .btn_continue {
-    background-color: #28a745;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: #ffffff;
+    color: rgb(43, 176, 197);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 300px;
+    padding: 10px 10px;
+}
+
+.patientchannel-card2-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 60px;
+}
+
+.PatientChannel-card-div2{
+    display: flex;
+    justify-content: right;
+    /* align-items: center; */
+    width: 350px;
+    height: 230px;
+    background-color: #d7d6d6;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.PatientChannel-card2-div2{
+    display: flex;
+    justify-content: right;
+    /* align-items: center; */
+    width: 350px;
+    height: 230px;
+    background-color: #d7d6d6;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.PatientChannel-card-d{
     font-size: 14px;
+    margin-top: 30px;
+}
+
+.PatientChannel-body{
+    background-image: url(../../images/background.png);
+    background-size: cover;
 }

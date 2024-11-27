@@ -4,7 +4,7 @@
 class Admin {
     use Model;
 
-    protected $table = "admins";
+    protected $table = "admin";
 
     protected $Allowedcolumns = [
         'admin_id',

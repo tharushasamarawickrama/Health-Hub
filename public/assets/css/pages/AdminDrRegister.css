@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url(../../images/background.png);
 }
 
 /* Form Container */
@@ -93,7 +94,7 @@
 
 /* Button Styles */
 .add-doctor-btn {
-    background-color: #007BFF;
+    background-color: #64A7B3;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
@@ -105,5 +106,5 @@
 }
 
 .add-doctor-btn:hover {
-    background-color: #0056b3;
+    background-color: #4bc1d5;
 }
