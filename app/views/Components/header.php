@@ -1,3 +1,25 @@
+<?php
+
+// Start the session to enable session management
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+    $_SESSION['user'] = $_SESSION['user'] ?? null;
+}
+
+// Logout functionality
+if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+    // Unset all of the session variables
+    unset($_SESSION['user']);
+    unset($_SESSION['appointment_date']);
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to the login page or homepage
+    // header("Location: " . URLROOT . "/Prevlog");
+    redirect('/Prevlog');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +34,9 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/timeslot.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/setappoinment.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/searchappoinment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Patientpaymentdetails.css">
 
+    <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/home.css"> -->
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/patientregister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/Patientprofile.css">
@@ -21,8 +45,9 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drDashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/drNavbar.css?v=<?php echo time(); ?>">
 
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css">
+    
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/components/AdminNavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/AdminDrRegister.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/ViewAllProfile.css">
@@ -37,7 +62,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/PatientChannel.css">
 
 
-    
+
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phdashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/phprocessedprescriptions.css">
@@ -62,7 +87,16 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/reappointmentdetails.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/repaymentdetails.css">
 
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drDashboard.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drProfile.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drMedicalHistory.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drPrescription.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drLabTests.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css?v=<?php echo time(); ?>">
+
 </head>
 
 <body>
-

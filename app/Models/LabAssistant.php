@@ -42,15 +42,22 @@ class LabAssistant {
     
     
     public function getLabPrescriptionDetails($appointment_id) {
-        $query = "SELECT a.*, p.firstName as p_firstName, p.lastName as p_lastName, 
-                         p.phoneNumber, p.emailaddress, d.firstName as doctor_name
-                  FROM appointments a
-                  JOIN patients p ON a.nic = p.nic
-                  JOIN doctors d ON a.doctor_id = d.doctor_id
-                  WHERE a.appointment_id = :appointment_id";
-                  
-        return $this->query($query, ['appointment_id' => $appointment_id]);
-    }
+        $query = "SELECT 
+            a.appointment_id, 
+            a.nic,
+            a.doctor_id,
+            a.appointment_date,
+            CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
+            u.gender,
+            u.age,6+
+            lt.labtest_type
+        FROM appointments a
+        JOIN doctors d ON a.doctor_id = d.doctor_id 
+        JOIN users u ON a.nic = u.nic
+        LEFT JOIN labtest lt ON a.appointment_id = lt.appointment_id
+        WHERE a.appointment_id = :appointment_id";
     
+        return $this->query($query, ['appointment_id' => $appointment_id]);
+    }    
     
 }

@@ -10,7 +10,7 @@
             <div id="lab-pres-resultContainer">
             <?php if(!empty($data['appointments'])): ?>
     <?php foreach($data['appointments'] as $appointment): ?>
-        <a href="<?php echo URLROOT; ?>/labprescriptionappointment/index/<?php echo $appointment['appointment_id']; ?>" class="lab-pres-result-item">
+        <a href="<?php echo URLROOT; ?>labprescriptionappointment/index/<?php echo $appointment['appointment_id']; ?>" class="lab-pres-result-item">
             <div>Appointment ID: <?php echo $appointment['appointment_id']; ?></div>
             <div>NIC: <?php echo $appointment['nic']; ?></div>
         </a>
@@ -18,7 +18,6 @@
 <?php else: ?>
     <div class="no-appointments">No pending appointments found</div>
 <?php endif; ?>
-
 
             </div>
         </div>

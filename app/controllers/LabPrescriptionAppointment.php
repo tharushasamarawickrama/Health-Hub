@@ -1,6 +1,5 @@
 <?php
-
-class Labprescriptionappointment {
+class LabPrescriptionAppointment {
     use Controller;
     private $labAssistantModel;
 
@@ -8,17 +7,20 @@ class Labprescriptionappointment {
         $this->labAssistantModel = new LabAssistant();
     }
 
-    public function index($appointment_id)
-{
-    $labAssistant = new LabAssistant();
-    $prescription = $labAssistant->getLabPrescriptionDetails($appointment_id);
-    
-    $data = [
-        'prescription' => $prescription[0]
-    ];
-    
-    $this->view('labprescriptionappointment', $data);
-}
-
-    
+    public function index($appointment_id = '') {
+        if(empty($appointment_id)) {
+            redirect('labprescriptions');
+            return;
+        }
+        
+        $prescriptionDetails = $this->labAssistantModel->getLabPrescriptionDetails($appointment_id);
+        
+        if(empty($prescriptionDetails)) {
+            redirect('labprescriptions');
+            return;
+        }
+        
+        $data['prescription'] = $prescriptionDetails[0];
+        $this->view('labprescriptionappointment', $data);
+    }
 }
