@@ -1,6 +1,6 @@
 .Navbar{
     font-family: 'DM Sans', sans-serif;
-    background-color: rgba(57, 202, 187, 1);
+    background-color: rgba(100, 167, 179, 1);
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     padding: 0 300px;
     height: 60px;
@@ -11,6 +11,7 @@
     left: 0;
     right: 0;
     z-index: 1000;
+    
 }
 
 .navitems{
