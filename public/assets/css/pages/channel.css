@@ -1,6 +1,8 @@
 .upsection{
     margin-top: 100px;
     display: flex;
+    background-image: url(../../images/background.png);
+    height: 100vh;
 }
 
 .availabletext{

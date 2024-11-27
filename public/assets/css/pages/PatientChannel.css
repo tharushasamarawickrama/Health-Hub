@@ -79,25 +79,33 @@
 }
 
 .btn_edit {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: #021b99;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 300px;
+    padding: 10px 10px;
 }
 
 .btn_continue {
-    background-color: #28a745;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: #ffffff;
+    color: rgb(43, 176, 197);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 300px;
+    padding: 10px 10px;
 }
 
 .patientchannel-card2-div{
@@ -135,3 +143,7 @@
     margin-top: 30px;
 }
 
+.PatientChannel-body{
+    background-image: url(../../images/background.png);
+    background-size: cover;
+}

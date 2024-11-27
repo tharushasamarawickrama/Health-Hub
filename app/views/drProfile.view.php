@@ -5,9 +5,9 @@ require APPROOT . '/views/Components/drNavbar.php';
 // Fetch doctor's data from the database (example data here)
 // $doctorData = [
 //     "name" => "Dr. R. S. Peiris",
-//     "description" => "Dr. Peiris is a highly experienced physician with over 5 years of practice in providing exceptional medical care. He is deeply committed to the well-being and health of his patients, offering comprehensive care across various medical specialties. Dr. Peiris is skilled in diagnosing and treating a wide range of conditions, ensuring that each patient receives personalized and effective care.",
+//     "description" => "Dr. Peiris is a highly experienced physician with over 5 years of practice in providing exceptional medical care. He is deeply committed to the well-being and health of his patients, offering comprehensive care across various medical specialization. Dr. Peiris is skilled in diagnosing and treating a wide range of conditions, ensuring that each patient receives personalized and effective care.",
 //     "experience" => "5+ years of medical practice",
-//     "specialties" => [
+//     "specialization" => [
 //         "General Medicine", 
 //         "Family Medicine", 
 //         "Preventive Care", 
@@ -26,6 +26,11 @@ require APPROOT . '/views/Components/drNavbar.php';
 // ];
 
 $doctorData = $doctorData ?? [];
+
+if (isset($_SESSION['success_message'])) {
+    echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
+    unset($_SESSION['success_message']);
+}
 ?>
 
 <div class="dr-profile-content">
@@ -42,7 +47,7 @@ $doctorData = $doctorData ?? [];
             <!-- Doctor Details -->
             <div class="doctor-details">
                 <p><strong>Experience:</strong> <?php echo $doctorData['experience']; ?></p>
-                <p><strong>Specialties:</strong> <?php echo htmlspecialchars($doctorData['specialties'] ?? ''); ?></p>
+                <p><strong>Specialization:</strong> <?php echo htmlspecialchars($doctorData['specialization'] ?? ''); ?></p>
                 <p><strong>Certifications:</strong> <?php echo htmlspecialchars($doctorData['certifications'] ?? ''); ?></p>
                 
                 <!-- Contact Information -->

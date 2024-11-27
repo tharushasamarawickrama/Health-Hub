@@ -83,6 +83,11 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/renavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/redashboard.css">
 
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rechannel.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rescheduleappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/reappointmentdetails.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/repaymentdetails.css">
+
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drDashboard.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/fonts.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drViewAppointments.css?v=<?php echo time(); ?>">
@@ -92,6 +97,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drLabTests.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability2.css?v=<?php echo time(); ?>">
 
 </head>
 

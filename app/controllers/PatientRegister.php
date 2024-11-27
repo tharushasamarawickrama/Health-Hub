@@ -4,9 +4,12 @@ class PatientRegister {
     use Controller;
 
     public function index() {
+        $data = [];
+        $data['login_id'] = $_GET['id'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
                 $id = $_GET['id'];
+                
 
                 switch($id){
                     case 1:
@@ -132,7 +135,8 @@ class PatientRegister {
                 $this->view('patientregister', $data);
             }
         } else {
-            $this->view('patientregister');
+              
+            $this->view('patientregister', $data);
         }
     }
 }
