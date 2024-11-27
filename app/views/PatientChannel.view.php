@@ -37,8 +37,14 @@
     </div>
 
     <div class="PatientChannel-actions">
-        <button class="btn_edit">Edit Details</button>
-        <button class="btn_continue">Continue</button>
+        <a href="<?php echo URLROOT; ?>setappoinment">
+            <button class="btn_edit">Edit Details</button>
+        </a>
+
+        <a href="<?php echo URLROOT; ?>patientpaymentdetails">
+            <button class="btn_continue">Continue</button>
+        </a>
+
     </div>
 </div>
 

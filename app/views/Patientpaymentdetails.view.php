@@ -32,12 +32,15 @@
 
 <div class="payment-btn-div">
     <div>
-    <button class="payment-btn">Edit</button>
+        <a href="<?php echo URLROOT; ?>setappoinment">
+            <button class="payment-btn">Edit</button>
+        </a>
+
     </div>
     <div>
-    <button class="payment-btn2">Pay Now</button>
+        <button class="payment-btn2">Pay Now</button>
     </div>
-    
+
 </div>
 
 
