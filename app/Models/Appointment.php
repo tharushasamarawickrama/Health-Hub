@@ -1,9 +1,9 @@
 <?php
 
-class  {
+class Appointment {
     use Model;
 
-    protected $table = "s";
+    protected $table = "appointments";
 
     protected $Allowedcolumns = [
         'appointment_id',
