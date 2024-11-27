@@ -1,4 +1,4 @@
-.dr-availability-container {
+.unique-availability-container {
     background-image: url(../../images/background.png);
     background-repeat: repeat;
     background-position: top left;
@@ -12,24 +12,29 @@
     min-height: 80vh;
 }
 
-.dr-availability-header {
+.unique-availability-header {
     display: flex;
     gap: 20%;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.availability-back-arrow img {
+.unique-back-arrow img {
     cursor: pointer;
     width: 30px;
     height: 30px;
 }
 
-.select-timeslots{
+.unique-header{
+    text-align: center;
+    margin-left: 600px;
+}
+
+.unique-select-timeslots {
     margin-left: 250px;
 }
 
-.timeslots-container {
+.unique-timeslots-container {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -37,7 +42,7 @@
     position: relative;
 }
 
-.availability-left-section {
+.unique-left-section {
     position: absolute;
     left: 150px;
     padding: 20px;
@@ -51,13 +56,13 @@
     width: 100%;
 }
 
-.selected-slots-display {
+.unique-selected-slots {
     flex-direction: column;
     display: flex;
     margin-bottom: 20px;
 }
 
-.timeslot-tag {
+.unique-timeslot-tag {
     display: inline-block;
     background-color: rgba(160, 208, 226, 0.8);
     color: #000;
@@ -67,7 +72,7 @@
     font-size: 0.9em;
 }
 
-.timeslot-remove-btn {
+.unique-remove-btn {
     background: none;
     border: none;
     color: #666;
@@ -76,13 +81,13 @@
     font-size: 0.9em;
 }
 
-.timeslot-actions {
+.unique-actions {
     display: flex;
     justify-content: space-between;
     margin-top: auto;
 }
 
-.timeslot-action-clear{
+.unique-clear-btn {
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -92,7 +97,7 @@
     transition: background-color 0.3s ease;
 }
 
-.timeslot-action-save{
+.unique-save-btn {
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -102,11 +107,11 @@
     transition: background-color 0.3s ease;
 }
 
-.timeslot-action-clear:hover, .timeslot-action-save:hover{
-    background-color:#999;
+.unique-clear-btn:hover, .unique-save-btn:hover {
+    background-color: #999;
 }
 
-.timeslot-button {
+.unique-slot-btn {
     background-color: rgba(160, 208, 226, 0.8);
     color: #333;
     border: none;
@@ -118,17 +123,16 @@
     transition: background-color 0.3s;
 }
 
-.timeslot-button.selected {
+.unique-slot-btn.selected {
     outline: 2px solid rgba(33, 114, 146, 0.8);
     outline-offset: -2px;
 }
 
-
-.timeslot-button:hover {
+.unique-slot-btn:hover {
     background-color: #eaeaea;
 }
 
-.timeslot-options {
+.unique-options {
     position: absolute;
     right: 50px;
     max-width: 500px;
@@ -143,17 +147,17 @@
     gap: 10px;
 }
 
-.timeslot-button.disabled {
+.unique-slot-btn.disabled {
     background-color: #e0e0e0;
     color: #999;
     cursor: not-allowed;
 }
 
-.timeslot-button:not(.disabled):hover {
+.unique-slot-btn:not(.disabled):hover {
     background-color: #d9edf7;
 }
 
-#no-slots-msg {
+#unique-no-slots-msg {
     font-size: 1em;
     color: #999;
     margin-top: 10px;
