@@ -70,6 +70,15 @@
     gap: 3px;
 }
 
+.sig-codes select{
+    min-width: 75px;
+    padding: 0;
+}
+
+.sig-codes option{
+    text-align: left;
+}
+
 .add-sig-code {
     color: black;
     border: 1px solid black;

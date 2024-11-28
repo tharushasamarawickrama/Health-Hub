@@ -69,6 +69,93 @@
             </div>
         </div>
         <div class="home-child3">
+            <div>
+                <div class="home-child3-subdiv">
+                    <div class="home-child3-div1">
+                        <div class="home-child3-div1-1">
+                            <img src="<?php echo URLROOT; ?>assets/images/mach.png">
+
+                        </div>
+
+                    </div>
+
+                    <div class="home-child3-div1">
+                        <div class="home-child3-div1-1">
+                            <img src="<?php echo URLROOT; ?>assets/images/healthrecord.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="asdf">
+                <div>
+                    <h1 class="home-child3-subdiv-h1">Specialized Care Matching</h1>
+                    <p class="home-child3-subdiv-p">Find the right specialist based on your<br>unique needs for the best<br> personalized care.</p>
+                </div>
+                <div>
+                    <h1 class="home-child3-subdiv-h1">Personalized Health Records</h1>
+                    <p class="home-child3-subdiv-p">Secure, organized, and accessible— <br>your medical history, prescriptions,<br> and test results in one place.</p>
+                </div>
+            </div>
+            <h1 class="ourservices">Our Services...</h1>
+            <div class="asdf">
+                <div>
+                    <div class="home-child3-div1">
+                        <div class="home-child3-div1-1">
+                            <img src="<?php echo URLROOT; ?>assets/images/appointmentbook.png">
+                        </div>
+                    </div>
+                    <h1 class="home-child3-subdiv-h1">Easy Appointment Booking</h1>
+                    <p class="home-child3-subdiv-p">Seamlessly schedule, manage,<br> and track your appointments with <br>just a few clicks.</p>
+                </div>
+
+                <div>
+                    <div class="home-child3-div1">
+                        <div class="home-child3-div1-1">
+                            <img src="<?php echo URLROOT; ?>assets/images/labreport.png">
+                        </div>
+                    </div>
+                    <h1 class="home-child3-subdiv-h1">Digital Prescriptions<br> & Lab Reports</h1>
+                    <p class="home-child3-subdiv-p">Receive prescriptions and lab results<br> directly on your device—no more<br> paperwork.</p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="home-child4">
+            <h1 class="home-child4-h1">Get in Touch With Us</h1>
+            <p class="home-child4-p">We're here to help! Reach out with any questions, feedback, or support needs. Our<br> dedicated team is available to provide assistance and ensure a smooth experience on<br> Health Hub.</p>
+            <div class="home-child4-div1">
+                <div class="home-child4-div2">
+                    <img src="<?php echo URLROOT; ?>/assets/images/call.png" class="home-child4-image1">
+                    <h3>011-2242312</h3>
+                </div>
+
+            </div>
+            <div class="home-child4-div1">
+                <div class="home-child4-div2">
+                    <img src="<?php echo URLROOT; ?>/assets/images/email.png" class="home-child4-image1">
+                    <h3>healthhub@gmail.com</h3>
+                </div>
+
+            </div>
+            <div class="home-child4-div1">
+                <div class="home-child4-div2">
+                    <img src="<?php echo URLROOT; ?>/assets/images/location.png" class="home-child4-image1">
+                    <h3>No.14, Inner Flower Road, Colombo.</h3>
+                </div>
+
+            </div>
+        </div>
+        <div class="home-child5">
+            <div class="home-child5-div1">
+                <img src="<?php echo URLROOT; ?>/assets/images/socialmedia.png" class="home-child5-image">
+
+            </div>
+            <div class="home-child5-div2">
+                <h2 class="">
+                    2024 HealthHub All Rights Reserved.
+                </h2>
+            </div>
 
         </div>
 

@@ -1,13 +1,13 @@
 @font-face {
-    font-family: 'DM Sans';
+    font-family: 'Poppins';
     src: url("../../assets/fonts/Poppins-Regular.ttf") format('truetype');
 }
 
 @font-face {
-    font-family: 'DM Sans';
+    font-family: 'Handlee';
     src: url("../../assets/fonts/Handlee.ttf") format('truetype');
 }
 
-:root{
+/* :root{
     font-family: 'DM Sans', sans-serif;
-}
+} */
