@@ -3,14 +3,14 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
-$fetchedTimeslots = ["14/10/2024 8AM - 5PM", "16/10/2024 8AM - 5PM"];
+$fetchedTimeslots = ["2/12/2024", "4/12/2024"];
 $allTimeslots = [
-    "14/10/2024 8AM - 5PM",
-    "15/10/2024 8AM - 5PM",
-    "16/10/2024 8AM - 5PM",
-    "17/10/2024 8AM - 5PM",
-    "18/10/2024 8AM - 5PM",
-    "19/10/2024 8AM - 5PM",
+    "2/12/2024",
+    "3/12/2024",
+    "4/12/2024",
+    "5/12/2024",
+    "6/12/2024",
+    "7/12/2024",
 ];
 ?>
 
@@ -20,7 +20,7 @@ $allTimeslots = [
             <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
         </a>
         <h3>Selected Timeslots</h3>
-        <h3>Select Timeslots</h3>
+        <h3 class="select-timeslots">Select Timeslots</h3>
     </div>
 
     <div class="timeslots-container">
@@ -38,21 +38,31 @@ $allTimeslots = [
                 <?php endif; ?>
             </div>
             <div class="timeslot-actions">
-                <button class="timeslot-button" onclick="clearTimeslots()">Clear</button>
-                <button class="timeslot-button" onclick="saveTimeslots()">Save</button>
+                <button class="timeslot-action-clear" onclick="clearTimeslots()">Clear</button>
+                <button class="timeslot-action-save" onclick="saveTimeslots()">Save</button>
             </div>
         </div>
 
         <div class="timeslot-options">
             <?php foreach ($allTimeslots as $timeslot): ?>
+                <?php 
+                    $dateParts = explode("/", $timeslot); // Split into day, month, year
+                    $formattedDate = "{$dateParts[2]}-{$dateParts[1]}-{$dateParts[0]}"; // Rearrange to YYYY-MM-DD
+
+                    $date = new DateTime($formattedDate); // Create DateTime object
+                    $day = $date->format('l'); // Get the day name (e.g., Monday)
+                ?>
                 <button 
                     class="timeslot-button <?php echo in_array($timeslot, $fetchedTimeslots) ? 'disabled' : ''; ?>" 
                     onclick="<?php echo in_array($timeslot, $fetchedTimeslots) ? '' : "addTimeslot('$timeslot')"; ?>"
                     <?php echo in_array($timeslot, $fetchedTimeslots) ? 'disabled' : ''; ?>>
-                    <?php echo htmlspecialchars($timeslot); ?>
+                    <?php echo htmlspecialchars($day); ?><br>
+                    <?php echo htmlspecialchars($timeslot); ?><br>
+                    <?php echo htmlspecialchars("8AM - 5PM"); ?>
                 </button>
             <?php endforeach; ?>
         </div>
+
     </div>
 </div>
 
@@ -62,19 +72,37 @@ $allTimeslots = [
     function addTimeslot(slotName) {
         if (!selectedTimeslots.includes(slotName)) {
             selectedTimeslots.push(slotName);
+
+            const timeslotButtons = document.querySelectorAll(".timeslot-button");
+            timeslotButtons.forEach(button => {
+                if (button.textContent.includes(slotName)) {
+                    button.classList.add("selected");
+                }
+            });
+
             updateTimeslotDisplay();
         } else {
             alert(slotName + " is already selected.");
         }
     }
 
+
     function removeTimeslot(slotName) {
         const index = selectedTimeslots.indexOf(slotName);
         if (index > -1) {
             selectedTimeslots.splice(index, 1);
+
+            const timeslotButtons = document.querySelectorAll(".timeslot-button");
+            timeslotButtons.forEach(button => {
+                if (button.textContent.includes(slotName)) {
+                    button.classList.remove("selected");
+                }
+            });
+
             updateTimeslotDisplay();
         }
     }
+
 
     function updateTimeslotDisplay() {
         const timeslotContainer = document.getElementById("selected-timeslots");

@@ -1,0 +1,176 @@
+.re-ch-container {
+    background-image: url("../../../assets/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+
+.re-ch-content {
+    display: flex;
+    padding: 40px;
+    margin-top: 50px;
+    gap: 30px;
+}
+
+.re-ch-doctor-profile {
+    flex: 1;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.re-ch-doctor-profile:hover {
+    transform: translateY(-5px);
+}
+
+.re-ch-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.re-ch-avatar img:hover {
+    transform: scale(1.05);
+}
+
+.re-ch-doctor-profile h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.re-ch-doctor-profile p {
+    color: #666;
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+.re-ch-view-profile-btn {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.re-ch-view-profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.re-ch-appointment-times {
+    flex: 2;
+    padding: 0 20px;
+}
+
+.re-ch-appointment-times h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.re-ch-appointment-card {
+    background: #ffffff;
+    border: 1px solid #e1e8ed;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.re-ch-appointment-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.re-ch-date {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.re-ch-slots {
+    color: #666;
+    background: #f8f9fa;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.re-ch-time {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.re-ch-schedule-btn {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.re-ch-schedule-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 128, 0.3);
+}
+
+.re-ch-see-more {
+    text-align: center;
+    color: #007bff;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+}
+
+.re-ch-see-more:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+.re-ch-back-button-container {
+    padding: 20px;
+}
+
+.re-ch-back-button {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.re-ch-back-button:hover {
+    background-color: #0e6875;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}

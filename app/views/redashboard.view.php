@@ -57,8 +57,8 @@
                     echo '<h2>' . $doctor['name'] . '</h2>';
                     echo '<p>' . $doctor['gender'] . '</p>';
                     echo '<p>' . $doctor['specialization'] . '</p>';
-                    echo '<button class="re-dash-view-profile">View Profile</button>';
-                    echo '<button class="re-dash-channel-now">Channel Now</button>';
+                    echo '<button class="re-dash-view-profile">View Profile</button>';                                                                                      
+                    echo '<a href="' . URLROOT . '/rechannel" class="re-dash-channel-now">Channel Now</a>';
                     echo '</div>';
                 }
                 ?>

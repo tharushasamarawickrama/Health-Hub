@@ -165,3 +165,7 @@
 .re-dash-channel-now:hover {
     opacity: 0.8; /* Slight transparency on hover */
 }
+.re-dash-channel-now a{
+    text-decoration: none;
+    color: inherit;
+}

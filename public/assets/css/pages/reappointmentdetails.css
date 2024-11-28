@@ -1,0 +1,105 @@
+.re-app-det-container{   
+    background-image: url("../../../assets/images/background.png");
+    background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        padding: 55px 30px;
+}
+/* Details Section */
+.re-app-det-details-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.re-app-det-details-card {
+    flex: 1;
+    background-color: #eaf7fc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.re-app-det-details-card h2 {
+    margin-bottom: 15px;
+    color: #017ca6;
+}
+
+.re-app-det-details-card p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.re-app-det-icon {
+    width: 24px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* Doctor Card */
+.re-app-det-doctor-card {
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.re-app-det-button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.re-app-det-btn {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.re-app-det-edit-btn {
+    background-color: #64A7B3;
+    color: black;
+}
+
+.re-app-det-continue-btn {
+    background-color: #64A7B3;
+    color: black;
+}
+
+.re-app-det-edit-btn:hover {
+    background-color: #015c80;
+}
+
+.re-app-det-continue-btn:hover {
+    background-color: #2d90b4;
+}
+.re-app-det-back-button-container {
+    padding: 20px;
+}
+
+.re-app-det-back-button {
+    background-color: #6AAEBC;
+    color: black;
+    border: none;
+    display: flex;
+    align-items: left;
+    gap: 6px;
+    width: 55px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.re-app-det-back-button:hover {
+    background-color: #2d90b4;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}

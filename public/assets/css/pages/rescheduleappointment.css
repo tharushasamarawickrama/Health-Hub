@@ -1,0 +1,116 @@
+.re-sch-app-container {    
+    background-image: url("../../../assets/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 55px 30px;
+}
+
+.re-sch-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px;
+    background: rgba(234, 247, 252, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.re-sch-app-form-container {
+    padding: 30px;
+    background-color: #6AAEBC;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.re-sch-app-form-row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.re-sch-app-form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.re-sch-app-form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: black;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.re-sch-app-form-group input,
+.re-sch-app-form-group select {
+    padding: 12px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: rgba(230, 245, 249, 0.9);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.re-sch-app-form-group input:focus,
+.re-sch-app-form-group select:focus {
+    outline: none;
+    border-color: #017ca6;
+    background: #ffffff;
+}
+
+.re-sch-app-continue-btn {
+    display: block;
+    width: 40%;
+    align-items: center;
+    background-color: #6AAEBC;
+    color: black;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(1, 124, 166, 0.2);
+}
+
+.re-sch-app-continue-btn:hover {
+    background: linear-gradient(145deg, #017ca6, #016a8f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(1, 124, 166, 0.3);
+}
+
+.re-sch-app-back-button-container {
+    padding: 20px;
+}
+
+.re-sch-app-back-button {
+    background-color: #6AAEBC;
+    color: black;
+    border: none;
+    display: flex;
+    align-items: left;
+    gap: 6px;
+    width: 55px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.re-sch-app-back-button:hover {
+    background-color: #0e6875;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
