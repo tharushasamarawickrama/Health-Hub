@@ -12,7 +12,7 @@
             <img src="<?php echo URLROOT; ?>/assets/images/logohealth.png" class="logo">
         </a>
 
-        <a href="#" class="navitems">Home</a>
+        <a href="<?php echo URLROOT; ?>home" class="navitems">Home</a>
         <a href="#" class="navitems">About</a>
         <a href="#" class="navitems">Contact</a>
 
@@ -47,7 +47,10 @@
             <img src="<?php echo URLROOT; ?>/assets/images/image 37.svg" class="home-image">
             <div class="headline">
                 <h1 class="headline-h1">“Empowering Your Health, One Click at a Time”</h1>
-                <button class="headline-button">Make An Appointment</button>
+                <a href="<?php if (isset($_SESSION['user'])): ?> <?php echo URLROOT; ?>searchappoinment <?php else: ?> <?php echo URLROOT; ?>Prevlog <?php endif; ?>">
+                    <button class=" headline-button">Make An Appointment</button>
+                </a>
+
             </div>
         </div>
 
