@@ -29,4 +29,5 @@ class LabPrescriptionAppointment {
         $data = $prescriptionDetails; // Get the first record (expected one result)
         $this->view('labprescriptionappointment', $data);
     }
+    
 }

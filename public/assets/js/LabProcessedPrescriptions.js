@@ -79,7 +79,7 @@ class Calendar {
         document.querySelectorAll('.lab-proc-calendar-date').forEach(date => {
             date.addEventListener('click', (e) => {
                 // Remove previous selection
-                document.querySelectorAll('.lab-proc-calendar-date').forEach(d => d.classList.remove('lab-proc-selected'));
+                document.querySelectorAll('.lab-proc-calendar-date').forEach(d => d.classList.remove('ph-pp-selected'));
                 // Add selected class to clicked date
                 e.target.classList.add('lab-proc-selected');
                 // Here you can add code to fetch appointments for the selected date

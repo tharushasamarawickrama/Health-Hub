@@ -19,36 +19,46 @@
             
             <table class="ph-pres-app-prescription-table">
                 <tr>
-                    <th>Medicine name</th>
-                    <th>Dosage</th>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Measurement</th>
+                    <th>Sig codes</th>
                     <th>Duration</th>
                 </tr>
                 <tr>
                     <td>Panadol 500mg - Tab</td>
-                    <td>3 times a day before meal</td>
+                    <td>10</td>
+                    <td>Tablet</td>
+                    <td>po</td>
                     <td>5/365</td>
                 </tr>
                 <tr>
                     <td>Timolol - Syr</td>
-                    <td>2 times a day after meal</td>
+                    <td>1</td>
+                    <td>Syrup</td>
+                    <td>TID</td>
                     <td>1/7</td>
                 </tr>
             </table>
             </div>
             <form class="ph-pres-app-inventory-form">
                 <div class="ph-pres-app-inventory-row">
-                    <label><input type="radio" name="medType" value="Sy"> Syrup</label>
-                    <label><input type="radio" name="medType" value="Tablet" checked> Tablet</label>
                     <input type="text" placeholder="Medicine Name" name="medicineName">
+                    <input type="number" name="qty" placeholder="Quantity" min="0" required>
+                    <select name="measurement">
+                        <option value="Tablet">Tablet</option>
+                        <option value="ml">ml</option>
+                        <option value="mg">mg</option>
+
+                    </select>
+                    <input type="text" name="sig" placeholder="Sig (Dosage Instructions)" required>
                     <select name="code">
                         <option value="BD">BD</option>
                         <option value="TID">TDS</option>
-                        <option value="TID">Daily</option>
-                        <option value="TID">SOS</option>
+                        <option value="Daily">Daily</option>
+                        <option value="SOS">SOS</option>
                     </select>
-                    <input type="number" name="dose" placeholder="Dose" min="0" required>
-                    <input type="number" name="durationDays" placeholder="Days" min="0"  required>
-                    <input type="number" name="durationTotal" placeholder="Total" min="0" required>
+                    <input type="number" name="durationDays" placeholder="Days" min="0" required>
                 </div>
 
                 <div class="ph-pres-app-buttons-container">
@@ -61,4 +71,4 @@
             </form>
         </div>
     </div>
-<?php require APPROOT . '/views/Components/footer.php'; ?>
+<?php require APPROOT . '/views/Components/footer.php'; ?> 
