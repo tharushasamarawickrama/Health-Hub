@@ -53,7 +53,7 @@
             </div>
             <div>
                 <form action="" method="post">
-                    <button class="profilebtn" name="delete" type="submit">Delete Profile</button>
+                    <button class="profilebtn" name="delete" onclick="event.preventDefault(); openconfirmdeleteModal()">Delete Profile</button>
                 </form>
             </div>
 
@@ -62,7 +62,32 @@
 
 </div>
 
+<div id="deleteconfirmation-modal" class="updatemodal">
+    <div class="updatemodal-content">
+        <h2>Are you sure?</h2>
+        <p>Do you want to Delete the Profile?</p>
+        <form class="updatemodal-buttons" method="POST">
+            <button class="updateyes-btn" name="deleteProfile" type="submit">Yes</button>
+            <button class="updateno-btn" onclick="closeconfirmdeleteModal()">No</button>
+        </form>
+    </div>        
+</div>
 
+<script>
+    function openconfirmdeleteModal() {
+            document.getElementById('deleteconfirmation-modal').style.display = 'block';
+            modal.style.display = 'flex'; // Use flex for centering modal
+        }
+
+        function closeconfirmdeleteModal() {
+            document.getElementById('deleteconfirmation-modal').style.display = 'none';
+        }
+
+        function confirmDelete(id) {
+            window.location.href = '../../patientprofile?id=' + id;
+            // successToast("Advertisement deleted successfully");
+        }
+</script>
 
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
