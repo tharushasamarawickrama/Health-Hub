@@ -9,7 +9,7 @@ class Setappoinment {
             $id = $_GET['id'];
             $appoinment = new Appointment;
 
-            $
+            
 
             $data = [
                 'p_firstName' => $_POST['p_firstName'],
