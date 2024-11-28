@@ -8,7 +8,7 @@
         
         <div class="AdminNav">
             <a href="<?php echo URLROOT; ?>AdminDashboard" class="AdminNavitems">Dashboard</a>
-            <a href="<?php echo URLROOT; ?>phdailyusage" class="AdminNavitems">View Reports</a>
+            <a href="<?php echo URLROOT; ?>phdailyusage" class="AdminNavitems">Reports</a>
             
             <a href="<?php echo URLROOT; ?>AdminViewProfile" class="AdminNavitems">View Profiles</a>
         </div>
