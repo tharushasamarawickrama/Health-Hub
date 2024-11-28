@@ -82,7 +82,7 @@
             
         </form>
         <div class="AdminRegister-form-row">
-                <a href="<?php echo URLROOT;?>patientregister">
+                <a href="<?php echo URLROOT;?>patientregister?id=2">
                     <button type="submit"  class="add-doctor-btn">Send Request</button>
                 </a>
             </div>
