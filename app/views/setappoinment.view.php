@@ -3,6 +3,12 @@
 
 <div class="screen">
     <div class="outrectangle">
+        <div>
+                    <a href="<?php echo URLROOT; ?>searchappoinment">
+                        <img src="<?php echo URLROOT; ?>/assets/images/backarrow.png" class="backimg">
+                    </a>
+
+                </div>
         <form action="" method="POST" id="channelform">
             <div class="channeltextdiv">
                 <span class="channeldoctortext">Channel Your Doctor</span>
@@ -74,8 +80,10 @@
             </div>
 
             <div class="div5">
-                <button  class="continuebtn" value="Continue" name="continue" onclick="openconfirmdeleteModal(event)">Submit</button>
+                
+                <button class="continuebtn" value="Continue" name="continue" onclick="openconfirmdeleteModal(event)">Submit</button>
             </div>
+
         </form>
 
     </div>
@@ -96,20 +104,20 @@
 
 <script>
     function openconfirmdeleteModal(event) {
-        event.preventDefault(); 
+        event.preventDefault();
         document.getElementById('deleteconfirmation-modal').style.display = 'block';
         const modal = document.querySelector('.updatemodal');
         modal.style.display = 'flex'; // Use flex for centering modal
     }
-    
+
     function closeconfirmdeleteModal() {
         document.getElementById('deleteconfirmation-modal').style.display = 'none';
     }
-    
+
     function confirmedit(event) {
-        event.preventDefault(); 
- 
-        
+        event.preventDefault();
+
+
         document.getElementById('channelform').submit();
         // window.location.href = '../../patientchannel';
         // successToast("Advertisement deleted successfully");

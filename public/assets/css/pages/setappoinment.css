@@ -5,8 +5,9 @@
     border-radius: 20px;
     margin-top: 80px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    background-image: url(../../images/background.png);
+    /* background-image: url(../../images/background.png); */
     box-shadow: #e6dada;
+    backdrop-filter: blur(5px);
 }
 
 .screen{
@@ -168,4 +169,26 @@
 .button-grid button:hover {
     background-color: #00aaff;
     color: white;
+}
+
+.outrectangle-div{
+    width: 200px;
+    height: 50px;
+    border-radius: 100px;
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgba(100, 167, 179, 1);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    margin-left: 50px;
+    padding: 10px 10px;
+
+}
+
+.backimg{
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
 }
