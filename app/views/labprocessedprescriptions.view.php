@@ -23,24 +23,24 @@
 
     <!-- Appointments Section - Right Side -->
     <div class="lab-proc-appointments-container">
-        <a href="<?php echo URLROOT; ?>/labprocessedappointment" class="lab-proc-result-item">
-        <div class="lab-proc-appointment-card">
-            01.
-            <p class="lab-proc-appointment-id">Appointment ID: 4565</p>
-            <p>NIC: 200213288759</p>
-        </div></a>
-        <div class="lab-proc-appointment-card">
-            02.
-            <p class="lab-proc-appointment-id">Appointment ID: 4566</p>
-            <p>NIC: 200213288760</p>
-        </div>
-        <div class="lab-proc-appointment-card">
-            03.
-            <p class="lab-proc-ppointment-id">Appointment ID: 4567</p>
-            <p>NIC: 200213273709</p>
+    <?php if(!empty($data['appointments'])): ?>
+        <?php $count = 1; ?>
+        <?php foreach($data['appointments'] as $appointment): ?>
+<!-- Change this line -->
+<a href="<?php echo URLROOT; ?>labprocessedappointment" class="lab-proc-result-item">
+    <div class="lab-proc-appointment-card">
+        <div class="lab-proc-appointment-id">Appointment ID: <?php echo $appointment['appointment_id']; ?></div>
+        <div>NIC: <?php echo $appointment['nic']; ?></div>
+    </div>
+</a>
+
+<?php endforeach; ?>
+
+        <?php else: ?>
+            <div class="no-appointments">No completed appointments found</div>
+        <?php endif; ?>
         </div>
     </div>
-</div>
 </div>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
 <script src="<?php echo URLROOT;?>/assets/js/LabProcessedPrescriptions.js"></script>
