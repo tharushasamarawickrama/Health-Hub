@@ -18,19 +18,25 @@
             <p>Doc Name: <b>Dr. Krishantha Perera</b></p>
          
             <table class="ph-proc-app-prescription-table">
-                <tr>
-                    <th>Medicine name</th>
-                    <th>Dosage</th>
+            <tr>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Measurement</th>
+                    <th>Sig codes</th>
                     <th>Duration</th>
                 </tr>
                 <tr>
                     <td>Panadol 500mg - Tab</td>
-                    <td>3 times a day before meal</td>
+                    <td>10</td>
+                    <td>Tablet</td>
+                    <td>po</td>
                     <td>5/365</td>
                 </tr>
                 <tr>
                     <td>Timolol - Syr</td>
-                    <td>2 times a day after meal</td>
+                    <td>100</td>
+                    <td>ml</td>
+                    <td>TID</td>
                     <td>1/7</td>
                 </tr>
             </table>

@@ -7,9 +7,9 @@ class Setappoinment {
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST)){
             $id = $_GET['id'];
             $appoinment = new Appointment;
+
             
-            
-            
+
             $data = [
                 'p_firstName' => $_POST['p_firstName'],
                 'p_lastName' => $_POST['p_lastName'],

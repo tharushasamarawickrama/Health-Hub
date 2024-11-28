@@ -2,9 +2,19 @@
 
 class LabProcessedPrescriptions {
     use Controller;
-    public function index(){
-        $this->view('labprocessedprescriptions');
+    private $labAssistantModel;
+    public function __construct() {
+        $this->labAssistantModel = new LabAssistant();
     }
+    public function index(){
+        $completedAppointments = $this->labAssistantModel->getCompletedLabAppointments();
+        
+        $data = [
+            'appointments' => $completedAppointments
+        ];
+        $this->view('labprocessedprescriptions',$data);
+    }
+    
     public function getAppointmentData() {
         $date = $_GET['date'] ?? date('Y-m-d');
         $data = [
