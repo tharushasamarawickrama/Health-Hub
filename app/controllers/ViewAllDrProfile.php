@@ -16,6 +16,7 @@ class ViewAllDrProfile  {
         if($doctor->delete($id,$id_column='doctor_id')){ 
             $data['success'] = "Doctor deleted Successfully";
             $this->view('AdminDrRegister', $data);
+           
             
             return;
         }
