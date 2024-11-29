@@ -3,12 +3,12 @@
 <div class="AdminNavbar">
     <div class="fullcontainer">
 
-        <a href="#">
+        
             <img src="<?php echo URLROOT; ?>/assets/images/hhlogo.png" class="logo">
-        </a>
+        
         <div class="AdminNav">
             <a href="<?php echo URLROOT; ?>AdminDashboard" class="AdminNavitems">Dashboard</a>
-            <a href="<?php echo URLROOT; ?>phdailyusage" class="AdminNavitems">View Reports</a>
+            <a href="<?php echo URLROOT; ?>phdailyusage" class="AdminNavitems">Reports</a>
             
             <a href="<?php echo URLROOT; ?>AdminViewProfile" class="AdminNavitems">View Profiles</a>
         </div>

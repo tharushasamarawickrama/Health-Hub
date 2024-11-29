@@ -85,3 +85,9 @@
     </div>
 </div>
 <?php require APPROOT . '/views/Components/footer.php' ?>
+
+<?php if (isset($data['success'])): ?>
+<script>
+    alert("<?php echo $data['success']; ?>");
+</script>
+<?php endif; ?>
