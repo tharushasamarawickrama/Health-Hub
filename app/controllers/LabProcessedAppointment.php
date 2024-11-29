@@ -32,13 +32,20 @@ class LabProcessedAppointment {
     $this->view('labprocessedappointment', $data);
 }
      
-    public function deleteReport($labtest_id) {
-        error_log("deleteReport called with ID: $labtest_id");
-        $labAssistant = new LabAssistant();
-        if ($labAssistant->deleteLabTestReport($labtest_id)) {
-            echo "Report deleted successfully";
-        } else {
-            echo "Error deleting report";
-        }
+public function deleteReport($labtest_id) {
+    if (!$labtest_id) {
+        echo json_encode(['success' => false, 'message' => 'Invalid labtest ID']);
+        return;
     }
+
+    $result = $this->labAssistantModel->deleteLabTestReport($labtest_id);
+    
+    header('Content-Type: application/json');
+    if ($result) {
+        echo json_encode(['success' => true, 'message' => 'Report deleted successfully']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to delete report']);
+    }
+    exit;
+}
 }

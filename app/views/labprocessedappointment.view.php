@@ -35,7 +35,7 @@
                     <img src="<?php echo URLROOT; ?>/assets/images/pdf-icon.png" alt="PDF Icon"> 
                     <span><?php echo htmlspecialchars($data[0]['labtest_pdfname']); ?></span>
                     <a href="<?php echo URLROOT; ?>/labprocessedappointment/view/<?php echo $data[0]['labtest_id']; ?>">View</a>
-                    <a href="javascript:void(0);" class="delete" onclick="deleteReport(<?php echo $data[0]['labtest_id']; ?>)">Delete</a>
+                    <a href="<?php echo URLROOT; ?>/DeleteLabReport" class="delete" onclick="deleteReport(<?php echo $data[0]['labtest_id']; ?>)">Delete</a>
                 </div>
                 <?php else: ?>
                     <p>No reports uploaded.</p>
@@ -46,4 +46,4 @@
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>
-<script src="<?php echo URLROOT;?>/assets/js/LabProcessedAppointment.js"></script>
+<!-- script src="<?php echo URLROOT;?>/assets/js/LabProcessedAppointment.js"></script>

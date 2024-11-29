@@ -102,9 +102,18 @@ class LabAssistant {
         return $this->query($query, ['labtest_id' => $labtest_id]);
     }*/
     public function deleteLabTestReport($labtest_id) {
-        $query = "UPDATE labtest SET labtest_report = NULL, labtest_pdfname = NULL WHERE labtest_id = :labtest_id";
-        return $this->query($query, ['labtest_id' => $labtest_id]);
+        try {
+            $query = "UPDATE labtest 
+                      SET labtest_report = NULL, 
+                          labtest_pdfname = NULL 
+                      WHERE labtest_id = :labtest_id";
+            
+            $result = $this->query($query, ['labtest_id' => $labtest_id]);
+            return true;
+        } catch (Exception $e) {
+            error_log("Error deleting report: " . $e->getMessage());
+            return false;
+        }
     }
-    
     
 }

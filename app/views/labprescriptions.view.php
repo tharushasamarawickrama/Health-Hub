@@ -16,7 +16,7 @@
                 </a>
                 <?php endforeach; ?>
                 <?php else: ?>
-                    <div class="no-appointments">No pending appointments found</div>
+                    <div class="no-appointments">No appointments found</div>
                 <?php endif; ?>
             </div>
          </div>
