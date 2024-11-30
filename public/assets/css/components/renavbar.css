@@ -29,9 +29,10 @@
 
 .reloginlogo{
     align-items: right;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-left: 880px;
+    border-radius: 50%;
 }
 
 .relogin{
@@ -39,4 +40,5 @@
     color: black;
     font-weight: bold;
     font-size: 20px;
+    text-decoration: none;
 }

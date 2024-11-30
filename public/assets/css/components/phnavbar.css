@@ -28,14 +28,22 @@
 }
 
 .phloginlogo{
-    width: 80px;
-    height: 80px;
-    margin-left: 380px;
+    width: 60px;
+    height: 60px;
+    margin-left: 100px;
+    border-radius: 50%;
 }
 
 .phlogin{
     text-decoration: none;
     color: black;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
+    margin-right: 50px;
+}
+
+.dropdown p {
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
 }
