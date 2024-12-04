@@ -19,7 +19,7 @@ class PatientRegister {
                         
                         if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
                             $_SESSION['user'] = $row;
-                            redirect('searchappoinment'); // Redirect after successful login
+                            redirect('home'); // Redirect after successful login
                         } else {
                             $user->errors['Email'] = "Invalid NIC or Password";
                             $data['errors'] = $user->errors;
@@ -71,7 +71,7 @@ class PatientRegister {
                         $row = $receptionist->first($arr);
                         if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
                             $_SESSION['user'] = $row;
-                            redirect('searchappoinment'); // Redirect after successful login
+                            redirect('ReDashboard'); // Redirect after successful login
                         } else {
                             $receptionist->errors['Email'] = "Invalid NIC or Password";
                             $data['errors'] = $receptionist->errors;
@@ -133,6 +133,7 @@ class PatientRegister {
                 }
 
                 $this->view('patientregister', $data);
+                // redirect('patientregister?id=1');
             }
         } else {
               

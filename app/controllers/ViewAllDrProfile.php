@@ -13,8 +13,12 @@ class ViewAllDrProfile  {
     public function delete(){
         $id=$_GET['id'];
         $doctor=new Doctor;
-        if($doctor->delete($id,$id_column='doctor_id')){
-            redirect('ViewAllDrProfile');
+        if($doctor->delete($id,$id_column='doctor_id')){ 
+            $data['success'] = "Doctor deleted Successfully";
+            $this->view('AdminDrRegister', $data);
+           
+            
+            return;
         }
 
     }

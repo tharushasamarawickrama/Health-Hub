@@ -10,7 +10,7 @@ class DeleteLabReport {
     }
 
     public function index($labtest_id = null) {
-        $labtest_id = 1;
+        $labtest_id = 3;
         // Call the deleteReport method and handle the response
         $this->deleteReport($labtest_id);
     }

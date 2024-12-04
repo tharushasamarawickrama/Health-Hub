@@ -51,6 +51,10 @@ class AdminDrRegister  {
                
 
             if($doctor->insert($data)){
+                
+                $data['success'] = "Doctor Registered Successfully";
+                $this->view('AdminDrRegister', $data);
+                return;
                 header('Location: ' . URLROOT . '/AdminDrRegister');
             }
             redirect('AdminDrRegister');

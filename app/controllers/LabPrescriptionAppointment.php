@@ -10,7 +10,7 @@ class LabPrescriptionAppointment {
     }
 
     public function index() {
-        $appointment_id = 2; // Hardcoded for now
+        $appointment_id = 18; // Hardcoded for now
 
         if (empty($appointment_id) || !is_numeric($appointment_id)) {
             redirect('labprescriptions'); // Redirect if ID is invalid

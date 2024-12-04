@@ -3,7 +3,7 @@
         <img src="<?php echo URLROOT; ?>/assets/images/logohealth.png" class="logo">
     </a>
 
-    <a href="#" class="navitems">Home</a>
+    <a href="<?php echo URLROOT; ?>home" class="navitems">Home</a>
     <a href="<?php if (isset($_SESSION['user'])): ?> <?php echo URLROOT; ?>searchappoinment <?php else: ?> <?php echo URLROOT; ?>patientregister?id=1 <?php endif; ?>" class="navitems">Appointment</a>
     <a href="#" class="navitems">Inbox</a>
 
@@ -23,7 +23,7 @@
             <p class="username"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></p>
 
             <div class="dropdown-content">
-                <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
+                <a href="#">Profile</a>
                 <a href="?action=logout">Logout</a>
             </div>
         </div>

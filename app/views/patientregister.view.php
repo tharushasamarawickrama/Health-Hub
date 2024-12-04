@@ -163,7 +163,7 @@
                 </div>
 
                 <div class="regbuttondiv">
-                    <a href="<?php echo URLROOT; ?>patientregister" class="reggohomebutton">Login</a>
+                    <a href="<?php echo URLROOT; ?>patientregister?id=1" class="reggohomebutton">Login</a>
                 </div>
             </div>
 
