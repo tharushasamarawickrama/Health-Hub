@@ -7,16 +7,16 @@ class User {
     protected $table = "users";
 
     protected $Allowedcolumns = [
-        'Title',
-        'FirstName',
-        'LastName',
-        'Email',
-        'PhoneNumber',
-        'Gender',
-        'NIC',
-        'Password',
-        'Address',
-        'Age'
+        "title",
+        "firstName",
+        "lastName",
+        "gender",
+        "dob",
+        "nic",
+        "address",
+        "photo_path",
+        "phoneNumber",
+        "email"
     ];
 
     // public function validate($data){

@@ -26,13 +26,14 @@ require APPROOT . '/views/Components/drNavbar.php';
 // ];
 
 $doctorData = $doctorData ?? [];
+$userData = $userData ?? [];
 ?>
 
 <div class="dr-profile-content">
             <div class="doctor-header">
                 <a href="<?php echo URLROOT; ?>drDashboard" class="profile-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($doctorData['profile_pic']) ? 'uploads/' . htmlspecialchars($doctorData['profile_pic']) : 'images/doctor.png'; ?>" class="doctor-pic">
-                <h1>Dr. <?php echo $doctorData['firstName'] . ' ' . $doctorData['lastName']; ?></h1>
+                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? 'uploads/' . htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>" class="doctor-pic">
+                <h1>Dr. <?php echo $userData['firstName'] . ' ' . $userData['lastName']; ?></h1>
             </div>
         <div class="doctor-profile-container">
             <div class="doctor-description">
@@ -42,14 +43,14 @@ $doctorData = $doctorData ?? [];
             <!-- Doctor Details -->
             <div class="doctor-details">
                 <p><strong>Experience:</strong> <?php echo $doctorData['experience']; ?></p>
-                <p><strong>Specialties:</strong> <?php echo htmlspecialchars($doctorData['specialties'] ?? ''); ?></p>
+                <p><strong>Specialization:</strong> <?php echo htmlspecialchars($doctorData['specialization'] ?? ''); ?></p>
                 <p><strong>Certifications:</strong> <?php echo htmlspecialchars($doctorData['certifications'] ?? ''); ?></p>
                 
                 <!-- Contact Information -->
                 <p><strong>Contact:</strong></p>
                 <ul class="dr-contact-info">
-                    <li>Phone: <?php echo $doctorData['phoneNumber']; ?></li>
-                    <li>Email: <a href="mailto:<?php echo $doctorData['email']; ?>"><?php echo $doctorData['email']; ?></a></li>
+                    <li>Phone: <?php echo $userData['phoneNumber']; ?></li>
+                    <li>Email: <a href="mailto:<?php echo $userData['email']; ?>"><?php echo $userData['email']; ?></a></li>
                 </ul>
                 <a href="<?php echo URLROOT; ?>drEditProfile"><button class="dr-profile-btn">Edit Profile</button></a>
             </div>
