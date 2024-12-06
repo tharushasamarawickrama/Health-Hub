@@ -13,5 +13,7 @@ class Doctor
         "experience",
         "specialization",
         "certifications",
+        "availability",
+        "type",
     ];
 }

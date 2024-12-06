@@ -1,49 +1,67 @@
-const selectedSlots = document.querySelector('.selected-slots');
-const timeslotsContainer = document.querySelector('.timeslot-container');
-const confirmBtn = document.querySelector('.confirm-btn');
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize the selected timeslots from PHP
+    const selectedTimeslots = <?php echo json_encode($cleanedTimeslots); ?>;
 
-// Dummy data for available slots
-const availableSlots = [
-    { date: '14/10/2024', time: '8AM-11AM', occupied: false },
-    { date: '14/10/2024', time: '4PM-7PM', occupied: true },
-    { date: '15/10/2024', time: '8AM-11AM', occupied: false },
-    { date: '15/10/2024', time: '4PM-7PM', occupied: false },
-    // ... more slots as needed
-];
+    // Event delegation for dynamically added remove buttons
+    document.getElementById("selected-timeslots").addEventListener("click", function(e) {
+        if (e.target && e.target.classList.contains("timeslot-remove-btn")) {
+            const timeslot = e.target.parentElement.textContent.trim().slice(0, -1); // Get the timeslot name
+            removeTimeslot(timeslot);
+        }
+    });
 
-function createTimeslot(slot) {
-    const timeslot = document.createElement('div');
-    timeslot.classList.add('timeslot');
-    timeslot.textContent = `${slot.date} ${slot.time}`;
-    if (slot.occupied) {
-        timeslot.classList.add('occupied');
-    } else {
-        timeslot.addEventListener('click', () => {
-            const selectedSlot = document.createElement('div');
-            selectedSlot.classList.add('selected-slot');
-            selectedSlot.textContent = `${slot.date} ${slot.time}`;
-            const deleteBtn = document.createElement('button');
-            deleteBtn.classList.add('delete-btn');
-            deleteBtn.textContent = 'X';
-            deleteBtn.addEventListener('click', () => {
-                selectedSlot.remove();
-                slot.occupied = false;
-                timeslot.classList.remove('occupied');
-            });
-            selectedSlot.appendChild(deleteBtn);
-            selectedSlots.appendChild(selectedSlot);
-            slot.occupied = true;
-            timeslot.classList.add('occupied');
+    // Add event listener to all timeslot buttons
+    document.querySelectorAll('.timeslot-button').forEach(button => {
+        button.addEventListener("click", function() {
+            const slotName = this.textContent.trim();
+            if (!selectedTimeslots.includes(slotName)) {
+                selectedTimeslots.push(slotName);
+                updateTimeslotDisplay();
+            } else {
+                alert(slotName + " is already selected.");
+            }
+        });
+    });
+
+    // Update the selected timeslot display
+    function updateTimeslotDisplay() {
+        const timeslotContainer = document.getElementById("selected-timeslots");
+        timeslotContainer.innerHTML = "";
+
+        if (selectedTimeslots.length === 0) {
+            timeslotContainer.innerHTML = "<p id='no-slots-msg'>No timeslots selected.</p>";
+            return;
+        }
+
+        selectedTimeslots.forEach(timeslot => {
+            const timeslotTag = document.createElement("span");
+            timeslotTag.className = "timeslot-tag";
+            timeslotTag.innerHTML = `${timeslot} <button class="timeslot-remove-btn">&times;</button>`;
+            timeslotContainer.appendChild(timeslotTag);
         });
     }
-    return timeslot;
-}
 
-availableSlots.forEach(slot => {
-    timeslotsContainer.appendChild(createTimeslot(slot));
-});
+    // Remove selected timeslot from the array and update display
+    function removeTimeslot(slotName) {
+        const index = selectedTimeslots.indexOf(slotName);
+        if (index > -1) {
+            selectedTimeslots.splice(index, 1);
+            updateTimeslotDisplay();
+        }
+    }
 
-confirmBtn.addEventListener('click', () => {
-    // Handle confirmation logic here, e.g., send selected slots to server
-    console.log('Selected slots:', selectedSlots.innerHTML);
+    // Clear all selected timeslots
+    function clearTimeslots() {
+        selectedTimeslots.length = 0;
+        updateTimeslotDisplay();
+    }
+
+    // Save the selected timeslots
+    function saveTimeslots() {
+        alert("Timeslots saved: " + selectedTimeslots.join(", "));
+    }
+
+    // Attach the clear and save button functions to respective buttons
+    document.querySelector('.timeslot-button-clear').addEventListener('click', clearTimeslots);
+    document.querySelector('.timeslot-button-save').addEventListener('click', saveTimeslots);
 });
