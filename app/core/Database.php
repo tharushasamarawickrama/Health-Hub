@@ -7,40 +7,19 @@ trait Database{
         return $con;
     }
 
-    // public function query($query, $data = []){
-    //     $con = $this->connect();
-    //     $stm = $con->prepare($query);
-
-    //     $check = $stm->execute($data);
-    //     if($check){
-    //         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-    //         if(is_array($result) && count($result)){
-    //             return $result;
-    //         }
-    //     }
-    //     return false;
-    // }
-
-    public function query($query, $data = []) {
+    public function query($query, $data = []){
         $con = $this->connect();
-        
         $stm = $con->prepare($query);
-    
-        if ($stm->execute($data)) {
-            if (strpos(strtolower($query), 'select') !== false) {
-                $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-                if (is_array($result) && count($result)) {
-                    return $result;
-                }
-            } else {
-                return true;
+
+        $check = $stm->execute($data);
+        if($check){
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+            if(is_array($result) && count($result)){
+                return $result;
             }
         }
-        
         return false;
     }
-    
-
     public function get_row($query, $data = []){
         $con = $this->connect();
         $stm = $con->prepare($query);
