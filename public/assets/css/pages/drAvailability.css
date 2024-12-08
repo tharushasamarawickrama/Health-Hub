@@ -94,6 +94,11 @@
     background-color: #eaeaea;
 }
 
+.timeslot-button.selected {
+    outline: 2px solid rgba(33, 114, 146, 0.8);
+    outline-offset: -2px;
+}
+
 .timeslot-options {
     position: absolute;
     right: 50px;

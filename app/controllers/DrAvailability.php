@@ -54,7 +54,7 @@ class DrAvailability {
 
         // Find tomorrow's day and all remaining days in the current week
         $remainingDays = [];
-        $startIndex = array_search($currentDay, $weekdays) + 1;
+        $startIndex = (array_search($currentDay, $weekdays) + 1) % 7;
         for ($i = $startIndex; $i < count($weekdays); $i++) {
             $remainingDays[] = $weekdays[$i];
         }
@@ -86,7 +86,7 @@ class DrAvailability {
             if (in_array($day, $remainingDays)) {
                 // Calculate the date for the day
                 $date = clone $currentDate;
-                $daysToAdd = (array_search($day, $weekdays) - array_search($currentDay, $weekdays) + 7) % 7;
+                $daysToAdd = (array_search($day, $weekdays) - array_search($currentDay, $weekdays) + 7) % 8;
                 $date->modify("+$daysToAdd days");
 
                 // Format the timeslot string
@@ -112,7 +112,7 @@ class DrAvailability {
         // Pass data to the view
         $data = [
             'fetchedTimeslots' => $fetchedTimeslots,
-            'allTimeslots' => $allTimeslots,
+            'allTimeslots' => array_reverse($allTimeslots),
             'occupiedTimeslots' => $occupiedTimeslots // Pass formatted strings
         ];
         $this->view('drAvailability', $data);

@@ -39,7 +39,7 @@ require APPROOT . '/views/Components/drNavbar.php';
             <?php foreach ($data['allTimeslots'] as $timeslot): ?>
                 <button 
                     class="timeslot-button <?php echo in_array($timeslot, $data['occupiedTimeslots']) ? 'disabled' : ''; ?>" 
-                    onclick="addTimeslot('<?php echo addslashes(str_replace(["\n", "\r"], " ", htmlspecialchars($timeslot))); ?>')" 
+                    onclick="addTimeslot('<?php echo addslashes(str_replace(["\n", "\r"], " ", htmlspecialchars($timeslot))); ?>', this)" 
                     <?php echo in_array($timeslot, $data['occupiedTimeslots']) ? 'disabled' : ''; ?>>
                     <?php echo nl2br(htmlspecialchars($timeslot)); ?>
                 </button>
@@ -71,15 +71,17 @@ require APPROOT . '/views/Components/drNavbar.php';
         }
     });
 
-    // Add timeslot to the selected list
-    function addTimeslot(slotName) {
-        if (!selectedTimeslots.includes(slotName)) {
-            selectedTimeslots.push(slotName); // Add to array
-            updateTimeslotDisplay(); // Refresh UI
-        } else {
-            alert(slotName + " is already selected.");
-        }
+    function addTimeslot(slotName, buttonElement) {
+    if (!selectedTimeslots.includes(slotName)) {
+        selectedTimeslots.push(slotName); // Add to array
+        
+        updateTimeslotDisplay(); // Refresh UI
+        buttonElement.classList.add("selected"); // Add the visual indicator
+    } else {
+        alert(slotName + " is already selected.");
     }
+}
+
 
     // Update the selected timeslot display
     function updateTimeslotDisplay() {
