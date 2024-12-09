@@ -2,6 +2,11 @@
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
+    <?php if (!empty($errors)): ?>
+            <div class="errordiv">
+                <?= implode("<br>", $errors) ?>
+            </div>
+        <?php endif; ?>
         <h1>New Receptionist</h1>
         <form class="AdminRegister-form" id="addDoctorForm" action="" method="POST" enctype="multipart/form-data">
             <div class="AdminRegister-form-row">

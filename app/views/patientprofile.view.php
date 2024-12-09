@@ -11,10 +11,10 @@
         <a href="#" class="navitems">About</a>
         <a href="#" class="navitems">Contact</a>
 
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== ''): ?>
             <a href="#" class="logname dropdown-toggle">
 
-                <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['ProfilePic']); ?>" class="loginlogo">
+                <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['photo_path']); ?>" class="loginlogo">
             </a>
         <?php else: ?>
             <img src="<?php echo URLROOT; ?>/assets/images/loginlogo.jpg" class="loginlogo">
@@ -24,7 +24,7 @@
             <div class="dropdown">
 
 
-                <p class="username"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></p>
+                <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
 
                 <div class="dropdown-content">
                     <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
@@ -44,36 +44,36 @@
         <div>
             <div>
 
-                <img src="<?php echo isset($_SESSION['user']['ProfilePic']) && !empty($_SESSION['user']['ProfilePic'])
-                                ? htmlspecialchars($_SESSION['user']['ProfilePic'])
+                <img src="<?php echo isset($_SESSION['user']['photo_path']) && !empty($_SESSION['user']['photo_path'])
+                                ? htmlspecialchars($_SESSION['user']['photo_path'])
                                 : URLROOT . '/assets/images/profile-men.png'; ?>"
                     class="profileimg">
             </div>
-            <h1 class="profilename"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></h1>
+            <h1 class="profilename"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></h1>
         </div>
         <div class="line-div"></div>
         <?php if (isset($_SESSION['user'])): ?>
             <div>
                 <div class="patientinfo-first-div">
-                    <span class="patientdetails">Name <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></span></span><br>
+                    <span class="patientdetails">Name <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></span></span><br>
                 </div>
                 <div class="patientinfo-div">
-                    <span class="patientdetails">Email <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['Email']); ?></span></span><br>
+                    <span class="patientdetails">Email <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['email']); ?></span></span><br>
                 </div>
                 <div class="patientinfo-div">
-                    <span class="patientdetails">Phone Number <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['PhoneNumber']); ?></span></span><br>
+                    <span class="patientdetails">Phone Number <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['phoneNumber']); ?></span></span><br>
                 </div>
                 <div class="patientinfo-div">
-                    <span class="patientdetails">NIC <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['NIC']); ?></span></span><br>
+                    <span class="patientdetails">NIC <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['nic']); ?></span></span><br>
                 </div>
                 <div class="patientinfo-div">
-                    <span class="patientdetails">Gender <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['Gender']); ?></span></span><br>
+                    <span class="patientdetails">Gender <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['gender']); ?></span></span><br>
                 </div>
                 <div class="patientinfo-div">
-                    <span class="patientdetails">Age <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['Age']); ?></span></span><br>
+                    <span class="patientdetails">Age <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['age']); ?></span></span><br>
                 </div>
                 <div class="patientinfo-div">
-                    <span class="patientdetails">Address <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['Address']); ?></span></span><br>
+                    <span class="patientdetails">Address <span class="infovalue">: <?php echo htmlspecialchars($_SESSION['user']['address']); ?></span></span><br>
                 </div>
             </div>
         <?php endif; ?>

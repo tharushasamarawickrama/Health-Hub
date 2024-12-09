@@ -7,7 +7,9 @@ class LabAssistant {
     protected $table = "labassistants";
 
     protected $Allowedcolumns = [
+        
         'lab_assistant_id',
+        'user_id',
         'firstName',
         'lastName',
         'password',
