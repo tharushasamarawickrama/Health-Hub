@@ -143,6 +143,7 @@ class PatientRegister {
                 }
 
                 $this->view('patientregister', $data);
+                // redirect('patientregister?id=1');
             }
         } else {
               
