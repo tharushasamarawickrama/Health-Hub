@@ -4,20 +4,23 @@ class AdminDrRegister  {
     use Controller;
     public function index(){
         $doctor = new Doctor;
+        $user = new User;
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = [
-                'firstName' => $_POST['firstName'] ?? '',
-                'lastName' => $_POST['lastName'] ?? '',
-                'password' => $_POST['password'] ?? '',
-                'phoneNumber' => $_POST['phoneNumber'] ?? '',
-                'email' => $_POST['email'] ?? '',
-                'specialization' => $_POST['specialization'] ?? '',
-                'gender' => $_POST['gender'] ?? '',
-                'dob' => $_POST['dob'] ?? '',
-                'slmcNo' => $_POST['slmcNo'] ?? '',
-                'nic' => $_POST['nic'] ?? '',
-                'address' => $_POST['address'] ?? '',
+                'Title' => 'Dr',
+                'FirstName' => $_POST['firstName'] ?? '',
+                'LastName' => $_POST['lastName'] ?? '',
+                'Password' => $_POST['password'] ?? '',
+                'PhoneNumber' => $_POST['phoneNumber'] ?? '',
+                'Email' => $_POST['email'] ?? '',
+                'Gender' => $_POST['gender'] ?? '',
+                'NIC' => $_POST['nic'] ?? '',
+                'Address' => $_POST['address'] ?? '',
                 'photo_path' => $_POST['photo_path'] ?? '',
+                'user_role' => 'doctor',
+               
+
+                
                 
             ];
 
@@ -49,15 +52,24 @@ class AdminDrRegister  {
                 }}
 
                
-
-            if($doctor->insert($data)){
-                
-                // $data['success'] = "true";
-                 $this->view('AdminDrRegister', $data);
-                //  return $data;
-                //header('Location: ' . URLROOT . '/ViewAllDrProfile');
-            }
-            redirect('AdminDrRegister');
+            $arr['Email'] = $data['Email'];
+            $row = $user->first($arr);
+            if($row){
+                $user->errors['Email'] = 'Email already exists';
+                $data['errors'] = $user->errors;
+                $this->view('AdminDrRegister', $data);
+                return;
+            }else{
+                $user->insert($data);
+                $arr['Email'] = $data['Email'];
+                $row = $user->first($arr);
+                $doctordata = ['user_id'=>$row['user_id']];
+                $doctordata['specialization'] = $_POST['specialization'] ?? '';
+                $doctordata['slmcNo'] = $_POST['slmcNo'] ?? '';
+                $doctor->insert($doctordata);
+            }  
+           
+            // redirect('AdminDrRegister');
          }
         
 

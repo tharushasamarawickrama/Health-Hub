@@ -9,7 +9,7 @@ class PatientProfile{
                 $id = $_SESSION['user']['id'];
                 $user->delete($id);
                 session_destroy();
-                redirect('patientregister?id=1');
+                redirect('patientregister');
             }
         
         $this->view('patientprofile');

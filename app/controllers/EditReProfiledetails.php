@@ -9,6 +9,16 @@ class EditReProfiledetails
         $receptionist = new Receptionist;
         $arr['receptionist_id'] = $id;
         $data = $receptionist->first($arr);
+
+        if ($data) {
+            $user = new User;
+            $arr1['user_id'] = $data['user_id'];
+            $id1 = $data['user_id'];
+            $data1 = $user->first($arr1);
+            if ($data1) {
+                $data = array_merge($data, $data1);
+            }
+        }
         if (!$data) {
             
             $this->view('EditReProfiledetails');
@@ -16,19 +26,23 @@ class EditReProfiledetails
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rebutton'])) {
             $receptionist = new Receptionist;
-            $data = [
-                'firstName' => $_POST['firstName'] ?? '',
-                'lastName' => $_POST['lastName'] ?? '',
-                'password' => $_POST['password'] ?? '',
-                'phoneNumber' => $_POST['phoneNumber'] ?? '',
-                'email' => $_POST['email'] ?? '',
-                'gender' => $_POST['gender'] ?? '',
+            $data1 = [
+                'FirstName' => $_POST['firstName'] ?? '',
+                'LastName' => $_POST['lastName'] ?? '',
+                'Password' => $_POST['password'] ?? '',
+                'PhoneNumber' => $_POST['phoneNumber'] ?? '',
+                'Email' => $_POST['email'] ?? '',
+                'Gender' => $_POST['gender'] ?? '',
                 'dob' => $_POST['dob'] ?? '',
-                'employeeNo' => $_POST['employeeNo'] ?? '',
-                'nic' => $_POST['nic'] ?? '',
-                'address' => $_POST['address'] ?? '',
-                'photo_path' => $_POST['photo_path'] ?? '',
+                'NIC' => $_POST['nic'] ?? '',
+                'Address' => $_POST['address'] ?? '',
                 
+                
+            ];
+
+            $data2 = [
+                'user_id' => $id1,
+                'employeeNo' => $_POST['employeeNo'] ?? '',
             ];
 
             print_r($_FILES);
@@ -51,15 +65,15 @@ class EditReProfiledetails
                     return;
                 }
                 if(move_uploaded_file($_FILES['photo_path']['tmp_name'], $target_file)){
-                    $data['photo_path'] = $target_file;
+                    $data1['photo_path'] = $target_file;
                 }else{
                         $this->view('EditReProfiledetails', $data);
                         return;
                     }}
             // print_r($doctor->update($id, $data, 'doctor_id'));
-            
-            $result=$receptionist->update($id, $data, 'receptionist_id');
-            if ($result) {
+            $result1=$user->update($id1, $data1, 'user_id');
+            $result2=$receptionist->update($id, $data2, 'receptionist_id');
+            if ($result1 && $result2) {
                 redirect('ReProfiledetails', $id);  
                 exit(); // Always add exit after redirecting
             } 
