@@ -78,16 +78,45 @@
                     
                 </div>
             </div>
-            <div class="AdminRegister-form-row">
-                <button type="submit" class="add-doctor-btn">Add Doctor</button>
+            <div class="admin-popup-container">
+                <div class="AdminRegister-form-row">
+                    <button type="submit" class="add-doctor-btn" onclick="openPopup()">Add Doctor</button>
+                    <div class="popup" id="popup">
+                    
+                    <h2>Thank You!</h2>
+                    <p>Your details has been successfully submited. Thanks!</p>
+                    <button type="button" onclick="closePopup()">OK</button>
+                </div>
+                </div>
             </div>
+            <!-- <div class="container">
+                <button type="submit" class="btn" onclick="openPopup()"> Submit </button>
+                <div class="popup" id="popup">
+                    <img src="checkmark2.png" >
+                    <h2>Thank You!</h2>
+                    <p>Your details has been successfully submited. Thanks!</p>
+                    <button type="button" onclick="closePopup()">OK</button>
+                </div>
+            </div> -->
         </form>
     </div>
 </div>
 <?php require APPROOT . '/views/Components/footer.php' ?>
 
-<?php if (isset($data['success'])): ?>
+
+
+
 <script>
-    alert("<?php echo $data['success']; ?>");
+    let popup = document.getElementById('popup');
+
+    function openPopup() {
+        popup.classList.add("popup-active");
+    }
+    function closePopup() {
+        popup.classList.remove("popup-active");
+    }
+
+   
 </script>
-<?php endif; ?>
+<!-- <?php if(isset($data['success']) && $data['success'] == "true"): ?>
+<?php endif; ?> -->

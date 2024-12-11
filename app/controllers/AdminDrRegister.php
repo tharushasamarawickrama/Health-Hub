@@ -52,10 +52,10 @@ class AdminDrRegister  {
 
             if($doctor->insert($data)){
                 
-                $data['success'] = "Doctor Registered Successfully";
-                $this->view('AdminDrRegister', $data);
-                return;
-                header('Location: ' . URLROOT . '/AdminDrRegister');
+                // $data['success'] = "true";
+                 $this->view('AdminDrRegister', $data);
+                //  return $data;
+                //header('Location: ' . URLROOT . '/ViewAllDrProfile');
             }
             redirect('AdminDrRegister');
          }
