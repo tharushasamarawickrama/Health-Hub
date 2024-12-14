@@ -11,7 +11,7 @@
 
 <div class="drNavbar">
     <a href="<?php echo URLROOT; ?>Home">
-        <img src="<?php echo URLROOT; ?>assets/images/12345.png"  class="drlogo">
+        <img src="<?php echo URLROOT; ?>assets/images/logohealth.png"  class="drlogo">
     </a>
 
     <?php
@@ -24,7 +24,7 @@
 
     <div class="dr-profile-dropdown">
         <a onclick="toggleDropdown()" class="dr-profile-link">
-            <img src="<?php echo URLROOT; ?>assets/images/loginlogo.jpg"  class="drloginlogo">
+            <img src="<?php echo URLROOT; ?>assets/images/account.png"  class="drloginlogo">
             <span class="drlogin">Login</span>
         </a>
         <div id="drDropdownMenu" class="dr-dropdown-content">

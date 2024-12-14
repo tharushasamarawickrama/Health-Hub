@@ -3,16 +3,16 @@
 
 <?php
 // Randomly fetched values for demonstration
-$appointmentsToday = [
-    ["id" => "#0001", "name" => "Mr. G. Peiris"],
-    ["id" => "#0002", "name" => "Mr. Asitha Perera"],
-    ["id" => "#0003", "name" => "Mrs. Malithi Fonseka"],
-    ["id" => "#0004", "name" => "Mrs. Raveesha de Silva"],
-];
+// $appointmentsToday = [
+//     ["id" => "#0001", "name" => "Mr. G. Peiris"],
+//     ["id" => "#0002", "name" => "Mr. Asitha Perera"],
+//     ["id" => "#0003", "name" => "Mrs. Malithi Fonseka"],
+//     ["id" => "#0004", "name" => "Mrs. Raveesha de Silva"],
+// ];
 $numberOfAppointmentsToday = count($appointmentsToday);
 
 // Check ongoing appointment based on time (placeholder logic)
-$currentAppointment = "#0002 - Mrs.Asitha Perera";
+$currentAppointment = "#0002 - Mr.Kusal Perera";
 
 // Random values for appointments in past 4 time slots
 $pastAppointments = [
@@ -44,11 +44,19 @@ $pastAppointments = [
 
             <div class="appointments-list">
                 <h3>Today's Appointments</h3>
-                <ul>
-                    <?php foreach ($appointmentsToday as $appointment): ?>
-                        <li><?php echo $appointment["id"] . " - " . $appointment["name"]; ?></li>
-                    <?php endforeach; ?>
-                </ul>
+                <div class="appointments-container">
+                    <ul id="appointmentsList">
+                        <?php foreach ($appointmentsToday as $appointment): ?>
+                            <li><?php echo $appointment["id"] . " - " . $appointment["name"]; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php if (count($appointmentsToday) > 4): ?>
+                        <div class="scroll-controls">
+                            <button id="prevBtn">&lt;</button>
+                            <button id="nextBtn">&gt;</button>
+                        </div>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
 
@@ -64,6 +72,32 @@ $pastAppointments = [
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    const appointmentsList = document.getElementById('appointmentsList');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let scrollIndex = 0;
+
+    if (appointmentsList && prevBtn && nextBtn) {
+        const scrollStep = 4;
+        const totalItems = <?php echo count($appointmentsToday); ?>;
+        const totalPages = Math.ceil(totalItems / scrollStep);
+
+        function updateScroll(direction) {
+            scrollIndex = Math.max(0, Math.min(totalPages - 1, scrollIndex + direction));
+            const start = scrollIndex * scrollStep;
+            const end = start + scrollStep;
+            const items = appointmentsList.querySelectorAll('li');
+            items.forEach((item, index) => {
+                item.style.display = index >= start && index < end ? 'block' : 'none';
+            });
+        }
+
+        prevBtn.addEventListener('click', () => updateScroll(-1));
+        nextBtn.addEventListener('click', () => updateScroll(1));
+
+        updateScroll(0); // Initialize
+    }
+
     // Data for the bar chart
     const chartLabels = <?php echo json_encode(array_keys($pastAppointments)); ?>;
     const chartData = <?php echo json_encode(array_values($pastAppointments)); ?>;

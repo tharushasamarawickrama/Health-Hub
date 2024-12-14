@@ -86,7 +86,12 @@ class DrAvailability {
             if (in_array($day, $remainingDays)) {
                 // Calculate the date for the day
                 $date = clone $currentDate;
-                $daysToAdd = (array_search($day, $weekdays) - array_search($currentDay, $weekdays) + 7) % 8;
+
+                // Adjust the date for the next week if the current day is already reached(Sunday)
+                if($day === $currentDay) 
+                    $daysToAdd = 7;
+                else 
+                    $daysToAdd = (array_search($day, $weekdays) - array_search($currentDay, $weekdays) + 7) % 7;
                 $date->modify("+$daysToAdd days");
 
                 // Format the timeslot string
