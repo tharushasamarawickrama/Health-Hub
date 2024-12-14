@@ -25,7 +25,9 @@ class Doctor {
         'profile_pic',
         'experience',
         'certifications',
-        'description'
+        'description',
+        'availability',
+        'type'
         
     ];
 
