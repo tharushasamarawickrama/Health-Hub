@@ -7,17 +7,16 @@ class User {
     protected $table = "users";
 
     protected $Allowedcolumns = [
-        'Title',
-        'FirstName',
-        'LastName',
-        'Email',
-        'PhoneNumber',
-        'Gender',
-        'NIC',
-        'Password',
-        'Address',
-        'Age',
-        'ProfilePic'
+        "title",
+        "firstName",
+        "lastName",
+        "gender",
+        "dob",
+        "nic",
+        "address",
+        "photo_path",
+        "phoneNumber",
+        "email"
     ];
 
     // public function validate($data){
@@ -35,4 +34,10 @@ class User {
     //     }
     //     return false;
     // }
+
+    public function getUserById($userId)
+    {
+        $sql = "SELECT * FROM users WHERE user_id = :user_id";
+        return $this->query($sql, ['user_id' => $userId])[0] ?? null;
+    }
 }

@@ -4,19 +4,22 @@ class AdminPhRegister  {
     use Controller;
     public function index(){
         $pharmacist = new Pharmacist;
+        $user = new User;
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = [
-                'firstName' => $_POST['firstName'] ?? '',
-                'lastName' => $_POST['lastName'] ?? '',
-                'password' => $_POST['password'] ?? '',
-                'phoneNumber' => $_POST['phoneNumber'] ?? '',
-                'email' => $_POST['email'] ?? '',
-                'gender' => $_POST['gender'] ?? '',
+                'Title' => 'Mr',
+                'FirstName' => $_POST['firstName'] ?? '',
+                'LastName' => $_POST['lastName'] ?? '',
+                'Password' => $_POST['password'] ?? '',
+                'PhoneNumber' => $_POST['phoneNumber'] ?? '',
+                'Email' => $_POST['email'] ?? '',
+                'Gender' => $_POST['gender'] ?? '',
                 'dob' => $_POST['dob'] ?? '',
                 'slmcNo' => $_POST['slmcNo'] ?? '',
-                'nic' => $_POST['nic'] ?? '',
-                'address' => $_POST['address'] ?? '',
+                'NIC' => $_POST['nic'] ?? '',
+                'Address' => $_POST['address'] ?? '',
                 'photo_path' => $_POST['photo_path'] ?? '',
+                'user_role' => 'pharmacist',
                 
             ];
 
@@ -47,9 +50,24 @@ class AdminPhRegister  {
                     return;
                 }}
 
-
-            if($pharmacist->insert($data)){
-                header('Location: ' . URLROOT . '/AdminPhRegister');
+                $arr['Email'] = $data['Email'];
+            $row = $user->first($arr);
+            if($row){
+                $pharmacist->errors['Email'] = 'Email already exists';
+                $data['errors'] = $pharmacist->errors;
+                $this->view('AdminPhRegister', $data);
+                return;
+                
+        }else{
+            $user->insert($data);
+            $arr['Email'] = $data['Email'];
+            $row = $user->first($arr);
+            $phdata = [
+                'user_id' => $row['user_id'],
+                'slmcNo' => $_POST['slmcNo'] ?? ''
+                
+            ];
+            $pharmacist->insert($phdata);
         }
         redirect('AdminPhRegister');
     

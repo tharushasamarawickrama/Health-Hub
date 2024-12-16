@@ -9,27 +9,9 @@
 </head>
 <body>
 
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-if (isset($_GET['action']) && $_GET['action'] === 'logout') {
-    // Unset all of the session variables
-    unset($_SESSION['user']);
-    //unset($_SESSION['appointment_date']);
-    // Destroy the session
-    session_destroy();
-
-    // Redirect to the login page or homepage
-    // header("Location: " . URLROOT . "/Prevlog");
-    redirect('/Prevlog');
-}
-?>
-
 <div class="drNavbar">
     <a href="<?php echo URLROOT; ?>Home">
-        <img src="<?php echo URLROOT; ?>assets/images/12345.png"  class="drlogo">
+        <img src="<?php echo URLROOT; ?>assets/images/logohealth.png"  class="drlogo">
     </a>
 
     <?php
@@ -42,17 +24,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 
     <div class="dr-profile-dropdown">
         <a onclick="toggleDropdown()" class="dr-profile-link">
-            <?php if(isset($_SESSION['user'])): ?>
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($_SESSION['user']['profile_pic']) ? 'uploads/' . htmlspecialchars($_SESSION['user']['profile_pic']) : 'images/doctor.png'; ?>"  class="drloginlogo">
-                <span class="drlogin"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></span>
-            <?php else: ?>
-                <img src="<?php echo URLROOT; ?>assets/images/loginlogo.jpg"  class="drloginlogo">
-                <span class="drlogin">Login</span>
-            <?php endif; ?>  
+            <img src="<?php echo URLROOT; ?>assets/images/account.png"  class="drloginlogo">
+            <span class="drlogin">Login</span>
         </a>
         <div id="drDropdownMenu" class="dr-dropdown-content">
             <a href="<?php echo URLROOT;?>drProfile">View Profile</a>
-            <a href="?action=logout">Logout</a>
+            <a href="#">Logout</a>
         </div>
     </div>
 </div>

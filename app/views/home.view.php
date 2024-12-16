@@ -16,10 +16,11 @@
         <a href="#" class="navitems">About</a>
         <a href="#" class="navitems">Contact</a>
 
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== '' ): ?>
+
             <a href="#" class="logname dropdown-toggle">
 
-                <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['ProfilePic']); ?>" class="loginlogo">
+                <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['photo_path']); ?>" class="loginlogo">
             </a>
         <?php else: ?>
             <img src="<?php echo URLROOT; ?>/assets/images/loginlogo.jpg" class="loginlogo">
@@ -29,7 +30,7 @@
             <div class="dropdown">
 
 
-                <p class="username"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></p>
+                <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
 
                 <div class="dropdown-content">
                     <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
@@ -38,7 +39,7 @@
             </div>
         <?php else: ?>
             <!-- Show "Login" link if no user is logged in -->
-            <a href="<?php echo URLROOT; ?>/Prevlog" class="login">Login</a>
+            <a href="<?php echo URLROOT; ?>/patientregister" class="login">Login</a>
         <?php endif; ?>
     </div>
 

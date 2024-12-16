@@ -1,8 +1,4 @@
 .dr-availability-container {
-    background-image: url(../../images/background.png);
-    background-repeat: repeat;
-    background-position: top left;
-    background-size: 80vh;
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
@@ -23,10 +19,6 @@
     cursor: pointer;
     width: 30px;
     height: 30px;
-}
-
-.select-timeslots{
-    margin-left: 250px;
 }
 
 .timeslots-container {
@@ -59,8 +51,8 @@
 
 .timeslot-tag {
     display: inline-block;
-    background-color: rgba(160, 208, 226, 0.8);
-    color: #000;
+    background-color: #e0ebf7;
+    color: #333;
     padding: 5px 10px;
     border-radius: 20px;
     margin: 5px;
@@ -72,7 +64,7 @@
     border: none;
     color: #666;
     cursor: pointer;
-    margin-left: 250px;
+    margin-left: 8px;
     font-size: 0.9em;
 }
 
@@ -82,50 +74,25 @@
     margin-top: auto;
 }
 
-.timeslot-action-clear{
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    border-radius: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.timeslot-action-save{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    border-radius: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.timeslot-action-clear:hover, .timeslot-action-save:hover{
-    background-color:#999;
-}
-
 .timeslot-button {
-    background-color: rgba(160, 208, 226, 0.8);
+    background-color: #cccccc;
     color: #333;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     font-size: 1em;
     min-width: 120px;
     transition: background-color 0.3s;
 }
 
+.timeslot-button:hover {
+    background-color: #eaeaea;
+}
+
 .timeslot-button.selected {
     outline: 2px solid rgba(33, 114, 146, 0.8);
     outline-offset: -2px;
-}
-
-
-.timeslot-button:hover {
-    background-color: #eaeaea;
 }
 
 .timeslot-options {

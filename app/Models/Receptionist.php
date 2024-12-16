@@ -7,7 +7,8 @@ class Receptionist {
     protected $table = "receptionists";
 
     protected $Allowedcolumns = [
-        'receptionist_id',
+       
+        'user_id',
         'firstName',
         'lastName',
         'password',
