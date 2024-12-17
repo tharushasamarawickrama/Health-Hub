@@ -4,7 +4,19 @@ class DrEditPrescription {
     use Controller;
 
     public function index() {
-        $prescriptionId = 3; // Example
+
+        // if (!isset($_GET['prescription_id'])) {
+        //     redirect('drViewprescriptions');
+        // }
+        
+        //$prescriptionId = $_GET['prescription_id'];
+        $appointmentId = $_GET['appointment_id'];
+
+        $appointmentModel = new Appointment();
+        $appointment = $appointmentModel->getAppointmentById($appointmentId);
+
+        $prescriptionId = $appointment['prescription_id'] ?? null;
+
         $prescriptionModel = new Prescription();
         $medicationModel = new Prescribed_Medications();
     
@@ -15,17 +27,28 @@ class DrEditPrescription {
             $medications = $formattedData['medications'];
         
             // Save diagnosis and medications to the database
-            $prescriptionModel->update($prescriptionId, ['diagnosis' => $diagnosis], 'prescription_id');
+            if($prescriptionId){
+                $prescriptionModel->update($prescriptionId, ['diagnosis' => $diagnosis], 'prescription_id');
+            }
+            else{
+                $prescriptionId = $prescriptionModel-> insertAndGetId(['diagnosis' => $diagnosis]);
+
+                 // Update the appointment with the new prescription ID
+                $appointmentModel->update($appointmentId, ['prescription_id' => $prescriptionId], 'appointment_id');
+            }
         
             $medicationModel->deleteWhere(['prescription_id' => $prescriptionId]); // Clear existing medications
         
             foreach ($medications as $medication) {
-                $medication['prescription_id'] = $prescriptionId; // Add prescription ID
-                $medicationModel->insert($medication);
+                if(!empty($medication['name'])){
+                    $medication['prescription_id'] = $prescriptionId; // Add prescription ID
+                    $medicationModel->insert($medication);
+                }
+                
             }
         
             $_SESSION['success_message'] = 'Prescription updated successfully!';
-            redirect('drPrescription');
+            redirect('drPrescription?appointment_id='.$appointmentId);
         } else {
             $prescription = $prescriptionModel->first(['prescription_id' => $prescriptionId]);
             $medications = $medicationModel->findWhere(['prescription_id' => $prescriptionId]);
@@ -33,78 +56,8 @@ class DrEditPrescription {
             $this->view('drEditPrescription', [
                 'prescription' => $prescription,
                 'medications' => $medications,
+                'appointment_id' => $appointmentId
             ]);
         }
     }
-    
-
-    // public function index(){
-    //     $prescriptionId = 1;
-    //     $prescriptionModel = new Prescription();
-    //     $prescription = $prescriptionModel->first(['prescription_id' => $prescriptionId]);
-
-    //     $medicationModel = new Prescribed_Medications();
-    //     $medications = $medicationModel->findWhere(['prescription_id' => $prescriptionId]);
-
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {}
-
-    //     else{
-    //         $this->view('drEditPrescription', ['prescription' => $prescription, 'medications' => $medications]);
-    //     }
-
-    // }
-
-    // public function index() {
-    //     $doctorId = 5; // Hardcoded doctor ID (can be dynamic based on session/login)
-    //         require_once "../app/models/Doctor.php";
-    //         $doctorModel = new Doctor();
-    //         $doctorData = $doctorModel->first(['doctor_id' => $doctorId]);
-        
-    //         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //             $data = [
-    //                 'firstName'    => htmlspecialchars(trim($_POST['firstName']), ENT_QUOTES, 'UTF-8'),
-    //                 'lastName'     => htmlspecialchars(trim($_POST['lastName']), ENT_QUOTES, 'UTF-8'),
-    //                 'description'    => htmlspecialchars(trim($_POST['description']), ENT_QUOTES, 'UTF-8'),
-    //                 'experience'     => htmlspecialchars(trim($_POST['experience']), ENT_QUOTES, 'UTF-8'),
-    //                 'specialties'    => htmlspecialchars(trim($_POST['specialties']), ENT_QUOTES, 'UTF-8'),
-    //                 'certifications' => htmlspecialchars(trim($_POST['certifications']), ENT_QUOTES, 'UTF-8'),
-    //                 'phoneNumber'    => trim($_POST['phoneNumber']),
-    //                 'email'          => trim($_POST['email']),
-    //             ];
-        
-    //             $errors = [];
-    //             if (empty($data['description'])) {
-    //                 $errors[] = 'Description is required.';
-    //             }
-        
-    //             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-    //                 $errors[] = 'Invalid email address.';
-    //             }
-        
-    //             if (!preg_match('/^[0-9]{10,15}$/', $data['phoneNumber'])) {
-    //                 $errors[] = 'Phone number must be between 10 to 15 digits.';
-    //             }
-        
-    //             if (empty($errors)) {
-    //                 if ($doctorModel->update($doctorId, $data, 'doctor_id')) {
-    //                     $_SESSION['success_message'] = 'Profile updated successfully!';
-    //                     redirect('drProfile');
-    //                     exit;
-    //                 } else {
-    //                     $this->view('drProfile', [
-    //                         'doctorData' => $data,
-    //                         'error'      => 'Failed to update profile. Please try again.',
-    //                     ]);
-    //                 }
-    //             } else {
-    //                 $this->view('drEditProfile', [
-    //                     'doctorData' => $data,
-    //                     'error'      => implode('<br>', $errors),
-    //                 ]);
-    //             }
-    //         } else {
-    //             $doctorData = $doctorModel->first(['doctor_id' => $doctorId]);
-    //             $this->view('drEditProfile', ['doctorData' => $doctorData]);
-    //         }
-    //     }
 }

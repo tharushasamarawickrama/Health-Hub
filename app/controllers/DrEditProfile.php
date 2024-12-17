@@ -5,7 +5,7 @@
     use Controller;
 
     public function index() {
-        $doctorId = 8; // Hardcoded doctor ID (can be dynamic based on session/login)
+        $doctorId = $_SESSION['user']['user_id']; // Hardcoded doctor ID (can be dynamic based on session/login)
             require_once "../app/models/Doctor.php";
             require_once "../app/models/User.php";
             $doctorModel = new Doctor();

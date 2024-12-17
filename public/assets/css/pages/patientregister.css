@@ -1,0 +1,327 @@
+.registersection{
+    margin-top: 60px;
+}
+
+.mainblock{
+    margin-top: 60px;
+    width: 1300px;
+    height: 650px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px; 
+    display: flex;
+
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);  
+}
+
+.screen{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.mainblockleft{
+    width: 650px;
+    height: 650px;
+    background-color: rgba(57, 202, 187, 1);;
+    border-radius: 20px;
+}
+
+.registertext{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    display: block;
+}
+
+.selecttitlediv{
+    margin-top: 30px;
+    margin-left: 40px;
+    display: flex;
+}
+
+.selecttitle{
+    font-size: 20px;
+}
+
+.titlebox{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #2169e5;
+}
+
+.regpname{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.regpnameinput{
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border: 2px solid #2169e5;
+}
+
+.emaildiv{
+    margin-top: 18px;
+    margin-left: 30px;
+    display: flex;
+}
+
+.regnum{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.regnuminput{
+    width: 260px;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border: 2px solid #2169e5;
+}
+
+.regemailinput{
+    width: 250px;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border: 2px solid #2169e5;
+}
+
+.regnic{
+    font-size: 20px;
+    margin-left: 10px;
+    
+}
+
+.regnicinput{
+    width: 525px;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border: 2px solid #2169e5;
+}
+
+.nicdiv{
+    margin-top: 18px;
+    margin-left: 30px;
+    
+}
+
+.genderdiv {
+    display: flex;
+    gap: 10px; 
+    margin-top: 18px;
+    margin-left: 30px;
+}
+
+.subgenderdiv {
+    display: flex;
+    align-items: center;
+}
+
+.reggender {
+    margin-left: 5px; 
+    font-size: 20px;
+}
+
+.gender{
+    margin-top: -3px;
+}
+
+.regbutton{
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 30px;
+    margin-top: 18px;
+    background-color: #2169e5;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+.regbutton:hover{
+    background-color: #1a4bb3;
+}
+
+.regbuttondiv{
+    margin-left: 450px;
+    margin-top: 20px;
+}
+
+
+.form-section {
+    display: none;
+  
+}
+.form-section.active {
+    display: block;
+}
+
+.regaddressdiv{
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+.regaddressinput{
+    width: 525px;
+    height: 35px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background-color: #ffffff;
+    border: 2px solid #2169e5;
+}
+
+.regaddress{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.regprenextbuttondiv{
+    margin-left: 300px;
+    margin-top: 20px;
+    display: flex;
+}
+
+.success{
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+    margin-top: 100px;
+    
+}
+
+.successlogodiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registersuccesstext{
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.reggohomebutton {
+    background-color: #2169e5; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.reggohomebutton:hover {
+    background-color: #1a4bb3; /* Darker green on hover */
+}
+
+.reghealthlogodiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reghealthlogo{
+    width: 400px;
+    height: 400px;
+}
+
+.reghealthlogotext{
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: -50px;
+    color: #00ff40;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.regwelcometext{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.reglogintext{
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+
+}
+
+.logindiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;  
+}
+
+.loginemaildiv{
+    margin-bottom: 20px;
+}
+
+.pt-regnewuserbutton{
+    color: rgb(25, 0, 255); /* White text */
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.forgotpassword{
+    color: rgb(25, 0, 255); /* White text */
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 0.85em;
+    display: block;
+    margin-top: 4px;
+}
+.invalid {
+    border: 1px solid red;
+}
+
+.errordiv{
+    color: red;
+    margin-bottom: 4px;
+    margin-left: 40px;
+}
+
+.regbackbutton{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+.maindiv{
+    display: flex;
+    margin-top: 20px;
+    background-image: url(../../images/background.png);
+}
