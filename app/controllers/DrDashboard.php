@@ -7,7 +7,7 @@ class DrDashboard
     public function index()
     {
         // Hardcoded doctor ID
-        $doctorId = 8;
+        $doctorId = $_SESSION['user']['user_id'];
 
         // Initialize models
         $appointmentModel = new Appointment();

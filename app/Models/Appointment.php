@@ -20,9 +20,14 @@ class Appointment {
         'status',
         'add_service',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'prescription_id'
         
     ];
+
+    public function getAppointmentById($appointmentId) {
+        return $this->first(['appointment_id' => $appointmentId]);
+    }
 
     public function getAppointmentsByDoctorId($doctorId)
     {
@@ -54,23 +59,23 @@ class Appointment {
         ]);
     }
 
-    // public function getPastAppointments($doctorId)
-    // {
-    //     // Format today's date in 'Y-m-d' format
-    //     $today = (new DateTime())->format('Y-m-d');
+    public function getLimitedPastAppointments($doctorId)
+    {
+        // Format today's date in 'Y-m-d' format
+        $today = (new DateTime())->format('Y-m-d');
         
-    //     // SQL query with a placeholder for the date
-    //     $sql = "SELECT appointment_id, patient_id 
-    //             FROM appointments 
-    //             WHERE doctor_id = :doctor_id 
-    //             AND appointment_date < :appointment_date";
+        // SQL query with a placeholder for the date
+        $sql = "SELECT appointment_id, patient_id 
+                FROM appointments 
+                WHERE doctor_id = :doctor_id 
+                AND appointment_date < :appointment_date";
         
-    //     // Execute the query and return the results
-    //     return $this->query($sql, [
-    //         'doctor_id' => $doctorId,
-    //         'appointment_date' => $today,
-    //     ]);
-    // }
+        // Execute the query and return the results
+        return $this->query($sql, [
+            'doctor_id' => $doctorId,
+            'appointment_date' => $today,
+        ]);
+    }
 
 
 }

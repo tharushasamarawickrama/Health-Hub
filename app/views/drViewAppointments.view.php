@@ -3,7 +3,7 @@ require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
 // Define appointment data for filters
-$filter = $_GET['filter'] ?? 'all';
+$filter = $_GET['filter'] ?? 'today';
 $dateFilter = $_GET['date'] ?? null;
 
 $appointments = $data['allAppointments'];
