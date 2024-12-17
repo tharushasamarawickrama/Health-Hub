@@ -7,7 +7,7 @@
             <h1>Pharmacist Profile</h1>
             <div>
                 <img src="<?php echo URLROOT; ?>/<?php echo $data['photo_path']?>" alt="Doctor's Photo" class="DrProfiledetails-profile-photo">
-            </div>
+            </div>.
           
         </div>
         <form class="DrProfiledetails-profile-details-form">

@@ -3,7 +3,7 @@
 class LabTest {
     use Model;
 
-    protected $table = "labtest";
+    protected $table = "labtests";
 
     protected $Allowedcolumns = [
         'labtest_id',

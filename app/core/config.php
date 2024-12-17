@@ -1,14 +1,14 @@
 <?php
 
 if($_SERVER['SERVER_NAME'] == 'localhost') {
-    define('DBNAME','health_hub(1)');
+    define('DBNAME','health_hub');
     define('DBHOST','localhost');
     define('DBUSER','root');
     define('DBPASS','');
     define('DBDRIVER','');
     define('ROOT', 'http://localhost/Health-Hub/public/');
 }else{
-    define('DBNAME','health_hub(1)');
+    define('DBNAME','health_hub');
     define('DBHOST','localhost');
     define('DBUSER','root');
     define('DBPASS','');

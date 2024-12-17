@@ -9,14 +9,6 @@ class EditDrProfiledetails
         $doctor = new Doctor;
         $arr['doctor_id'] = $id;
         $data = $doctor->first($arr);
-
-        $user = new User;
-        $arr1['user_id'] = $data['user_id'];
-        $id1 = $data['user_id'];
-        $data1 = $user->first($arr1);
-        if($data1){
-            $data = array_merge($data, $data1);
-        }
         if (!$data) {
             
             $this->view('EditDrProfiledetails');
@@ -24,26 +16,23 @@ class EditDrProfiledetails
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['drbutton'])) {
             $doctor = new Doctor;
-            $data1 = [
-                'FirstName' => $_POST['firstName'] ?? '',
-                'LastName' => $_POST['lastName'] ?? '',
-                'Password' => $_POST['password'] ?? '',
-                'PhoneNumber' => $_POST['phoneNumber'] ?? '',
-                'Email' => $_POST['email'] ?? '',
-                'Gender' => $_POST['gender'] ?? '',
-                'dob' => $_POST['dob'] ?? '',
-                'NIC' => $_POST['nic'] ?? '',
-                'Address' => $_POST['address'] ?? '',
-                
-                
-            ];
-
-            $data2 = [
-                'user_id' => $id1,
+            $data = [
+                'firstName' => $_POST['firstName'] ?? '',
+                'lastName' => $_POST['lastName'] ?? '',
+                'password' => $_POST['password'] ?? '',
+                'phoneNumber' => $_POST['phoneNumber'] ?? '',
+                'email' => $_POST['email'] ?? '',
                 'specialization' => $_POST['specialization'] ?? '',
+                'gender' => $_POST['gender'] ?? '',
+                'dob' => $_POST['dob'] ?? '',
                 'slmcNo' => $_POST['slmcNo'] ?? '',
+                'nic' => $_POST['nic'] ?? '',
+                'address' => $_POST['address'] ?? '',
+                'photo_path' => $_POST['photo_path'] ?? '',
+                
             ];
 
+            print_r($_FILES);
             if(isset($_FILES['photo_path']) && $_FILES['photo_path']['error'] == 0){
                     $target_dir = "profile-Photos/";
                 if(!is_dir($target_dir)){
@@ -63,17 +52,16 @@ class EditDrProfiledetails
                     return;
                 }
                 if(move_uploaded_file($_FILES['photo_path']['tmp_name'], $target_file)){
-                    $data1['photo_path'] = $target_file;
+                    $data['photo_path'] = $target_file;
                 }else{
                         $this->view('EditDrProfiledetails', $data);
                         return;
                     }}
-            print_r($id1);        
-            $result1=$user->update($id1, $data1, 'user_id');
-            print_r($result1);
-            $result2=$doctor->update($id, $data2, 'doctor_id');
-            if ($result1 && $result2) {
-                 redirect('DrProfiledetails', $id);  
+            // print_r($doctor->update($id, $data, 'doctor_id'));
+            
+            $result=$doctor->update($id, $data, 'doctor_id');
+            if ($result) {
+                redirect('DrProfiledetails', $id);  
                 exit(); // Always add exit after redirecting
             } 
             else {

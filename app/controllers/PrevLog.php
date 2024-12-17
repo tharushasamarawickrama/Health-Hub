@@ -1,8 +1,10 @@
 <?php
 
-class DrDashboard {
+class PrevLog{
     use Controller;
     public function index(){
-        $this->view('drDashboard');
+       
+        $this->view('PrevLog');
     }
+    
 }

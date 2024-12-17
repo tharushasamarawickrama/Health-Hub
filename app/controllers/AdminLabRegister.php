@@ -4,21 +4,19 @@ class AdminLabRegister  {
     use Controller;
     public function index(){
         $labassistant = new LabAssistant;
-        $user = new User;
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = [
-                'Title' => 'Mr',
-                'FirstName' => $_POST['firstName'] ?? '',
-                'LastName' => $_POST['lastName'] ?? '',
-                'Password' => $_POST['password'] ?? '',
-                'PhoneNumber' => $_POST['phoneNumber'] ?? '',
-                'Email' => $_POST['email'] ?? '',
-                'Gender' => $_POST['gender'] ?? '',
+                'firstName' => $_POST['firstName'] ?? '',
+                'lastName' => $_POST['lastName'] ?? '',
+                'password' => $_POST['password'] ?? '',
+                'phoneNumber' => $_POST['phoneNumber'] ?? '',
+                'email' => $_POST['email'] ?? '',
+                'gender' => $_POST['gender'] ?? '',
                 'dob' => $_POST['dob'] ?? '',
-                'NIC' => $_POST['nic'] ?? '',
-                'Address' => $_POST['address'] ?? '',
+                'employeeNo' => $_POST['employeeNo'] ?? '',
+                'nic' => $_POST['nic'] ?? '',
+                'address' => $_POST['address'] ?? '',
                 'photo_path' => $_POST['photo_path'] ?? '',
-                'user_role' => 'labassistant',
                 
             ];
 
@@ -49,24 +47,10 @@ class AdminLabRegister  {
                     return;
                 }}
                 
-              $arr['Email'] = $data['Email'];
-            $row = $user->first($arr);
-            if($row){
-                $labassistant->errors['Email'] = 'Email already exists';
-                $data['errors'] = $labassistant->errors;
-                $this->view('AdminLabRegister', $data);
-                return;
-            }else{
-                $user->insert($data);
-                $arr['Email'] = $data['Email'];
-                $row = $user->first($arr);
-                $labdata = [
-                    'user_id' => $row['user_id'],
-                    'employeeNo' => $_POST['employeeNo'] ?? ''
-                ];
-                $labassistant->insert($labdata);
-            }
-            
+
+            if($labassistant->insert($data)){
+                header('Location: ' . URLROOT . '/AdminLabRegister');
+        }
         redirect('AdminLabRegister');
     }
         $this->view('AdminLabRegister');
