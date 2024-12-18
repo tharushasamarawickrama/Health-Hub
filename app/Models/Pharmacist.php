@@ -7,8 +7,7 @@ class Pharmacist {
     protected $table = "pharmacists";
 
     protected $Allowedcolumns = [
-       
-        'user_id',
+        'pharmacist_id',
         'firstName',
         'lastName',
         'password',

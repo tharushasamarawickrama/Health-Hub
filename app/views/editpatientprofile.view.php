@@ -12,14 +12,14 @@
         <div>
             <div>
                 <input type="file" id="file" name="ProfilePic" accept="image/*" style="display: none;">
-                <img src="<?php echo isset($_SESSION['user']['photo_path']) && !empty($_SESSION['user']['photo_path'])
-                                ? htmlspecialchars($_SESSION['user']['photo_path'])
+                <img src="<?php echo isset($_SESSION['user']['ProfilePic']) && !empty($_SESSION['user']['ProfilePic'])
+                                ? htmlspecialchars($_SESSION['user']['ProfilePic'])
                                 : URLROOT . '/assets/images/profile-men.png'; ?>"
                     class="profileimg" id="profileImage"
                     alt="Profile" style="cursor: pointer;">
 
             </div>
-            <h1 class="profilename"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></h1>
+            <h1 class="profilename"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></h1>
         </div>
         <div class="line-div"></div>
         <?php if (isset($_SESSION['user'])): ?>
@@ -29,7 +29,7 @@
                     <span class="patientdetails-name">
                         <?php
                         // Assuming the selected title is stored in $_SESSION['user']['Title']
-                        $selectedTitle = isset($_SESSION['user']['title']) ? $_SESSION['user']['title'] : '';
+                        $selectedTitle = isset($_SESSION['user']['Title']) ? $_SESSION['user']['Title'] : '';
                         ?>
                         <span class="patientdetails">Name :</span>
                         <select class="edittitlebox" name="Title" required>
@@ -39,28 +39,28 @@
                             <option value="Ms" <?php echo ($selectedTitle === 'Ms') ? 'selected' : ''; ?>>Miss</option>
                             <option value="Dr" <?php echo ($selectedTitle === 'Dr') ? 'selected' : ''; ?>>Dr</option>
                         </select>
-                        <input type="text" name="FirstName" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['firstName']); ?>">
-                        <input type="text" name="LastName" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['lastName']); ?>">
+                        <input type="text" name="FirstName" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?>">
+                        <input type="text" name="LastName" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['LastName']); ?>">
                     </span><br>
                 </div>
                 <div class="patientinfo-div">
                     <span class="patientdetails">Email :
-                        <input type="email" name="Email" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>">
+                        <input type="email" name="Email" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['Email']); ?>">
                     </span><br>
                 </div>
                 <div class="patientinfo-div">
                     <span class="patientdetails">Phone Number :
-                        <input type="text" name="PhoneNumber" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['phoneNumber']); ?>">
+                        <input type="text" name="PhoneNumber" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['PhoneNumber']); ?>">
                     </span><br>
                 </div>
                 <div class="patientinfo-div">
                     <span class="patientdetails">NIC :
-                        <input type="text" name="NIC" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['nic']); ?>">
+                        <input type="text" name="NIC" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['NIC']); ?>">
                     </span><br>
                 </div>
                 <?php
                 // Assuming the selected gender is stored in $_SESSION['user']['Gender']
-                $gender = isset($_SESSION['user']['gender']) ? $_SESSION['user']['gender'] : '';
+                $gender = isset($_SESSION['user']['Gender']) ? $_SESSION['user']['Gender'] : '';
                 ?>
                 <div class="patientinfo-div">
                     <span class="patientdetails">Gender:
@@ -72,12 +72,12 @@
                 </div>
                 <div class="patientinfo-div">
                     <span class="patientdetails">Age :
-                        <input type="text" name="Age" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['age']); ?>">
+                        <input type="text" name="Age" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['Age']); ?>">
                     </span><br>
                 </div>
                 <div class="patientinfo-div">
                     <span class="patientdetails">Address :
-                        <input type="text" name="Address" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['address']); ?>">
+                        <input type="text" name="Address" class="updatefield" value="<?php echo htmlspecialchars($_SESSION['user']['Address']); ?>">
                     </span><br>
                 </div>
             </div>

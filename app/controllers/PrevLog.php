@@ -1,8 +1,10 @@
 <?php
 
-class DrAppointment {
+class PrevLog{
     use Controller;
     public function index(){
-        $this->view('drAppointment');
+       
+        $this->view('PrevLog');
     }
+    
 }

@@ -16,5 +16,15 @@ class LabPrescriptions {
         
         $this->view('labprescriptions', $data);
     }
+
+    public function search(){
+        $appointmentId = $_POST['appointment_id'] ?? null;
+        $appointments = $this -> labAssistantModel -> searchLabAppointments($appointmentId);
+        $data = [
+            'appointments' => $appointments 
+        ];
+        $this -> view('labprescriptions',$data);
+    }
+    
 }
 

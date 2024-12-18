@@ -1,7 +1,11 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 
 <div class="maindiv">
-
+    <div>
+        <a href="<?php echo URLROOT; ?>/Prevlog">
+            <img src="<?php echo URLROOT; ?>/assets/images/back.png" class="regbackbutton">
+        </a>
+    </div>
     <div class="screen">
 
         <div class="mainblock">
@@ -25,8 +29,8 @@
                                 </div>
                             <?php endif; ?>
 
-                            <span class="regpname">Email</span><br>
-                            <input type="text" class="regemailinput" placeholder="Enter Email" name="logEmail" required>
+                            <span class="regpname">NIC</span><br>
+                            <input type="text" class="regemailinput" placeholder="Enter NIC" name="logNIC" required>
                         </div>
                         <div class="loginpassworddiv">
                             <span class="regpname">Password</span><br>
@@ -34,14 +38,14 @@
                         </div>
                         <a href="#" class="forgotpassword">Forgot Password?</a>
                         <div>
-                            
+                            <?php if ($data['login_id'] == 2): ?>
                                 <a href="<?php echo URLROOT; ?>DrRequest">
-                                    <div role="button" class="pt-regnewuserbutton">New Doctor</div>
+                                    <div role="button" class="pt-regnewuserbutton" >New Doctor</div>
                                 </a>
 
-                            
+                            <?php elseif ($data['login_id'] == 1): ?>
                                 <div role="button" class="pt-regnewuserbutton" onclick="event.preventDefault(); nextSection('loginSection','personalInfoSection')">New User</div>
-                            
+                            <?php endif; ?>
                         </div>
 
                     </div>

@@ -1,7 +1,6 @@
 <?php
 
-class DrDashboard
-{
+class DrDashboard {
     use Controller;
 
     public function index()
