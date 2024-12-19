@@ -2,16 +2,6 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
-// Simulated fetched data (commented out for example)
-// $prescription = [
-//     'diagnosis' => 'Patient suffering from severe back pain due to muscle strain.',
-// ];
-
-// $medications = [
-//     ["name" => "Paracetamol", "quantity" => 1000, "measurement" => "mg", "sig_codes" => "po,mane", "duration" => "7,365"],
-//     ["name" => "Ibuprofen", "quantity" => 300, "measurement" => "mg", "sig_codes" => "bid", "duration" => "5,365"],
-// ];
-
 ?>
 
 <div class="dr-prescription-container">
@@ -151,5 +141,5 @@ require APPROOT . '/views/Components/drNavbar.php';
     </form>
 </div>
 
-<script src="<?php echo URLROOT; ?>assets/js/drEditPrescription.js?v=<?php echo time();?>"></script>
+<script src="<?php echo URLROOT; ?>js/drEditPrescription.js?v=<?php echo time();?>"></script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>

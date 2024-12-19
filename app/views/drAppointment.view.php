@@ -39,7 +39,7 @@ require APPROOT . '/views/Components/drNavbar.php';
 
             <div class="appointment-actions">
                 <a href="<?php echo URLROOT; ?>drPrescription?appointment_id=<?php echo $data['id']; ?>" class="appointment-action">Prescription &rarr;</button>
-                <a href="<?php echo URLROOT; ?>drLabTests" class="appointment-action">Order Lab Tests &rarr;</button>
+                <a href="<?php echo URLROOT; ?>drLabTests?appointment_id=<?php echo $data['id']; ?>" class="appointment-action">Order Lab Tests &rarr;</button>
             </div>
         </div>
     </div>

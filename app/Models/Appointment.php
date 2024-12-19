@@ -21,7 +21,8 @@ class Appointment {
         'add_service',
         'created_at',
         'updated_at',
-        'prescription_id'
+        'prescription_id',
+        'labtest_id',
         
     ];
 
@@ -75,6 +76,11 @@ class Appointment {
             'doctor_id' => $doctorId,
             'appointment_date' => $today,
         ]);
+    }
+
+    public function getLabTestIdsByAppointmentId($appointmentId){
+        $sql = "SELECT labtest_id FROM appointments WHERE appointment_id = :appointment_id";
+        return $this->query($sql, ['appointment_id' => $appointmentId] );
     }
 
 

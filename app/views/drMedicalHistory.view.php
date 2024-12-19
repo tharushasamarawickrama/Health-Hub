@@ -153,4 +153,4 @@ $history = [
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>
-<script src="<?php echo URLROOT; ?>assets/js/drMedicalHistory.js"></script>
+<script src="<?php echo URLROOT; ?>js/drMedicalHistory.js"></script>
