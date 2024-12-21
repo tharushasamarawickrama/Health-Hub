@@ -6,19 +6,19 @@
         <div class="PatientChannel-card-div">
             <div class="PatientChannel-card">
                 <h2>Patient Details</h2>
-                <p class="PatientChannel-card-p"><strong>Name:</strong> Ashan Kavinda</p>
-                <p class="PatientChannel-card-p"><strong>NIC:</strong> 200221104405</p>
-                <p class="PatientChannel-card-p"><strong>Phone Number:</strong> 714596238</p>
-                <p class="PatientChannel-card-p"><strong>Email:</strong> ashan@gmail.com</p>
+                <p class="PatientChannel-card-p"><strong>Name:</strong><?php echo $_SESSION['appointment']['p_firstName']." ".$_SESSION['appointment']['p_lastName'] ?></p>
+                <p class="PatientChannel-card-p"><strong>NIC:</strong><?php echo $_SESSION['appointment']['nic'] ?></p>
+                <p class="PatientChannel-card-p"><strong>Phone Number:</strong><?php echo $_SESSION['appointment']['phoneNumber'] ?></p>
+                <p class="PatientChannel-card-p"><strong>Email:</strong><?php echo $_SESSION['appointment']['email'] ?></p>
             </div>
         </div>
 
         <div class="PatientChannel-card-div2">
             <div class="PatientChannel-card">
                 <h2>Doctor Details</h2>
-                <p class="PatientChannel-card-d"><strong>Name:</strong> Dr. Abewardhane</p>
-                <p class="PatientChannel-card-d"><strong>Specialization:</strong> Gastrologist</p>
-                <p class="PatientChannel-card-d"><strong>MBBS No:</strong> MB-6523</p>
+                <p class="PatientChannel-card-d"><strong>Name:</strong> Dr.<?php echo $data['firstName']." ".$data['lastName']; ?></p>
+                <p class="PatientChannel-card-d"><strong>Specialization:</strong> <?php echo $data['specialization'] ; ?></p>
+                <p class="PatientChannel-card-d"><strong>MBBS No:</strong> <?php echo  $data['slmcNo'] ?></p>
             </div>
         </div>
 
@@ -28,9 +28,9 @@
         <div class="PatientChannel-card2-div2">
             <div class="PatientChannel-card">
                 <img src="<?php echo URLROOT; ?>assets/images/hospital.png" alt="Hospital" class="PatientChannel-hospital-icon">
-                <p class="PatientChannel-card-d"><strong>Session Date:</strong> 13 August 2024</p>
-                <p class="PatientChannel-card-d"><strong>Session Time:</strong> 5.30 P.M</p>
-                <p class="PatientChannel-card-d"><strong>Appointment No:</strong> 10</p>
+                <p class="PatientChannel-card-d"><strong>Session Date:</strong><?php echo $data['date'] ?></p>
+                <p class="PatientChannel-card-d"><strong>Session Time:</strong><?php echo $data['start_time'] ?></p>
+                <p class="PatientChannel-card-d"><strong>Appointment No:</strong><?php echo $data['filled_slots'] ?></p>
             </div>
         </div>
 
