@@ -83,6 +83,16 @@ class Appointment {
         return $this->query($sql, ['appointment_id' => $appointmentId] );
     }
 
+    public function getLastAppointment($doctorId, $patientId){
+        $today = (new DateTime())->format('Y-m-d');
+        $sql = "SELECT appointment_id FROM appointments
+                WHERE doctor_id = :doctor_id AND patient_id = :patient_id AND appointment_date < :appointment_date
+                ORDER BY appointment_date DESC LIMIT 1";
+       $result = $this->query($sql, ['doctor_id' => $doctorId, 'patient_id' => $patientId, 'appointment_date' => $today] );
+
+        return $result ? $result : null;
+    }
+
 
 }
 ?>

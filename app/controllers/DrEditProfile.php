@@ -11,7 +11,7 @@
             $doctorModel = new Doctor();
             //$doctorData = $doctorModel->first(['doctor_id' => $doctorId]);
             $userModel = new User();
-            //$userData = $userModel->first(['user_id' => $doctorId]);
+            $userData = $userModel->first(['user_id' => $doctorId]);
         
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $userData = [
@@ -19,6 +19,7 @@
                     'lastName'     => htmlspecialchars(trim($_POST['lastName']), ENT_QUOTES, 'UTF-8'),
                     'phoneNumber'    => trim($_POST['phoneNumber']),
                     'email'          => trim($_POST['email']),
+                    'photo_path' => $userData['photo_path']
                 ];
                 $DoctorData = [
                     'description'    => htmlspecialchars(trim($_POST['description']), ENT_QUOTES, 'UTF-8'),

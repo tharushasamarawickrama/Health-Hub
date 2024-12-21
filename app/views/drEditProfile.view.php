@@ -15,17 +15,14 @@ $userData = $userData ?? [];
         <!-- Profile Picture Form -->
         <form action="<?php echo URLROOT; ?>DrEditProfilePic" method="POST" enctype="multipart/form-data" class="profile-pic-form">
             <label for="profile-pic-upload" class="profile-pic-label">
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? 'uploads/' . htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>" 
-                    alt="Doctor Avatar" class="doctor-pic">
+                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>" 
+                     alt="Doctor Avatar" class="doctor-pic">
                 <div class="camera-overlay">
                     <img src="<?php echo URLROOT;?>assets/images/camera-icon.png" alt="Camera">
                 </div>
                 <input type="file" name="profile_pic" id="profile-pic-upload" class="profile-pic-input" style="display:none;" onchange="this.form.submit()">
             </label>
         </form>
-
-
-        
     </div>
 
     <div class="doctor-profile-container">

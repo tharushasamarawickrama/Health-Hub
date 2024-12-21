@@ -36,12 +36,6 @@ class DrLabTests {
 
                 $newLabTestIds = $labtestModel->getLabTestIdsAsCommaString($labTestNamesString);
 
-        //         echo "<pre>";
-        // echo "Categorized Lab Tests:\n";
-        // print_r($newLabTestIds);
-        // echo "</pre>";
-        // exit;
-
                 // Update lab test IDs in the appointment table
                 if($appointmentModel->update($appointmentId, ['labtest_id' => $newLabTestIds], 'appointment_id')){
                     $_SESSION['success_message'] = "Lab tests updated successfully.";
@@ -63,6 +57,7 @@ class DrLabTests {
             'labTests' => $labTests,
             'uncategorizedTests' => $uncategorizedTests,
             'fetchedLabTests' => $fetchedLabTests,
+            'appointment_id' => $appointmentId
         ];
 
         $this->view('drLabTests', $data);

@@ -32,7 +32,7 @@ $userData = $userData ?? [];
 <div class="dr-profile-content">
             <div class="doctor-header">
                 <a href="<?php echo URLROOT; ?>drDashboard" class="profile-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? 'uploads/' . htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>" class="doctor-pic">
+                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>" class="doctor-pic">
                 <h1>Dr. <?php echo $userData['firstName'] . ' ' . $userData['lastName']; ?></h1>
             </div>
         <div class="doctor-profile-container">

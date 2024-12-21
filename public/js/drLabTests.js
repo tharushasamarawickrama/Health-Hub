@@ -5,6 +5,12 @@ function addTest(testName, displayName) {
     if (!selectedTests.includes(testName)) {
         selectedTests.push(testName);
         updateTestDisplay();
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Adds a smooth scrolling effect
+        });
+
     } else {
         alert(displayName + " is already selected.");
     }

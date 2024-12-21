@@ -32,7 +32,7 @@ require APPROOT . '/views/Components/drNavbar.php';
                     <li>Medical History Overview</li>
                     <ul>
                         <li>Overview - <?php echo $data['medical_history']; ?></li>
-                        <li><a href="<?php echo URLROOT; ?>drMedicalHistory">Link to Full Medical History</a></li>
+                        <li><a href="<?php echo URLROOT; ?>drMedicalHistory?appointment_id=<?php echo $data['id']; ?>">Link to Full Medical History</a></li>
                     </ul>
                 </ul>
             </div>

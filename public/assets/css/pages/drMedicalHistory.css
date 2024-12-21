@@ -119,3 +119,20 @@
     justify-content: center;
     margin-left: 10px;
 }
+
+.delete-icon {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.delete-icon:hover {
+    color: darkred;
+}
+
+.error {
+    border: 1px solid red;
+}

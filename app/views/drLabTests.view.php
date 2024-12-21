@@ -9,7 +9,7 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
 ?>
 
 <div class="dr-labtest-container">
-    <a href="<?php echo URLROOT; ?>drAppointment" class="labtest-back-arrow">
+    <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id; ?>" class="labtest-back-arrow">
         <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
     </a>
 
