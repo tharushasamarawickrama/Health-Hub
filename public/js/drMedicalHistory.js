@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const saveButton = document.getElementById('save-btn');
     const container = document.querySelector('.medical-history-container');
     const addItemButtons = document.querySelectorAll('.add-item-button');
+    const deleteItemButtons = document.querySelectorAll('.delete-item-button');
 
     // Initially hide add-item buttons
-    addItemButtons.forEach(button => (button.hidden = true));
+    addItemButtons.forEach(button => (button.style.display = 'none'));
+    deleteItemButtons.forEach(button => (button.style.display = 'none'));
 
     // Enable edit mode
     editButton.addEventListener('click', function () {
@@ -14,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
         saveButton.hidden = false;
 
         // Show add-item buttons in edit mode
-        addItemButtons.forEach(button => (button.hidden = false));
+        addItemButtons.forEach(button => (button.style.display = 'block'));
+        deleteItemButtons.forEach(button => (button.style.display = 'block'));
 
         // Show edit mode for all list items
         document.querySelectorAll('.display-mode').forEach(el => (el.hidden = true));
@@ -99,4 +102,16 @@ document.addEventListener('DOMContentLoaded', function () {
             list.appendChild(li);
         });
     });
+
+    // Delete item from the appropriate section
+    deleteItemButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const sectionHeader = button.closest('.section-header'); // Find the section header
+            if (sectionHeader && confirm('Are you sure you want to delete this entire section?')) {
+                const section = sectionHeader.parentElement; // Get the parent section
+                section.remove(); // Remove the section
+            }
+        });
+    });
+
 });

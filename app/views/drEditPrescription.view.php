@@ -136,7 +136,10 @@ require APPROOT . '/views/Components/drNavbar.php';
             <hr>
             <!-- Hidden input for formatted data -->
             <input type="hidden" name="formatted_prescription_data" id="formatted_prescription_data">
-            <button type="submit" class="prescription-actions">Save</button>
+            <div class="prescription-actions-container">
+                <button type="submit" class="prescription-actions">Save</button>
+                <a href="<?php echo URLROOT; ?>drPrescription?appointment_id=<?= $appointment_id; ?>" class="prescription-actions">Cancel</a>
+            </div>
         </div>
     </form>
 </div>

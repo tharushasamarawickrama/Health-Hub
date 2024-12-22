@@ -4,6 +4,10 @@ class DrMedicalHistory {
     use Controller;
 
     public function index() {
+        if (isset($_SESSION['success_message'])) {
+            echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
+            unset($_SESSION['success_message']);
+        }
         // Fetch the patient data (including medical history)
         $appointmentId = $_GET['appointment_id'];
 
@@ -53,7 +57,7 @@ class DrMedicalHistory {
             $updatedHistory = [];
         
             // Build arrays from keys and values
-            foreach (['allergies', 'chronic_conditions', 'surgeries', 'immunizations', 'family_medical_history'] as $section) {
+            foreach (['allergies', 'chronic_conditions', 'past_surgeries', 'immunizations', 'family_medical_history', 'others'] as $section) {
                 $keys = $_POST["{$section}_keys"] ?? [];
                 $values = $_POST["{$section}_values"] ?? [];
                 $updatedHistory[$section] = array_combine($keys, $values);
@@ -61,14 +65,17 @@ class DrMedicalHistory {
         
             
         
-            $blah = $this->saveMedicalHistory($patientId, $updatedHistory);
-
+            //$blah = $this->saveMedicalHistory($patientId, $updatedHistory);
+            $encodedUpdatedHistory = json_encode($updatedHistory);
+            if($patientModel->update($patientId, ['medical_history' => $encodedUpdatedHistory], 'patient_id')){
+                $_SESSION['success_message'] = 'Medical history updated successfully!';
+            }
             // Debug the results
-            echo "<pre>";
-            echo "Updated History:\n";
-            print_r($blah);
-            echo "</pre>";
-            exit;
+            // echo "<pre>";
+            // echo "Updated History:\n";
+            // print_r($blah);
+            // echo "</pre>";
+            // exit;
             $history = $updatedHistory; // Update the history in view after saving
         }
         
