@@ -42,9 +42,18 @@
     justify-content: center;
     display: flex;
 }
+.pt-pending-div3-main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .pt-pending-div2-upload{
     width: 100%; /* Take full width of the parent */
     text-align: center; /* Center-align the button inside the div */
     margin-top: 10px; /* Add some spacing from other elements */
+}
+
+.pt-pending-viewbutton{
+    
 }

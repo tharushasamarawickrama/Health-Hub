@@ -11,14 +11,29 @@
 </div>
 
 <div>
-    <!-- Pending Appointments (Default Visible) -->
+    <!-- Pending Appointments -->
     <div class="pt-pending-div2-main">
         <div class="pt-pending-div2">
             <span>Dr.Abewardhne</span>
             <span>Cardiologist</span>
             <span>12/12/2021</span>
-            <button>View</button>
+            <button class="pt-pending-viewbutton">View</button>
             <button>Cancel</button>
+            <div class="pt-pending-div2-upload">
+                <button>Upload Document</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <!-- Past Appointments -->
+    <div class="pt-pending-div3-main"> 
+        <div class="pt-pending-div2">
+            <span>Dr.Abewardhne</span>
+            <span>Cardiologist</span>
+            <span>12/12/2021</span>
+            <button>View</button>
             <div class="pt-pending-div2-upload">
                 <button>Upload Document</button>
             </div>
@@ -30,9 +45,11 @@
     document.addEventListener("DOMContentLoaded", function () {
         const sections = document.querySelectorAll(".pt-pending-div1");
         const pendingDiv = document.querySelector(".pt-pending-div2-main");
+        const pastDiv = document.querySelector(".pt-pending-div3-main");
 
-        // Set the default visibility of the pendingDiv
-        pendingDiv.style.display = "flex"; // Default to visible
+        // Default visibility
+        pendingDiv.style.display = "flex";
+        pastDiv.style.display = "none";
 
         sections.forEach((section) => {
             section.addEventListener("click", function () {
@@ -44,11 +61,13 @@
                 // Add thick underline to the clicked section
                 this.querySelector(".pt-pending-div1-h1").classList.add("pt-thick-underline");
 
-                // Show or hide the pendingDiv based on the clicked section
+                // Show or hide content based on clicked section
                 if (this.querySelector(".pt-pending-div1-h1").textContent.trim() === "Pending Appointments") {
-                    pendingDiv.style.display = "flex"; // Show the pendingDiv
-                } else {
-                    pendingDiv.style.display = "none"; // Hide the pendingDiv
+                    pendingDiv.style.display = "flex";
+                    pastDiv.style.display = "none";
+                } else if (this.querySelector(".pt-pending-div1-h1").textContent.trim() === "Past Appointments") {
+                    pendingDiv.style.display = "none";
+                    pastDiv.style.display = "flex";
                 }
             });
         });
