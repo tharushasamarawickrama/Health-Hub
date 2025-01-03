@@ -6,6 +6,7 @@ class Setappoinment {
         // echo "This is Home Controller";
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST)){
             $id = $_GET['id'];
+            $sch_id = $_GET['sch_id'];
             $appoinment = new Appointment;
             $schedule = new ScheduleTime;
             
@@ -25,7 +26,8 @@ class Setappoinment {
             ];
             
             $_SESSION['appointment'] = $data;
-            $scheduleData = $schedule->first(['doctor_id' => $id]);
+            $_SESSION['sch_id'] = $sch_id;
+            $scheduleData = $schedule->first(['schedule_id' => $sch_id]);
             $arr['filled_slots'] = $scheduleData['filled_slots'] + 1;
             $schedule->update($scheduleData['schedule_id'], $arr, 'schedule_id');
 

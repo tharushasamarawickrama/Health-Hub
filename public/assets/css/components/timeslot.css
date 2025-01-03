@@ -1,7 +1,7 @@
 .timeslot {
-    background-color: rgba(24, 205, 205, 1);
-    width: 1000px;
-    height: 200px;
+    background-color: rgba(239, 235, 235, 1);
+    width: 922px;
+    height: 132px;
     margin-left: 100px;
     margin-top: 10px;
     align-content: center;
@@ -9,9 +9,9 @@
 }
 
 .inrectangle {
-    background-color: rgb(205, 208, 208);
-    width: 960px;
-    height: 160px;
+    background-color: rgba(239, 235, 235, 1);
+    width: 882px;
+    height: 82px;
     margin-left: 20px;
     border-radius: 20px;
 }
@@ -23,7 +23,7 @@
 
 .slots{
     margin-left: 80px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
     padding-top: 20px;
 
@@ -31,24 +31,19 @@
 
 .time{
     margin-left: 500px;
-    margin-top: 10px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
 }
 
 .schedulebutton{
-    width: 400px;
-    height: 50px;
-    border-radius: 100px;
-    margin-top: 50px;
-    font-size: 20px;
-    background-color: #021b99;
+    width: 595.09px;
+    height: 33.74px;
+    background-color: rgba(0, 87, 164, 1);
     color: white;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    margin-left: 300px;
-    padding: 10px 10px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 150px;
+    margin-top: 10px;
 }
 
 .slotcard{

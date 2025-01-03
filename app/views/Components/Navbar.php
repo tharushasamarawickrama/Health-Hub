@@ -24,7 +24,7 @@
             <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
 
             <div class="dropdown-content">
-                <a href="#">Profile</a>
+                <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
                 <a href="?action=logout">Logout</a>
             </div>
         </div>

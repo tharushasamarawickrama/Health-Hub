@@ -12,7 +12,7 @@
                 <span class="time"><?php echo $starttimeparts[0] ?> PM - <?php echo $endtimeparts[0] ?>PM</span>
             </div>
             <div>
-                <a href="<?php echo URLROOT; ?>setappoinment?id=<?php echo $schedule['doctor_id'] ?>">
+                <a href="<?php echo URLROOT; ?>setappoinment?id=<?php echo $schedule['doctor_id'] ?>&sch_id=<?php echo $schedule['schedule_id'] ?>">
                     <button class="schedulebutton">Schedule Appoinment</button>
                 </a>
 

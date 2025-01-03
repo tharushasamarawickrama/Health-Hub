@@ -14,13 +14,13 @@
     <!-- Pending Appointments -->
     <div class="pt-pending-div2-main">
         <div class="pt-pending-div2">
-            <span>Dr.Abewardhne</span>
-            <span>Cardiologist</span>
-            <span>12/12/2021</span>
-            <button class="pt-pending-viewbutton">View</button>
-            <button>Cancel</button>
+            <span class="pt-pending-span">Dr.Abewardhne</span>
+            <span class="pt-pending-span">Cardiologist</span>
+            <span class="pt-pending-span">12/12/2021</span>
+            <button class="pt-pending-button">View</button>
+            <button class="pt-pending-button">Cancel</button>
             <div class="pt-pending-div2-upload">
-                <button>Upload Document</button>
+                <button class="pt-pending-button2">Upload Document</button>
             </div>
         </div>
     </div>
@@ -30,12 +30,12 @@
     <!-- Past Appointments -->
     <div class="pt-pending-div3-main"> 
         <div class="pt-pending-div2">
-            <span>Dr.Abewardhne</span>
-            <span>Cardiologist</span>
-            <span>12/12/2021</span>
-            <button>View</button>
+            <span class="pt-pending-span">Dr.Abewardhne</span>
+            <span class="pt-pending-span">Cardiologist</span>
+            <span class="pt-pending-span">12/12/2021</span>
+            <button class="pt-pending-button">View</button>
             <div class="pt-pending-div2-upload">
-                <button>Upload Document</button>
+                <button class="pt-pending-button2">Upload Document</button>
             </div>
         </div>
     </div>

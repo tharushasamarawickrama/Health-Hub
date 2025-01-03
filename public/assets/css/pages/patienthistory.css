@@ -1,8 +1,8 @@
-.pt-pending-div1 {
+.pt-history-div1 {
     margin-top: 100px;
 }
 
-.pt-pending-div1-h1 {
+.pt-history-div1-h1 {
     margin-top: 100px;
     font-size: 25px;
     font-weight: 300;
@@ -10,7 +10,7 @@
     cursor: pointer; /* Indicate clickability */
 }
 
-.pt-pending-maindiv {
+.pt-history-maindiv {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -23,10 +23,9 @@
     color: #000; /* Optional: Change color when active */
     
 }
-
-.pt-pending-div2{
+.pt-history-div2{
     width: 1276px;
-    height: 173px;
+    height: 80px;
     background-color: rgba(239, 235, 235, 1);
     margin-top: 20px;
     display: flex;
@@ -38,24 +37,12 @@
     
 }
 
-.pt-pending-div2-main{
+.pt-history-div2-main{
     align-items: center;
     justify-content: center;
     display: flex;
 }
-.pt-pending-div3-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pt-pending-div2-upload{
-    width: 100%; /* Take full width of the parent */
-    text-align: center; /* Center-align the button inside the div */
-    margin-top: 10px; /* Add some spacing from other elements */
-}
-
-.pt-pending-button{
+.pt-history-button{
     width: 160px;
     height: 42.35px;
     background-color: rgba(0, 87, 164, 1);
@@ -64,17 +51,8 @@
     border: none;
 }
 
-.pt-pending-span{
+.pt-history-span{
     font-size: 14px;
     font-weight: 300;
     color: #333;
-}
-
-.pt-pending-button2{
-    width: 570px;
-    height: 42.35px;
-    background-color: rgba(0, 87, 164, 1);
-    color: white;
-    border-radius: 10px;
-    border: none;
 }

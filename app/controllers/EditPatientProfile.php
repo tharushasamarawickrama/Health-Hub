@@ -7,7 +7,7 @@ class EditPatientProfile
     public function index()
     {
         $UpdatePatient = new User;
-
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'Title' => $_POST['Title'],

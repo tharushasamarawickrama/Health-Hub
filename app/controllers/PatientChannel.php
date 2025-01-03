@@ -23,7 +23,7 @@ class PatientChannel{
         }
         
         $scedule = new ScheduleTime;
-        $arr1['doctor_id'] = $appointmentdata['doctor_id'];
+        $arr1['schedule_id'] = $_SESSION['sch_id'];
         $sceduledata = $scedule->first($arr1);
         if($sceduledata){
             $data = array_merge($data, $sceduledata);
