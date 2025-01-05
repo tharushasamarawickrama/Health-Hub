@@ -22,7 +22,7 @@
 
 .DrProfiledetails-profile-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .DrProfiledetails-profile-header h1 {
@@ -36,7 +36,14 @@
     border-radius: 50%;
     
     border: 2px solid #ccc;
+    align-items: center;
     
+}
+
+.DrProfiledetails-profile-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .DrProfiledetails-profile-details-form {
@@ -47,6 +54,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    margin-top: 10px;
 }
 
 
