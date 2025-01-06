@@ -14,7 +14,7 @@ class PatientRegister {
                 switch($id){
                     case 1:
                         $user = new User;
-                        $arr['NIC'] = $_POST['logNIC'] ?? '';
+                        $arr['nic'] = $_POST['logNIC'] ?? '';
                         $row = $user->first($arr);
                         
                         if ($row && isset($row['Password']) && $row['Password'] == $_POST['logPassword']) {
