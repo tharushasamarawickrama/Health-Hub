@@ -5,8 +5,8 @@ class PatientChannel{
     public function index(){
 
         $appointment = new Appointment;
-        $arr['user_id'] = $_SESSION['user']['user_id'];
-        $appointmentdata = $appointment->first($arr);
+        $userId = $_SESSION['user']['user_id'];
+        $appointmentdata = $appointment->getLastAppointmentByUserId($userId);
         // print_r($appointmentdata);
         if($appointmentdata){
             $doctor = new Doctor;
@@ -18,6 +18,7 @@ class PatientChannel{
                 $data1 = $user->first($arr2);
                 if($data1){
                     $data = array_merge($data, $data1);
+                    print_r($data);
                 }
             }
         }
@@ -29,7 +30,7 @@ class PatientChannel{
             $data = array_merge($data, $sceduledata);
         }
         // print_r($_SESSION['appointment']);
-
+        // print_r($data);
         $this->view('PatientChannel', $data);
     }
     

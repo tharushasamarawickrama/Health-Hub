@@ -29,6 +29,7 @@ class Setappoinment {
             $_SESSION['sch_id'] = $sch_id;
             $scheduleData = $schedule->first(['schedule_id' => $sch_id]);
             $arr['filled_slots'] = $scheduleData['filled_slots'] + 1;
+            $data['appointment_No'] = $scheduleData['filled_slots'] + 1;
             $schedule->update($scheduleData['schedule_id'], $arr, 'schedule_id');
 
             $data['appointment_date'] = $scheduleData['date'];

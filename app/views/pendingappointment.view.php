@@ -10,46 +10,69 @@
     </div>
 </div>
 
-<div>
-    <!-- Pending Appointments -->
-    <div class="pt-pending-div2-main">
-        <div class="pt-pending-div2">
-            <span class="pt-pending-span">Dr.Abewardhne</span>
-            <span class="pt-pending-span">Cardiologist</span>
-            <span class="pt-pending-span">12/12/2021</span>
-            <button class="pt-pending-button">View</button>
-            <button class="pt-pending-button">Cancel</button>
-            <div class="pt-pending-div2-upload">
-                <button class="pt-pending-button2">Upload Document</button>
+<?php
+// Get the current date
+$currentDate = new DateTime();
+?>
+
+<!-- Pending Appointments Section -->
+<div id="pending-appointments-section">
+    <?php foreach ($appointments as $appointment): ?>
+        <?php
+        // Convert the appointment date from string to DateTime object
+        $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
+        
+        // Check if current date is greater than the appointment date (for pending appointments)
+        if ( $currentDate < $appointmentDate): ?>
+            <div class="pt-pending-div2-main">
+                <div class="pt-pending-div2">
+                    <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
+                    <button class="pt-pending-button">View</button>
+                    <button class="pt-pending-button">Cancel</button>
+                    <div class="pt-pending-div2-upload">
+                        <button class="pt-pending-button2">Upload Document</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
 </div>
 
-<div>
-    <!-- Past Appointments -->
-    <div class="pt-pending-div3-main"> 
-        <div class="pt-pending-div2">
-            <span class="pt-pending-span">Dr.Abewardhne</span>
-            <span class="pt-pending-span">Cardiologist</span>
-            <span class="pt-pending-span">12/12/2021</span>
-            <button class="pt-pending-button">View</button>
-            <div class="pt-pending-div2-upload">
-                <button class="pt-pending-button2">Upload Document</button>
+<!-- Past Appointments Section -->
+<div id="past-appointments-section" style="display: none;">
+    <?php foreach ($appointments as $appointment): ?>
+        <?php
+        // Convert the appointment date from string to DateTime object
+        $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
+        
+        // Check if current date is greater than the appointment date (for past appointments)
+        if ( $currentDate > $appointmentDate): ?>
+            <div class="pt-pending-div3-main">
+                <div class="pt-pending-div2">
+                    <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
+                    <button class="pt-pending-button">View</button>
+                    <div class="pt-pending-div2-upload">
+                        <button class="pt-pending-button2">Upload Document</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const sections = document.querySelectorAll(".pt-pending-div1");
-        const pendingDiv = document.querySelector(".pt-pending-div2-main");
-        const pastDiv = document.querySelector(".pt-pending-div3-main");
+        const pendingSection = document.getElementById("pending-appointments-section");
+        const pastSection = document.getElementById("past-appointments-section");
 
         // Default visibility
-        pendingDiv.style.display = "flex";
-        pastDiv.style.display = "none";
+        pendingSection.style.display = "block";
+        pastSection.style.display = "none";
 
         sections.forEach((section) => {
             section.addEventListener("click", function () {
@@ -63,11 +86,11 @@
 
                 // Show or hide content based on clicked section
                 if (this.querySelector(".pt-pending-div1-h1").textContent.trim() === "Pending Appointments") {
-                    pendingDiv.style.display = "flex";
-                    pastDiv.style.display = "none";
+                    pendingSection.style.display = "block";
+                    pastSection.style.display = "none";
                 } else if (this.querySelector(".pt-pending-div1-h1").textContent.trim() === "Past Appointments") {
-                    pendingDiv.style.display = "none";
-                    pastDiv.style.display = "flex";
+                    pendingSection.style.display = "none";
+                    pastSection.style.display = "block";
                 }
             });
         });

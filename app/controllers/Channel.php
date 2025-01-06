@@ -14,6 +14,7 @@ class Channel {
             $data1 = $user->first($arr1);
             if($data1){
                 $data = array_merge($data, $data1);
+                // print_r($data);
             }
         }
         
@@ -25,7 +26,7 @@ class Channel {
         }
         
         //print_r($_SESSION['appointment_date']);
-        //print_r($data2);
+        // print_r($data2);
         $this->view('channel',$data, $data2);
     }
     

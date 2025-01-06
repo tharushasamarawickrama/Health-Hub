@@ -49,3 +49,53 @@
 .slotcard{
     margin-top: 20px;
 }
+
+/*popup css*/
+
+/* Modal background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Modal content (small size) */
+.modal-content {
+    background-color: #fff;
+    margin: 20% auto; /* Center vertically and horizontally */
+    padding: 10px 20px; /* Smaller padding */
+    border: 1px solid #888;
+    width: 250px; /* Smaller width */
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Message text */
+.modal-content p {
+    font-size: 14px; /* Smaller font size */
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Close button */
+.modal-content button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
