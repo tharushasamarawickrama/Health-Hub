@@ -194,3 +194,8 @@
     height: 30px;
     margin-left: 20px;
 }
+.checkdiv{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 80px;
+}
