@@ -7,7 +7,7 @@ class PatientChannel{
         $appointment = new Appointment;
         $userId = $_SESSION['user']['user_id'];
         $appointmentdata = $appointment->getLastAppointmentByUserId($userId);
-        // print_r($appointmentdata);
+       
         if($appointmentdata){
             $doctor = new Doctor;
             $arr1['doctor_id'] = $appointmentdata['doctor_id'];
@@ -18,20 +18,31 @@ class PatientChannel{
                 $data1 = $user->first($arr2);
                 if($data1){
                     $data = array_merge($data, $data1);
-                    print_r($data);
+                
                 }
             }
         }
         
-        $scedule = new ScheduleTime;
-        $arr1['schedule_id'] = $_SESSION['sch_id'];
-        $sceduledata = $scedule->first($arr1);
-        if($sceduledata){
-            $data = array_merge($data, $sceduledata);
+        $schedule = new ScheduleTime;
+       
+        
+        $arr['schedule_id']=$_SESSION['sch_id'];
+        $scheduleData = $schedule->first($arr);
+        
+        if($scheduleData){
+            $data = array_merge($data, $scheduleData);
         }
-        // print_r($_SESSION['appointment']);
-        // print_r($data);
+        if(isset($_POST['confirmbtn'])){
+            $data['filled_slots'] = $data['filled_slots'] + 1;
+            $schedule->update($data['schedule_id'], $data, 'schedule_id');
+            $appointment->insert($_SESSION['appointment']);
+            redirect('patientpaymentdetails');
+        }
+       
         $this->view('PatientChannel', $data);
+        
+        
+       
     }
     
 }

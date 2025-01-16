@@ -127,11 +127,13 @@ h1{
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    
 }
 
 .updateyes-btn {
     background-color: #4CAF50;
     color: white;
+    margin-left: 220px;
 }
 
 .updateno-btn {

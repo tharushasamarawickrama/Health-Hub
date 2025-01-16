@@ -13,7 +13,6 @@
             <div class="channeltextdiv">
                 <span class="channeldoctortext">Channel Your Doctor</span>
             </div>
-            <?php show($_SESSION['user']) ?>
             <div class="middlediv">
                 <div>
                     <div class="checkdiv">
@@ -87,7 +86,7 @@
 
             <div class="div5">
                 <button class="continuebtn">BACK</button>
-                <button class="continuebtn" value="Continue" name="continue" onclick="openconfirmdeleteModal(event)">Submit</button>
+                <button class="continuebtn" value="Continue" name="continue" onclick="validateForm(event)">Submit</button>
             </div>
 
         </form>
@@ -145,11 +144,69 @@
         loggeduserCheckbox.addEventListener("change", updateFormFields);
     });
 
-    function openconfirmdeleteModal(event) {
-        event.preventDefault();
-        document.getElementById('deleteconfirmation-modal').style.display = 'block';
-        const modal = document.querySelector('.updatemodal');
-        modal.style.display = 'flex';
+    function validateForm(event) {
+        event.preventDefault();  // Prevent form submission
+
+        const form = document.getElementById("channelform");
+        const title = document.getElementById("Title");
+        const patientFirstNameInput = document.getElementById("pfirstname");
+        const patientLastNameInput = document.getElementById("plastname");
+        const idNumberInput = document.getElementById("nic");
+        const patientPhoneInput = document.getElementById("phoneNumber");
+        const patientAddress = document.getElementById("address");
+        const patientEmailInput = document.getElementById("email");
+        const termsCheckbox = form.querySelector("input[name='terms']");
+        
+        // Collect the fields for validation
+        const fieldsToValidate = [
+            { field: title, name: "Title" },
+            { field: patientFirstNameInput, name: "Patient's First Name" },
+            { field: patientLastNameInput, name: "Patient's Last Name" },
+            { field: idNumberInput, name: "Patient's NIC" },
+            { field: patientPhoneInput, name: "Patient's Contact Number" },
+            { field: patientAddress, name: "Patient's Address" },
+            { field: patientEmailInput, name: "Patient's Email" },
+            { field: termsCheckbox, name: "Terms and Conditions", isCheckbox: true }
+        ];
+
+        // Validation flag
+        let isValid = true;
+        let message = "";
+
+        fieldsToValidate.forEach(({ field, name, isCheckbox }) => {
+            console.log(`Checking field: ${name}, value: ${field.value}`);  // Debug log
+            if (isCheckbox) {
+                if (!field.checked) {
+                    isValid = false;
+                    message += `• ${name} must be accepted.\n`;
+                }
+            } else if (!field.value.trim()) {
+                isValid = false;
+                message += `• ${name} is required.\n`;
+            }
+        });
+
+        // If validation fails, show an alert
+        if (!isValid) {
+            alert(`Please fix the following errors:\n\n${message}`);
+            return;
+        }
+
+        // If validation passes, open the confirmation modal
+        console.log("Validation passed. Opening modal...");
+        openconfirmdeleteModal();
+    }
+
+    function openconfirmdeleteModal() {
+        const modal = document.getElementById('deleteconfirmation-modal');
+        
+        // Check if modal exists and display it
+        if (modal) {
+            modal.style.display = 'flex';  // Show modal
+            console.log("Modal opened successfully!");
+        } else {
+            console.error("Modal not found.");
+        }
     }
 
     function confirmedit(event) {
@@ -157,5 +214,6 @@
         document.getElementById('channelform').submit();
     }
 </script>
+
 
 <?php require APPROOT . '/views/Components/footer.php' ?>

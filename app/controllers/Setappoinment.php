@@ -25,21 +25,15 @@ class Setappoinment {
                 
             ];
             
-            $_SESSION['appointment'] = $data;
             $_SESSION['sch_id'] = $sch_id;
             $scheduleData = $schedule->first(['schedule_id' => $sch_id]);
-            $arr['filled_slots'] = $scheduleData['filled_slots'] + 1;
             $data['appointment_No'] = $scheduleData['filled_slots'] + 1;
-            $schedule->update($scheduleData['schedule_id'], $arr, 'schedule_id');
-
-            $data['appointment_date'] = $scheduleData['date'];
             
-            print_r($data);
-            if($appoinment->insert($data)){
-                redirect('patientchannel');
-            }else{
-                 $this->view('setappoinment');  
-            }
+            $data['appointment_date'] = $scheduleData['date'];
+            $_SESSION['appointment'] = $data;
+            
+          
+            redirect('patientchannel');
 
         }
         $this->view('setappoinment');
