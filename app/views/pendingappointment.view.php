@@ -22,23 +22,37 @@ $currentDate = new DateTime();
         // Convert the appointment date from string to DateTime object
         $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
         
-        // Check if current date is greater than the appointment date (for pending appointments)
-        if ( $currentDate < $appointmentDate): ?>
+        // Check if the appointment status is 'pending' or 'paid'
+        $appointmentStatus = $appointment['appointment']['status'];
+        
+        // Display appointments only if the current date is less than the appointment date
+        if ($currentDate < $appointmentDate): ?>
             <div class="pt-pending-div2-main">
                 <div class="pt-pending-div2">
                     <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
                     <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
                     <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
-                    <button class="pt-pending-button">View</button>
-                    <button class="pt-pending-button">Cancel</button>
-                    <div class="pt-pending-div2-upload">
-                        <button class="pt-pending-button2">Upload Document</button>
-                    </div>
+                    
+                    <?php if ($appointmentStatus === 'pending'): ?>
+                        <button class="pt-pending-button">Pay</button>
+                        
+                            <button class="pt-pending-button" onclick="showDeleteModal()">Cancel</button>
+                        
+                    <?php elseif ($appointmentStatus === 'paid'): ?>
+                        <button class="pt-pending-button">View</button>
+                        <a href="?appointment_id=<?php echo $appointment['appointment']['appointment_id']; ?>">
+                            <button class="pt-pending-button">Cancel</button>
+                        </a>
+                        <div class="pt-pending-div2-upload">
+                            <button class="pt-pending-button2">Upload Document</button>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
 </div>
+
 
 <!-- Past Appointments Section -->
 <div id="past-appointments-section" style="display: none;">
@@ -46,6 +60,7 @@ $currentDate = new DateTime();
         <?php
         // Convert the appointment date from string to DateTime object
         $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
+        $app_id = $appointment['appointment']['appointment_id'];
         
         // Check if current date is greater than the appointment date (for past appointments)
         if ( $currentDate > $appointmentDate): ?>
@@ -62,6 +77,17 @@ $currentDate = new DateTime();
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+</div>
+
+<div id="deleteconfirmation-modal" class="updatemodal" style="display: none;">
+    <div class="updatemodal-content">
+        <h2>Are you sure?</h2>
+        <p>Do you really want to delete this appointment? This process cannot be undone.</p>
+        <div class="updatemodal-buttons">
+            <button onclick="confirmDelete(event)" class="updateyes-btn">Yes</button>
+            <button onclick="closeModal()" class="updateno-btn">No</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -95,4 +121,25 @@ $currentDate = new DateTime();
             });
         });
     });
+
+    function showDeleteModal() {
+        const modal = document.getElementById('deleteconfirmation-modal');
+        modal.style.display = 'flex';
+    }
+
+    // Close the modal
+    function closeModal() {
+        const modal = document.getElementById('deleteconfirmation-modal');
+        modal.style.display = 'none';
+    }
+
+    // Handle "Yes" button click
+    function confirmDelete(event) {
+        closeModal();
+        // window.location.href='<?php echo URLROOT; ?>pendingappointment?app_id=<?php echo $app_id; ?>' // Close the modal first
+
+        // Perform delete logic here
+        console.log('Appointment deleted successfully!');
+        // Optionally, redirect or refresh the page
+    }
 </script>

@@ -78,3 +78,58 @@
     border-radius: 10px;
     border: none;
 }
+
+/*modal css*/
+.updatemodal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.updatemodal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.updatemodal-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.updateyes-btn,
+.updateno-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.updateyes-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.updateno-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.updateyes-btn:hover {
+    background-color: #218838;
+}
+
+.updateno-btn:hover {
+    background-color: #c82333;
+}

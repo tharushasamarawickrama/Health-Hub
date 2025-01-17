@@ -36,6 +36,8 @@ class PatientChannel{
             $data['filled_slots'] = $data['filled_slots'] + 1;
             $schedule->update($data['schedule_id'], $data, 'schedule_id');
             $appointment->insert($_SESSION['appointment']);
+            $appointmentdata = $appointment->getLastAppointmentByUserId($userId);
+            $_SESSION['appo_id'] = $appointmentdata['appointment_id'];
             redirect('patientpaymentdetails');
         }
        

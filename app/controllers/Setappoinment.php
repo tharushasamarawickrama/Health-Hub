@@ -21,6 +21,7 @@ class Setappoinment {
                 'add_service' => $_POST['addservice'],
                 'doctor_id' => $id,
                 'user_id' => $_SESSION['user']['user_id'],
+                'status' => 'pending',
                 
                 
             ];

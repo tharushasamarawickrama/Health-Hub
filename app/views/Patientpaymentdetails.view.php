@@ -56,7 +56,7 @@ $hash_string = strtoupper(
     <div>
         <form method="post" action="https://sandbox.payhere.lk/pay/checkout">
             <input type="hidden" name="merchant_id" value="<?= $merchant_id ?>"> <!-- Replace with your Merchant ID -->
-            <input type="hidden" name="return_url" value="<?php echo URLROOT; ?>/payment_success">
+            <input type="hidden" name="return_url" value="<?php echo URLROOT; ?>/payment_success?appo_id=<?php echo $_SESSION['appo_id'] ?>">
             <input type="hidden" name="cancel_url" value="<?php echo URLROOT; ?>/payment_cancal">
             <input type="hidden" name="notify_url" value="<?php echo URLROOT; ?>/payment_notify">
 
