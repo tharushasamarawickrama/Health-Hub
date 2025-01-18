@@ -34,8 +34,8 @@ class LabAssistant {
         $query = "SELECT a.appointment_id, 
                          a.appointment_date, a.appointment_time, a.status, u.nic
                   FROM appointments a
-                  JOIN users u ON a.user_id = u.user_id
-                  WHERE a.status = 'pending'
+                  JOIN users u ON a.patient_id = u.user_id
+                  WHERE a.status = 'planned'
                   ORDER BY a.appointment_date DESC";
                   
         return $this->query($query);
@@ -51,11 +51,11 @@ class LabAssistant {
             CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
             u.gender,
             u.age,
-            lt.labtest_type
+            alt.labtest_type
         FROM appointments a
-        JOIN users u ON a.user_id = u.user_id
+        JOIN users u ON a.patient_id = u.user_id
         JOIN users d ON a.doctor_id = d.user_id
-        LEFT JOIN labtests lt ON a.labtest_id = lt.labtest_id
+        LEFT JOIN appointment_labtests alt ON a.labtest_id = alt.labtest_id
         WHERE a.appointment_id = :appointment_id";
         
         return $this->query($query, ['appointment_id' => $appointment_id]);
@@ -86,14 +86,14 @@ class LabAssistant {
                 u.age, u.gender, u.phoneNumber,
                 d.doctor_id, 
                 CONCAT(d.firstName,' ', d.lastName) AS doctor_name,
-                lt.labtest_id, 
-                lt.labtest_type, 
-                lt.labtest_report,
-                lt.labtest_pdfname
+                alt.labtest_id, 
+                alt.labtest_type, 
+                alt.labtest_report,
+                alt.labtest_pdfname
             FROM appointments a
-            LEFT JOIN users u ON a.user_id = u.id
+            LEFT JOIN users u ON a.patient_id = u.user_id
             LEFT JOIN doctors d ON a.doctor_id = d.doctor_id
-            LEFT JOIN labtests lt ON a.labtest_id = lt.labtest_id
+            LEFT JOIN appointment_labtests alt ON a.labtest_id = alt.labtest_id
             WHERE a.appointment_id = :appointment_id;
         ";
         return $this->query($query, ['appointment_id' => $appointment_id]);
@@ -101,7 +101,7 @@ class LabAssistant {
     
     public function deleteLabTestReport($labtest_id) {
         try {
-            $query = "UPDATE labtests
+            $query = "UPDATE appointment_labtests
                       SET labtest_report = NULL, 
                           labtest_pdfname = NULL 
                       WHERE labtest_id = :labtest_id";
@@ -115,13 +115,15 @@ class LabAssistant {
     }
     
     public function searchLabAppointments($appointment_id){
-        if ($appointment_id){
-            $query = "SELECT 
-                        a.appointment_id, a.status, u.nic 
-                      FROM appoiintments a
-                      JOIN users u ON a.user_id = u.user_id 
-                      WHERE a.status = 'pending' ";
-            return $this->query($query);
-        }
+        $query = "SELECT 
+            a.appointment_id, 
+            a.status, 
+            u.nic 
+          FROM appointments a
+          JOIN users u ON a.patient_id = u.user_id 
+          WHERE a.appointment_id = :appointment_id AND a.status = 'planned'";
+          
+return $this->query($query, ['appointment_id' => $appointment_id]);
+
     }
 }

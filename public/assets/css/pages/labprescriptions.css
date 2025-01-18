@@ -21,7 +21,7 @@
 .lab-pres-search-box input[type="text"] {
     padding: 10px;
     border: 1px solid #c4aeae;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
 }
 .lab-pres-search-box button {
