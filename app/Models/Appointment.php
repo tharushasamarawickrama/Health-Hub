@@ -8,17 +8,12 @@ class Appointment {
     protected $Allowedcolumns = [
         'appointment_id',
         'doctor_id',
-        'user_id',
+        'patient_id',
         'prescription_id',
         'labtest_id',
         'appointment_date',
         'appointment_time',
-        'status',
-        'add_service',
-        'created_at',
-        'updated_at',
-        'prescription_id'
-        
+        'status'
     ];
 
     public function getAppointmentById($appointmentId) {

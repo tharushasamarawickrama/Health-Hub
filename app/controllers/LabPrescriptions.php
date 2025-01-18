@@ -16,7 +16,7 @@ class LabPrescriptions {
         
         $this->view('labprescriptions', $data);
     }
-
+/*
     public function search(){
         $appointmentId = $_POST['appointment_id'] ?? null;
         $appointments = $this -> labAssistantModel -> searchLabAppointments($appointmentId);
@@ -26,5 +26,25 @@ class LabPrescriptions {
         $this -> view('labprescriptions',$data);
     }
     
+    public function search($id) {
+        $appointments = $this->labPrescriptionModel->searchAppointments($id);
+        header('Content-Type: application/json');
+        echo json_encode($appointments);
+    }*/
+
+    public function search() {
+    $input = json_decode(file_get_contents("php://input"), true);
+
+    if (isset($input['appointment_id'])) {
+        $appointmentId = $input['appointment_id'];
+        $appointments = $this->labAssistantModel->searchLabAppointments($appointmentId);
+
+        echo json_encode(['appointments' => $appointments]);
+        return;
+    }
+
+    echo json_encode(['appointments' => []]);
+}
+
 }
 

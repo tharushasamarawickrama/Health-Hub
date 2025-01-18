@@ -8,19 +8,14 @@
             </button>
         <div class="lab-pres-search-result">
             <div id="lab-pres-resultContainer">
-                <?php if(!empty($data['appointments'])): ?>
-                <?php foreach($data['appointments'] as $appointment): ?>
-                    <a href="<?php echo URLROOT; ?>/labprescriptionappointment?appointment_id=<?php echo $appointment['appointment_id']; ?>" class="lab-pres-result-item">
-                        <div>Appointment ID: <?php echo $appointment['appointment_id']; ?></div>
-                        <div>NIC: <?php echo $appointment['nic']; ?></div>
-                    </a>  
-                <?php endforeach; ?>
-                <?php else: ?>
-                    <div class="no-appointments">No appointments found</div>
-                        <?php endif; ?>
-                    </div>
+                
             </div>
         </div>
     </div>
 </div>
+<script>
+    const URLROOT = "<?php echo URLROOT; ?>";
+</script>
+
+<script src="<?php echo URLROOT; ?>/assets/js/LabPrescriptions.js"></script>
 <?php require APPROOT . '/views/Components/footer.php' ?>
