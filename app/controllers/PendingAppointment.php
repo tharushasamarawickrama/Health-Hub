@@ -28,12 +28,19 @@ class PendingAppointment{
                             'doctor' => $doctorData,
                             'user' => $userData
                         ];
-        
+                        
                         // Add the combined data to the main array
                         $data[] = $combinedData;
                     }
                 }
             }
+            if(isset($_POST['confirm-delete-btn'])){
+                $appointmentId = $_POST['appointment_id'];
+                $appointment->delete($appointmentId, 'appointment_id');
+                redirect('pendingappointment');
+            }
+
+            
         }
         
         $this->view('pendingappointment', ['appointments' => $data]);

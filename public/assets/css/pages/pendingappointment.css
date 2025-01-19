@@ -80,7 +80,7 @@
 }
 
 /*modal css*/
-.updatemodal {
+.pending-updatemodal {
     position: fixed;
     top: 0;
     left: 0;
@@ -93,7 +93,7 @@
     z-index: 1000;
 }
 
-.updatemodal-content {
+.pending-updatemodal-content {
     background: white;
     padding: 20px;
     border-radius: 8px;
@@ -102,34 +102,78 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.updatemodal-buttons {
+.pending-updatemodal-buttons {
     display: flex;
     justify-content: space-evenly;
     margin-top: 20px;
 }
 
-.updateyes-btn,
-.updateno-btn {
+.pending-updateyes-btn,
+.pending-updateno-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.updateyes-btn {
+.pending-updateyes-btn {
     background-color: #28a745;
     color: white;
 }
 
-.updateno-btn {
+.pending-updateno-btn {
     background-color: #dc3545;
     color: white;
 }
 
-.updateyes-btn:hover {
+.pending-updateyes-btn:hover {
     background-color: #218838;
 }
 
-.updateno-btn:hover {
+.pending-updateno-btn:hover {
     background-color: #c82333;
 }
+
+/*modal css*/
+
+
+.view-modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 450px;
+
+}
+
+.close-btn {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: red;
+}
+
+.modal-details span {
+    display: block;
+    margin: 10px 0;
+}
+
+.modal-buttons {
+    margin-top: 20px;
+}
+
+.pending-view-span{
+    font-size: 20px; 
+    color: #333; 
+    font-weight: bold;
+    margin-bottom: 10px; 
+    display: block;
+    margin-left: 10px;
+}
+.pending-view-div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    /* margin-right: 100px;  */
+}
+
