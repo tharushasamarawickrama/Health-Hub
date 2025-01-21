@@ -10,8 +10,7 @@ class LabTest {
         'labtest_id',
         'labtest_type',
         'labtest_report',
-        'labtest_pdfname',
-        
+        'labtest_pdfname'    
     ];
 }
 ?>

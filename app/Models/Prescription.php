@@ -34,6 +34,5 @@ class Prescription
             return false; // or handle error appropriately
         }
     }
-
-
+    
 }
