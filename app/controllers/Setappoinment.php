@@ -20,8 +20,8 @@ class Setappoinment {
                 'email' => $_POST['email'],
                 'add_service' => $_POST['addservice'],
                 'doctor_id' => $id,
-                'user_id' => $_SESSION['user']['user_id'],
-                'status' => 'pending',
+                'patient_id' => $_SESSION['user']['user_id'],
+                'payment_status' => 'pending',
                 
                 
             ];

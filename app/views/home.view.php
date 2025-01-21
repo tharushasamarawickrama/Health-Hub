@@ -34,6 +34,7 @@
 
                 <div class="dropdown-content">
                     <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
+                    <a href="<?php echo URLROOT; ?>pendingappointment">Pending Appointment</a>
                     <a href="?action=logout">Logout</a>
                 </div>
             </div>

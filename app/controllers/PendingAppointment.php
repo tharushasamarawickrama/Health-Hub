@@ -15,10 +15,10 @@ class PendingAppointment{
             foreach ($appointmentdata as $appointment_item) {
                 $arr['doctor_id'] = $appointment_item['doctor_id'];
                 $doctorData = $doctor->first($arr);
-        
+                echo $doctorData['doctor_id'];
                 if ($doctorData) {
                     $user = new User;
-                    $arr2['user_id'] = $doctorData['user_id'];
+                    $arr2['user_id'] = $doctorData['doctor_id'];
                     $userData = $user->first($arr2);
         
                     if ($userData) {

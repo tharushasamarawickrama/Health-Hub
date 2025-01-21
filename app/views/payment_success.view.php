@@ -7,7 +7,7 @@ require APPROOT . '/views/Components/Navbar.php';
     <img src="<?php URLROOT; ?>assets/images/payment_successfull.gif" />
     <h1>Payment Successful!</h1>
     <p>Thank you for your payment. Your appointment has been confirmed.</p>
-    <a href="<?php echo URLROOT; ?>/dashboard">
+    <a href="<?php echo URLROOT; ?>/home">
         <button class="gotohome-btn">Go To Home</button>
     </a>
 </div>

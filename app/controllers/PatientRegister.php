@@ -142,7 +142,7 @@ class PatientRegister {
                     $login = $user->first($arr);
                     // show($login);
                     // show($patient);
-                    $patientData = ['user_id' => $login['user_id']];
+                    $patientData = ['patient_id' => $login['user_id']];
                     
                     $patient->insert($patientData);
                     // show($patient);

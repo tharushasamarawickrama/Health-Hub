@@ -25,11 +25,12 @@
 
             <div class="dropdown-content">
                 <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
+                <a href="<?php echo URLROOT; ?>pendingappointment">Pending Appointment</a>
                 <a href="?action=logout">Logout</a>
             </div>
         </div>
     <?php else: ?>
         <!-- Show "Login" link if no user is logged in -->
-        <a href="<?php echo URLROOT; ?>/Prevlog" class="login">Login</a>
+        <a href="<?php echo URLROOT; ?>/patientregister" class="login">Login</a>
     <?php endif; ?>
 </div>

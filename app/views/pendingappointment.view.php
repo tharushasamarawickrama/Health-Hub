@@ -24,10 +24,10 @@ $currentDate = new DateTime();
         <?php
         // Convert the appointment date from string to DateTime object
         $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
-
+        
         // Check if the appointment status is 'pending' or 'paid'
-        $appointmentStatus = $appointment['appointment']['status'];
-
+        $appointmentStatus = $appointment['appointment']['payment_status'];
+        
         // Display appointments only if the current date is less than the appointment date
         if ($currentDate < $appointmentDate && $appointmentStatus == 'paid'): ?>
             <div class="pt-pending-div2-main">
@@ -69,7 +69,9 @@ $currentDate = new DateTime();
                     <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
                     <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
                     <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
-                    <button class="pt-pending-button">View</button>
+                    <button
+                        class="pt-pending-button view-btn"
+                        data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">View</button>
                     <div class="pt-pending-div2-upload">
                         <button class="pt-pending-button2">Upload Document</button>
                     </div>

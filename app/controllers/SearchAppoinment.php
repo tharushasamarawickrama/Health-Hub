@@ -9,7 +9,7 @@ class SearchAppoinment {
         $data = $doctor->findAlldata();
         foreach($data as &$key){
             $user = new User;
-            $arr['user_id'] = $key['user_id'];
+            $arr['user_id'] = $key['doctor_id'];
             $data1 = $user->first($arr);
             if($data1){
                 $key = array_merge($key, $data1);
@@ -34,7 +34,7 @@ class SearchAppoinment {
             $arr['specialization'] = $data1['specialization'] ?? '';
             $data2 = $doctor1->findDoctors($arr);
             
-            print_r($data2);
+            // print_r($data2);
             foreach ($data2 as &$doctor) {
                 $doctor['appointment_date'] = $data1['appointment_date'];
             }

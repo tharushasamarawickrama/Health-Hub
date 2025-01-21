@@ -4,24 +4,35 @@ class PatientChannel{
     use Controller;
     public function index(){
 
-        $appointment = new Appointment;
-        $userId = $_SESSION['user']['user_id'];
-        $appointmentdata = $appointment->getLastAppointmentByUserId($userId);
-       
-        if($appointmentdata){
-            $doctor = new Doctor;
-            $arr1['doctor_id'] = $appointmentdata['doctor_id'];
-            $data = $doctor->first($arr1);
-            if($data){
-                $user = new User;
-                $arr2['user_id'] = $data['user_id'];
-                $data1 = $user->first($arr2);
-                if($data1){
-                    $data = array_merge($data, $data1);
-                
-                }
+         $appointment = new Appointment;
+         $doctor = new Doctor;
+         $user = new User;
+         $userId = $_SESSION['user']['user_id'];
+         $doctorId = $_SESSION['appointment']['doctor_id'];
+            $arr['doctor_id'] = $doctorId;
+            $arr1['user_id'] = $doctorId;
+            $data = $doctor->first($arr);
+            $data1 = $user->first($arr1);
+            if($data1){
+                $data = array_merge($data, $data1);
             }
-        }
+
+        // $appointmentdata = $appointment->getLastAppointmentByUserId($userId);
+       
+        // if($appointmentdata){
+        //     $doctor = new Doctor;
+        //     $arr1['doctor_id'] = $appointmentdata['patient_id'];
+        //     $data = $doctor->first($arr1);
+        //     if($data){
+        //         $user = new User;
+        //         $arr2['user_id'] = $data['doctor_id'];
+        //         $data1 = $user->first($arr2);
+        //         if($data1){
+        //             $data = array_merge($data, $data1);
+                
+        //         }
+        //     }
+        // }
         
         $schedule = new ScheduleTime;
        

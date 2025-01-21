@@ -8,7 +8,7 @@ class Doctor {
 
     protected $Allowedcolumns = [
         
-        'user_id',
+        'doctor_id',
         'firstName',
         'lastName',
         'password',
@@ -46,7 +46,7 @@ class Doctor {
         }
         if (empty($arr['firstName']) && empty($arr['lastName'])) {
             $query = "SELECT * FROM doctors 
-                      JOIN users ON doctors.user_id = users.user_id 
+                      JOIN users ON doctors.doctor_id = users.user_id 
                       WHERE doctors.specialization = :specialization";
             $data = [
                 'specialization' => $arr['specialization']
@@ -55,7 +55,7 @@ class Doctor {
         }
         if (empty($arr['specialization'])) {
             $query = "SELECT * FROM doctors 
-                      JOIN users ON doctors.user_id = users.user_id 
+                      JOIN users ON doctors.doctor_id = users.user_id 
                       WHERE users.firstName = :firstName OR users.lastName = :lastName";
             $data = [
                 'firstName' => $arr['firstName'],
@@ -65,7 +65,7 @@ class Doctor {
         }
         if (!empty($arr['firstName']) && !empty($arr['lastName']) && !empty($arr['specialization'])) {
             $query = "SELECT * FROM doctors 
-                      JOIN users ON doctors.user_id = users.user_id 
+                      JOIN users ON doctors.doctor_id = users.user_id 
                       WHERE users.firstName = :firstName 
                       AND users.lastName = :lastName 
                       AND doctors.specialization = :specialization";

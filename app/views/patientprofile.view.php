@@ -50,11 +50,15 @@
         </div>
         <div class="profile-top-button-div">
             <div>
-                <button class="profile-top-button1">My Appointment</button>
+                <a href="<?php echo URLROOT; ?>pendingappointment">
+                    <button class="profile-top-button1">My Appointment</button>
+                </a>
             </div>
 
             <div>
-                <button class="profile-top-button2">Make An Appointment</button>
+                <a href="<?php echo URLROOT; ?>searchappointment">
+                    <button class="profile-top-button2">Make An Appointment</button>
+                </a>
             </div>
         </div>
 

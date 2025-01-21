@@ -1,6 +1,7 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/Navbar.php' ?>
 <div class="ptc-div1">
+    <?php show($_SESSION['appointment']) ?>
     <div class="ptc-div2">
         <h1 class="ptc-div2-h1">Channel Details</h1>
         <form method="POST">
