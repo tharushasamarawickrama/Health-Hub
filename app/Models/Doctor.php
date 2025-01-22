@@ -7,7 +7,7 @@ class Doctor {
     protected $table = "doctors";
 
     protected $Allowedcolumns = [
-        
+
         'doctor_id',
         'firstName',
         'lastName',

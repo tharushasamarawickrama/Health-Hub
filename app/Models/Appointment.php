@@ -9,6 +9,7 @@ class Appointment {
         'appointment_id',
         'doctor_id',
         'patient_id',
+
         'appointment_No',
         'p_firstName',
         'p_lastName',
@@ -47,6 +48,7 @@ class Appointment {
     // Return the single row if found, otherwise return null
     return $result ? $result[0] : null;
 }
+
 
 }
 ?>

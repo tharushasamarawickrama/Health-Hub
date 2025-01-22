@@ -19,10 +19,12 @@ require APPROOT . '/views/Components/drNavbar.php';
         <a href="drPrescription" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <h2>Edit Prescription Details</h2>
     </div>
-    <form action="<?php echo URLROOT; ?>drEditPrescription" method="POST" class="doctor-prescription-form" id="doctor-prescription-form">
+    <form action="<?php echo URLROOT; ?>drEditPrescription?appointment_id=<?= $appointment_id; ?>" method="POST" class="doctor-prescription-form" id="doctor-prescription-form">
         <div class="prescription-container">
-            <h2>Diagnosis</h2>
-            <textarea name="diagnosis-text" id="diagnosis-text" rows="5"><?php echo htmlspecialchars($prescription['diagnosis']); ?></textarea>
+        <h2>Diagnosis</h2>
+        <textarea name="diagnosis-text" id="diagnosis-text" rows="5" placeholder="Type in the diagnosis."><?php echo isset($prescription['diagnosis']) ? htmlspecialchars($prescription['diagnosis']) : ''; ?></textarea>
+
+
 
             <div id="medications-container">
                 <h2>Medications</h2>
