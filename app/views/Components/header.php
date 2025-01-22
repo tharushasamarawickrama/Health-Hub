@@ -35,6 +35,12 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/setappoinment.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/searchappoinment.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Patientpaymentdetails.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/pendingappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/patienthistory.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/payment_success.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/payment_cancelled.css">
+
+
 
     <!-- <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/home.css"> -->
 

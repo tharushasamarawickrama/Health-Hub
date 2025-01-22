@@ -1,0 +1,58 @@
+.pt-history-div1 {
+    margin-top: 100px;
+}
+
+.pt-history-div1-h1 {
+    margin-top: 100px;
+    font-size: 25px;
+    font-weight: 300;
+    color: #333;
+    cursor: pointer; /* Indicate clickability */
+}
+
+.pt-history-maindiv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pt-thick-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 4px; /* Set thick underline */
+    text-underline-offset: 20px; /* Offset underline slightly from text */
+    color: #000; /* Optional: Change color when active */
+    
+}
+.pt-history-div2{
+    width: 1276px;
+    height: 80px;
+    background-color: rgba(239, 235, 235, 1);
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+
+    
+}
+
+.pt-history-div2-main{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.pt-history-button{
+    width: 160px;
+    height: 42.35px;
+    background-color: rgba(0, 87, 164, 1);
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+.pt-history-span{
+    font-size: 14px;
+    font-weight: 300;
+    color: #333;
+}

@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(../../images/background.png);
+    /* background-image: url(../../images/background.png); */
 }
 
 .channeldoctortext{
@@ -28,7 +28,7 @@
 }
 
 .titletext{
-    font-size: 20px;
+    font-size: 12px;
     color: #000000;
    
 }
@@ -44,7 +44,7 @@
 }
 
 .pname{
-    font-size: 20px;
+    font-size: 12px;
     color: #000000;
     margin-left: 100px;
 }
@@ -61,7 +61,7 @@
 }
 
 .pnic{
-    font-size: 20px;
+    font-size: 12px;
     color: #000000;
     margin-left: 80px;
 }
@@ -73,7 +73,7 @@
 }
 
 .pnumber{
-    font-size: 20px;
+    font-size: 12px;
     color: #000000;
     margin-left: 300px;
 }
@@ -90,24 +90,24 @@
 }
 
 .checkbox{
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
 
 .checkboxtext{
-    font-size: 30px;
+    font-size: 14px;
     color: #000000;
 }
 
 
 .para1{
-    font-size: 20px;
+    font-size: 12px;
     color: #000000;
     margin-left: 80px;
 }
 
 .para2{
-    font-size: 20px;
+    font-size: 12px;
     color: #ff0000;
     margin-left: 5px;
 }
@@ -115,20 +115,22 @@
 .div4{
     margin-left: 80px;
 }
+.div5{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-left: -300px;
+    
+}
 
 .continuebtn{
-    width: 200px;
-    height: 50px;
-    border-radius: 100px;
-    margin-top: 20px;
-    font-size: 20px;
-    background-color: #021b99;
+    width: 160px;
+    height: 42.35px;
+    background-color: rgba(0, 87, 164, 1);
     color: white;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    margin-left: 600px;
-    padding: 10px 10px;
+    border-radius: 10px;
+    border: none;
+    
 }
 
 .continuebtn:hover{
@@ -191,4 +193,9 @@
     width: 30px;
     height: 30px;
     margin-left: 20px;
+}
+.checkdiv{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 80px;
 }

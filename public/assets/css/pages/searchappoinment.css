@@ -4,6 +4,7 @@
     box-shadow:  0 4px 8px rgba(0, 0, 0, 0.1);
     margin-left: 500px;
     backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 
 .pt-topic{
@@ -63,18 +64,18 @@
 }
 
 .pt-searchbtn{
-    width: 150px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: rgba(57, 202, 187, 1);
+    width: 160px;
+    height: 42.35px;
+    background-color: rgba(0, 87, 164, 1);
     color: white;
-    font-size: 20px;
-    margin-left: 280px;
-    margin-top: 60px;
+    border-radius: 10px;
     border: none;
+    margin-top: 50px;
+    margin-left: 300px;
 }
 
 .container{
-    background-image: url(../../images/background.png);
-    height: 100vmax;
+    /* background-image: url(../../images/background.png); */
+    /* height: 100vmax; */
+
 }

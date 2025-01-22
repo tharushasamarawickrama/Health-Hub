@@ -5,10 +5,25 @@ class PatientRegister {
 
     public function index() {
         $data = [];
-        $data['login_id'] = $_GET['id'];
+
+        $userrole='';
+        // $data['login_id'] = $_GET['id'];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
-                $id = $_GET['id'];
+                // $id = $_GET['id'];
+                $user = new User;
+                $arr['Email'] = $_POST['logEmail'] ?? '';
+                $row = $user->first($arr);
+                if(!$row){
+                    $user->errors['Email'] = "Invalid Email or Password";
+                    $data['errors'] = $user->errors;
+                    $this->view('patientregister', $data);
+                    exit();
+                }else{
+                    $userrole = $row['user_role'];
+                    $data['userrole'] = $userrole;
+                }
+
                 
 
                 switch($id){
@@ -90,7 +105,12 @@ class PatientRegister {
                             $data['errors'] = $pharmacist->errors;
                             $this->view('patientregister', $data);
                         }
-                        break;            
+                        break; 
+                    case '':
+                        $user->errors['Email'] = "Invalid Email or Password";
+                        $data['errors'] = $user->errors;
+                        $this->view('patientregister', $data);
+                        break;               
                 }
                 // Login logic
                 // $arr['NIC'] = $_POST['logNIC'] ?? '';
@@ -129,6 +149,15 @@ class PatientRegister {
                     $data['errors'] = $user->errors;
                 } else {
                     $user->insert($data);
+
+                    $login = $user->first($arr);
+                    // show($login);
+                    // show($patient);
+                    $patientData = ['patient_id' => $login['user_id']];
+                    
+                    $patient->insert($patientData);
+                    // show($patient);
+
                     $data['registration_success'] = true; // Set the success flag
                 }
 
