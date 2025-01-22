@@ -11,10 +11,10 @@
         <a href="#" class="navitems">About</a>
         <a href="#" class="navitems">Contact</a>
 
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== ''): ?>
             <a href="#" class="logname dropdown-toggle">
 
-                <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['ProfilePic']); ?>" class="loginlogo">
+                <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['photo_path']); ?>" class="loginlogo">
             </a>
         <?php else: ?>
             <img src="<?php echo URLROOT; ?>/assets/images/loginlogo.jpg" class="loginlogo">
@@ -24,7 +24,7 @@
             <div class="dropdown">
 
 
-                <p class="username"><?php echo htmlspecialchars($_SESSION['user']['FirstName']); ?></p>
+                <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
 
                 <div class="dropdown-content">
                     <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
@@ -54,7 +54,6 @@
                     <button class="profile-top-button1">My Appointment</button>
                 </a>
             </div>
-
 
             <div>
                 <a href="<?php echo URLROOT; ?>searchappointment">
@@ -114,7 +113,6 @@
                     <div>
                         <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['nic']); ?>">
                     </div>
-
                 </div>
                 <form action="" method="POST">
                     <div class="profile-middle-details-button-div">
