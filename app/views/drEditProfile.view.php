@@ -14,7 +14,7 @@ $doctorData = $doctorData ?? [];
         <!-- Profile Picture Form -->
         <form action="<?php echo URLROOT; ?>DrEditProfilePic" method="POST" enctype="multipart/form-data" class="profile-pic-form">
             <label for="profile-pic-upload" class="profile-pic-label">
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($doctorData['profile_pic']) ? 'uploads/' . htmlspecialchars($doctorData['profile_pic']) : 'images/doctor.png'; ?>" 
+                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['profile_pic']) ? 'uploads/' . htmlspecialchars($doctorData['profile_pic']) : 'images/doctor.png'; ?>" 
                     alt="Doctor Avatar" class="doctor-pic">
                 <div class="camera-overlay">
                     <img src="<?php echo URLROOT;?>assets/images/camera-icon.png" alt="Camera">
@@ -44,8 +44,8 @@ $doctorData = $doctorData ?? [];
         <!-- Profile Update Form -->
         <form action="<?php echo URLROOT; ?>drEditProfile" method="POST" class="doctor-profile-form">
             <h1>Dr. 
-                <input type="text" name="firstName" id="firstName" value="<?php echo $doctorData['firstName']; ?>">
-                <input type="text" name="lastName" id="lastName" value="<?php echo $doctorData['lastName'];?>">
+                <input type="text" name="firstName" id="firstName" value="<?php echo $userData['firstName']; ?>">
+                <input type="text" name="lastName" id="lastName" value="<?php echo $userData['lastName'];?>">
             </h1>
             <div class="doctor-description">
                 <label for="description"><strong>Description:</strong></label>
@@ -66,10 +66,10 @@ $doctorData = $doctorData ?? [];
                 <!-- Contact Information -->
                 <strong>Contact:</strong><br>
                 <label for="phoneNumber">Phone:</label>
-                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value="<?php echo htmlspecialchars($doctorData['phoneNumber']); ?>">
+                <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value="<?php echo htmlspecialchars($userData['phoneNumber']); ?>">
 
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($doctorData['email']); ?>">
+                <input type="email" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($userData['email']); ?>">
             </div>
 
             <button type="submit" class="dr-profile-btn">Save Changes</button>

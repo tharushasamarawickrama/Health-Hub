@@ -62,7 +62,7 @@ require APPROOT . '/views/Components/drNavbar.php';
                 </table>
             <?php endif; ?>
         </div>
-        <a href="<?php echo URLROOT ; ?>drEditPrescription"><button class="prescription-actions">Edit</button></a>
+        <a href="<?php echo URLROOT; ?>drEditPrescription?appointment_id=<?php echo $appointment_id; ?>"><button class="prescription-actions">Edit</button></a>
     </div>
 </div>
 

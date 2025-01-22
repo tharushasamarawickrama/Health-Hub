@@ -7,6 +7,15 @@ class SearchAppoinment {
         $v1 = $_GET['v1'] ?? '';
         $doctor = new Doctor;
         $data = $doctor->findAlldata();
+        foreach($data as &$key){
+            $user = new User;
+            $arr['user_id'] = $key['doctor_id'];
+            $data1 = $user->first($arr);
+            if($data1){
+                $key = array_merge($key, $data1);
+            }
+        }
+        unset($key);
         
         $data2 = [];
         if(isset($_POST['search'])){
@@ -24,6 +33,8 @@ class SearchAppoinment {
 
             $arr['specialization'] = $data1['specialization'] ?? '';
             $data2 = $doctor1->findDoctors($arr);
+            
+            // print_r($data2);
             foreach ($data2 as &$doctor) {
                 $doctor['appointment_date'] = $data1['appointment_date'];
             }

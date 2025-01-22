@@ -7,7 +7,7 @@ class EditPatientProfile
     public function index()
     {
         $UpdatePatient = new User;
-
+        
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = [
                 'Title' => $_POST['Title'],
@@ -49,7 +49,7 @@ class EditPatientProfile
 
                 // Move the uploaded file to the target directory
                 if (move_uploaded_file($_FILES['ProfilePic']['tmp_name'], $target_file)) {
-                    $data['photo_path'] = $target_file; // Add the file path to the $data array
+                    $data['ProfilePic'] = $target_file; // Add the file path to the $data array
                 } else {
                     $_SESSION['error'] = "Failed to upload the profile picture.";
                     $this->view('editpatientprofile', $data);
@@ -58,10 +58,9 @@ class EditPatientProfile
             }
 
             // Get user ID from session and update data
-            $id = $_SESSION['user']['user_id'];
-            if ($UpdatePatient->update($id, $data,'user_id')) {
-                $arr['user_id']=$id;
-                $updateduser = $UpdatePatient->first($arr);
+            $id = $_SESSION['user']['id'];
+            if ($UpdatePatient->update($id, $data)) {
+                $updateduser = $UpdatePatient->first(['id' => $id]);
                 $_SESSION['user'] = $updateduser;
                 $_SESSION['success'] = "Profile updated successfully.";
                 redirect('patientprofile');

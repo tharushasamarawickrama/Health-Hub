@@ -17,8 +17,7 @@ class User {
         'Password',
         'Address',
         'Age',
-        'photo_path',
-        'user_role'
+        'ProfilePic'
     ];
 
     // public function validate($data){
@@ -36,4 +35,19 @@ class User {
     //     }
     //     return false;
     // }
+
+    public function updatePhotoPath($id, $photoPath)
+{
+    // Build the query to update only the photo_path field
+    $query = "UPDATE {$this->table} SET photo_path = :photo_path WHERE id = :id";
+
+    // Execute the query with parameters
+    $params = [
+        'photo_path' => $photoPath,
+        'id' => $id,
+    ];
+
+    return $this->query($query, $params);
+}
+
 }
