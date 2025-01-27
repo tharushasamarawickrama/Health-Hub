@@ -16,7 +16,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
 
     // Redirect to the login page or homepage
     // header("Location: " . URLROOT . "/Prevlog");
-    redirect('/Prevlog');
+    redirect('/patientregister');
 }
 ?>
 
