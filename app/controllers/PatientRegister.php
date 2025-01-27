@@ -40,7 +40,7 @@ class PatientRegister {
                         break;
                     case "doctor":
                         
-                        if ($row && isset($row['Password']) && $row['password'] == $_POST['logPassword']) {
+                        if ($row && isset($row['password']) && $row['password'] == $_POST['logPassword']) {
                             $_SESSION['user'] = $row;
                             redirect('drDashboard'); // Redirect after successful login
                         } else {
