@@ -10,6 +10,8 @@ class Appointment_Labtest
     protected $Allowedcolumns = [
         "appointment_id",
         "labtest_id",
+        'labtest_report',
+        'labtest_pdfname',
     ];
 
     public function getLabTestsByAppointmentId($appointmentId){

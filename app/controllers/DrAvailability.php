@@ -4,13 +4,18 @@ class DrAvailability {
     use Controller;
 
     public function index() {
-        $doctorId = 8; // Hardcoded for demonstration purposes
+        $doctorId = $_SESSION['user']['user_id'];
         $doctorModel = new Doctor();
         $timeslotModel = new Opd_Timeslot();
 
         if (isset($_SESSION['success_message'])) {
             echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
             unset($_SESSION['success_message']);
+        }
+
+        $doctorType = $doctorModel->getDoctorTypeById($doctorId)[0]['type'];
+        if($doctorType != 'opd'){
+            redirect('drAvailability2');
         }
 
         // Handle POST request to save updated timeslots

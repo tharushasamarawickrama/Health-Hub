@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drPrescription.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drLabTests.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability.css?v=<?php echo time();?>">
-
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability2.css?v=<?php echo time();?>">
 </head>
 <body>
 

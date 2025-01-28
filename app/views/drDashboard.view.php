@@ -15,12 +15,20 @@ $numberOfAppointmentsToday = count($appointmentsToday);
 $currentAppointment = "#0002 - Mr.Kusal Perera";
 
 // Random values for appointments in past 4 time slots
-$pastAppointments = [
-    "10/11 8AM-11AM" => rand(5, 15),
-    "12/11 8AM-11AM" => rand(5, 15),
-    "13/11 8AM-11AM" => rand(5, 15),
-    "14/11 8AM-11AM" => rand(5, 15),
-];
+// $pastAppointments = [
+//     "10/11 8AM-11AM" => rand(5, 15),
+//     "12/11 8AM-11AM" => rand(5, 15),
+//     "13/11 8AM-11AM" => rand(5, 15),
+//     "14/11 8AM-11AM" => rand(5, 15),
+// ];
+
+// $pastAppointments = array_combine(
+//     array_column($pastAppointments, 'appointment_date'),
+//     array_column($pastAppointments, 'appointment_count')
+// );
+
+
+
 ?>
 
 <div class="dr-dashboard">
