@@ -76,14 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Clear all medications
     clearMedicationsButton.addEventListener('click', () => {
-        medicationsList.innerHTML = ''; // Clear the table body
+        if (confirm('Are you sure you want to clear all medications?')) {
+            medicationsList.innerHTML = '';
+        }
     });
 
     // Event delegation for dynamic elements
     medicationsList.addEventListener('click', (e) => {
         // Handle delete medication
         if (e.target.classList.contains('delete-medication')) {
-            e.target.closest('tr').remove();
+            if (confirm('Are you sure you want to delete this item?')) {
+                e.target.closest('tr').remove();
+            }
         }
 
         // Handle add sig code

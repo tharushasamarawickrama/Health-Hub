@@ -1,32 +1,20 @@
 <?php
 
+require_once "../app/core/Model.php";
 
-class Doctor {
+class Doctor
+{
     use Model;
 
-    protected $table = "doctors";
-
+    protected $table = "doctors"; // Database table name
     protected $Allowedcolumns = [
-        
-        'doctor_id',
-        'firstName',
-        'lastName',
-        'password',
-        'phoneNumber',
-        'email',
-        'specialization',
-        'gender',
-        'dob',
-        'slmcNo',
-        'nic',
-        'address',
-        'photo_path',
-        'created_at',
-        'profile_pic',
-        'experience',
-        'certifications',
-        'description'
-        
+        "slmcNo",
+        "description",
+        "experience",
+        "specialization",
+        "certifications",
+        "availability",
+        "type",
     ];
 
     public function findAlldata()
@@ -79,9 +67,9 @@ class Doctor {
 
     }
 
-    
-    
-    
+    public function getDoctorTypeById($doctor_id){
+        $query = "select type from $this->table where doctor_id = :doctor_id";
+        return $this->query($query, ['doctor_id' => $doctor_id]);
+    }
 
-    
 }

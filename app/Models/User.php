@@ -51,4 +51,10 @@ class User {
     return $this->query($query, $params);
 }
 
+public function getUserById($userId)
+    {
+        $sql = "SELECT * FROM users WHERE user_id = :user_id";
+        return $this->query($sql, ['user_id' => $userId])[0] ?? null;
+    }
+
 }

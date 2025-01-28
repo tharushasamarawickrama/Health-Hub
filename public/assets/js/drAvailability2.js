@@ -1,5 +1,6 @@
 let currentWeekIndex = 0;
-const maxSlots = 10;
+const maxSlots = 6;
+const maxSlotsPerWeek = 3;
 
 // Populate initial week and slots
 function initializeUniqueTimeslots() {
@@ -9,8 +10,8 @@ function initializeUniqueTimeslots() {
 
 // Update week range title
 function updateUniqueWeek() {
-    const weekStart = allDates[currentWeekIndex * 6];
-    const weekEnd = allDates[Math.min((currentWeekIndex + 1) * 6 - 1, allDates.length - 1)];
+    const weekStart = allDates[currentWeekIndex * 7];
+    const weekEnd = allDates[Math.min((currentWeekIndex + 1) * 7 - 1, allDates.length - 1)];
     document.getElementById("unique-week-range-title").textContent = `${weekStart} - ${weekEnd}`;
 }
 
@@ -19,8 +20,8 @@ function populateUniqueSlots() {
     const optionsContainer = document.getElementById("unique-options");
     optionsContainer.innerHTML = ""; // Clear previous slots
 
-    const weekStartIndex = currentWeekIndex * 6;
-    for (let i = weekStartIndex; i < weekStartIndex + 6 && i < allDates.length; i++) {
+    const weekStartIndex = currentWeekIndex * 7;
+    for (let i = weekStartIndex; i < weekStartIndex + 7 && i < allDates.length; i++) {
         const date = allDates[i];
         timeSlotsPerDay.forEach((time) => {
             const slotElement = document.createElement("button");
@@ -38,18 +39,36 @@ function populateUniqueSlots() {
 }
 
 // Toggle slot selection
+// Toggle slot selection
 function toggleUniqueSlot(date, time) {
+    // Determine the week index of the selected date
+    const slotWeekIndex = Math.floor(allDates.findIndex((d) => d === date) / 7);
+
+    // Count the number of selected slots in the same week
+    const selectedInWeek = selectedTimeslots.filter((s) => {
+        const weekIndex = Math.floor(allDates.findIndex((d) => d === s[0]) / 7);
+        return weekIndex === slotWeekIndex;
+    }).length;
+
+    // Check if the slot is already selected
     const slotIndex = selectedTimeslots.findIndex((s) => s[0] === date && s[1] === time);
+
     if (slotIndex !== -1) {
+        // If the slot is already selected, remove it
         selectedTimeslots.splice(slotIndex, 1);
-    } else if (selectedTimeslots.length < maxSlots) {
+    } else if (selectedTimeslots.length < maxSlots && selectedInWeek < maxSlotsPerWeek) {
+        // Add slot if it doesn't exceed overall or per-week limits
         selectedTimeslots.push([date, time]);
+    } else if (selectedInWeek >= maxSlotsPerWeek) {
+        alert(`You can only select up to ${maxSlotsPerWeek} slots per week.`);
     } else {
-        alert(`You can only select up to ${maxSlots} slots.`);
+        alert(`You can only select up to ${maxSlots} slots in total.`);
     }
+
     populateUniqueSlots();
     displayUniqueSelectedSlots();
 }
+
 
 // Display selected slots
 function displayUniqueSelectedSlots() {
@@ -101,7 +120,7 @@ function saveUniqueTimeslots() {
 function changeUniqueWeek(offset) {
     currentWeekIndex += offset;
     document.getElementById("unique-prev-week").disabled = currentWeekIndex === 0;
-    document.getElementById("unique-next-week").disabled = currentWeekIndex >= Math.floor(allDates.length / 6);
+    document.getElementById("unique-next-week").disabled = currentWeekIndex >= Math.floor(allDates.length / 7);
     updateUniqueWeek();
     populateUniqueSlots();
 }
