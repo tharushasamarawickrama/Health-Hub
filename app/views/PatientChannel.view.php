@@ -1,50 +1,35 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/Navbar.php' ?>
-<div class="PatientChannel-body">
-    <h1>Patient Details</h1>
-    <div class="PatientChannel-details">
-        <div class="PatientChannel-card-div">
-            <div class="PatientChannel-card">
-                <h2>Patient Details</h2>
-                <p class="PatientChannel-card-p"><strong>Name:</strong> Ashan Kavinda</p>
-                <p class="PatientChannel-card-p"><strong>NIC:</strong> 200221104405</p>
-                <p class="PatientChannel-card-p"><strong>Phone Number:</strong> 714596238</p>
-                <p class="PatientChannel-card-p"><strong>Email:</strong> ashan@gmail.com</p>
+<div class="ptc-div1">
+    <?php show($_SESSION['appointment']) ?>
+    <div class="ptc-div2">
+        <h1 class="ptc-div2-h1">Channel Details</h1>
+        <form method="POST">
+
+            <span class="ptc-div2-span">Patient's Name:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['p_firstName'] . " " . $_SESSION['appointment']['p_lastName'] ?></span></span>
+            <span class="ptc-div2-span">NIC:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['nic'] ?></span></span>
+            <span class="ptc-div2-span">Phone Number:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['phoneNumber'] ?></span></span>
+            <span class="ptc-div2-span">Email:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['email'] ?></span></span>
+            <span class="ptc-div2-span">Doctor's Name:<span class="ptc-div2-span2">Dr. <?php echo $data['firstName'] . " " . $data['lastName']; ?></span></span>
+            <span class="ptc-div2-span">Specialization:<span class="ptc-div2-span2"><?php echo $data['specialization']; ?></span></span>
+            <span class="ptc-div2-span">SLMC NO:<span class="ptc-div2-span2"><?php echo $data['slmcNo']; ?></span></span>
+            <span class="ptc-div2-span">Session Date:<span class="ptc-div2-span2"><?php echo $data['date']; ?></span></span>
+            <span class="ptc-div2-span">Session Time:<span class="ptc-div2-span2"><?php echo $data['start_time']; ?></span></span>
+            <span class="ptc-div2-span">appointment No:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['appointment_No']; ?></span></span>
+
+
+
+
+            <div class="ptc-div2-button-div">
+                
+                    <button type="button" class="ptc-div2-button" onclick="window.history.back()">Edit</button>
+                
+                <a href="<?php echo URLROOT; ?>/patientpaymentdetails">
+                    <button type="submit" name="confirmbtn" class="ptc-div2-button">Confirm</button>
+                </a>
+
             </div>
-        </div>
-
-        <div class="PatientChannel-card-div2">
-            <div class="PatientChannel-card">
-                <h2>Doctor Details</h2>
-                <p class="PatientChannel-card-d"><strong>Name:</strong> Dr. Abewardhane</p>
-                <p class="PatientChannel-card-d"><strong>Specialization:</strong> Gastrologist</p>
-                <p class="PatientChannel-card-d"><strong>MBBS No:</strong> MB-6523</p>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="patientchannel-card2-div">
-        <div class="PatientChannel-card2-div2">
-            <div class="PatientChannel-card">
-                <img src="<?php echo URLROOT; ?>assets/images/hospital.png" alt="Hospital" class="PatientChannel-hospital-icon">
-                <p class="PatientChannel-card-d"><strong>Session Date:</strong> 13 August 2024</p>
-                <p class="PatientChannel-card-d"><strong>Session Time:</strong> 5.30 P.M</p>
-                <p class="PatientChannel-card-d"><strong>Appointment No:</strong> 10</p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="PatientChannel-actions">
-        <a href="<?php echo URLROOT; ?>setappoinment">
-            <button class="btn_edit">Edit Details</button>
-        </a>
-
-        <a href="<?php echo URLROOT; ?>patientpaymentdetails">
-            <button class="btn_continue">Continue</button>
-        </a>
-
+        </form>
     </div>
 </div>
 

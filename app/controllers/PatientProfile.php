@@ -9,10 +9,112 @@ class PatientProfile{
                 $id = $_SESSION['user']['id'];
                 $user->delete($id);
                 session_destroy();
-                redirect('patientregister?id=1');
+                redirect('patientregister');
             }
+            $UpdatePatient = new User;
         
-        $this->view('patientprofile');
-    }
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['saveupdate'])) {
+                $data = [
+                    'Title' => $_POST['title'],
+                    'FirstName' => $_POST['firstName'],
+                    'LastName' => $_POST['lastName'],
+                    'Email' => $_POST['email'],
+                    'PhoneNumber' => $_POST['phoneNumber'],
+                    'NIC' => $_POST['nic'],
+                    'Gender' => $_POST['gender'],
+                    'Age' => $_POST['age'],
+                    'Address' => $_POST['address'],
+                ];
     
-}
+                // Handle profile image upload
+                if (isset($_FILES['ProfilePic']) && $_FILES['ProfilePic']['error'] == 0) {
+                    $target_dir = "profile-images/";
+                    if (!is_dir($target_dir)) {
+                        mkdir($target_dir, 0777, true); // Create directory if it doesn't exist
+                    }
+    
+                    $file_name = basename($_FILES['ProfilePic']['name']);
+                    $target_file = $target_dir . uniqid() . "_" . $file_name;
+    
+                    // Validate image type
+                    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                    $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+                    if (!in_array($file_type, $allowed_types)) {
+                        $_SESSION['error'] = "Only JPG, JPEG, PNG & GIF files are allowed.";
+                        $this->view('patientprofile', $data);
+                        return;
+                    }
+    
+                    // Check if the file is a valid image
+                    if (getimagesize($_FILES['ProfilePic']['tmp_name']) === false) {
+                        $_SESSION['error'] = "The selected file is not a valid image.";
+                        $this->view('patientprofile', $data);
+                        return;
+                    }
+    
+                    // Move the uploaded file to the target directory
+                    if (move_uploaded_file($_FILES['ProfilePic']['tmp_name'], $target_file)) {
+                        $data['photo_path'] = $target_file; // Add the file path to the $data array
+                    } else {
+                        $_SESSION['error'] = "Failed to upload the profile picture.";
+                        $this->view('patientprofile', $data);
+                        return;
+                    }
+                }
+    
+                // Get user ID from session and update data
+                $id = $_SESSION['user']['user_id'];
+                if ($UpdatePatient->update($id, $data,'user_id')) {
+                    $arr['user_id']=$id;
+                    $updateduser = $UpdatePatient->first($arr);
+                    $_SESSION['user'] = $updateduser;
+                    $_SESSION['success'] = "Profile updated successfully.";
+                    redirect('patientprofile');
+                } else {
+                    $_SESSION['error'] = "Failed to update profile.";
+                }
+            }
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['resetButton'])){
+                $data = [
+                    'Title' => '',
+                    'FirstName' => '',
+                    'LastName' => '',
+                    'Email' => '',
+                    'PhoneNumber' => '',
+                    'NIC' => '',
+                    'Gender' => '',
+                    'Age' => '',
+                    'Address' => '',
+                    'photo_path' => '',
+                ];
+
+                $id = $_SESSION['user']['user_id'];
+                if ($UpdatePatient->update($id, $data,'user_id')) {
+                    $arr['user_id']=$id;
+                    $updateduser = $UpdatePatient->first($arr);
+                    $_SESSION['user'] = $updateduser;
+                    $_SESSION['success'] = "Profile Reset successfully.";
+                    redirect('patientprofile');
+                } else {
+                    $_SESSION['error'] = "Failed to Reset profile.";
+                }
+
+            }
+            if (isset($_GET['action']) && $_GET['action'] === 'logout') {
+                // Unset all of the session variables
+                unset($_SESSION['user']);
+                unset($_SESSION['appointment_date']);
+                // Destroy the session
+                session_destroy();
+            
+                // Redirect to the login page or homepage
+                // header("Location: " . URLROOT . "/Prevlog");
+                redirect('/patientregister');
+            }
+    
+            // Reload the view with errors if any
+            $this->view('patientprofile');
+        }
+        }
+    

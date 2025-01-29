@@ -1,31 +1,20 @@
 <?php
 
+require_once "../app/core/Model.php";
 
-class Doctor {
+class Doctor
+{
     use Model;
 
-    protected $table = "doctors";
-
+    protected $table = "doctors"; // Database table name
     protected $Allowedcolumns = [
-        'doctor_id',
-        'firstName',
-        'lastName',
-        'password',
-        'phoneNumber',
-        'email',
-        'specialization',
-        'gender',
-        'dob',
-        'slmcNo',
-        'nic',
-        'address',
-        'photo_path',
-        'created_at',
-        'profile_pic',
-        'experience',
-        'certifications',
-        'description'
-        
+        "slmcNo",
+        "description",
+        "experience",
+        "specialization",
+        "certifications",
+        "availability",
+        "type",
     ];
 
     public function findAlldata()
@@ -43,23 +32,31 @@ class Doctor {
         if($arr['firstName'] == '' && $arr['lastName'] == '' && $arr['specialization'] == '') {
             return [];
         }
-        if($arr['firstName'] == '' && $arr['lastName'] == '') {
-            $query = "SELECT * FROM doctors WHERE specialization = :specialization";
+        if (empty($arr['firstName']) && empty($arr['lastName'])) {
+            $query = "SELECT * FROM doctors 
+                      JOIN users ON doctors.doctor_id = users.user_id 
+                      WHERE doctors.specialization = :specialization";
             $data = [
                 'specialization' => $arr['specialization']
             ];
             return $this->query($query, $data);
         }
-        if($arr['specialization'] == '') {
-            $query = "SELECT * FROM doctors WHERE firstName = :firstName OR lastName = :lastName";
+        if (empty($arr['specialization'])) {
+            $query = "SELECT * FROM doctors 
+                      JOIN users ON doctors.doctor_id = users.user_id 
+                      WHERE users.firstName = :firstName OR users.lastName = :lastName";
             $data = [
                 'firstName' => $arr['firstName'],
                 'lastName' => $arr['lastName']
             ];
             return $this->query($query, $data);
         }
-        if(!$arr['firstName'] == '' && !$arr['lastName'] == '' && !$arr['specialization'] == '') {
-            $query = "SELECT * FROM doctors WHERE firstName = :firstName AND lastName = :lastName AND specialization = :specialization";
+        if (!empty($arr['firstName']) && !empty($arr['lastName']) && !empty($arr['specialization'])) {
+            $query = "SELECT * FROM doctors 
+                      JOIN users ON doctors.doctor_id = users.user_id 
+                      WHERE users.firstName = :firstName 
+                      AND users.lastName = :lastName 
+                      AND doctors.specialization = :specialization";
             $data = [
                 'firstName' => $arr['firstName'],
                 'lastName' => $arr['lastName'],
@@ -70,9 +67,9 @@ class Doctor {
 
     }
 
-    
-    
-    
+    public function getDoctorTypeById($doctor_id){
+        $query = "select type from $this->table where doctor_id = :doctor_id";
+        return $this->query($query, ['doctor_id' => $doctor_id]);
+    }
 
-    
 }

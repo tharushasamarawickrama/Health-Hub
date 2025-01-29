@@ -5,22 +5,23 @@ require APPROOT . '/views/Components/drNavbar.php';
 // Define available times for each day
 $timeSlotsPerDay = [
     "8AM - 11AM",
-    "4PM - 7PM"
+    "4PM - 7PM",
+    "12PM - 2PM"
 ];
 
 // Generate the upcoming 12 days (two 6-day weeks)
 $allDates = [];
-for ($i = 0; $i < 12; $i++) {
+for ($i = 0; $i < 14; $i++) {
     $date = new DateTime();
     $date->modify("+$i day");
     $allDates[] = $date->format("d/m/Y");
 }
 
 // Initialize selected slots
-$fetchedTimeslots = [
-    ["2/12/2024", "8AM - 11AM"],
-    ["4/12/2024", "4PM - 7PM"]
-];
+// $fetchedTimeslots = [
+//     ["25/01/2025", "8AM - 11AM"],
+//     ["29/01/2025", "4PM - 7PM"]
+// ];
 ?>
 
 <div class="unique-availability-container">
@@ -68,6 +69,6 @@ $fetchedTimeslots = [
     const timeSlotsPerDay = <?php echo json_encode($timeSlotsPerDay); ?>;
     const selectedTimeslots = <?php echo json_encode($fetchedTimeslots); ?>;
 </script>
-<script src="<?php echo URLROOT; ?>assets/js/drAvailability2.js"></script>
+<script src="<?php echo URLROOT; ?>assets/js/drAvailability2.js?v=<?php echo time(); ?>"></script>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>

@@ -3,6 +3,7 @@ require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
 $doctorData = $doctorData ?? [];
+$userData = $userData ?? [];
 ?>
 
 <div class="dr-profile-content">
@@ -14,17 +15,14 @@ $doctorData = $doctorData ?? [];
         <!-- Profile Picture Form -->
         <form action="<?php echo URLROOT; ?>DrEditProfilePic" method="POST" enctype="multipart/form-data" class="profile-pic-form">
             <label for="profile-pic-upload" class="profile-pic-label">
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['profile_pic']) ? 'uploads/' . htmlspecialchars($doctorData['profile_pic']) : 'images/doctor.png'; ?>" 
-                    alt="Doctor Avatar" class="doctor-pic">
+                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>" 
+                     alt="Doctor Avatar" class="doctor-pic">
                 <div class="camera-overlay">
                     <img src="<?php echo URLROOT;?>assets/images/camera-icon.png" alt="Camera">
                 </div>
                 <input type="file" name="profile_pic" id="profile-pic-upload" class="profile-pic-input" style="display:none;" onchange="this.form.submit()">
             </label>
         </form>
-
-
-        
     </div>
 
     <div class="doctor-profile-container">
@@ -57,7 +55,7 @@ $doctorData = $doctorData ?? [];
                 <label for="experience"><strong>Experience:</strong></label>
                 <input type="text" name="experience" id="experience" class="form-control" value="<?php echo htmlspecialchars($doctorData['experience']); ?>">
 
-                <label for="specialization"><strong>Specialization:</strong></label>
+                <label for="specialties"><strong>Specialization:</strong></label>
                 <input type="text" name="specialization" id="specialization" class="form-control" value="<?php echo htmlspecialchars($doctorData['specialization'] ?? ''); ?>">
 
                 <label for="certifications"><strong>Certifications:</strong></label>

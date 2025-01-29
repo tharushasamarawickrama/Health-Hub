@@ -5,9 +5,9 @@ require APPROOT . '/views/Components/drNavbar.php';
 // Fetch doctor's data from the database (example data here)
 // $doctorData = [
 //     "name" => "Dr. R. S. Peiris",
-//     "description" => "Dr. Peiris is a highly experienced physician with over 5 years of practice in providing exceptional medical care. He is deeply committed to the well-being and health of his patients, offering comprehensive care across various medical specialization. Dr. Peiris is skilled in diagnosing and treating a wide range of conditions, ensuring that each patient receives personalized and effective care.",
+//     "description" => "Dr. Peiris is a highly experienced physician with over 5 years of practice in providing exceptional medical care. He is deeply committed to the well-being and health of his patients, offering comprehensive care across various medical specialties. Dr. Peiris is skilled in diagnosing and treating a wide range of conditions, ensuring that each patient receives personalized and effective care.",
 //     "experience" => "5+ years of medical practice",
-//     "specialization" => [
+//     "specialties" => [
 //         "General Medicine", 
 //         "Family Medicine", 
 //         "Preventive Care", 
@@ -26,17 +26,13 @@ require APPROOT . '/views/Components/drNavbar.php';
 // ];
 
 $doctorData = $doctorData ?? [];
-
-if (isset($_SESSION['success_message'])) {
-    echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
-    unset($_SESSION['success_message']);
-}
+$userData = $userData ?? [];
 ?>
 
 <div class="dr-profile-content">
             <div class="doctor-header">
                 <a href="<?php echo URLROOT; ?>drDashboard" class="profile-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['profile_pic']) ? 'uploads/' . htmlspecialchars($doctorData['profile_pic']) : 'images/doctor.png'; ?>" class="doctor-pic">
+                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>" class="doctor-pic">
                 <h1>Dr. <?php echo $userData['firstName'] . ' ' . $userData['lastName']; ?></h1>
             </div>
         <div class="doctor-profile-container">

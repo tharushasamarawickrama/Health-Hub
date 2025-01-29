@@ -49,8 +49,8 @@
     line-height: 1.6;
 }
 
-.appointment-details {
-    color: #000000;
+.appointment-details a {
+    color: #007bff;
     text-decoration: none;
 }
 
