@@ -71,7 +71,7 @@ $currentAppointment = "#0002 - Mr.Kusal Perera";
         <!-- Right Section -->
         <div class="right-section">
             <div class="appointments-chart">
-                <h3>Appointments in the Past 4 Slots</h3>
+                <h3>Appointments in the Past Few Slots</h3>
                 <canvas id="appointmentsChart"></canvas>
             </div>
         </div>

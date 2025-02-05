@@ -5,26 +5,26 @@ require APPROOT . '/views/Components/drNavbar.php';
 // Define available times for each day
 $timeSlotsPerDay = [
     "8AM - 11AM",
-    "4PM - 7PM",
-    "12PM - 2PM"
+    "1PM - 4PM",
+    "4PM - 7PM"
 ];
 
-// Generate the upcoming 12 days (two 6-day weeks)
+// Generate the next 14 days from this Monday
 $allDates = [];
 for ($i = 0; $i < 14; $i++) {
-    $date = new DateTime();
+    $date = clone $startDate;
     $date->modify("+$i day");
     $allDates[] = $date->format("d/m/Y");
 }
 
-// Initialize selected slots
-// $fetchedTimeslots = [
-//     ["25/01/2025", "8AM - 11AM"],
-//     ["29/01/2025", "4PM - 7PM"]
-// ];
 ?>
 
 <div class="unique-availability-container">
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-message">
+        <img src="<?php echo URLROOT; ?>assets/images/check-green.png" alt="Success" class="toast-icon"> 
+        <span id="toast-text"></span>
+    </div>
     <div class="unique-availability-header">
         <a href="<?php echo URLROOT; ?>drDashboard" class="unique-back-arrow">
             <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
@@ -48,8 +48,11 @@ for ($i = 0; $i < 14; $i++) {
                 <?php endif; ?>
             </div>
             <div class="unique-actions">
-                <button class="unique-clear-btn" onclick="clearUniqueTimeslots()">Clear</button>
-                <button class="unique-save-btn" onclick="saveUniqueTimeslots()">Save</button>
+                <form id="unique-timeslot-form" method="POST" action="<?php echo URLROOT?>drAvailability2">
+                    <input type="hidden" name="selectedTimeslots" id="selectedTimeslotsInput">
+                    <button type="button" class="unique-clear-btn" onclick="clearUniqueTimeslots()">Clear</button>
+                    <button type="submit" class="unique-save-btn" onclick="saveUniqueTimeslots()">Save</button>
+                </form>
             </div>
         </div>
 
@@ -65,10 +68,13 @@ for ($i = 0; $i < 14; $i++) {
     </div>
 </div>
 <script>
+    var successMessage = "<?= $_SESSION['success_message'] ?? '' ?>";
     const allDates = <?php echo json_encode($allDates); ?>;
     const timeSlotsPerDay = <?php echo json_encode($timeSlotsPerDay); ?>;
     const selectedTimeslots = <?php echo json_encode($fetchedTimeslots); ?>;
+    const occupiedTimeslots = <?php echo json_encode($occupiedTimeslots); ?>;
 </script>
 <script src="<?php echo URLROOT; ?>js/drAvailability2.js?v=<?php echo time(); ?>"></script>
+<?php unset($_SESSION['success_message']); ?>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>
