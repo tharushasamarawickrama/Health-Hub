@@ -9,6 +9,7 @@ class Doctor
     protected $table = "doctors"; // Database table name
     protected $Allowedcolumns = [
         "slmcNo",
+        "doctor_id",
         "description",
         "experience",
         "specialization",
@@ -20,7 +21,10 @@ class Doctor
     public function findAlldata()
     {
 
-        $query = "select * from $this->table ";
+        $query = "SELECT u.*, d.*
+FROM users u
+INNER JOIN doctors d ON u.user_id = d.doctor_id;
+";
 
         return $this->query($query);
     }

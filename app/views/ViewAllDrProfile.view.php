@@ -1,6 +1,7 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
 <div class="ViewProfile-body">
+    <!-- <?php show($data) ?> -->
     <div class="ViewProfile-container">
             <h1>Doctors List</h1>
             <?php foreach ($data as $doctor): ?>

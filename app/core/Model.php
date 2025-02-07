@@ -72,7 +72,6 @@ trait Model
     }
     public function update($id, $data, $id_column = 'id')
     {
-
         if (!empty($this->Allowedcolumns)) {
             foreach ($data as $key => $value) {
                 if (!in_array($key, $this->Allowedcolumns)) {
@@ -81,17 +80,16 @@ trait Model
             }
         }
         $keys = array_keys($data);
-
+        
         $query = "update $this->table set ";
         foreach ($keys as $key) {
             $query .= $key . " = :" . $key . ", ";
         }
-
-
+        
+        
         $query = trim($query, ", ");
         $query .= " where $id_column = :$id_column";
         $data[$id_column] = $id;
-
         $this->query($query, $data);
         return true;
     }

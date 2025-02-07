@@ -5,7 +5,7 @@
         <div class="DrProfiledetails-profile-header">
             <h1>Doctor Profile</h1>
            
-          
+          <!-- <?php show($data) ?> -->
         </div>
         <form class="DrProfiledetails-profile-details-form">
             <div class="DrProfiledetails-profile-div">

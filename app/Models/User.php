@@ -7,16 +7,17 @@ class User {
     protected $table = "users";
 
     protected $Allowedcolumns = [
-        'Title',
-        'FirstName',
-        'LastName',
-        'Email',
-        'PhoneNumber',
-        'Gender',
-        'NIC',
-        'Password',
-        'Address',
-        'Age',
+        'user_id',
+        'title',
+        'firstName',
+        'lastName',
+        'email',
+        'phoneNumber',
+        'gender',
+        'nic',
+        'password',
+        'address',
+        'age',
         'photo_path',
         'user_role'
     ];

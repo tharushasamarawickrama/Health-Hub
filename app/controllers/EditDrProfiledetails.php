@@ -7,8 +7,12 @@ class EditDrProfiledetails
     {
         $id = $_GET['id'];
         $doctor = new Doctor;
+        $user = new User;
         $arr['doctor_id'] = $id;
-        $data = $doctor->first($arr);
+        $arr2['user_id'] = $id;
+        $data1 = $doctor->first($arr);
+        $data2 = $user->first($arr2);
+        $data = array_merge($data1, $data2);
         if (!$data) {
             
             $this->view('EditDrProfiledetails');
@@ -32,7 +36,7 @@ class EditDrProfiledetails
                 
             ];
 
-            print_r($_FILES);
+            // show($data);
             if(isset($_FILES['photo_path']) && $_FILES['photo_path']['error'] == 0){
                     $target_dir = "profile-Photos/";
                 if(!is_dir($target_dir)){
@@ -58,11 +62,12 @@ class EditDrProfiledetails
                         return;
                     }}
             // print_r($doctor->update($id, $data, 'doctor_id'));
-            
-            $result=$doctor->update($id, $data, 'doctor_id');
+            // show($data);
+            $result=$user->update($id, $data,'user_id');
+                    echo $result;
             if ($result) {
                 redirect('DrProfiledetails', $id);  
-                exit(); // Always add exit after redirecting
+                // exit(); // Always add exit after redirecting
             } 
             else {
                 echo "Update failed.";
