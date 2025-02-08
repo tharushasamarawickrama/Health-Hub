@@ -1,8 +1,4 @@
 .dr-view-appointments-container {
-    background-image: url("../../../assets/images/background.png");
-    background-repeat: repeat;
-    background-size: 100vh;
-    background-position: top left;
     font-family: 'Poppins', sans-serif;
     margin: auto;
     min-height:95vh;

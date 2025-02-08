@@ -7,3 +7,8 @@
     font-family: 'Handlee';
     src: url("../../assets/fonts/Handlee.ttf") format('truetype');
 }
+
+@font-face {
+    font-family: 'Nunito';
+    src: url("../../assets/fonts/Nunito-Regular.ttf") format('truetype');
+}
