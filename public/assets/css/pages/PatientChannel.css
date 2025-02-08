@@ -1,0 +1,51 @@
+.ptc-div1 {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh; 
+    background-color: #f0f0f0; 
+}
+
+.ptc-div2 {
+    width: 500px; 
+    height: 600px; 
+    background-color: white; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
+}
+.ptc-div2-h1{
+    text-align: center; 
+    padding: 10px 0; 
+    border-bottom: 1px solid #f0f0f0; 
+    margin-bottom: 20px; 
+    font-size: 30px; 
+    color: #333;
+}
+.ptc-div2-span{
+    font-size: 20px; 
+    color: #333; 
+    margin-bottom: 10px; 
+    display: block;
+    margin-left: 10px;
+}
+.ptc-div2-span2{
+    margin-left: 20px;
+}
+.ptc-div2-button{
+    width: 120px;
+    height: 39.65px;
+    background-color: rgba(0, 87, 164, 1);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+.ptc-div2-button-div{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}

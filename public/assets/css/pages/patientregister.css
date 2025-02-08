@@ -137,6 +137,7 @@
 }
 
 .regbutton{
+<<<<<<< HEAD
     width: 100px;
     height: 50px;
     border-radius: 10px;
@@ -145,6 +146,13 @@
     background-color: #2169e5;
     color: white;
     font-size: 20px;
+=======
+    width: 160px;
+    height: 42.35px;
+    background-color: rgba(0, 87, 164, 1);
+    color: white;
+    border-radius: 10px;
+>>>>>>> dev
     border: none;
 }
 
@@ -323,5 +331,9 @@
 .maindiv{
     display: flex;
     margin-top: 20px;
+<<<<<<< HEAD
     background-image: url(../../images/background.png);
+=======
+    
+>>>>>>> dev
 }

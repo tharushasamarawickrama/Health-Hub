@@ -1,0 +1,81 @@
+
+
+.frame{
+    width: 306.19px;
+    background-color: white;
+    margin: 20px;
+    padding: 20px; /* Adds padding inside the card for spacing */
+    border-radius: 10px; /* Optional: Rounds corners for aesthetics */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures all content is centered */
+    box-sizing: border-box; /* Includes padding in the size calculation */
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); /* Adds shadow to the card */
+    
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.doctorpic{
+    width: 96.86px;
+    height: 96.86px;
+    margin-top: 20px;
+    border-radius: 50%;
+}
+
+.doctorname{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(59, 100, 126, 1);
+    display: flex;
+    justify-content: center;
+    text-align: center; /* Aligns text centrally */
+    margin-top: -50px;
+    padding: 0 10px; /* Adds some spacing around text */
+    word-wrap: break-word; /* Ensures long words break into a new line */
+    overflow-wrap: break-word; /* Supports all modern browsers for breaking */
+    white-space: normal; /* Allows text to wrap to the next line */
+}
+
+.gender{
+    font-size: 12px;
+    color: rgba(163, 163, 163, 1);
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.specialization{
+    font-size: 12px;
+    color: rgba(163, 163, 163, 1);
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.channelbutton{
+    width: 271.61px;
+    height: 39.65px;
+    background-color: rgba(0, 87, 164, 1);
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+.viewbutton{
+    width: 271.61px;
+    height: 39.65px;
+    background-color: rgba(0, 87, 164, 1);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+.pt-button-div{
+    align-items: center;
+}

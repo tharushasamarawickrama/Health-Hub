@@ -10,10 +10,10 @@ trait Model
     protected $order_column = "id";
     public $errors = [];
 
-    public function findAll($order_column)
+    public function findAll()
     {
 
-        $query = "select * from $this->table order by $order_column $this->order_type limit $this->limit offset $this->offset";
+        $query = "select * from $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 
         return $this->query($query);
     }

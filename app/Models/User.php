@@ -7,16 +7,18 @@ class User {
     protected $table = "users";
 
     protected $Allowedcolumns = [
-        "title",
-        "firstName",
-        "lastName",
-        "gender",
-        "dob",
-        "nic",
-        "address",
-        "photo_path",
-        "phoneNumber",
-        "email"
+        'Title',
+        'FirstName',
+        'LastName',
+        'Email',
+        'PhoneNumber',
+        'Gender',
+        'NIC',
+        'Password',
+        'Address',
+        'Age',
+        'photo_path',
+        'user_role'
     ];
 
     // public function validate($data){
@@ -35,7 +37,21 @@ class User {
     //     return false;
     // }
 
-    public function getUserById($userId)
+    public function updatePhotoPath($id, $photoPath)
+{
+    // Build the query to update only the photo_path field
+    $query = "UPDATE {$this->table} SET photo_path = :photo_path WHERE id = :id";
+
+    // Execute the query with parameters
+    $params = [
+        'photo_path' => $photoPath,
+        'id' => $id,
+    ];
+
+    return $this->query($query, $params);
+}
+
+public function getUserById($userId)
     {
         $sql = "SELECT * FROM users WHERE user_id = :user_id";
         return $this->query($sql, ['user_id' => $userId])[0] ?? null;
