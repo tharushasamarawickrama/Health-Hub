@@ -40,7 +40,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <a href="<?php echo URLROOT; ?>drAvailability" class="drNavitems <?php echo $current_page == 'drAvailability' ? 'active' : ''; ?>">Update Availability</a>
     <a href="<?php echo URLROOT; ?>drViewAppointments" class="drNavitems <?php echo $current_page == 'drViewAppointments' ? 'active' : ''; ?>">View Appointments</a>
 
-    <<div class="dr-profile-dropdown">
+    <div class="dr-profile-dropdown">
         <a onclick="toggleDropdown()" class="dr-profile-link">
             <?php if(isset($_SESSION['user'])): ?>
                 <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($_SESSION['user']['profile_pic']) ? 'uploads/' . htmlspecialchars($_SESSION['user']['profile_pic']) : 'images/doctor.png'; ?>"  class="drloginlogo">

@@ -57,8 +57,8 @@ class DrDashboard
                 // Format date (remove leading zeros in day/month)
                 $date = date("j/n/y", strtotime($schedule["date"]));
                 // Format start and end times
-                $startTime = date("g:i", strtotime($schedule["start_time"]));
-                $endTime = date("g:i", strtotime($schedule["end_time"]));
+                $startTime = date("gA", strtotime($schedule["start_time"]));
+                $endTime = date("gA", strtotime($schedule["end_time"]));
                 // Combine into key and assign filled slots as value
                 $key = "$date | $startTime-$endTime";
                 $pastAppointments[$key] = $schedule["filled_slots"];

@@ -137,11 +137,14 @@
 }
 
 .regbutton{
-    width: 160px;
-    height: 42.35px;
-    background-color: rgba(0, 87, 164, 1);
-    color: white;
+    width: 100px;
+    height: 50px;
     border-radius: 10px;
+    margin-left: 30px;
+    margin-top: 18px;
+    background-color: #2169e5;
+    color: white;
+    font-size: 20px;
     border: none;
 }
 
@@ -320,5 +323,5 @@
 .maindiv{
     display: flex;
     margin-top: 20px;
-    
+    background-image: url(../../images/background.png);
 }

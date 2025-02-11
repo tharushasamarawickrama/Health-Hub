@@ -70,6 +70,6 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
         return $test['labtest_name'];
     }, $fetchedLabTests)); ?>
 </script>
-<script src="<?php echo URLROOT; ?>assets/js/drLabTests.js"></script>
+<script src="<?php echo URLROOT; ?>js/drLabTests.js"></script>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>

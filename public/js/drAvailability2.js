@@ -2,6 +2,24 @@ let currentWeekIndex = 0;
 const maxSlots = 6;
 const maxSlotsPerWeek = 3;
 
+document.addEventListener("DOMContentLoaded", function () {
+    if (successMessage.trim() !== "") {
+        showToast(successMessage);
+    }
+});
+
+function showToast(message) {
+    var toast = document.getElementById("toast");
+    var toastText = document.getElementById("toast-text");
+    toastText.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(function () {
+        toast.classList.remove("show");
+    }, 3000); // Hide after 3 seconds
+}
+
+
 // Populate initial week and slots
 function initializeUniqueTimeslots() {
     updateUniqueWeek();
@@ -21,24 +39,42 @@ function populateUniqueSlots() {
     optionsContainer.innerHTML = ""; // Clear previous slots
 
     const weekStartIndex = currentWeekIndex * 7;
+    const today = new Date(); // Get today's date
+    today.setHours(0, 0, 0, 0); // Normalize time for comparison
+
+    // Ensure occupiedTimeslots is an array (handle null/undefined cases)
+    const occupiedSlots = Array.isArray(occupiedTimeslots) ? occupiedTimeslots : [];
+
     for (let i = weekStartIndex; i < weekStartIndex + 7 && i < allDates.length; i++) {
-        const date = allDates[i];
+        const dateStr = allDates[i]; // e.g., "05/02/2025"
+        const dateParts = dateStr.split('/'); // Assuming format is "dd/mm/yyyy"
+        const dateObj = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]); // Convert to Date object
+
         timeSlotsPerDay.forEach((time) => {
             const slotElement = document.createElement("button");
             slotElement.className = "unique-slot-btn";
-            slotElement.textContent = `${date} ${time}`;
-            slotElement.onclick = () => toggleUniqueSlot(date, time);
+
+            // Check if the slot is occupied or in the past
+            const isDisabled = occupiedSlots.some(slot => slot.date === dateStr && slot.time === time) || dateObj <= today;
+            if (isDisabled) {
+                slotElement.classList.add("disabled");
+            }
+
+            slotElement.textContent = `${dateStr} ${time}`;
+            slotElement.onclick = () => toggleUniqueSlot(dateStr, time);
 
             // Check if slot is already selected
-            if (selectedTimeslots.some((s) => s[0] === date && s[1] === time)) {
+            if (selectedTimeslots.some((s) => s[0] === dateStr && s[1] === time)) {
                 slotElement.classList.add("selected");
             }
+
             optionsContainer.appendChild(slotElement);
         });
     }
 }
 
-// Toggle slot selection
+
+
 // Toggle slot selection
 function toggleUniqueSlot(date, time) {
     // Determine the week index of the selected date
@@ -108,12 +144,16 @@ function removeUniqueTimeslot(date, time) {
 function clearUniqueTimeslots() {
     selectedTimeslots.length = 0;
     displayUniqueSelectedSlots();
-    populateUniqueSlots();
+    //populateUniqueSlots();
 }
 
 // Save slots (stub for back-end integration)
 function saveUniqueTimeslots() {
-    alert("Slots saved: " + JSON.stringify(selectedTimeslots));
+    // Set the value of the hidden input field to send to the backend
+    const hiddenInput = document.getElementById("selectedTimeslotsInput");
+    hiddenInput.value = JSON.stringify(selectedTimeslots);
+    document.getElementById("unique-timeslot-form").submit();
+    // alert("Slots saved: " + hiddenInput.value);
 }
 
 // Change week

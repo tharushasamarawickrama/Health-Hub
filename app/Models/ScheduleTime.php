@@ -45,4 +45,22 @@ class ScheduleTime{
             'date' => $today,
         ]);
     }
+
+    public function getOccupiedSlots($doctor_id, $start_date, $end_date){
+        $query = "SELECT date, start_time, end_time
+                  FROM $this->table 
+                  WHERE date >= :start_date AND date <= :end_date AND doctor_id != :doctor_id
+                  GROUP BY date, start_time, end_time
+                  HAVING COUNT(schedule_id) = 3";  // Only fetch sets where count is 3
+                  
+        return $this->query($query, ['start_date' => $start_date, 'end_date' => $end_date, 'doctor_id' => $doctor_id]);
+    }
+
+    public function deleteBeforeUpdate($doctor_id, $start_date, $end_date){
+        $query = "DELETE FROM $this->table 
+                  WHERE doctor_id = :doctor_id AND date >= :start_date AND date <= :end_date";
+
+        return $this->query($query, ['doctor_id' => $doctor_id,'start_date' => $start_date, 'end_date' => $end_date]);
+    }
+    
 }

@@ -188,4 +188,4 @@ require APPROOT . '/views/Components/drNavbar.php';
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>
-<script src="<?php echo URLROOT; ?>assets/js/drMedicalHistory.js?v=<?php echo time(); ?>"></script>
+<script src="<?php echo URLROOT; ?>js/drMedicalHistory.js?v=<?php echo time(); ?>"></script>

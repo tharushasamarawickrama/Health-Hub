@@ -144,5 +144,5 @@ require APPROOT . '/views/Components/drNavbar.php';
     </form>
 </div>
 
-<script src="<?php echo URLROOT; ?>assets/js/drEditPrescription.js?v=<?php echo time();?>"></script>
+<script src="<?php echo URLROOT; ?>js/drEditPrescription.js?v=<?php echo time();?>"></script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
