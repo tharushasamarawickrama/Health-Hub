@@ -14,21 +14,32 @@ class Appointment_Labtest
         'labtest_pdfname',
     ];
 
-    public function getLabTestsByAppointmentId($appointmentId){
+    public function getLabTestNamesByAppointmentId($appointmentId)
+    {
         $sql = "SELECT lt.labtest_name 
             FROM {$this->table} alt
             INNER JOIN labtests lt ON alt.labtest_id = lt.labtest_id
             WHERE alt.appointment_id = :appointment_id";
-        return $this->query($sql, ['appointment_id' => $appointmentId] );
+        return $this->query($sql, ['appointment_id' => $appointmentId]);
     }
 
-    // public function insertLabTest($appointmentId, $testName) {
-    //     $sql = "INSERT INTO appointment_labtest (appointment_id, labtest_name) VALUES (:appointment_id, :labtest_name)";
-    //     $this->query($sql);
-    //     $this->bind(':appointment_id', $appointmentId);
-    //     $this->bind(':labtest_name', $testName);
-    //     $this->execute();
-    // }
-    
+    public function updateLabTestsForAppointment($appointmentId, $newLabTestIds)
+    {
+        $deleteSql = "DELETE FROM appointment_labtest WHERE appointment_id = :appointment_id";
 
+        $deleteResult = $this->query($deleteSql, ['appointment_id' => $appointmentId]);
+        if (!$deleteResult) {
+            return false;
+        }
+
+        $insertSql = "INSERT INTO appointment_labtest (appointment_id, labtest_id) VALUES (:appointment_id, :labtest_id)";
+        foreach ($newLabTestIds as $labtestId) {
+            $insertResult = $this->query($insertSql, ['appointment_id' => $appointmentId, 'labtest_id' => $labtestId]);
+            if (!$insertResult) {
+                return false;
+            }
+        }
+
+        return true; // Return success
+    }
 }

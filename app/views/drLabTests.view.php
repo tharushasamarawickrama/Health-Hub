@@ -13,10 +13,16 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
         <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
     </a>
 
-    <div class="labtests-container">
-        <h2>Lab Tests</h2>
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab-link active" onclick="switchTab(event, 'order-tests')">Order Lab Test</button>
+            <button class="tab-link" onclick="switchTab(event, 'lab-reports')">Lab Reports</button>
+        </div>
 
-        <!-- Display Selected Lab Tests -->
+        <!-- Order Lab Tests Section (Unchanged) -->
+        <div id="order-tests" class="tab-content active">
+            <h3>Order Lab Test</h3>
+            <!-- Display Selected Lab Tests -->
         <div id="selected-tests" class="lab-tests-display">
             <?php if (!empty($fetchedLabTests)): ?>
                 <?php foreach ($fetchedLabTests as $test): ?>
@@ -58,9 +64,29 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
             <?php endforeach; ?>
         </div>
 
-        <div class="labtest-actions">
-            <button class="labtest-button" onclick="clearTests()">Clear</button>
-            <button class="labtest-button" onclick="saveTests()">Save</button>
+            <div class="labtest-actions">
+                <button class="labtest-button" onclick="clearTests()">Clear</button>
+                <button class="labtest-button" onclick="saveTests()">Save</button>
+            </div>
+        </div>
+
+        <!-- Lab Reports Section -->
+        <div id="lab-reports" class="tab-content">
+            <h3>Lab Reports</h3>
+            <div class="lab-report-list">
+                <div class="lab-report-item">
+                    <p>Blood Test Report</p>
+                    <button class="view-report-btn">View</button>
+                </div>
+                <div class="lab-report-item">
+                    <p>X-Ray Report</p>
+                    <button class="view-report-btn">View</button>
+                </div>
+                <div class="lab-report-item">
+                    <p>ECG Report</p>
+                    <button class="view-report-btn">View</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -70,6 +96,6 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
         return $test['labtest_name'];
     }, $fetchedLabTests)); ?>
 </script>
-<script src="<?php echo URLROOT; ?>js/drLabTests.js"></script>
+<script src="<?php echo URLROOT; ?>js/drLabTests.js?v=<?php echo time(); ?>"></script>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>

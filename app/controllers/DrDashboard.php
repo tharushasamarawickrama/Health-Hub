@@ -41,10 +41,12 @@ class DrDashboard
             $pastAppointments = $appointmentModel->getLimitedPastAppointments($doctorId);
             // var_dump($pastAppointments);
             // exit();
-            $pastAppointments = array_combine(
-                array_column($pastAppointments, 'appointment_date'),
-                array_column($pastAppointments, 'appointment_count')
-            );
+            if($pastAppointments){
+                $pastAppointments = array_reverse(array_combine(
+                    array_column($pastAppointments, 'appointment_date'),
+                    array_column($pastAppointments, 'appointment_count')
+                ));
+            }
         }
         elseif($doctorType == 'regular'){
             $ScheduleTimeModel = new ScheduleTime();
@@ -53,15 +55,17 @@ class DrDashboard
             // var_dump($schedules);
             // exit();
 
-            foreach ($schedules as $schedule) {
-                // Format date (remove leading zeros in day/month)
-                $date = date("j/n/y", strtotime($schedule["date"]));
-                // Format start and end times
-                $startTime = date("gA", strtotime($schedule["start_time"]));
-                $endTime = date("gA", strtotime($schedule["end_time"]));
-                // Combine into key and assign filled slots as value
-                $key = "$date | $startTime-$endTime";
-                $pastAppointments[$key] = $schedule["filled_slots"];
+            if($schedules){
+                foreach ($schedules as $schedule) {
+                    // Format date (remove leading zeros in day/month)
+                    $date = date("j/n/y", strtotime($schedule["date"]));
+                    // Format start and end times
+                    $startTime = date("gA", strtotime($schedule["start_time"]));
+                    $endTime = date("gA", strtotime($schedule["end_time"]));
+                    // Combine into key and assign filled slots as value
+                    $key = "$date | $startTime-$endTime";
+                    $pastAppointments[$key] = $schedule["filled_slots"];
+                }
             }
         }
         
@@ -70,7 +74,7 @@ class DrDashboard
         // Load the view and pass the data
         $this->view('drDashboard',[
             'appointmentsToday' => $appointmentsToday,
-            'pastAppointments' => array_reverse($pastAppointments)
+            'pastAppointments' => $pastAppointments
         ]);
     }
 }
