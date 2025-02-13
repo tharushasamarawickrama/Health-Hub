@@ -19,6 +19,7 @@ class Appointment {
         'appointment_date',
         'appointment_time',
         'status',
+        'payment_status',
         'add_service',
         'created_at',
         'updated_at',
