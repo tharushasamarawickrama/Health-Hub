@@ -1,9 +1,5 @@
 <?php
 
-trait Database{
-    private function connect(){
-        $string = "mysql:hostname=".DBHOST.";dbname=".DBNAME;
-        $con = new PDO($string,DBUSER,DBPASS);
 trait Database
 {
     private function connect()
