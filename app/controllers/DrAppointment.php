@@ -17,7 +17,7 @@ class DrAppointment
         $userModel = new User();
 
         // Fetch the appointment details by ID
-        $appointment = $appointmentModel->getPatientByAppointmentId($appointmentId);
+        $appointment = $appointmentModel->getPatientAndDateByAppointmentId($appointmentId);
 
         if (!$appointment) {
             redirect('drViewAppointments');

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const editButton = document.getElementById('edit-btn');
     const saveButton = document.getElementById('save-btn');
+    const cancelButton = document.getElementById('cancel-btn');
     const container = document.querySelector('.medical-history-container');
     const addItemButtons = document.querySelectorAll('.add-item-button');
     const deleteItemButtons = document.querySelectorAll('.delete-item-button');
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         container.classList.add('editing');
         editButton.hidden = true;
         saveButton.hidden = false;
+        cancelButton.hidden = false;
 
         // Show add-item buttons in edit mode
         addItemButtons.forEach(button => (button.style.display = 'block'));

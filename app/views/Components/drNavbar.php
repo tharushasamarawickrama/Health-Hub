@@ -49,7 +49,10 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <div class="dr-profile-dropdown">
         <a onclick="toggleDropdown()" class="dr-profile-link">
             <?php if(isset($_SESSION['user'])): ?>
-                <img src="<?php echo URLROOT; ?>assets/<?php echo !empty($_SESSION['user']['profile_pic']) ? 'uploads/' . htmlspecialchars($_SESSION['user']['profile_pic']) : 'images/doctor.png'; ?>"  class="drloginlogo">
+                <img 
+                src="<?php echo URLROOT; ?>assets/<?php echo !empty($_SESSION['user']['photo_path']) ? htmlspecialchars($_SESSION['user']['photo_path']) : 'images/doctor.png'; ?>" 
+                class="drloginlogo"
+                >
                 <span class="drlogin"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></span>
             <?php else: ?>
                 <img src="<?php echo URLROOT; ?>assets/images/loginlogo.jpg"  class="drloginlogo">

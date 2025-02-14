@@ -1,5 +1,5 @@
 .dr-profile-content {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     margin-top: 60px;
     padding-left: 50px;
     padding-top: 50px;
@@ -65,7 +65,7 @@
 
 .doctor-profile-container {
     width: 50%;
-    padding: 40px;
+    padding: 20px 40px 60px 40px;
     border: 2px solid #d2e7ec;
     border-radius: 10px;
     background-color: #CDE1E5;
@@ -116,12 +116,33 @@
     transition: ease 0.4s;
 }
 
-.dr-profile-btn:hover{
+.dr-profile-btn:hover, .dr-profile-save-btn:hover, .dr-profile-cancel-btn:hover{
     background-color: #7cabb5;
 }
 
+.dr-profile-actions{
+    position: absolute;
+    width: 50%;
+    margin-top: 10px;
+}
+
+.dr-profile-save-btn, .dr-profile-cancel-btn{
+    font-family: Nunito, sans-serif;
+    border-radius: 10px;
+    background-color: #CDE1E5;
+    border: 1px solid black;
+    cursor: pointer;
+    position: absolute;
+    padding: 10px 15px;
+    transition: ease 0.4s;
+}
+
+.dr-profile-save-btn{
+    right: 20px;
+}
+
 .doctor-profile-container input[readonly], .doctor-description textarea[readonly] {
-    font-family: 'Poppins';
+    font-family: 'Nunito';
     width: 100%;
     background-color: #CDE1E5;
     border: none;
@@ -131,7 +152,7 @@
 .doctor-profile-container input:not([readonly]), .doctor-description textarea:not([readonly]) {
     padding: 5px;
     width: 100%;
-    font-family: 'Poppins';
+    font-family: 'Nunito';
     border-radius: 10px;
     background-color: #cad4e2;
     border: 0.5px solid #4e4d4d5c;

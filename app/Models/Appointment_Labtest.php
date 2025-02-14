@@ -42,4 +42,13 @@ class Appointment_Labtest
 
         return true; // Return success
     }
+
+    public function getLabReportDetailsByAppointmentId($appointmentId)
+    {
+        $sql = "SELECT lt.labtest_name, alt.labtest_report
+            FROM {$this->table} alt
+            INNER JOIN labtests lt ON alt.labtest_id = lt.labtest_id
+            WHERE alt.appointment_id = :appointment_id";
+        return $this->query($sql, ['appointment_id' => $appointmentId]);
+    }
 }

@@ -74,18 +74,18 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
         <div id="lab-reports" class="tab-content">
             <h3>Lab Reports</h3>
             <div class="lab-report-list">
-                <div class="lab-report-item">
-                    <p>Blood Test Report</p>
-                    <button class="view-report-btn">View</button>
-                </div>
-                <div class="lab-report-item">
-                    <p>X-Ray Report</p>
-                    <button class="view-report-btn">View</button>
-                </div>
-                <div class="lab-report-item">
-                    <p>ECG Report</p>
-                    <button class="view-report-btn">View</button>
-                </div>
+                <?php foreach ($labReports as $labTestName => $labTestReport): 
+                    $filePath = APPROOT . "/../public/assets/" . $labTestReport; // Adjust path if needed
+                ?>
+                    <div class="lab-report-item">
+                        <p><?php echo htmlspecialchars($labTestName); ?></p>
+                        <?php if (file_exists($filePath)): ?>
+                            <button class="view-report-btn" onclick="window.open('<?php echo URLROOT . 'assets/'. htmlspecialchars($labTestReport); ?>', '_blank')">View</button>
+                        <?php else: ?>
+                            <p class="missing-report">Report Not Available</p>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

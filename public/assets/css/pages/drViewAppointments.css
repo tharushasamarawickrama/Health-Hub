@@ -1,5 +1,5 @@
 .dr-view-appointments-container {
-    font-family: 'Poppins', sans-serif;
+    font-family: Nunito, sans-serif;
     margin: auto;
     min-height:95vh;
     justify-content: center;
@@ -37,6 +37,10 @@
     max-width: 80%;
     width: 100%;
     margin-bottom: 20px;
+}
+
+.appointment-filters button, .appointment-filters input{
+    font-family: Nunito, sans-serif;
 }
 
 .appointment-search-bar{
