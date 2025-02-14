@@ -6,8 +6,9 @@ class Setappoinment {
         // echo "This is Home Controller";
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST)){
             $id = $_GET['id'];
+            $sch_id = $_GET['sch_id'];
             $appoinment = new Appointment;
-
+            $schedule = new ScheduleTime;
             
 
             $data = [
@@ -19,16 +20,21 @@ class Setappoinment {
                 'email' => $_POST['email'],
                 'add_service' => $_POST['addservice'],
                 'doctor_id' => $id,
-                'user_id' => $_SESSION['user']['id'],
+                'patient_id' => $_SESSION['user']['user_id'],
+                'payment_status' => 'pending',
+                
                 
             ];
             
-            // print_r($data);
-            if($appoinment->insert($data)){
-                redirect('patientchannel');
-            }else{
-                 $this->view('setappoinment');  
-            }
+            $_SESSION['sch_id'] = $sch_id;
+            $scheduleData = $schedule->first(['schedule_id' => $sch_id]);
+            $data['appointment_No'] = $scheduleData['filled_slots'] + 1;
+            
+            $data['appointment_date'] = $scheduleData['date'];
+            $_SESSION['appointment'] = $data;
+            
+          
+            redirect('patientchannel');
 
         }
         $this->view('setappoinment');

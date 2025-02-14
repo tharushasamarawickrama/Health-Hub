@@ -1,5 +1,5 @@
 .dr-dashboard {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     margin-top: 70px;
     min-height: 630px;
 }
@@ -27,7 +27,7 @@
 }
 
 .appointments-today, .ongoing-appointment {
-    font-family: 'Handlee', sans-serif;
+    font-family: 'Handlee';
     background-color: rgba(199, 221, 230, 0.8);
     padding: 15px 20px;
     border-radius: 30px;

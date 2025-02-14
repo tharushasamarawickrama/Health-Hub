@@ -16,7 +16,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
+h1{
     text-align: center;
     color: #333;
     margin-bottom: 20px;
@@ -127,11 +127,13 @@ h1 {
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    
 }
 
 .updateyes-btn {
     background-color: #4CAF50;
     color: white;
+    margin-left: 220px;
 }
 
 .updateno-btn {

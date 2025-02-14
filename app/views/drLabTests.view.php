@@ -2,136 +2,100 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
-$fetchedLabTests = ["TFT", "Allergy Test"];
-
+// Data passed from the controller
+$allLabTests = $data['labTests']; // Categorized lab tests
+$uncategorizedTests = $data['uncategorizedTests']; // Uncategorized lab tests
+$fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current appointment
 ?>
 
-    <div class="dr-labtest-container">
-        <a href="<?php echo URLROOT; ?>drAppointment" class="labtest-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
-        <div class="labtests-container">
-            <h2>Lab Tests</h2>
+<div class="dr-labtest-container">
+    <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id; ?>" class="labtest-back-arrow">
+        <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
+    </a>
 
-            <!-- Display Fetched Lab Tests -->
-            <div id="selected-tests" class="lab-tests-display">
-                <?php if (!empty($fetchedLabTests)): ?>
-                    <?php foreach ($fetchedLabTests as $test): ?>
-                        <span class="test-tag">
-                            <?php echo htmlspecialchars($test); ?>
-                            <button class="remove-btn" onclick="removeTest('<?php echo htmlspecialchars($test); ?>')">&times;</button>
-                        </span>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p id="no-tests-msg">No lab tests available.</p>
-                <?php endif; ?>
-            </div>
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab-link active" onclick="switchTab(event, 'order-tests')">Order Lab Test</button>
+            <button class="tab-link" onclick="switchTab(event, 'lab-reports')">Lab Reports</button>
+        </div>
 
+        <!-- Order Lab Tests Section (Unchanged) -->
+        <div id="order-tests" class="tab-content active">
             <h3>Order Lab Test</h3>
-            <div class="test-options">
+            <!-- Display Selected Lab Tests -->
+        <div id="selected-tests" class="lab-tests-display">
+            <?php if (!empty($fetchedLabTests)): ?>
+                <?php foreach ($fetchedLabTests as $test): ?>
+                    <span class="test-tag">
+                        <?php echo htmlspecialchars($test['labtest_name']); ?>
+                        <button class="remove-btn" onclick="removeTest('<?php echo htmlspecialchars($test['labtest_name']); ?>')">&times;</button>
+                    </span>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p id="no-tests-msg">No lab tests available.</p>
+            <?php endif; ?>
+        </div>
+
+        <h3>Order Lab Test</h3>
+
+        <!-- Dropdowns for Categorized Lab Tests -->
+        <div class="test-options">
+            <?php foreach ($allLabTests as $category): ?>
+                <?php $tests = explode('|', $category['tests']); ?>
                 <div class="labtest-dropdown">
-                    <button class="test-option-btn" onclick="toggleDropdown('bloodTests')">Blood Tests <span>&#x25BC;</span></button>
-                    <div id="bloodTests" class="labtest-dropdown-content">
-                        <a href="#" onclick="addTest('Complete Blood Count (CBC)')">Complete Blood Count (CBC)</a>
-                        <a href="#" onclick="addTest('Liver Function Test (LFT)')">Liver Function Test (LFT)</a>
-                        <a href="#" onclick="addTest('Kidney Function Test (KFT)')">Kidney Function Test (KFT)</a>
-                        <a href="#" onclick="addTest('Lipid Panel (Cholesterol Test)')">Lipid Panel (Cholesterol Test)</a>
-                        <a href="#" onclick="addTest('Blood Glucose Test')">Blood Glucose Test</a>
-                        <a href="#" onclick="addTest('Hemoglobin A1C (HbA1c)')">Hemoglobin A1C (HbA1c)</a>
+                    <button class="test-option-btn" onclick="toggleDropdown('<?php echo $category['labtest_category']; ?>')">
+                        <?php echo htmlspecialchars($category['labtest_category']); ?> <span>&#x25BC;</span>
+                    </button>
+                    <div id="<?php echo $category['labtest_category']; ?>" class="labtest-dropdown-content">
+                        <?php foreach ($tests as $test): ?>
+                            <a href="#" onclick="addTest('<?php echo htmlspecialchars($test); ?>', '<?php echo htmlspecialchars($test); ?>')">
+                                <?php echo htmlspecialchars($test); ?>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="labtest-dropdown">
-                    <button class="test-option-btn" onclick="toggleDropdown('urineTests')">Urine Tests <span>&#x25BC;</span></button>
-                    <div id="urineTests" class="labtest-dropdown-content">
-                        <a href="#" onclick="addTest('Urinalysis')">Urinalysis</a>
-                        <a href="#" onclick="addTest('Urine Culture')">Urine Culture</a>
-                        <a href="#" onclick="addTest('Pregnancy Test (hCG)')">Pregnancy Test (hCG)</a>
-                    </div>
-                </div>
-                <div class="labtest-dropdown">
-                    <button class="test-option-btn" onclick="toggleDropdown('imagingTests')">Imaging Tests <span>&#x25BC;</span></button>
-                    <div id="imagingTests" class="labtest-dropdown-content">
-                        <a href="#" onclick="addTest('X-Ray')">X-Ray</a>
-                        <a href="#" onclick="addTest('MRI (Magnetic Resonance Imaging)')">MRI (Magnetic Resonance Imaging)</a>
-                        <a href="#" onclick="addTest('CT Scan (Computed Tomography)')">CT Scan (Computed Tomography)</a>
-                        <a href="#" onclick="addTest('Ultrasound')">Ultrasound</a>
-                    </div>
-                </div>
-                <button class="test-option-btn" onclick="addTest('TFT')">TFT</button>
-                <button class="test-option-btn" onclick="addTest('Electrolyte Panel')">Electrolyte Panel</button>
-                <button class="test-option-btn" onclick="addTest('HIV Test')">HIV Test</button>
-                <button class="test-option-btn" onclick="addTest('Allergy Test')">Allergy Test</button>
-                <button class="test-option-btn" onclick="addTest('Blood Gas Test')">Blood Gas Test</button>
-                <button class="test-option-btn" onclick="addTest('Vitamin D Test')">Vitamin D Test</button>
-                <button class="test-option-btn" onclick="addTest('Bone Density Test')">Bone Density Test</button>
-            </div>
+            <?php endforeach; ?>
+
+            <!-- Uncategorized Lab Tests -->
+            <?php foreach ($uncategorizedTests as $test): ?>
+                <button class="test-option-btn" onclick="addTest('<?php echo htmlspecialchars($test['labtest_name']); ?>', '<?php echo htmlspecialchars($test['labtest_name']); ?>')">
+                    <?php echo htmlspecialchars($test['labtest_name']); ?>
+                </button>
+            <?php endforeach; ?>
+        </div>
 
             <div class="labtest-actions">
                 <button class="labtest-button" onclick="clearTests()">Clear</button>
                 <button class="labtest-button" onclick="saveTests()">Save</button>
             </div>
         </div>
+
+        <!-- Lab Reports Section -->
+        <div id="lab-reports" class="tab-content">
+            <h3>Lab Reports</h3>
+            <div class="lab-report-list">
+                <div class="lab-report-item">
+                    <p>Blood Test Report</p>
+                    <button class="view-report-btn">View</button>
+                </div>
+                <div class="lab-report-item">
+                    <p>X-Ray Report</p>
+                    <button class="view-report-btn">View</button>
+                </div>
+                <div class="lab-report-item">
+                    <p>ECG Report</p>
+                    <button class="view-report-btn">View</button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script>
-        const selectedTests = <?php echo json_encode($fetchedLabTests); ?>;
+<script id="selected-tests-data" type="application/json">
+    <?php echo json_encode(array_map(function($test) {
+        return $test['labtest_name'];
+    }, $fetchedLabTests)); ?>
+</script>
+<script src="<?php echo URLROOT; ?>js/drLabTests.js?v=<?php echo time(); ?>"></script>
 
-        function addTest(testName) {
-            if (!selectedTests.includes(testName)) {
-                selectedTests.push(testName);
-                updateTestDisplay();
-            } else {
-                alert(testName + " is already selected.");
-            }
-        }
-
-        function removeTest(testName) {
-            const index = selectedTests.indexOf(testName);
-            if (index > -1) {
-                selectedTests.splice(index, 1);
-                updateTestDisplay();
-            }
-        }
-
-        function updateTestDisplay() {
-            const testContainer = document.getElementById("selected-tests");
-            testContainer.innerHTML = "";
-            
-            if (selectedTests.length === 0) {
-                testContainer.innerHTML = "<p id='no-tests-msg'>No lab tests available.</p>";
-                return;
-            }
-
-            selectedTests.forEach(test => {
-                const testTag = document.createElement("span");
-                testTag.className = "test-tag";
-                testTag.innerHTML = `${test} <button class="remove-btn" onclick="removeTest('${test}')">&times;</button>`;
-                testContainer.appendChild(testTag);
-            });
-        }
-
-        function clearTests() {
-            selectedTests.length = 0;
-            updateTestDisplay();
-        }
-
-        function saveTests() {
-            alert("Lab tests saved: " + selectedTests.join(", "));
-        }
-
-        function toggleDropdown(id) {
-            document.getElementById(id).classList.toggle("show");
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.test-option-btn')) {
-                const dropdowns = document.getElementsByClassName("labtest-dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    const openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script>
-
-<?php require APPROOT . '/views/Components/footer.php' ?>
+<?php require APPROOT . '/views/Components/footer.php'; ?>

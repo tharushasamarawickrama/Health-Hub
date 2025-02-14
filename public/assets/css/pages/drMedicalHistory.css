@@ -1,8 +1,4 @@
 .medical-history-container{
-    background-image: url("../../../assets/images/background.png");
-    background-repeat: repeat;
-    background-size: 80vh;
-    background-position: top left;
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
@@ -118,4 +114,34 @@
     align-items: center;
     justify-content: center;
     margin-left: 10px;
+}
+
+.delete-icon {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.delete-icon:hover {
+    color: darkred;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.add-section-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.add-section-button:hover {
+    background-color: #45a049;
 }

@@ -10,7 +10,6 @@ class Prescription
     protected $Allowedcolumns = [
         "diagnosis",
     ];
-
     public function insertAndGetId($data)
     {
         // Use the connection to insert and fetch the last inserted ID

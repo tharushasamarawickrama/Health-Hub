@@ -2,21 +2,11 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
-// Simulated fetched data (commented out for example)
-// $prescription = [
-//     'diagnosis' => 'Patient suffering from severe back pain due to muscle strain.',
-// ];
-
-// $medications = [
-//     ["name" => "Paracetamol", "quantity" => 1000, "measurement" => "mg", "sig_codes" => "po,mane", "duration" => "7,365"],
-//     ["name" => "Ibuprofen", "quantity" => 300, "measurement" => "mg", "sig_codes" => "bid", "duration" => "5,365"],
-// ];
-
 ?>
 
 <div class="dr-prescription-container">
     <div class="prescription-header">
-        <a href="drPrescription" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
+        <a href="<?php echo URLROOT; ?>drPrescription?appointment_id=<?= $appointment_id; ?>" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <h2>Edit Prescription Details</h2>
     </div>
     <form action="<?php echo URLROOT; ?>drEditPrescription?appointment_id=<?= $appointment_id; ?>" method="POST" class="doctor-prescription-form" id="doctor-prescription-form">
@@ -146,10 +136,13 @@ require APPROOT . '/views/Components/drNavbar.php';
             <hr>
             <!-- Hidden input for formatted data -->
             <input type="hidden" name="formatted_prescription_data" id="formatted_prescription_data">
-            <button type="submit" class="prescription-actions">Save</button>
+            <div class="prescription-actions-container">
+                <button type="submit" class="prescription-actions">Save</button>
+                <a href="<?php echo URLROOT; ?>drPrescription?appointment_id=<?= $appointment_id; ?>" class="prescription-actions">Cancel</a>
+            </div>
         </div>
     </form>
 </div>
 
-<script src="<?php echo URLROOT; ?>assets/js/drEditPrescription.js?v=<?php echo time();?>"></script>
+<script src="<?php echo URLROOT; ?>js/drEditPrescription.js?v=<?php echo time();?>"></script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>

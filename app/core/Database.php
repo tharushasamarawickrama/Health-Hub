@@ -1,9 +1,11 @@
 <?php
 
-trait Database{
-    private function connect(){
-        $string = "mysql:hostname=".DBHOST.";dbname=".DBNAME;
-        $con = new PDO($string,DBUSER,DBPASS);
+trait Database
+{
+    private function connect()
+    {
+        $string = "mysql:hostname=" . DBHOST . ";dbname=" . DBNAME;
+        $con = new PDO($string, DBUSER, DBPASS);
         return $con;
     }
 
@@ -20,14 +22,34 @@ trait Database{
         }
         return false;
     }
-    public function get_row($query, $data = []){
+
+    // public function query($query, $data = [])
+    // {
+    //     $con = $this->connect();
+    //     $stm = $con->prepare($query);
+
+    //     $check = $stm->execute($data);
+    //     if ($check) {
+    //         // Check if it's a SELECT query that returns data
+    //         if (stripos($query, 'SELECT') === 0) {
+    //             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+    //             return $result ?: []; // Return empty array if no data
+    //         }
+    //         // For non-SELECT queries (INSERT, UPDATE, DELETE), return true if successful
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
+    public function get_row($query, $data = [])
+    {
         $con = $this->connect();
         $stm = $con->prepare($query);
 
         $check = $stm->execute($data);
-        if($check){
+        if ($check) {
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-            if(is_array($result) && count($result)){
+            if (is_array($result) && count($result)) {
                 return $result[0];
             }
         }

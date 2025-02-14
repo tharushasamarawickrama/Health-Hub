@@ -28,12 +28,7 @@
             </a>
             
         </div>
-        <!-- <?php
-                $doctor = $data;
-                require APPROOT . '/views/Components/timeslot.php' ?>
-        <?php
-        $doctor = $data;
-        require APPROOT . '/views/Components/timeslot.php' ?> -->
+        
     </div>
 
 

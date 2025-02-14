@@ -16,7 +16,7 @@ require APPROOT . '/views/Components/drNavbar.php';
 
 <div class="dr-prescription-container">
     <div class="prescription-header">
-        <a href="<?php echo URLROOT; ?>drAppointment" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
+        <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id; ?>" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <h2>Prescription Details</h2>
     </div>
     <div class="prescription-container">

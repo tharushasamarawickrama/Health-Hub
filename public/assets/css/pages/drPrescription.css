@@ -1,8 +1,4 @@
 .dr-prescription-container {
-    background-image: url(../../images/background.png);
-    background-size: 80vh;
-    background-repeat: repeat;
-    background-position: top left;
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     padding-left: 50px;
@@ -129,8 +125,15 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+.prescription-actions-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0;
+}
+
 .prescription-actions {
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: rgba(138, 193, 215, 0.8);
     color: black;
     border: none;
@@ -139,6 +142,7 @@
     cursor: pointer;
     font-size: 1em;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
 .prescription-actions:hover {
@@ -146,5 +150,5 @@
 }
 
 .prescription-container hr{
-    margin-top: 30px;
+    margin-top: 20px;
 }

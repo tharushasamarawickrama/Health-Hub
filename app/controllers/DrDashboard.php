@@ -1,17 +1,21 @@
 <?php
 
-class DrDashboard {
+class DrDashboard
+{
     use Controller;
 
     public function index()
     {
-        // Hardcoded doctor ID
         $doctorId = $_SESSION['user']['user_id'];
 
         // Initialize models
         $appointmentModel = new Appointment();
         $userModel = new User();
+        $doctorModel = new Doctor();
 
+        // Fetch the doctor type
+        $doctorType = $doctorModel->getDoctorTypeById($doctorId)[0]['type'];
+        
         // Fetch appointments for the doctor
         $appointments = $appointmentModel->getTodaysAppointments($doctorId);
         //var_dump($appointments);
@@ -31,7 +35,46 @@ class DrDashboard {
             }
         }
 
+        // Fetch past appointments for the doctor
+        $pastAppointments = [];
+        if($doctorType == 'opd') {
+            $pastAppointments = $appointmentModel->getLimitedPastAppointments($doctorId);
+            // var_dump($pastAppointments);
+            // exit();
+            if($pastAppointments){
+                $pastAppointments = array_reverse(array_combine(
+                    array_column($pastAppointments, 'appointment_date'),
+                    array_column($pastAppointments, 'appointment_count')
+                ));
+            }
+        }
+        elseif($doctorType == 'regular'){
+            $ScheduleTimeModel = new ScheduleTime();
+            $schedules = $ScheduleTimeModel->getPastSchedulesByDoctor($doctorId);
+            
+            // var_dump($schedules);
+            // exit();
+
+            if($schedules){
+                foreach ($schedules as $schedule) {
+                    // Format date (remove leading zeros in day/month)
+                    $date = date("j/n/y", strtotime($schedule["date"]));
+                    // Format start and end times
+                    $startTime = date("gA", strtotime($schedule["start_time"]));
+                    $endTime = date("gA", strtotime($schedule["end_time"]));
+                    // Combine into key and assign filled slots as value
+                    $key = "$date | $startTime-$endTime";
+                    $pastAppointments[$key] = $schedule["filled_slots"];
+                }
+            }
+        }
+        
+
+
         // Load the view and pass the data
-        $this->view('drDashboard', ['appointmentsToday' => $appointmentsToday]);
+        $this->view('drDashboard',[
+            'appointmentsToday' => $appointmentsToday,
+            'pastAppointments' => $pastAppointments
+        ]);
     }
 }
