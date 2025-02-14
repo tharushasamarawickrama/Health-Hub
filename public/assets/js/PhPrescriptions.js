@@ -1,39 +1,48 @@
-/*function searchAppointment() {
-    const searchInput = document.getElementById("searchInput").value.trim();
-    const resultContainer = document.getElementById("resultContainer");
+document.getElementById('ph-pres-searchInput').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        searchPhAppointment();
+    }
+});
 
-    // Clear previous results
-    resultContainer.innerHTML = "";
+function searchPhAppointment() {
+    const appointmentId = document.getElementById('ph-pres-searchInput').value.trim();
+    const resultContainer = document.getElementById('ph-pres-resultContainer');
 
-    // Hardcoded data
-    const appointments = [
-        { appointmentId: "4565", patientNIC: "200213288759" },
-        { appointmentId: "1234", patientNIC: "300415678912" },
-        { appointmentId: "7890", patientNIC: "400517345678" },
-    ];
-
-    // Filter results
-    const filteredAppointments = appointments.filter(item =>
-        item.appointmentId.includes(searchInput)
-    );
-
-    if (filteredAppointments.length === 0) {
-        resultContainer.innerHTML = "<p>No results found</p>";
+    if (!appointmentId){
+        alert('Please enter an appointment ID');
         return;
     }
 
-    filteredAppointments.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "result-card";
-        card.innerHTML = `
-            <p><strong>Appointment ID:</strong> ${item.appointmentId}</p>
-            <p><strong>Patient NIC:</strong> ${item.patientNIC}</p>
-        `;
-        
-        // Make card a clickable button
-        card.onclick = () => alert(`Appointment ID: ${item.appointmentId}\nPatient NIC: ${item.patientNIC}`);
+    resultContainer.classList.remove('visible', 'hidden');
+    resultContainer.classList.add('visible');
+    resultContainer.innerHTML = '';
 
-        resultContainer.appendChild(card);
-    });
+    fetch(`${URLROOT}/phprescriptions/search`,{
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ appointment_id: appointmentId })
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Search response:', data);
+            if(data.appointments && data.appointments.length > 0) {
+                data.appointments.forEach(appointment => {
+                    const link = document.createElement('a');
+                    link.href = `${URLROOT}/phprescriptionappointment?appointment_id=${appointment.appointment_id}`;
+                    link.className = 'ph-pres-result-item';
+                    link.innerHTML = `
+                        <div>Appointment ID: ${appointment.appointment_id}</div>
+                        <div>NIC: ${appointment.nic}</div>
+                    `;
+                    resultContainer.appendChild(link);
+                });
+            }else{
+                resultContainer.innerHTML = '<div class = "no-appointments">No appointments found</div>';
+
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching appointment data:',error);
+            alert('Failed to fetch appointment data.');
+        });
 }
-*/

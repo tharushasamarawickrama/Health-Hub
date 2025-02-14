@@ -3,26 +3,19 @@
 <div class="ph-pres-dashboard">
     <div class = "ph-pres-search-box">
         <input type="text" id="ph-pres-searchInput" placeholder="Type Appointment Id...">
-        <button onclick=searchAppointment()>
+        <button onclick=searchPhAppointment()>
             <img src ="<?php echo URLROOT; ?>/assets/images/search.png" alt="Search Icon" class="ph-pres-search-icon">
         </button>
         <div class="ph-pres-search-result">
             <div id="ph-pres-resultContainer">
-                <a href="<?php echo URLROOT; ?>/phprescriptionappointment" class="ph-pres-result-item">
-                    
-                    <div>Appointment ID: 6465</div>
-                    <div>NIC:200268300728</div></a>
-                <a href="#" class="ph-pres-result-item">
-                    
-                    <div>Appointment ID: 6352</div>
-                    <div>NIC:200173756237</div></a>
-                <a href="#" class="ph-pres-result-item">
-                    
-                    <div>Appointment ID: 6673</div>
-                    <div>NIC:200171724272</div></a>
+                
             </div>
         </div>
     </div>
 </div>
-<?php require APPROOT . '/views/Components/footer.php'; ?>
+<script>
+    const URLROOT = "<?php echo URLROOT; ?>";
+</script>
+
 <script src="<?php echo URLROOT;?>/assets/js/PhPrescriptions.js"></script>
+<?php require APPROOT . '/views/Components/footer.php'; ?>

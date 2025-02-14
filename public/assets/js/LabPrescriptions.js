@@ -30,8 +30,7 @@ function searchLabAppointment() {
     
                 data.appointments.forEach(appointment => {
                     const link = document.createElement('a');
-                    link.href = `${URLROOT}/labprescriptions/appointment?appointment_id=${appointment.appointment_id}`;
-                    link.className = 'lab-pres-result-item';
+                    link.href = `${URLROOT}/labprescriptionappointment?appointment_id=${appointment.appointment_id}`;                    link.className = 'lab-pres-result-item';
                     link.innerHTML = `
                         <div>Appointment ID: ${appointment.appointment_id}</div>
                         <div>NIC: ${appointment.nic}</div>
