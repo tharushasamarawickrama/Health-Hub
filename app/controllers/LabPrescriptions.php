@@ -6,6 +6,7 @@ class LabPrescriptions {
     public function __construct() {
         $this->labAssistantModel = new LabAssistant();
     }
+    
 
     public function index() {
         $appointments = $this->labAssistantModel->getLabAppointments();
@@ -32,4 +33,3 @@ class LabPrescriptions {
     }
 
 }
-

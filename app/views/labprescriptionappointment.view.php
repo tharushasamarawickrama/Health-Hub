@@ -7,23 +7,30 @@
             Back
         </a>
     </div>
+    <?php if(isset($prescription)): ?>
     <div class="lab-pres-app-prescription-details">
         <div class="lab-pres-app-details-left">
-            <p><strong>Appointment ID:</strong> <?php echo htmlspecialchars($data[0]['appointment_id']?? 'N/A'); ?></p>
-            <p><strong>Patient NIC:</strong> <?php echo htmlspecialchars($data[0]['nic'] ?? 'N/A'); ?></p>
-            <p><strong>Age:</strong> <?php echo htmlspecialchars($data[0]['age'] ?? 'N/A'); ?></p>
-            <p><strong>Gender:</strong> <?php echo htmlspecialchars($data[0]['gender'] ?? 'N/A'); ?></p>
+            <p><strong>Appointment ID:</strong> <?php echo htmlspecialchars($data['appointment_id']?? 'N/A'); ?></p>            
+            <p><strong>Patient NIC:</strong> <?php echo htmlspecialchars($data['patient_nic']); ?></p>
+            <p><strong>Age:</strong> <?php echo htmlspecialchars($data['age']); ?></p>
+            <p><strong>Gender:</strong> <?php echo htmlspecialchars($data['gender']); ?></p>
             <p><strong>Tests Required:</strong></p>
             <ul>
-                <li><?php echo htmlspecialchars($data[0]['labtest_type'] ?? 'No test required'); ?></li>
+                <?php foreach($data['lab_tests'] as $test): ?>
+                    <li><?php echo htmlspecialchars($test['prescription']); ?></li>
+                <?php endforeach; ?>
             </ul>
         </div>
         <div class="lab-pres-app-details-right">
-            <p><strong>Date:</strong> <?php echo htmlspecialchars($data[0]['appointment_date'] ?? 'N/A'); ?></p>
-            <p><strong>Doctor ID:</strong> <?php echo htmlspecialchars($data[0]['doctor_id'] ?? 'N/A'); ?></p>
-            <p><strong>Doctor Name:</strong> Dr. <?php echo htmlspecialchars($data[0]['doctor_name'] ?? 'N/A'); ?></p>
+            <p><strong>Date:</strong> <?php echo htmlspecialchars($data['appointment_date']); ?></p>
+            <p><strong>Doctor ID:</strong> <?php echo htmlspecialchars($data['doctor_id']); ?></p>
+            <p><strong>Doctor Name:</strong> Dr. <?php echo htmlspecialchars($data['doctor_name']); ?></p>
         </div>
     </div>
+    <?php else: ?>
+        <div class="error-message">No prescription found for this appointment ID.</div>
+    <?php endif; ?>
+    
     <div class="lab-pres-app-file-upload">
         <p>You can drag and drop files here to add them</p>
         <button class="lab-pres-app-upload-btn">Upload reports</button>
