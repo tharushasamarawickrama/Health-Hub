@@ -7,11 +7,11 @@
             Back
         </a>
     </div>
-    <?php if(isset($prescription)): ?>
+    <?php if(isset($data['appointment_id'])): ?>
     <div class="lab-pres-app-prescription-details">
         <div class="lab-pres-app-details-left">
             <p><strong>Appointment ID:</strong> <?php echo htmlspecialchars($data['appointment_id']?? 'N/A'); ?></p>            
-            <p><strong>Patient NIC:</strong> <?php echo htmlspecialchars($data['patient_nic']); ?></p>
+            <p><strong>Patient NIC:</strong> <?php echo htmlspecialchars($data['nic']); ?></p>
             <p><strong>Age:</strong> <?php echo htmlspecialchars($data['age']); ?></p>
             <p><strong>Gender:</strong> <?php echo htmlspecialchars($data['gender']); ?></p>
             <p><strong>Tests Required:</strong></p>
