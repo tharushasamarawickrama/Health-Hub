@@ -3,20 +3,25 @@ class LabPrescriptionAppointment {
     use Controller;
     private $labAssistantModel;
 
-    public function index() {
-        $labAssistant = new LabAssistant();
-        
-        // Check if id exists in GET parameters
-        $appointmentId = isset($_GET['id']) ? $_GET['id'] : null;
-        
-        if ($appointmentId) {
-            $appointmentDetails = $labAssistant->getAppointmentDetails($appointmentId);
-            $data['appointment_details'] = $appointmentDetails;
-        } else {
-            // Handle case when no ID is provided
-            $data['appointment_details'] = null;
-        }
-        
-        $this->view('labprescriptionappointment', $data);
+    public function __construct() {
+        $this->labAssistantModel = new LabAssistant();
     }
-}
+
+    public function index() {
+        if (!isset($_GET['appointment_id'])) {
+            die("Error: No appointment ID provided.");
+        }
+
+        $appointment_id = $_GET['appointment_id'];
+        $appointmentDetails = $this->labAssistantModel->getAppointmentDetails($appointment_id);
+
+        if (!$appointmentDetails) {
+            $appointmentDetails = []; // Prevent errors if no data is found
+        }
+
+        // Pass data to view
+        $this->view('labprescriptionappointment', [
+            'appointment_details' => $appointmentDetails[0] ?? []// Use first result if available// Assuming medications are in the same query
+        ]);
+    }
+    }

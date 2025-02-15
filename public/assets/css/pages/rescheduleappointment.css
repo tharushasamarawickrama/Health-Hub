@@ -1,9 +1,4 @@
 .re-sch-app-container {    
-    background-image: url("../../../assets/images/background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
     padding: 55px 30px;
 }
 
