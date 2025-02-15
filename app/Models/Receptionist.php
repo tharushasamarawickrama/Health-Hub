@@ -8,19 +8,7 @@ class Receptionist {
 
     protected $Allowedcolumns = [
         'receptionist_id',
-        'firstName',
-        'lastName',
-        'password',
-        'phoneNumber',
-        'email',
-        'gender',
-        'dob',
-        'employeeNo',
-        'nic',
-        'address',
-        'photo_path',
-        'created_at'
-        
+        'employeeNo',        
     ];
 
     public function findAlldata()
