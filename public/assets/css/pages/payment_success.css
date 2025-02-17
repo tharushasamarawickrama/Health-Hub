@@ -5,6 +5,7 @@
     justify-content: center; /* Vertically center */
     height: 100vh; /* Take up full viewport height */
     text-align: center;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
 }
 
 .payment-status img {
@@ -13,7 +14,11 @@
     margin-bottom: 20px; /* Add some spacing below the image */
 }
 
-.payment-status h1,
+.payment-status h1{
+    margin: 10px 0; /* Add margin for spacing */
+    color: #2ecc71;
+    text-transform: uppercase;
+}
 .payment-status p {
     margin: 10px 0; /* Add margin for spacing */
 }
@@ -24,13 +29,17 @@
 .gotohome-btn{
     width: 120px;
     height: 39.65px;
-    background-color: rgba(0, 87, 164, 1);
+    background: linear-gradient(135deg, #2ecc71, #27ae60); /* Green gradient */
+    border-radius: 25px;
     color: white;
-    border-radius: 10px;
     border: none;
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 5px 10px rgba(46, 204, 113, 0.3);
 }

@@ -4,11 +4,13 @@
 
 .mainblock{
     margin-top: 60px;
-    width: 1300px;
-    height: 650px;
+    width: 700px;
+    height:auto;
     background-color: rgb(255, 255, 255);
     border-radius: 20px; 
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);  
 }
@@ -140,8 +142,9 @@
     width: 100px;
     height: 50px;
     border-radius: 10px;
-    margin-left: 30px;
-    margin-top: 18px;
+    margin-left: 60px;
+    /* margin-top: 18px; */
+    /* border-bottom: 20px; */
     background-color: #2169e5;
     color: white;
     font-size: 20px;
@@ -154,16 +157,20 @@
 
 .regbuttondiv{
     margin-left: 450px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    margin-bottom: 20px;
 }
 
 
 .form-section {
     display: none;
+    /* margin-bottom: 50px; */
   
 }
 .form-section.active {
     display: block;
+    /* margin-bottom: 50px; */
+
 }
 
 .regaddressdiv{
@@ -188,6 +195,7 @@
 .regprenextbuttondiv{
     margin-left: 300px;
     margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
 }
 
@@ -269,7 +277,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;  
+    margin-top: 80px;  
 }
 
 .loginemaildiv{
@@ -294,11 +302,12 @@
     margin-top: 20px;
 }
 
-.error {
+.error1{
     color: red;
     font-size: 0.85em;
     display: block;
     margin-top: 4px;
+    border: none;
 }
 .invalid {
     border: 1px solid red;
@@ -323,5 +332,5 @@
 .maindiv{
     display: flex;
     margin-top: 20px;
-    background-image: url(../../images/background.png);
+   
 }

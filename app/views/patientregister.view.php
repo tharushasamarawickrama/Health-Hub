@@ -5,14 +5,14 @@
     <div class="screen">
 
         <div class="mainblock">
-            <div class="mainblockleft">
+            <!-- <div class="mainblockleft">
                 <div class="reghealthlogodiv">
                     <img src="<?php echo URLROOT; ?>/assets/images/logohealth.png" class="reghealthlogo">
                     <span class="reghealthlogotext">Health HUB</span>
                     <span class="regwelcometext">Welcome to Health Hub</span>
 
                 </div>
-            </div>
+            </div> -->
             <div class="form-section <?= empty($data['registration_success']) ? 'active' : '' ?>" id="loginSection">
                 <form action="" method="post">
                     <div class="logindiv">
@@ -67,17 +67,17 @@
                                 <option value="Ms">Miss</option>
                                 <option value="Dr">Dr</option>
                             </select>
-                            <span class="error" id="titleError"></span>
+                            <span class="error1" id="titleError"></span>
                         </div>
                         <div>
                             <span class="regpname">First Name</span><br>
                             <input type="text" class="regpnameinput" placeholder="Enter First Name" name="FirstName" required>
-                            <span class="error" id="firstNameError"></span>
+                            <span class="error1" id="firstNameError"></span>
                         </div>
                         <div>
                             <span class="regpname">Last Name</span><br>
                             <input type="text" class="regpnameinput" placeholder="Enter Last Name" name="LastName" required>
-                            <span class="error" id="lastNameError"></span>
+                            <span class="error1" id="lastNameError"></span>
                         </div>
                     </div>
 
@@ -85,19 +85,19 @@
                         <div>
                             <span class="regpname">Email</span><br>
                             <input type="email" class="regemailinput" placeholder="Enter Email" name="Email" required>
-                            <span class="error" id="emailError"></span>
+                            <span class="error1" id="emailError"></span>
                         </div>
                         <div>
                             <span class="regnum">Phone Number</span><br>
                             <input type="text" class="regnuminput" placeholder="Enter Mobile" name="PhoneNumber" required>
-                            <span class="error" id="phoneError"></span>
+                            <span class="error1" id="phoneError"></span>
                         </div>
                     </div>
 
                     <div class="nicdiv">
                         <span class="regnic">NIC</span><br>
                         <input type="text" class="regnicinput" placeholder="Enter NIC Number" name="NIC" required>
-                        <span class="error" id="nicError"></span>
+                        <span class="error1" id="nicError"></span>
                     </div>
 
                     <div class="genderdiv">
@@ -109,19 +109,19 @@
                             <input type="radio" class="gender" name="gender" value="female" required>
                             <span class="reggender">Female</span>
                         </div>
-                        <span class="error" id="genderError"></span>
+                        <span class="error1" id="genderError"></span>
                     </div>
 
                     <div class="emaildiv">
                         <div>
                             <span class="regpname">Password</span><br>
                             <input type="password" class="regemailinput" placeholder="Enter Password" name="Password" required>
-                            <span class="error" id="passwordError"></span>
+                            <span class="error1" id="passwordError"></span>
                         </div>
                         <div>
                             <span class="regnum">Confirm Password</span><br>
                             <input type="password" class="regnuminput" placeholder="Confirm Password" required>
-                            <span class="error" id="confirmPasswordError"></span>
+                            <span class="error1" id="confirmPasswordError"></span>
                         </div>
                     </div>
 
@@ -136,13 +136,13 @@
                     <div class="regaddressdiv">
                         <span class="regaddress">Address</span><br>
                         <input type="text" class="regaddressinput" placeholder="Enter Address" name="Address" required>
-                        <span class="error" id="addressError"></span>
+                        <span class="error1" id="addressError"></span>
 
                     </div>
                     <div class="regaddressdiv">
                         <span class="regaddress">Age</span><br>
                         <input type="text" class="regaddressinput" placeholder="Enter Age" name="Age" required>
-                        <span class="error" id="ageError"></span>
+                        <span class="error1" id="ageError"></span>
                     </div>
 
                     <div class="regprenextbuttondiv">

@@ -7,7 +7,6 @@
             <a href="<?php echo URLROOT; ?>searchappoinment">
                 <img src="<?php echo URLROOT; ?>/assets/images/backarrow.png" class="backimg">
             </a>
-
         </div>
         <form action="" method="POST" id="channelform">
             <div class="channeltextdiv">
@@ -214,6 +213,5 @@
         document.getElementById('channelform').submit();
     }
 </script>
-
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
