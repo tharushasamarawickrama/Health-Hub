@@ -8,19 +8,7 @@ class LabAssistant {
 
     protected $Allowedcolumns = [
         'lab_assistant_id',
-        'firstName',
-        'lastName',
-        'password',
-        'phoneNumber',
-        'email',
-        'gender',
-        'dob',
-        'employeeNo',
-        'nic',
-        'address',
-        'photo_path',
-        'created_at'
-        
+        'employeeNo'
     ];
 
     public function findAlldata()
@@ -51,17 +39,17 @@ class LabAssistant {
             CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
             u.gender,
             u.age,
-            alt.labtest_type
+            l.labtest_name
         FROM appointments a
         JOIN users u ON a.patient_id = u.user_id
         JOIN users d ON a.doctor_id = d.user_id
-        LEFT JOIN appointment_labtests alt ON a.labtest_id = alt.labtest_id
+        JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
+        JOIN labtests l ON l.labtest_id = alt.labtest_id
         WHERE a.appointment_id = :appointment_id";
         
         return $this->query($query, ['appointment_id' => $appointment_id]);
     }
-      
-
+    
     public function getCompletedLabAppointments() {
         $query = "SELECT 
                     a.appointment_id, u.nic, a.appointment_date
@@ -71,33 +59,7 @@ class LabAssistant {
         return $this->query($query);
     }
     
-
-
-
-    public function getAppointmentDetails($appointment_id) {
-        $query = "SELECT 
-                a.appointment_id, 
-                a.appointment_date,
-                a.appointment_time, 
-                a.status,
-                u.nic, 
-                u.firstName AS patient_first_name, 
-                u.lastName AS patient_last_name, 
-                u.age, u.gender, u.phoneNumber,
-                d.doctor_id, 
-                CONCAT(d.firstName,' ', d.lastName) AS doctor_name,
-                alt.labtest_id, 
-                alt.labtest_type, 
-                alt.labtest_report,
-                alt.labtest_pdfname
-            FROM appointments a
-            LEFT JOIN users u ON a.patient_id = u.user_id
-            LEFT JOIN doctors d ON a.doctor_id = d.doctor_id
-            LEFT JOIN appointment_labtests alt ON a.labtest_id = alt.labtest_id
-            WHERE a.appointment_id = :appointment_id;
-        ";
-        return $this->query($query, ['appointment_id' => $appointment_id]);
-    }
+    
     
     public function deleteLabTestReport($labtest_id) {
         try {
@@ -121,9 +83,36 @@ class LabAssistant {
             u.nic 
           FROM appointments a
           JOIN users u ON a.patient_id = u.user_id 
-          WHERE a.appointment_id = :appointment_id AND a.status = 'planned'";
+          WHERE a.appointment_id = :appointment_id AND a.status = 'Planned'";
           
 return $this->query($query, ['appointment_id' => $appointment_id]);
 
     }
+
+    public function getAppointmentDetails($appointment_id) {
+        $query = "SELECT 
+                a.appointment_id, 
+                a.appointment_date,
+                a.appointment_time, 
+                a.status,
+                a.patient_id,
+                u.nic, 
+                u.age, u.gender, u.phoneNumber,
+                a.doctor_id, 
+                CONCAT(d.firstName,' ', d.lastName) AS doctor_name,
+                alt.labtest_id, 
+                l.labtest_name AS prescription, 
+                alt.labtest_report,
+                alt.labtest_pdfname
+            FROM appointments a
+            JOIN users u ON a.patient_id = u.user_id
+            JOIN users d ON a.doctor_id = d.user_id
+            JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id 
+            JOIN labtests l ON l.labtest_id = alt.labtest_id
+            WHERE a.appointment_id = :appointment_id
+        ";
+
+        return $this->query($query, ['appointment_id' => $appointment_id]);
+    }
+
 }

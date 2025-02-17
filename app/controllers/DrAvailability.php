@@ -72,7 +72,8 @@ class DrAvailability {
         $opdTimeslots = $timeslotModel->findAll('timeslot_id');
 
         // Fetch all doctors' availability and merge into an array
-        $allDoctors = $doctorModel->findAll('doctor_id');
+        $allDoctors = $doctorModel->getAllAvailabilitySlots($doctorId);
+    
         $occupiedTimeslotIDs = [];
         foreach ($allDoctors as $doc) {
             if (!empty($doc['availability'])) {

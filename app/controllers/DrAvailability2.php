@@ -71,7 +71,7 @@ class DrAvailability2 {
             redirect('drAvailability2');
         }
 
-        $schedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
+        $schedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId, $start_date_str, $end_date_str);
 
         $fetchedTimeslots = [];
 

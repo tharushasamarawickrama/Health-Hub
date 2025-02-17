@@ -1,8 +1,10 @@
 let currentWeekIndex = 0;
 const maxSlots = 6;
 const maxSlotsPerWeek = 3;
+const today = formatDate(new Date());
 
 document.addEventListener("DOMContentLoaded", function () {
+    displayUniqueSelectedSlots();
     if (successMessage.trim() !== "") {
         showToast(successMessage);
     }
@@ -22,8 +24,28 @@ function showToast(message) {
 
 // Populate initial week and slots
 function initializeUniqueTimeslots() {
+    setCurrentWeekIndex();
     updateUniqueWeek();
     populateUniqueSlots();
+}
+
+// Set current week index
+function setCurrentWeekIndex() {
+    // Find the closest week to today
+    for (let i = 0; i < allDates.length; i++) {
+        if (allDates[i] === today) {
+            currentWeekIndex = Math.floor(i / 7); // Set the current week index based on the found date
+            break;
+        }
+    }
+}
+
+// Format date to "dd/mm/yyyy"
+function formatDate(date) {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
 }
 
 // Update week range title
@@ -77,6 +99,15 @@ function populateUniqueSlots() {
 
 // Toggle slot selection
 function toggleUniqueSlot(date, time) {
+    const slotElement = [...document.querySelectorAll(".unique-slot-btn")].find(
+        btn => btn.textContent.includes(date) && btn.textContent.includes(time)
+    );
+
+    // Prevent clicking on disabled slots
+    if (slotElement.classList.contains("disabled")) {
+        return;
+    }
+
     // Determine the week index of the selected date
     const slotWeekIndex = Math.floor(allDates.findIndex((d) => d === date) / 7);
 
@@ -119,16 +150,20 @@ function displayUniqueSelectedSlots() {
             tagElement.className = "unique-timeslot-tag";
             tagElement.textContent = `${date} ${time}`;
 
-            const removeBtn = document.createElement("button");
-            removeBtn.className = "unique-remove-btn";
-            removeBtn.innerHTML = "&times;";
-            removeBtn.onclick = () => removeUniqueTimeslot(date, time);
+            if (date > today) {
+                const removeBtn = document.createElement("button");
+                removeBtn.className = "unique-remove-btn";
+                removeBtn.innerHTML = "&times;";
+                removeBtn.onclick = () => removeUniqueTimeslot(date, time);
 
-            tagElement.appendChild(removeBtn);
+                tagElement.appendChild(removeBtn);
+            }
+
             selectedContainer.appendChild(tagElement);
         });
     }
 }
+
 
 // Remove slot
 function removeUniqueTimeslot(date, time) {
@@ -140,11 +175,14 @@ function removeUniqueTimeslot(date, time) {
     }
 }
 
-// Clear all slots
+// Clear only future slots
 function clearUniqueTimeslots() {
-    selectedTimeslots.length = 0;
+    selectedTimeslots = selectedTimeslots.filter(([date, _]) => {
+
+        return date <= today; // Keep only past or today's slots
+    });
+
     displayUniqueSelectedSlots();
-    //populateUniqueSlots();
 }
 
 // Save slots (stub for back-end integration)
@@ -153,7 +191,6 @@ function saveUniqueTimeslots() {
     const hiddenInput = document.getElementById("selectedTimeslotsInput");
     hiddenInput.value = JSON.stringify(selectedTimeslots);
     document.getElementById("unique-timeslot-form").submit();
-    // alert("Slots saved: " + hiddenInput.value);
 }
 
 // Change week

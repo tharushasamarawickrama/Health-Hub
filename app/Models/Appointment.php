@@ -50,8 +50,9 @@ class Appointment {
     return $result ? $result[0] : null;
 }
 
-    public function getAppointmentById($appointmentId) {
-        return $this->first(['appointment_id' => $appointmentId]);
+    public function getAppointmentById($appointment_id) {
+        $query = "SELECT * FROM appointments WHERE appointment_id = :appointment_id";
+        return $this->query($query, ['appointment_id' => $appointment_id])[0] ?? null;
     }
 
     public function getAppointmentsByDoctorId($doctorId)
@@ -135,7 +136,6 @@ class Appointment {
 
         return $result ? $result : null;
     }
-
-
+    
 }
 ?>

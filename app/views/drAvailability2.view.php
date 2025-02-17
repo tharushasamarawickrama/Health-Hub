@@ -36,16 +36,7 @@ for ($i = 0; $i < 14; $i++) {
     <div class="unique-timeslots-container">
         <div class="unique-left-section">
             <div id="unique-selected-timeslots" class="unique-selected-slots">
-                <?php if (!empty($fetchedTimeslots)): ?>
-                    <?php foreach ($fetchedTimeslots as $timeslot): ?>
-                        <span class="unique-timeslot-tag">
-                            <?php echo htmlspecialchars($timeslot[0]) . " " . htmlspecialchars($timeslot[1]); ?>
-                            <button class="unique-remove-btn" onclick="removeUniqueTimeslot('<?php echo htmlspecialchars($timeslot[0]); ?>', '<?php echo htmlspecialchars($timeslot[1]); ?>')">&times;</button>
-                        </span>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p id="unique-no-slots-msg">No timeslots selected.</p>
-                <?php endif; ?>
+                
             </div>
             <div class="unique-actions">
                 <form id="unique-timeslot-form" method="POST" action="<?php echo URLROOT?>drAvailability2">
@@ -71,7 +62,7 @@ for ($i = 0; $i < 14; $i++) {
     var successMessage = "<?= $_SESSION['success_message'] ?? '' ?>";
     const allDates = <?php echo json_encode($allDates); ?>;
     const timeSlotsPerDay = <?php echo json_encode($timeSlotsPerDay); ?>;
-    const selectedTimeslots = <?php echo json_encode($fetchedTimeslots); ?>;
+    var selectedTimeslots = <?php echo json_encode($fetchedTimeslots); ?>;
     const occupiedTimeslots = <?php echo json_encode($occupiedTimeslots); ?>;
 </script>
 <script src="<?php echo URLROOT; ?>js/drAvailability2.js?v=<?php echo time(); ?>"></script>
