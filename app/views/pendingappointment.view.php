@@ -45,7 +45,7 @@ $currentDate = new DateTime();
                     </button>
 
                     <div class="pt-pending-div2-upload">
-                        <button class="pt-pending-button2">Upload Document</button>
+                        <button class="pt-pending-button">Upload Document</button>
                     </div>
                 </div>
             </div>
