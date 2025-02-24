@@ -1,105 +1,222 @@
+/* Main Div Styling */
+.pt-pending-maindiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+
 .pt-pending-div1 {
-    margin-top: 100px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.pt-pending-div1:hover {
+    transform: translateY(-5px);
 }
 
 .pt-pending-div1-h1 {
-    margin-top: 100px;
-    font-size: 25px;
-    font-weight: 300;
+    font-size: 24px;
+    font-weight: 600;
     color: #333;
-    cursor: pointer; /* Indicate clickability */
-}
-
-.pt-pending-maindiv {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    position: relative;
+    padding-bottom: 10px;
+    transition: color 0.3s ease;
 }
 
 .pt-thick-underline {
-    text-decoration: underline;
-    text-decoration-thickness: 4px; /* Set thick underline */
-    text-underline-offset: 20px; /* Offset underline slightly from text */
-    color: #000; /* Optional: Change color when active */
-    
+    text-decoration: none;
+    border-bottom: 4px solid #007bff;
+    border-radius: 2px;
+    padding-bottom: 5px;
+    color: #007bff;
 }
 
-.pt-pending-div2{
-    width: 1276px;
-    height: 173px;
-    background-color: rgba(239, 235, 235, 1);
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 10px;
-
-    
+/* Content Section Styling */
+.content-section {
+    margin-top: 30px;
+    padding: 20px;
 }
 
-.pt-pending-div2-main{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-.pt-pending-div3-main{
+.pt-pending-div2-main {
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
+}
+
+.pt-pending-div2 {
+    width: 80%;
+    background: linear-gradient(145deg, #ffffff, #f9f9f9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    transition: transform 0.3s ease;
 }
 
-.pt-pending-div2-upload{
-    width: 100%; /* Take full width of the parent */
-    text-align: center; /* Center-align the button inside the div */
-    margin-top: 10px; /* Add some spacing from other elements */
+.pt-pending-div2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.pt-pending-button{
-    width: 160px;
-    height: 42.35px;
-    background-color: rgba(0, 87, 164, 1);
+.pt-pending-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pt-pending-span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+}
+
+.pt-pending-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pt-pending-button {
+    background: linear-gradient(145deg, #007bff, #0056b3);
     color: white;
-    border-radius: 10px;
     border: none;
-}
-
-.pt-pending-span{
+    padding: 10px 20px;
+    border-radius: 8px;
     font-size: 14px;
-    font-weight: 300;
-    color: #333;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.pt-pending-button2{
-    width: 570px;
-    height: 42.35px;
-    background-color: rgba(0, 87, 164, 1);
+.pt-pending-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-button {
+    background: linear-gradient(145deg, #dc3545, #a71d31);
+}
+
+.upload-button {
+    background: linear-gradient(145deg, #28a745, #1e7e34);
     color: white;
-    border-radius: 10px;
     border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/*modal css*/
-.pending-updatemodal {
+.upload-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* View Modal Styling */
+.view-modal {
+    display: none;
     position: fixed;
-    top: 0;
+    z-index: 999;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+}
+
+.view-modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 25px;
+    width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.close-btn {
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #e74c3c;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #c0392b;
+}
+
+.modal-details span {
+    display: block;
+    margin: 15px 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+}
+
+.modal-buttons {
+    margin-top: 30px;
+}
+
+.pending-view-span {
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pending-view-div {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    justify-content: space-between;
+    /* margin-top: 10px; */
+}
+
+/* Cancel Modal Styling */
+.pending-updatemodal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
 }
 
 .pending-updatemodal-content {
-    background: white;
+    background: #fff; /* Kept plain white to match original pop-up style */
+    margin: 10% auto;
     padding: 20px;
     border-radius: 8px;
-    width: 300px;
-    text-align: center;
+    width: 30%;
+    height: 30%;
+    max-width: 400px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.pending-updatemodal-content p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center; /* Center-align text */
 }
 
 .pending-updatemodal-buttons {
@@ -110,70 +227,35 @@
 
 .pending-updateyes-btn,
 .pending-updateno-btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.pending-updateyes-btn {
-    background-color: #28a745;
+    background: linear-gradient(145deg, #28a745, #1e7e34);
     color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .pending-updateno-btn {
-    background-color: #dc3545;
-    color: white;
+    background: linear-gradient(145deg, #dc3545, #a71d31);
 }
 
-.pending-updateyes-btn:hover {
-    background-color: #218838;
-}
-
+.pending-updateyes-btn:hover,
 .pending-updateno-btn:hover {
-    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-/*modal css*/
-
-
-.view-modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 450px;
-
+/* Animation for Modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
-
-.close-btn {
-    float: right;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: red;
-}
-
-.modal-details span {
-    display: block;
-    margin: 10px 0;
-}
-
-.modal-buttons {
-    margin-top: 20px;
-}
-
-.pending-view-span{
-    font-size: 20px; 
-    color: #333; 
-    font-weight: bold;
-    margin-bottom: 10px; 
-    display: block;
-    margin-left: 10px;
-}
-.pending-view-div{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    /* margin-right: 100px;  */
-}
-
