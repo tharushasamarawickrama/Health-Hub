@@ -182,6 +182,10 @@ require APPROOT . '/views/Components/drNavbar.php';
                         <?php endif; ?>
                     </ul>
                 </ul>
+                <a 
+                    href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?php echo $prevAppointmentData['prev_appointment_id']; ?>">
+                    Click to view
+                </a>
             <?php else : ?>
                 <p><strong>Previous Appointment:</strong> No details available.</p>
             <?php endif; ?>

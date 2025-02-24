@@ -34,6 +34,7 @@ class DrMedicalHistory {
                     $medications = $medicationModel->findWhere(['prescription_id' => $prevAppointment[0]['prescription_id']]) ?? [];
 
                     $prevAppointmentData = [
+                        'prev_appointment_id' => $prevAppointment[0]['appointment_id'],
                         'appointment_date' => $prevAppointment[0]['appointment_date'],
                         'diagnosis' => $diagnosis,
                         'medications' => $medications
