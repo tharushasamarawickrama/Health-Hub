@@ -9,7 +9,11 @@ require APPROOT . '/views/Components/drNavbar.php';
     </a>
     <div class="history-container">
         <h2>Medical History</h2>
-        <button id="edit-btn" class="edit-button">Edit</button>
+        <div>
+            <button id="edit-btn" class="edit-button">Edit</button>
+            <button id="cancel-btn" class="cancel-button" hidden onclick="window.location.href='<?php echo URLROOT; ?>drMedicalHistory?appointment_id=<?php echo $appointmentId; ?>'">Cancel</button>
+        </div>
+
 
         <form id="history-form" method="post" action="<?php echo URLROOT; ?>drMedicalHistory?appointment_id=<?php echo $appointmentId; ?>">
             <!-- Allergies -->
@@ -17,7 +21,6 @@ require APPROOT . '/views/Components/drNavbar.php';
                 <div class="section-header">
                     <button type="button" class="delete-item-button" data-section="allergies">-</button>
                     <p><strong>Allergies:</strong></p>
-                    <!-- <button type="button" class="add-item-button" data-section="allergies">+</button> -->
                 </div>
                 <ul id="allergies-list">
                     <?php if (!empty($history['allergies'])) : ?>
@@ -42,7 +45,6 @@ require APPROOT . '/views/Components/drNavbar.php';
                 <div class="section-header">
                     <button type="button" class="delete-item-button" data-section="chronic_conditions">-</button>
                     <p><strong>Chronic Conditions:</strong></p>
-                    <!-- <button type="button" class="add-item-button" data-section="chronic_conditions">+</button> -->
                 </div>
                 <ul id="chronic_conditions-list">
                     <?php if (!empty($history['chronic_conditions'])) : ?>
@@ -67,7 +69,6 @@ require APPROOT . '/views/Components/drNavbar.php';
                 <div class="section-header">
                     <button type="button" class="delete-item-button" data-section="past_surgeries">-</button>
                     <p><strong>Past Surgeries:</strong></p>
-                    <!-- <button type="button" class="add-item-button" data-section="past_surgeries">+</button> -->
                 </div>
                 <ul id="past_surgeries-list">
                     <?php if (!empty($history['past_surgeries'])) : ?>
@@ -92,7 +93,6 @@ require APPROOT . '/views/Components/drNavbar.php';
                 <div class="section-header">
                     <button type="button" class="delete-item-button" data-section="immunizations">-</button>
                     <p><strong>Immunizations:</strong></p>
-                    <!-- <button type="button" class="add-item-button" data-section="immunizations">+</button> -->
                 </div>
                 <ul id="immunizations-list">
                     <?php if (!empty($history['immunizations'])) : ?>
@@ -117,7 +117,6 @@ require APPROOT . '/views/Components/drNavbar.php';
                 <div class="section-header">
                     <button type="button" class="delete-item-button" data-section="family_medical_history">-</button>
                     <p><strong>Family Medical History:</strong></p>
-                    <!-- <button type="button" class="add-item-button" data-section="family_medical_history">+</button> -->
                 </div>
                 <ul id="family_medical_history-list">
                     <?php if (!empty($history['family_medical_history'])) : ?>
@@ -142,7 +141,6 @@ require APPROOT . '/views/Components/drNavbar.php';
                 <div class="section-header">
                     <button type="button" class="delete-item-button" data-section="other">-</button>
                     <p><strong>Others:</strong></p>
-                    <!-- <button type="button" class="add-item-button" data-section="others">+</button> -->
                 </div>
                 <ul id="others-list">
                     <?php if (!empty($history['others'])) : ?>
@@ -166,22 +164,30 @@ require APPROOT . '/views/Components/drNavbar.php';
 
             <hr>
 
-            <!-- Last Appointment -->
-            <?php if (!empty($lastAppointmentData)) : ?>
-                <p><strong>Last Appointment: <?php echo $lastAppointmentData['appointment_date']; ?></strong></p>
+            <!-- Previous Appointment -->
+            <?php if (!empty($prevAppointmentData)) : ?>
+                <p><strong>Previous Appointment: <?php echo $prevAppointmentData['appointment_date']; ?></strong></p>
                 <ul>
-                    <li><strong>Diagnosis:</strong> <?php echo $lastAppointmentData['diagnosis']; ?></li>
+                    <li><strong>Diagnosis:</strong> <?php echo $prevAppointmentData['diagnosis']; ?></li>
                     <li><strong>Medications:</strong></li>
                     <ul>
-                        <?php foreach ($lastAppointmentData['medications'] as $medication) : ?>
+                    <?php if (!empty($prevAppointmentData['medications'])) : ?>
+                        <?php foreach ($prevAppointmentData['medications'] as $medication) : ?>
                             <li>
                                 <?php echo "{$medication['name']} - {$medication['quantity']} {$medication['measurement']} - {$medication['sig_codes']} ({$medication['duration']})"; ?>
                             </li>
                         <?php endforeach; ?>
+                        <?php else : ?>
+                            <li>No medications available.</li>
+                        <?php endif; ?>
                     </ul>
                 </ul>
+                <a 
+                    href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?php echo $prevAppointmentData['prev_appointment_id']; ?>">
+                    Click to view
+                </a>
             <?php else : ?>
-                <p><strong>Last Appointment:</strong> No details available</p>
+                <p><strong>Previous Appointment:</strong> No details available.</p>
             <?php endif; ?>
         </form>
     </div>

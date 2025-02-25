@@ -17,11 +17,20 @@ class DrLabTests {
         $labtestModel = new Labtest();
         $appointmentLabtestModel = new Appointment_Labtest();
 
-        // Fetch lab test names from the appointment table
+        // Fetch lab test names by appointment ID
         $fetchedLabTests = $appointmentLabtestModel->getLabTestNamesByAppointmentId($appointmentId);
 
         $labTests = $labtestModel->getLabTestsByCategory();
         $uncategorizedTests = $labtestModel->getUncategorizedLabTests();
+
+        //fetch lab report details for viewing
+        $labReports = $appointmentLabtestModel->getLabReportDetailsByAppointmentId($appointmentId);
+        $mappedLabReports = array_combine(
+            array_column($labReports, 'labtest_name'), 
+            array_column($labReports, 'labtest_report')
+        );
+        // var_dump($mappedLabReports);
+        // exit;
 
         // Handle POST request for saving selected tests
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -55,6 +64,7 @@ class DrLabTests {
             'labTests' => $labTests,
             'uncategorizedTests' => $uncategorizedTests,
             'fetchedLabTests' => $fetchedLabTests,
+            'labReports' => $mappedLabReports,
             'appointment_id' => $appointmentId
         ];
 

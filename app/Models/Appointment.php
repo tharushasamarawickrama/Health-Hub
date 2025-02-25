@@ -61,9 +61,9 @@ class Appointment {
         return $this->query($sql, ['doctor_id' => $doctorId]);
     }
 
-    public function getPatientByAppointmentId($appointmentId)
+    public function getPatientAndDateByAppointmentId($appointmentId)
     {
-        $sql = "SELECT patient_id FROM appointments WHERE appointment_id = :appointment_id";
+        $sql = "SELECT patient_id, appointment_date FROM appointments WHERE appointment_id = :appointment_id";
         return $this->query($sql, ['appointment_id' => $appointmentId]);
     }
 
@@ -136,6 +136,16 @@ class Appointment {
 
         return $result ? $result : null;
     }
-    
+
+    public function getPrevAppointment($doctorId, $patientId, $appointmentDate){
+        $sql = "SELECT * FROM appointments
+                WHERE doctor_id = :doctor_id AND patient_id = :patient_id AND appointment_date < :appointment_date
+                ORDER BY appointment_date DESC LIMIT 1";
+       $result = $this->query($sql, ['doctor_id' => $doctorId, 'patient_id' => $patientId, 'appointment_date' => $appointmentDate] );
+
+        return $result ? $result : null;
+    }
+
+
 }
 ?>
