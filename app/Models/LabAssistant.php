@@ -53,13 +53,21 @@ class LabAssistant {
     public function getCompletedLabAppointments() {
         $query = "SELECT 
                     a.appointment_id, u.nic, a.appointment_date
-                    FROM appointments a,
-                    users u
+                    FROM appointments a
+                    Join users u ON a.patient_id = u.user_id
                     WHERE a.status = 'Completed' ORDER BY a.appointment_date DESC";
         return $this->query($query);
     }
     
-    
+    public function getAppointmentsByDate($date) {
+        $query = "SELECT 
+                    a.appointment_id, u.nic, a.appointment_date
+                    FROM appointments a
+                    JOIN users u ON a.patient_id = u.user_id
+                    WHERE a.status = 'Completed' AND a.appointment_date = :appointment_date
+                    ORDER BY a.appointment_date DESC";
+        return $this->query($query, ['appointment_date' => $date]);
+    }
     
     public function deleteLabTestReport($labtest_id) {
         try {
@@ -109,8 +117,7 @@ return $this->query($query, ['appointment_id' => $appointment_id]);
             JOIN users d ON a.doctor_id = d.user_id
             JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id 
             JOIN labtests l ON l.labtest_id = alt.labtest_id
-            WHERE a.appointment_id = :appointment_id
-        ";
+            WHERE a.appointment_id = :appointment_id";
 
         return $this->query($query, ['appointment_id' => $appointment_id]);
     }
