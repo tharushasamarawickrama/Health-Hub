@@ -79,18 +79,43 @@ class Calendar {
         document.querySelectorAll('.lab-proc-calendar-date').forEach(date => {
             date.addEventListener('click', (e) => {
                 // Remove previous selection
-                document.querySelectorAll('.lab-proc-calendar-date').forEach(d => d.classList.remove('ph-pp-selected'));
+                document.querySelectorAll('.lab-proc-calendar-date').forEach(d => d.classList.remove('lab-proc-selected'));
                 // Add selected class to clicked date
                 e.target.classList.add('lab-proc-selected');
-                // Here you can add code to fetch appointments for the selected date
+                // Fetch appointments for the selected date
                 const selectedDate = e.target.dataset.date;
-                // Add your appointment fetching logic here
+                fetchAppointments(selectedDate);
             });
         });
     }
 }
 
 // Initialize the calendar when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     new Calendar();
 });
+
+function fetchAppointments(date) {
+    fetch(`${URLROOT}/LabProcessedPrescriptions/getAppointmentsByDate?date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            const appointmentsContainer = document.getElementById('appointments-container');
+            appointmentsContainer.innerHTML = '';
+            if (data.length > 0) {
+                data.forEach(appointment => {
+                    const appointmentCard = `
+                        <a href="${URLROOT}/labprocessedappointment" class="lab-proc-result-item">
+                            <div class="lab-proc-appointment-card">
+                                <div class="lab-proc-appointment-id">Appointment ID: ${appointment.appointment_id}</div>
+                                <div>NIC: ${appointment.nic}</div>
+                            </div>
+                        </a>
+                    `;
+                    appointmentsContainer.innerHTML += appointmentCard;
+                });
+            } else {
+                appointmentsContainer.innerHTML = '<div class="no-appointments">No completed appointments found</div>';
+            }
+        })
+        .catch(error => console.error('Error fetching appointments:', error));
+}
