@@ -22,13 +22,22 @@ class Doctor
     {
 
         $query = "SELECT u.*, d.*
-FROM users u
-INNER JOIN doctors d ON u.user_id = d.doctor_id;
-";
+                  FROM users u
+                  INNER JOIN doctors d ON u.user_id = d.doctor_id;";
 
         return $this->query($query);
     }
 
+    public function searchDoctors($searchTerm) {
+        $query = "SELECT u.*, d.*
+                  FROM users u
+                  INNER JOIN doctors d ON u.user_id = d.doctor_id
+                  WHERE u.firstName LIKE :term 
+                     OR u.lastName LIKE :term 
+                     OR d.slmcNo LIKE :term";
+        $data = ['term' => "%$searchTerm%"];
+        return $this->query($query, $data);
+    }
     
    
 

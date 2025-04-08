@@ -5,7 +5,15 @@ class ViewAllPharmProfile  {
     public function index(){
        
         $pharmacist=new Pharmacist;
-        $data=$pharmacist->findAlldata();
+        //$data=$pharmacist->findAlldata();
+
+        $searchQuery = $_GET['search'] ?? '';
+   
+        if (!empty($searchQuery)) {
+            $data = $pharmacist->searchPharmacists($searchQuery);
+        } else {
+            $data = $pharmacist->findAlldata();
+        }
         
         $this->view('ViewAllPharmProfile',$data);
     }

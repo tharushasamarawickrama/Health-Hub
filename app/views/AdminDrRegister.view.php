@@ -1,5 +1,8 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<?php require APPROOT . '/views/Components/AdminSidebar.php' ?> 
+
+
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
         <h1>New Doctor</h1>
@@ -38,6 +41,7 @@
                         <option value="Gastroenterologist">Gastroenterologist </option>
                         <option value="Endocrinologist">Endocrinologist</option>
                         <option value="Pulmonologist">Pulmonologist</option>
+                        <option value="None">None</option>
                     </select>
                 </div>
             </div>
@@ -75,7 +79,16 @@
                 <div class="AdminRegister-form-group-full-width">
                     <label class="AdminLabel" for="photo">Doctor's Photo</label>
                     <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" >
-                    
+
+                </div>
+                <div class="AdminRegister-form-group-full-width">
+                    <label class="AdminLabel" for="type">Doctor's Type</label>
+                    <select class="AdminSelect" id="type" name="type" >
+                        <option value="Specialist">Specialist</option>
+                        <option value="OPD">OPD </option>
+                        
+                    </select>
+
                 </div>
             </div>
             <div class="AdminRegister-form-row">

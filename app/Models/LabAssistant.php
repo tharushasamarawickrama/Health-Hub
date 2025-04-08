@@ -26,10 +26,25 @@ class LabAssistant {
     public function findAlldata()
     {
 
-        $query = "select * from $this->table ";
+        $query = "SELECT u.*, l.*
+                  FROM users u
+                  INNER JOIN labassistants l ON u.user_id = l.lab_assistant_id;";
 
         return $this->query($query);
     }
+
+
+    public function searchLabAssistants($searchTerm) {
+        $query = "SELECT u.*, l.*
+                  FROM users u
+                  INNER JOIN labassistants l ON u.user_id = l.lab_assistant_id
+                  WHERE u.firstName LIKE :term 
+                     OR u.lastName LIKE :term 
+                     OR l.employeeNo LIKE :term";
+        $data = ['term' => "%$searchTerm%"];
+        return $this->query($query, $data);
+    }
+
     public function getLabAppointments() {
         $query = "SELECT a.appointment_id, 
                          a.appointment_date, a.appointment_time, a.status, u.nic

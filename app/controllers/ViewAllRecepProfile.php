@@ -5,8 +5,15 @@ class ViewAllRecepProfile  {
     public function index(){
         
         $receptionist=new Receptionist;
-        $data=$receptionist->findAlldata();
-        // print_r($data[0]['firstName']);
+        //$data=$receptionist->findAlldata();
+        $searchQuery = $_GET['search'] ?? '';
+
+        if (!empty($searchQuery)) {
+            $data = $receptionist->searchReceptionists($searchQuery);
+        } else {
+            $data = $receptionist->findAlldata();
+        }
+        
         $this->view('ViewAllRecepProfile',$data);
     }
 

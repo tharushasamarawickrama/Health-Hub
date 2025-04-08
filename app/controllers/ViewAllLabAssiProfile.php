@@ -5,8 +5,15 @@ class ViewAllLabAssiProfile  {
     public function index(){
         
         $labassistant=new LabAssistant;
-        $data=$labassistant->findAlldata();
-        // print_r($data[0]['firstName']);
+       
+        $searchQuery = $_GET['search'] ?? '';
+
+        if (!empty($searchQuery)) {
+            $data = $labassistant->searchLabAssistants($searchQuery);
+        } else {
+            $data = $labassistant->findAlldata();
+        }
+
         $this->view('ViewAllLabAssiProfile',$data);
     }
     public function delete(){

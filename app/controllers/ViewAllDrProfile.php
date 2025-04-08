@@ -5,9 +5,17 @@ class ViewAllDrProfile  {
     public function index(){
        
         $doctor=new Doctor;
-        $data=$doctor->findAlldata();
+         //$data=$doctor->findAlldata();
         
-        // print_r($data[0]['FirstName']);
+    
+       $searchQuery = $_GET['search'] ?? '';
+   
+        if (!empty($searchQuery)) {
+            $data = $doctor->searchDoctors($searchQuery);
+        } else {
+            $data = $doctor->findAlldata();
+        }
+
         $this->view('ViewAllDrProfile',$data);
 
     }
