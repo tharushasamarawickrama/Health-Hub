@@ -41,9 +41,21 @@ class PatientChannel {
             // Update filled slots in the schedule
             $data['filled_slots'] = $data['filled_slots'] + 1;
             $schedule->update($data['schedule_id'], $data, 'schedule_id');
-
+            
+            
+            if($_SESSION['appointment']['referal_id'] == 'new'){
+                $referal = new Patient_Referal;
+                $arr2=[
+                    'user_id' => $_SESSION['user']['user_id'],
+                ];
+                $referal->insertReferal($arr2);    
+                $lastreferal = $referal->getLastReferalByUserId($_SESSION['user']['user_id']);
+                $_SESSION['appointment']['referal_id'] = $lastreferal;
+                $appointment->insert($_SESSION['appointment']);
+            }else{   
+                $appointment->insert($_SESSION['appointment']);
+            }
             // Insert appointment data into the database
-            $appointment->insert($_SESSION['appointment']);
 
             // Fetch the latest appointment data
             $appointmentdata = $appointment->getLastAppointmentByUserId($userId);
