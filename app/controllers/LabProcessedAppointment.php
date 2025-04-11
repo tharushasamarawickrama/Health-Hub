@@ -10,28 +10,28 @@ class LabProcessedAppointment {
 
    
     public function index() {
-    $appointment_id = 20; // Hardcoded for now
+        if (!isset($_GET['appointment_id'])) {
+            die("Error: No appointment ID provided.");
+        }
+        $appointment_id = $_GET['appointment_id'];
+        $appointmentDetails = $this->labAssistantModel->getCompletedLabAppointments($appointment_id);
 
-    if (empty($appointment_id) || !is_numeric($appointment_id)) {
-        redirect('labprocessedprescriptions'); // Redirect if ID is invalid
-        return;
-    }
+        if (!$appointmentDetails) {
+            die("Error: No appointment details found for the given ID.");
+        }
+        $this->view('labprocessedappointment', [
+            'appointment_id' => $appointmentDetails[0]['appointment_id'] ?? 'N/A',
+            'nic' => $appointmentDetails[0]['nic'] ?? 'N/A',
+            'age' => $appointmentDetails[0]['age'] ?? 'N/A',
+            'gender' => $appointmentDetails[0]['gender'] ?? 'N/A',
+            'labtest_name' => $appointmentDetails[0]['labtest_name'] ?? '', // Pass labtest_name
+            'appointment_date' => $appointmentDetails[0]['appointment_date'] ?? 'N/A',
+            'doctor_id' => $appointmentDetails[0]['doctor_id'] ?? 'N/A',
+            'doctor_name' => $appointmentDetails[0]['doctor_name'] ?? 'N/A'
+        ]);
 
-    // Fetch prescription details for the given appointment ID
-    $prescriptionDetails = $this->labAssistantModel->getAppointmentDetails($appointment_id);
-
-    if (empty($prescriptionDetails)) {
-        redirect('labprocessedprescriptions'); // Redirect if no details found
-        return;
-    }
-
-    // Pass data to the view
-    $data = $prescriptionDetails; 
-    $data['reports'] = $prescriptionDetails; // Initialize empty array or fetch actual reports
-// Get the first record (expected one result)
-    $this->view('labprocessedappointment', $data);
 }
-     
+
 public function deleteReport($labtest_id) {
     if (!$labtest_id) {
         echo json_encode(['success' => false, 'message' => 'Invalid labtest ID']);

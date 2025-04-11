@@ -92,7 +92,20 @@ class Calendar {
 
 // Initialize the calendar when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    new Calendar();
+    const calendar = new Calendar();
+    
+    // Fetch appointments for the current date on page load
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+    fetchAppointments(formattedDate);
+    
+    // Mark today as selected
+    setTimeout(() => {
+        const todayElement = document.querySelector('.lab-proc-today');
+        if (todayElement) {
+            todayElement.classList.add('lab-proc-selected');
+        }
+    }, 100);
 });
 
 function fetchAppointments(date) {
@@ -104,7 +117,7 @@ function fetchAppointments(date) {
             if (data.length > 0) {
                 data.forEach(appointment => {
                     const appointmentCard = `
-                        <a href="${URLROOT}/labprocessedappointment" class="lab-proc-result-item">
+                        <a href="${URLROOT}/labprocessedappointment?appointment_id=${appointment.appointment_id}" class="lab-proc-result-item">
                             <div class="lab-proc-appointment-card">
                                 <div class="lab-proc-appointment-id">Appointment ID: ${appointment.appointment_id}</div>
                                 <div>NIC: ${appointment.nic}</div>
@@ -114,8 +127,11 @@ function fetchAppointments(date) {
                     appointmentsContainer.innerHTML += appointmentCard;
                 });
             } else {
-                appointmentsContainer.innerHTML = '<div class="no-appointments">No completed appointments found</div>';
+                appointmentsContainer.innerHTML = '<div class="no-appointments">No completed appointments found for this date</div>';
             }
         })
         .catch(error => console.error('Error fetching appointments:', error));
 }
+
+
+
