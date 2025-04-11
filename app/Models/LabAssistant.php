@@ -50,23 +50,13 @@ class LabAssistant {
         return $this->query($query, ['appointment_id' => $appointment_id]);
     }
     
-    public function getCompletedLabAppointments($appointment_id) {
+    public function getCompletedLabAppointments() {
         $query = "SELECT 
-                    a.appointment_id, 
-                    u.nic, 
-                    a.appointment_date,
-                    u.age,
-                    u.gender,
-                    a.doctor_id,
-                    CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
-                    GROUP_CONCAT(l.labtest_name) AS labtest_name 
+                    a.appointment_id, u.nic, a.appointment_date
                     FROM appointments a
-                    JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
-                    JOIN labtests l ON l.labtest_id = alt.labtest_id
-                    JOIN users u ON a.patient_id = u.user_id
-                    JOIN users d ON a.doctor_id = d.user_id
-                    WHERE a.status = 'Completed' AND a.appointment_id = :appointment_id ORDER BY a.appointment_date DESC";
-        return $this->query($query, ['appointment_id' => $appointment_id]);
+                    Join users u ON a.patient_id = u.user_id
+                    WHERE a.status = 'Completed' ORDER BY a.appointment_date DESC";
+        return $this->query($query);
     }
     
     public function getAppointmentsByDate($date) {
@@ -119,7 +109,7 @@ return $this->query($query, ['appointment_id' => $appointment_id]);
                 a.doctor_id, 
                 CONCAT(d.firstName,' ', d.lastName) AS doctor_name,
                 alt.labtest_id, 
-                GROUP_CONCAT(l.labtest_name) AS labtest_name, 
+                l.labtest_name AS prescription, 
                 alt.labtest_report,
                 alt.labtest_pdfname
             FROM appointments a
