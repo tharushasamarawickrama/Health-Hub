@@ -11,32 +11,32 @@
             </div> 
             <div class="lab-proc-app-details">
                 <div class="lab-proc-app-left">
-                    <p><strong>Appointment ID:</strong> <?php echo htmlspecialchars($data['appointment_id']); ?></p>
-                    <p><strong>Patient NIC:</strong> <?php echo htmlspecialchars($data['nic']); ?></p>
-                    <p><strong>Age:</strong> <?php echo htmlspecialchars($data['age']); ?></p>
-                    <p><strong>Gender:</strong> <?php echo htmlspecialchars($data['gender']); ?></p>
+                    <p><strong>Appointment ID:</strong> <?php echo htmlspecialchars($data[0]['appointment_id']?? 'N/A'); ?></p>
+                    <p><strong>Patient NIC:</strong> <?php echo htmlspecialchars($data[0]['nic']?? 'N/A'); ?></p>
+                    <p><strong>Age:</strong> <?php echo htmlspecialchars($data[0]['age']?? 'N/A'); ?></p>
+                    <p><strong>Gender:</strong> <?php echo htmlspecialchars($data[0]['gender']?? 'N/A'); ?></p>
                     <p><strong>Tests:</strong></p>
                     <ul>
-                        <?php foreach (explode(',', $data['labtest_name']) as $test): ?>
+                        <?php foreach (explode(',', $data[0]['labtest_type']) as $test): ?>
                             <li><?php echo $test; ?></li>
                         <?php endforeach; ?>
                     </ul>
-                    
                 </div>
                 <div class="lab-proc-app-right">
-                    <p><strong><?php echo htmlspecialchars($data['appointment_date']); ?></strong></p>
-                    <p><strong>Doc ID:</strong> <?php echo htmlspecialchars($data['doctor_id']); ?></p>
-                    <p><strong>Doc name:</strong> <?php echo htmlspecialchars($data['doctor_name']); ?></p>
+                    <p><strong><?php echo htmlspecialchars($data[0]['appointment_date']?? 'N/A'); ?></strong></p>
+                    <p><strong>Doc ID:</strong> <?php echo htmlspecialchars($data[0]['doctor_id']?? 'N/A'); ?></p>
+                    <p><strong>Doc name:</strong> <?php echo htmlspecialchars($data[0]['doctor_name']?? 'N/A'); ?></p>
                 </div>
             </div>
             <div class="lab-proc-app-uploaded-reports">
                 <h3>Uploaded reports</h3>
-                <?php if (!empty($data['labtest_pdfname'])): ?>
-                <div class="lab-proc-app-report" id="report-<?php echo $data['labtest_id']; ?>">
+                <?php if (!empty($data[0]['labtest_pdfname'])): ?>
+                <div class="lab-proc-app-report" id="report-<?php echo $data[0]['labtest_id']; ?>">
                     <img src="<?php echo URLROOT; ?>/assets/images/pdf-icon.png" alt="PDF Icon"> 
-                    <span><?php echo htmlspecialchars($data['labtest_pdfname']); ?></span>
-                    <a href="<?php echo URLROOT; ?>/labprocessedappointment/view/<?php echo $data['labtest_id']; ?>">View</a>
-                    <a href="<?php echo URLROOT; ?>/LabDeleteLabReport" class="delete" onclick="deleteReport(<?php echo $data['labtest_id']; ?>)">Delete</a>
+                    <span><?php echo htmlspecialchars($data[0]['labtest_pdfname']); ?></span>
+                    <a href="<?php echo URLROOT; ?>/labprocessedappointment/view/<?php echo $data[0]['labtest_id']; ?>">View</a>
+                    <a href="<?php echo URLROOT; ?>/Lab
+                    DeleteLabReport" class="delete" onclick="deleteReport(<?php echo $data[0]['labtest_id']; ?>)">Delete</a>
                 </div>
                 <?php else: ?>
                     <p>No reports uploaded.</p>
