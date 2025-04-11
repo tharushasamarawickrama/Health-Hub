@@ -72,9 +72,7 @@ $currentDate = new DateTime();
                     <button
                         class="pt-pending-button view-btn"
                         data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">View</button>
-                    <div class="pt-pending-div2-upload">
-                        <button class="pt-pending-button2">Upload Document</button>
-                    </div>
+                    
                 </div>
             </div>
         <?php endif; ?>
