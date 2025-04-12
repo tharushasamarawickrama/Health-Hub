@@ -104,6 +104,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability.css?v=<?php echo time();?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAppointment.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drAvailability2.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/drCalendar.css?v=<?php echo time(); ?>">
 
 </head>
 

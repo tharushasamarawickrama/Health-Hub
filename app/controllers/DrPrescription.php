@@ -20,6 +20,8 @@ class DrPrescription {
         $appointmentModel = new Appointment();
         $appointment = $appointmentModel->getAppointmentById($appointmentId);
 
+        $appointmentDate = $appointment['appointment_date'];
+
         $prescriptionId = $appointment['prescription_id'];
 
         $prescriptionModel = new Prescription();
@@ -28,6 +30,6 @@ class DrPrescription {
         $medicationModel = new Prescribed_Medications();
         $medications = $medicationModel->findWhere(['prescription_id' => $prescriptionId]);
 
-        $this->view('drPrescription', ['prescription' => $prescription, 'medications' => $medications, 'appointment_id' => $appointmentId] );
+        $this->view('drPrescription', ['prescription' => $prescription, 'medications' => $medications, 'appointment_id' => $appointmentId, 'appointment_date' => $appointmentDate] );
     }
 }

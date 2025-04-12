@@ -6,6 +6,9 @@ require APPROOT . '/views/Components/drNavbar.php';
 $allLabTests = $data['labTests']; // Categorized lab tests
 $uncategorizedTests = $data['uncategorizedTests']; // Uncategorized lab tests
 $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current appointment
+
+$today = date('Y-m-d');
+$isPastAppointment = strtotime($appointment_date) < strtotime($today);
 ?>
 
 <div class="dr-labtest-container">
@@ -14,13 +17,25 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
     </a>
 
     <div class="tabs-container">
-        <div class="tabs">
-            <button class="tab-link active" onclick="switchTab(event, 'order-tests')">Order Lab Test</button>
-            <button class="tab-link" onclick="switchTab(event, 'lab-reports')">Lab Reports</button>
-        </div>
+    <div class="tabs">
+        <button 
+            class="tab-link <?= $isPastAppointment ? '' : 'active' ?>" 
+            onclick="<?= $isPastAppointment ? 'return false;' : 'switchTab(event, \'order-tests\')' ?>" 
+            <?= $isPastAppointment ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : '' ?>
+        >
+            Order Lab Test
+        </button>
 
-        <!-- Order Lab Tests Section (Unchanged) -->
-        <div id="order-tests" class="tab-content active">
+        <button 
+            class="tab-link <?= $isPastAppointment ? 'active' : '' ?>" 
+            onclick="switchTab(event, 'lab-reports')"
+        >
+            Lab Reports
+        </button>
+    </div>
+
+        <!-- Order Lab Tests Section -->
+        <div id="order-tests" class="tab-content <?= $isPastAppointment ? '' : 'active' ?>">
             <h3>Order Lab Test</h3>
             <!-- Display Selected Lab Tests -->
         <div id="selected-tests" class="lab-tests-display">
@@ -71,15 +86,15 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
         </div>
 
         <!-- Lab Reports Section -->
-        <div id="lab-reports" class="tab-content">
+        <div id="lab-reports" class="tab-content <?= $isPastAppointment ? 'active' : '' ?>">
             <h3>Lab Reports</h3>
             <div class="lab-report-list">
                 <?php foreach ($labReports as $labTestName => $labTestReport): 
-                    $filePath = APPROOT . "/../public/assets/" . $labTestReport; // Adjust path if needed
+                    $filePath = APPROOT . "/../public/assets/" . $labTestReport;
                 ?>
                     <div class="lab-report-item">
                         <p><?php echo htmlspecialchars($labTestName); ?></p>
-                        <?php if (file_exists($filePath)): ?>
+                        <?php if ($labTestReport): ?>
                             <button class="view-report-btn" onclick="window.open('<?php echo URLROOT . 'assets/'. htmlspecialchars($labTestReport); ?>', '_blank')">View</button>
                         <?php else: ?>
                             <p class="missing-report">Report Not Available</p>
