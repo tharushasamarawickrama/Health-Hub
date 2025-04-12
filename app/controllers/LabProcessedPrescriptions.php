@@ -3,11 +3,13 @@
 class LabProcessedPrescriptions {
     use Controller;
     private $labAssistantModel;
+
     public function __construct() {
         $this->labAssistantModel = new LabAssistant();
     }
-    public function index(){
-        $completedAppointments = $this->labAssistantModel->getCompletedLabAppointments();
+
+    public function index($appointment_id = null) {
+        $completedAppointments = $this->labAssistantModel->getCompletedLabAppointments($appointment_id);
         
         $data = [
             'appointments' => $completedAppointments
@@ -15,12 +17,9 @@ class LabProcessedPrescriptions {
         $this->view('labprocessedprescriptions',$data);
     }
     
-    public function getAppointmentData() {
+    public function getAppointmentsByDate() {
         $date = $_GET['date'] ?? date('Y-m-d');
-        $data = [
-            'appointment_id' => '123', // Replace with actual database query
-            'nic' => 'ABC123' // Replace with actual database query
-        ];
-        echo json_encode($data);
+        $appointments = $this->labAssistantModel->getAppointmentsByDate($date);
+        echo json_encode($appointments);
     }
 }

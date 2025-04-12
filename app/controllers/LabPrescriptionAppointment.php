@@ -21,7 +21,16 @@ class LabPrescriptionAppointment {
 
         // Pass data to view
         $this->view('labprescriptionappointment', [
-            'appointment_details' => $appointmentDetails[0] ?? []// Use first result if available// Assuming medications are in the same query
+            'appointment_id' => $appointment_id,
+            'nic' => $appointmentDetails[0]['nic'] ?? 'N/A',
+            'age' => $appointmentDetails[0]['age'] ?? 'N/A',
+            'gender' => $appointmentDetails[0]['gender'] ?? 'N/A',
+            'lab_tests' => array_map(function($test) {
+                return ['prescription' => $test['prescription']];
+            }, $appointmentDetails),
+            'appointment_date' => $appointmentDetails[0]['appointment_date'] ?? 'N/A',
+            'doctor_id' => $appointmentDetails[0]['doctor_id'] ?? 'N/A',
+            'doctor_name' => $appointmentDetails[0]['doctor_name'] ?? 'N/A'
         ]);
     }
     }

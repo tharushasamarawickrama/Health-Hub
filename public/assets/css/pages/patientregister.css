@@ -145,7 +145,7 @@
     margin-left: 60px;
     /* margin-top: 18px; */
     /* border-bottom: 20px; */
-    background-color: #2169e5;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
     font-size: 20px;
     border: none;
@@ -331,6 +331,8 @@
 
 .maindiv{
     display: flex;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
    
 }

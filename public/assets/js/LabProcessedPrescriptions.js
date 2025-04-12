@@ -79,18 +79,59 @@ class Calendar {
         document.querySelectorAll('.lab-proc-calendar-date').forEach(date => {
             date.addEventListener('click', (e) => {
                 // Remove previous selection
-                document.querySelectorAll('.lab-proc-calendar-date').forEach(d => d.classList.remove('ph-pp-selected'));
+                document.querySelectorAll('.lab-proc-calendar-date').forEach(d => d.classList.remove('lab-proc-selected'));
                 // Add selected class to clicked date
                 e.target.classList.add('lab-proc-selected');
-                // Here you can add code to fetch appointments for the selected date
+                // Fetch appointments for the selected date
                 const selectedDate = e.target.dataset.date;
-                // Add your appointment fetching logic here
+                fetchAppointments(selectedDate);
             });
         });
     }
 }
 
 // Initialize the calendar when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new Calendar();
+document.addEventListener('DOMContentLoaded', function() {
+    const calendar = new Calendar();
+    
+    // Fetch appointments for the current date on page load
+    const today = new Date();
+    const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+    fetchAppointments(formattedDate);
+    
+    // Mark today as selected
+    setTimeout(() => {
+        const todayElement = document.querySelector('.lab-proc-today');
+        if (todayElement) {
+            todayElement.classList.add('lab-proc-selected');
+        }
+    }, 100);
 });
+
+function fetchAppointments(date) {
+    fetch(`${URLROOT}/LabProcessedPrescriptions/getAppointmentsByDate?date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            const appointmentsContainer = document.getElementById('appointments-container');
+            appointmentsContainer.innerHTML = '';
+            if (data.length > 0) {
+                data.forEach(appointment => {
+                    const appointmentCard = `
+                        <a href="${URLROOT}/labprocessedappointment?appointment_id=${appointment.appointment_id}" class="lab-proc-result-item">
+                            <div class="lab-proc-appointment-card">
+                                <div class="lab-proc-appointment-id">Appointment ID: ${appointment.appointment_id}</div>
+                                <div>NIC: ${appointment.nic}</div>
+                            </div>
+                        </a>
+                    `;
+                    appointmentsContainer.innerHTML += appointmentCard;
+                });
+            } else {
+                appointmentsContainer.innerHTML = '<div class="no-appointments">No completed appointments found for this date</div>';
+            }
+        })
+        .catch(error => console.error('Error fetching appointments:', error));
+}
+
+
+
