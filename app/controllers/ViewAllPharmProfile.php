@@ -21,7 +21,8 @@ class ViewAllPharmProfile  {
     public function delete(){
         $id=$_GET['id'];
         $pharmacist=new Pharmacist;
-        if($pharmacist->delete($id,$id_column='pharmacist_id')){
+        $user=new User;
+        if($pharmacist->delete($id,$id_column='pharmacist_id') && $user->delete($id,$id_column='user_id')){
             redirect('ViewAllPharmProfile');
         }
 

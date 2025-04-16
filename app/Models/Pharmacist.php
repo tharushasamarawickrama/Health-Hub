@@ -8,18 +8,8 @@ class Pharmacist {
 
     protected $Allowedcolumns = [
         'pharmacist_id',
-        'firstName',
-        'lastName',
-        'password',
-        'phoneNumber',
-        'email',
-        'gender',
-        'dob',
-        'slmcNo',
-        'nic',
-        'address',
-        'photo_path',
-        'created_at'
+        'slmcNo'
+        
         
     ];
 

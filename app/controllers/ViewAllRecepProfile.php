@@ -20,9 +20,13 @@ class ViewAllRecepProfile  {
     public function delete(){
         $id=$_GET['id'];
         $receptionist=new Receptionist;
-        if($receptionist->delete($id,$id_column='receptionist_id')){
+        $user=new User;
+        if($receptionist->delete($id,$id_column='receptionist_id') && $user->delete($id,$id_column='user_id')){
             redirect('ViewAllRecepProfile');
+            
         }
+        
+        
 
     }
     

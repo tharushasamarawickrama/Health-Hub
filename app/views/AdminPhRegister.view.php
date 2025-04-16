@@ -31,6 +31,15 @@
                     <label class="AdminLabel" for="email">Email</label>
                     <input class="AdminInput" type="email" id="email" name="email" >
                 </div>
+                <div class="AdminRegister-form-group">
+                    <label class="AdminLabel" for="title">Title</label>
+                    <select class="AdminSelect" id="title" name="title" >
+                        <option value="Mr">Mr</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                    </select>
+                </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
@@ -76,3 +85,9 @@
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
+
+<?php if (isset($data['success'])): ?>
+    <script>
+        alert("<?php echo $data['success']; ?>");
+    </script>
+<?php endif; ?>

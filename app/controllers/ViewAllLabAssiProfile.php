@@ -19,7 +19,8 @@ class ViewAllLabAssiProfile  {
     public function delete(){
         $id=$_GET['id'];
         $labassistant=new LabAssistant;
-        if($labassistant->delete($id,$id_column='lab_assistant_id')){
+        $user=new User;
+        if($labassistant->delete($id,$id_column='lab_assistant_id') && $user->delete($id,$id_column='user_id')){
             redirect('ViewAllLabAssiProfile');
         }
 

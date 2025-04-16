@@ -22,7 +22,8 @@ class ViewAllDrProfile  {
     public function delete(){
         $id=$_GET['id'];
         $doctor=new Doctor;
-        if($doctor->delete($id,$id_column='doctor_id')){ 
+        $user=new User;
+        if($doctor->delete($id,$id_column='doctor_id') && $user->delete($id,$id_column='user_id')){ 
             $data['success'] = "Doctor deleted Successfully";
             $this->view('AdminDrRegister', $data);
            

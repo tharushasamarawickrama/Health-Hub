@@ -8,18 +8,7 @@ class LabAssistant {
 
     protected $Allowedcolumns = [
         'lab_assistant_id',
-        'firstName',
-        'lastName',
-        'password',
-        'phoneNumber',
-        'email',
-        'gender',
-        'dob',
-        'employeeNo',
-        'nic',
-        'address',
-        'photo_path',
-        'created_at'
+        'employeeNo'
         
     ];
 
