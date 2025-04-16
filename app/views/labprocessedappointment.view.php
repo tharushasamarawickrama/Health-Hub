@@ -9,6 +9,11 @@
                     Back
                 </a>
             </div> 
+            <form action="<?php echo URLROOT; ?>/labprocessedappointment/markAsPending" method="POST">
+                <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
+                <button type="submit" class="btn btn-warning">Mark as Pending</button>
+            </form>
+
             <div class="lab-proc-app-details">
                 <div class="lab-proc-app-left">
                     <p><strong>Appointment ID:</strong> <?php echo htmlspecialchars($data['appointment_id']); ?></p>
@@ -21,8 +26,8 @@
                             <li><?php echo $test; ?></li>
                         <?php endforeach; ?>
                     </ul>
-                    
                 </div>
+
                 <div class="lab-proc-app-right">
                     <p><strong><?php echo htmlspecialchars($data['appointment_date']); ?></strong></p>
                     <p><strong>Doc ID:</strong> <?php echo htmlspecialchars($data['doctor_id']); ?></p>
@@ -31,13 +36,18 @@
             </div>
             <div class="lab-proc-app-uploaded-reports">
                 <h3>Uploaded reports</h3>
-                <?php if (!empty($data['labtest_pdfname'])): ?>
-                <div class="lab-proc-app-report" id="report-<?php echo $data['labtest_id']; ?>">
+                    <?php if (!empty($data['labtest_pdfname']) && !empty($data['labtest_report'])): ?>
+                    <?php 
+                    $pdfNames = explode(',', $data['labtest_pdfname']);
+                    $pdfPaths = explode(',', $data['labtest_report']);
+                    $labtest_id = explode(',', $data['labtest_id']);
+                    ?>
+                <?php foreach ($pdfNames as $index => $pdfName): ?>
+                    <div class="lab-proc-app-report" id="report-<?php echo $index; ?>">
                     <img src="<?php echo URLROOT; ?>/assets/images/pdf-icon.png" alt="PDF Icon"> 
-                    <span><?php echo htmlspecialchars($data['labtest_pdfname']); ?></span>
-                    <a href="<?php echo URLROOT; ?>/labprocessedappointment/view/<?php echo $data['labtest_id']; ?>">View</a>
-                    <a href="<?php echo URLROOT; ?>/LabDeleteLabReport" class="delete" onclick="deleteReport(<?php echo $data['labtest_id']; ?>)">Delete</a>
-                </div>
+                    <span><?php echo htmlspecialchars($pdfName); ?></span>
+                    <a href="<?php echo URLROOT; ?>/<?php echo htmlspecialchars($pdfPaths[$index]); ?>" target="_blank">View</a>                </div>
+                    <button onclick="confirmDelete('<?php echo $labtest_id[$index]; ?>', '<?php echo $data['appointment_id']; ?>')">Delete</button>                    <?php endforeach; ?>
                 <?php else: ?>
                     <p>No reports uploaded.</p>
                 <?php endif; ?>
@@ -46,5 +56,8 @@
     </div>
 </div>
 
+<script>
+    const URLROOT = "<?php echo URLROOT; ?>";
+</script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
-<!-- script src="<?php echo URLROOT;?>/assets/js/LabProcessedAppointment.js"></script>
+<script src="<?php echo URLROOT;?>/assets/js/LabProcessedAppointments.js"></script>
