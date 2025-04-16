@@ -3,43 +3,31 @@
 <div class="lab-pend-pres-container">
     <div class="lab-pend-pres-content">
         <div class="lab-pend-pres-prescriptions">
+            <?php if (!empty($data['appointments'])): ?>
+            <?php foreach ($data['appointments'] as $appointment): ?>
             <div class="lab-pend-pres-card">
-            <div class="lab-pend-pres-card-left">
-                <a href="<?php echo URLROOT; ?>/labpendingappointment">   
-                    <div>01.</div>
-                    <p><strong>Appointment ID:</strong> 3465</p>
-                    <p><strong>NIC:</strong> 200397482759</p>
+                <div class="lab-pend-pres-card-left">
+                    <a href="<?php echo URLROOT; ?>/labpendingappointment?appointment_id=<?php echo $appointment['appointment_id']; ?>" >
+                        <div ><p><strong>Appointment ID: </strong><?php echo $appointment['appointment_id']; ?></p></div>
+                        <div><p><strong>NIC: </strong><?php echo $appointment['nic']; ?></p></div>
+                </div> 
+
+                <div class="lab-pend-pres-card-right">
+                    <div><p><strong>Tests remaining:</strong></p>
+                    <ul>
+                        <?php foreach ($appointment['labtests'] as $test): ?>
+                            <li><?php echo $test; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    </div>
                     </a>
                 </div>
-                
-                <div class="lab-pend-pres-card-right">
-                    <p><strong>Tests remaining</strong></p>
-                    <p>Complete Blood Count</p>
-                    <p>Lipid Profile</p>
-                </div>
+
             </div>
-            <div class="lab-pend-pres-card">
-                <div class="lab-pend-pres-card-left">
-                <div>02.</div>
-                    <p><strong>Appointment ID:</strong> 8765</p>
-                    <p><strong>NIC:</strong> 2001132688659</p>
-                </div>
-                <div class="lab-pend-pres-card-right">
-                    <p><strong>Tests remaining</strong></p>
-                    <p>Liver Function Test</p>
-                </div>
-            </div>
-            <div class="lab-pend-pres-card">
-                <div class="lab-pend-pres-card-left">
-                    <div>03.</div>
-                    <p><strong>Appointment ID:</strong> 2398</p>
-                    <p><strong>NIC:</strong> 200254302856</p>
-                </div>
-                <div class="lab-pend-pres-card-right">
-                    <p><strong>Tests remaining</strong></p>
-                    <p>Kidney Function Test</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+                <div class="no-appointments">No pending appointments found</div>
+            <?php endif; ?>  
         </div>
     </div>
 </div>

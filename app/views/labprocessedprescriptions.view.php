@@ -17,7 +17,7 @@
                 <div>Thu</div>
                 <div>Fri</div>
                 <div>Sat</div>
-            </div>
+          <div class=""></div> </div>
     <div id="lab-proc-calendarDates" class="lab-proc-calendar-dates"></div>
 
 </div>
@@ -26,7 +26,7 @@
     <div class="lab-proc-appointments-container" id="appointments-container">
     <?php if (!empty($data['appointments'])): ?>
         <?php foreach ($data['appointments'] as $appointment): ?>
-            <a href="<?php echo URLROOT; ?>/labprocessedappointment?appointment_id=<?php echo $appointment['appointment_id']; ?>" class="lab-proc-result-item">
+            <a href="<?php echo URLROOT; ?>/labpendingappointment?appointment_id=<?php echo $appointment['appointment_id']; ?>" class="lab-proc-result-item">
                 <div class="lab-proc-appointment-card">
                     <div class="lab-proc-appointment-id">Appointment ID: <?php echo $appointment['appointment_id']; ?></div>
                     <div>NIC: <?php echo $appointment['nic']; ?></div>
