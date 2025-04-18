@@ -44,9 +44,9 @@ $currentDate = new DateTime();
                         Cancel
                     </button>
 
-                    <div class="pt-pending-div2-upload">
+                    <!-- <div class="pt-pending-div2-upload">
                         <button class="pt-pending-button">Upload Document</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         <?php endif; ?>
