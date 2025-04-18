@@ -35,6 +35,8 @@ class DrDashboard
             }
         }
 
+        $todaysSlots = [];
+        $calendarSchedules = [];
         // Fetch past appointments for the doctor
         $pastAppointments = [];
         if($doctorType == 'opd') {
@@ -48,11 +50,13 @@ class DrDashboard
                 ));
             }
         }
-        elseif($doctorType == 'regular'){
+        elseif($doctorType == 'specialist'){
             $ScheduleTimeModel = new ScheduleTime();
             $schedules = $ScheduleTimeModel->getPastSchedulesByDoctor($doctorId);
+            $todaysSlots = $ScheduleTimeModel->getTodaysSlotsByDoctor($doctorId);
+            $calendarSchedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
             
-            // var_dump($schedules);
+            // var_dump($calendarSchedules);
             // exit();
 
             if($schedules){
@@ -74,7 +78,10 @@ class DrDashboard
         // Load the view and pass the data
         $this->view('drDashboard',[
             'appointmentsToday' => $appointmentsToday,
-            'pastAppointments' => $pastAppointments
+            'pastAppointments' => $pastAppointments,
+            'todaysSlots' => $todaysSlots,
+            'schedules' => $calendarSchedules,
+            'doctorType' => $doctorType,
         ]);
     }
 }
