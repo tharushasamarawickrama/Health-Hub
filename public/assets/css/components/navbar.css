@@ -1,0 +1,106 @@
+.Navbar{
+    font-family: 'DM Sans', sans-serif;
+    background-color: rgba(0, 87, 164, 1);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    padding: 0 300px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    
+}
+
+.navitems{
+    font-size: 20.83px;
+    color: white;
+    text-decoration: none;
+    margin: 0 100px;
+    /* font-weight: bold; */
+    padding: 10px 10px;
+
+}
+
+.navitems:hover{
+    color: #120303;
+    background-color: white;
+    border-radius: 50px;
+    
+    
+}
+
+.logo{
+    width: 80px;
+    height: 80px;
+    margin-left: -280px;
+}
+
+.loginlogo{
+    width: 50px;
+    height: 50px;
+    margin-left: 120px;
+    margin-top: 10px;
+    border-radius: 50%;
+    
+}
+
+.login{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Show the dropdown content on hover */
+}
+
+.dropdown-toggle:hover {
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.logname{
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    
+}
+
+.username{
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 10px;
+}
+

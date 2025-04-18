@@ -1,32 +1,89 @@
 <?php
 
-class App
+class APP
 {
-    private $controller = 'Home';
-    private $method = 'index';
+    private $controller = "Home"; // Default controller
+    private $method = "index"; // Default method
 
-    private function SplitURL()
+    private function splitURL()
     {
         $URL = $_GET['url'] ?? 'home';
-        $URL = explode('/', $URL);
+        $URL = explode("/", trim($URL, "/"));
         return $URL;
     }
 
-    public function LoadController()
+    public function loadController()
     {
-        $URL = $this->SplitURL();
+        $URL = $this->splitURL();
+        $controllerPath = "../app/controllers/";
 
-        $filename = "../app/controllers/" . ucfirst($URL[0]) . ".php";
-        if (file_exists($filename)) {
-            require $filename;
-            $this->controller = ucfirst($URL[0]);
+        // Check for nested paths (e.g., student/ControllerName)
+        if (count($URL) > 1 && is_dir($controllerPath . ucfirst($URL[0]))) {
+            $controllerPath .= ucfirst($URL[0]) . "/" . ucfirst($URL[1]) . ".php"; // e.g., app/controllers/student/StudentController1.php
+            $controllerName = ucfirst($URL[1]);
+            unset($URL[0], $URL[1]);
         } else {
-            $filename = "../app/controllers/_404.php";
-            require $filename;
-            $this->controller = '_404';
+            // Check for controllers directly in app/controllers (e.g., Signup.php)
+            $controllerPath .= ucfirst($URL[0]) . ".php"; // e.g., app/controllers/Signup.php
+            $controllerName = ucfirst($URL[0]);
+            unset($URL[0]);
         }
 
-        $this->controller = new $this->controller;
-        call_user_func_array([$this->controller, $this->method], []);
+        if (file_exists($controllerPath)) {
+            require $controllerPath; // Include the controller file
+            $this->controller = $controllerName;
+        } else {
+            // Load 404 controller if the specified controller does not exist
+
+            // require "../app/controllers/_404.php";
+            // $this->controller = "_404";
+            require __DIR__ . "/../controllers/_404.php";
+            $controller = new _404();
+            $controller->index();
+            exit(1);
+        }
+
+
+        /* Instantiate the controller */
+        $controller = new $this->controller();
+
+        /* Select method */
+        if (!empty($URL[2])) {
+            if (method_exists($controller, $URL[2])) {
+                $this->method = $URL[2]; // Set the method
+                unset($URL[2]);
+            } else {
+                // If the method does not exist, use the 404 controller's default method
+
+                // $this->controller = "_404";
+                // $controller = new $this->controller(); // Reinstantiate 404 controller
+                // $this->method = "index"; // Default to index method in 404 controller
+                require __DIR__ . "/../controllers/_404.php";
+                $controller = new _404();
+                $controller->index();
+                exit(1);
+            }
+        } else {
+            if (!empty($URL[1])) {
+                if (method_exists($controller, $URL[1])) {
+                    $this->method = $URL[1]; // Set the method
+                    unset($URL[1]);
+                } else {
+                    // $this->controller = "_404";
+                    // $controller = new $this->controller(); // Reinstantiate 404 controller
+                    // $this->method = "index";
+                    require __DIR__ . "/../controllers/_404.php";
+                    $controller = new _404();
+                    $controller->index();
+                    exit(1);
+                }
+            }
+        }
+
+        /* Remaining parts of the URL are parameters */
+        $params = $URL ? array_values($URL) : [];
+
+        /* Call the controller method with parameters */
+        call_user_func_array([$controller, $this->method], $params);
     }
 }

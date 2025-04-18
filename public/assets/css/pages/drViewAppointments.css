@@ -1,0 +1,116 @@
+.dr-view-appointments-container {
+    font-family: Nunito, sans-serif;
+    margin: auto;
+    min-height:95vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.dr-view-appointments-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0 0 20px 0;
+    max-width: 80%;
+    width: 100%;
+}
+
+.view-appointments-back-arrow{
+    margin-left: -100px;
+}
+
+.view-appointments-date{
+    background-color: white;
+    border-radius: 20px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.appointment-filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-content: flex-start;
+    position: relative;
+    max-width: 80%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.appointment-filters button, .appointment-filters input{
+    font-family: Nunito, sans-serif;
+}
+
+.appointment-search-bar{
+    border-radius: 20px;
+    padding: 5px;
+    margin-left: 50px;
+    background-color: white;
+    position: absolute;
+    right: 10px;
+    bottom: 2px;
+}
+
+.view-appointments-list {
+    background-color: white;
+    border: 2px solid #d2e7ec;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 80%;
+    width: 100%;
+}
+
+.view-appointment-card {
+    display: flex;
+    justify-content: space-between;
+    background: #d2e7ec;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.view-appointment-card:hover {
+    background: #b0d4e1;
+    transform: translateY(-2px);
+}
+
+.card-link {
+    text-decoration: none;
+    color: black;
+    flex-grow: 1;
+}
+
+.appointment-check-icon{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.view-appointment-pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.view-appointment-pagination a {
+    padding: 5px 10px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.view-appointment-pagination a:hover {
+    background-color: #ddd;
+}
+
+.view-appointment-pagination a.active {
+    background-color: #0099ff;
+    color: #fff;
+}

@@ -1,0 +1,52 @@
+.phNavbar{
+    font-family: 'Nunito', sans-serif;
+    background-color: #003C70;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.phNavitems{
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+    margin: 0 100px;
+    padding: 10px 10px;
+}
+
+
+.phlogo{
+    width: 85px;
+    height: 95px;
+    margin-left: 10px;
+}
+
+.phloginlogo{
+    width: 60px;
+    height: 60px;
+    margin-left: 100px;
+    border-radius: 10px;
+}
+
+.phlogin{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 50px;
+}
+
+.dropdown p {
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+}

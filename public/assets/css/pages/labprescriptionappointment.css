@@ -1,0 +1,79 @@
+
+.lab-pres-app-appcontent {
+    padding: 20px;
+    margin-top: 50px;   
+}
+
+.lab-pres-app-prescription-details {
+    display: flex;
+    justify-content: space-between;
+    background-color: #99d1eb;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.lab-pres-app-prescription-details .lab-pres-app-details-left,
+.lab-pres-app-prescription-details .lab-pres-app-details-right {
+    width: 48%;
+}
+
+.lab-pres-app-prescription-details p,
+.lab-pres-app-prescription-details li {
+    margin: 5px 0;
+}
+
+.lab-pres-app-prescription-details ul {
+    padding-left: 20px;
+}
+
+.lab-pres-app-file-upload {
+    background-color: #E4F6F8;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px dashed #aaa;
+}
+
+.lab-pres-app-file-upload p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #555;
+}
+
+.lab-pres-app-upload-btn {
+    background-color: #257a8b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.lab-pres-app-upload-btn:hover {
+    background-color: #205e70;
+}
+.lab-pres-app-back-button-container {
+    margin-bottom: 20px;
+    top: 20px;
+    left: 20px;
+}
+
+.lab-pres-app-back-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background-color: #2f7a85;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    width: fit-content;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.lab-pres-app-back-button:hover {
+    background-color: #0e6875;
+    border-color: #002a31;
+}

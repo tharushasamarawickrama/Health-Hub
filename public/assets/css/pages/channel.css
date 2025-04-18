@@ -1,0 +1,33 @@
+.upsection{
+    margin-top: 100px;
+    display: flex;
+    /* background-image: url(../../images/background.png); */
+    height: 100vh;
+}
+
+.availabletext{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 400px;
+    font-family: 'popins', sans-serif;
+}
+
+.pt-noresults{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 400px;
+    color: white;
+}
+
+.pt-noresults-div{
+    margin-top: 200px;
+    background-color: red;
+    width: 1000px;
+    margin-left: 60px;
+}
+
+.selectdoctor{
+    margin-top: 50px;
+}
+
+

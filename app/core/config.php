@@ -1,7 +1,22 @@
 <?php
 
 if($_SERVER['SERVER_NAME'] == 'localhost') {
-    define('ROOT', 'http://localhost/MVC/public/');
+    define('DBNAME','health_hub');
+    define('DBHOST','localhost');
+    define('DBUSER','root');
+    define('DBPASS','');
+    define('DBDRIVER','');
+    define('ROOT', 'http://localhost/Health-Hub/public/');
 }else{
+    define('DBNAME','health_hub');
+    define('DBHOST','localhost');
+    define('DBUSER','root');
+    define('DBPASS','');
+    define('DBDRIVER','');
     define('ROOT', 'http://www.yourwebsite.com/');
 }
+
+define('APPROOT', dirname(dirname(__FILE__)));
+define('URLROOT', 'http://localhost/Health-Hub/public/');
+
+define('DEBUG',true);

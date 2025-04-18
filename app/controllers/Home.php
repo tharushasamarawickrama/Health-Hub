@@ -1,9 +1,15 @@
 <?php
 
-class Home extends Controller{
+class Home {
+    use Controller;
     public function index(){
-        echo "This is Home Controller";
+        
         $this->view('home');
     }
+
+    
+    
 }
+
+
 

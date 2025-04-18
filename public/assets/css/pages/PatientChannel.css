@@ -1,0 +1,102 @@
+/* General Reset */
+.ptc-div1 {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.ptc-div2 {
+    width: 500px;
+    height: auto;
+    min-height: 600px;
+    background: linear-gradient(145deg, #ffffff, #e6f7ff);
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ptc-div2-h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.ptc-div2-h1::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #007bff;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+.ptc-div2-span {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.ptc-div2-span2 {
+    margin-left: 10px;
+    color: #555;
+    font-weight: 400;
+}
+
+.ptc-div2-button-div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.ptc-div2-button {
+    width: 150px;
+    height: 50px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 123, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.ptc-div2-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #0056b3, #007bff);
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.4);
+}
+
+a.ptc-div2-button {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+a.ptc-div2-button:hover {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}

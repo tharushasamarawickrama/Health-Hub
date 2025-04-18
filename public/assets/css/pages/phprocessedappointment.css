@@ -1,0 +1,76 @@
+.ph-proc-app-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    width: 100%;
+    position: fixed;
+    padding-top: 60px;
+    position: relative;
+}
+.ph-proc-app-appcontent {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    width: 80%;
+    margin: 20px auto;
+    position: relative;
+}
+
+.ph-proc-app-prescription-header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    border: 2px solid #005f6b;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ph-proc-app-prescription-table {
+    width: 90%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    margin: 30px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #005f6b;
+    font-size: 1.1em;
+}
+
+.ph-proc-app-prescription-table th, .ph-proc-app-prescription-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.ph-proc-app-prescription-table th {
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #005f6b;
+
+}
+.ph-proc-app-back-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.ph-proc-app-back-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    background-color: #2f7a85;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ph-proc-app-back-button:hover {
+    background-color: #0e6875;
+    border-color: #002a31;
+}
