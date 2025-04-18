@@ -161,17 +161,33 @@
 }
 
 .tab-link.active {
+    box-shadow: 0 0.5px 0 0 #0056b3;
     font-weight: bold;
     color: #0056b3;
 }
 
 .tab-content {
     display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
     padding: 20px;
+    animation: fadeIn 0.5s ease forwards;
 }
 
 .tab-content.active {
     display: block;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .lab-report-list {

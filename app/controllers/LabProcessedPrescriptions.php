@@ -8,8 +8,8 @@ class LabProcessedPrescriptions {
         $this->labAssistantModel = new LabAssistant();
     }
 
-    public function index(){
-        $completedAppointments = [];
+    public function index($appointment_id = null) {
+        $completedAppointments = $this->labAssistantModel->getCompletedLabAppointments($appointment_id);
         
         $data = [
             'appointments' => $completedAppointments

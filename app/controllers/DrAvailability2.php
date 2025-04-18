@@ -71,7 +71,7 @@ class DrAvailability2 {
             redirect('drAvailability2');
         }
 
-        $schedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId, $start_date_str, $end_date_str);
+        $schedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
 
         $fetchedTimeslots = [];
 
@@ -80,11 +80,13 @@ class DrAvailability2 {
         }
         else{
             foreach ($schedules as $schedule) {
-                $date = date("d/m/Y", strtotime($schedule["date"]));
-                $startTime = date("gA", strtotime($schedule["start_time"]));
-                $endTime = date("gA", strtotime($schedule["end_time"]));
-                $timeslot = [$date, "$startTime - $endTime"];
-                $fetchedTimeslots[] = $timeslot;
+                if($schedule['date'] >= $start_date_str && $schedule['date'] <= $end_date_str){
+                    $date = date("d/m/Y", strtotime($schedule["date"]));
+                    $startTime = date("gA", strtotime($schedule["start_time"]));
+                    $endTime = date("gA", strtotime($schedule["end_time"]));
+                    $timeslot = [$date, "$startTime - $endTime"];
+                    $fetchedTimeslots[] = $timeslot;
+                }
             }
         }
         

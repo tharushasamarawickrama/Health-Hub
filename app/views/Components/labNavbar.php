@@ -23,9 +23,6 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
             <img src="<?php echo URLROOT; ?>/assets/images/logohealth.png" alt="Health Hub Logo" class="lablogo">
             
             <a href="<?php echo URLROOT; ?>/labdashboard" class="labNavitems">Dashboard</a> 
-            <a href="<?php echo URLROOT; ?>/labprescriptions" class="labNavitems">Prescriptions</a>
-            <a href="<?php echo URLROOT; ?>/labprocessedprescriptions" class="labNavitems">Processed Prescriptions</a>
-            <a href="<?php echo URLROOT; ?>/labpendingprescriptions" class="labNavitems">Pending prescriptions</a>
             
             <?php if(isset($_SESSION['user'])): ?>
         <a href="#" class="logname dropdown-toggle">

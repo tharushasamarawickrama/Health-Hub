@@ -24,7 +24,7 @@ class LabAssistant {
                   FROM appointments a
                   JOIN users u ON a.patient_id = u.user_id
                   WHERE a.status = 'planned'
-                  ORDER BY a.appointment_date DESC";
+                  ";
                   
         return $this->query($query);
     }
@@ -50,15 +50,44 @@ class LabAssistant {
         return $this->query($query, ['appointment_id' => $appointment_id]);
     }
     
-    public function getCompletedLabAppointments() {
+    public function getCompletedLabAppointments($appointment_id) {
         $query = "SELECT 
-                    a.appointment_id, u.nic, a.appointment_date
+                    a.appointment_id, 
+                    u.nic, 
+                    a.appointment_date,
+                    u.age,
+                    u.gender,
+                    a.doctor_id,
+                    CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
+                    GROUP_CONCAT(alt.labtest_id) AS labtest_id,
+                    GROUP_CONCAT(l.labtest_name) AS labtest_name,
+                    GROUP_CONCAT(alt.labtest_pdfname) AS labtest_pdfname,
+                    GROUP_CONCAT(alt.labtest_report) AS labtest_report
                     FROM appointments a
-                    Join users u ON a.patient_id = u.user_id
-                    WHERE a.status = 'Completed' ORDER BY a.appointment_date DESC";
-        return $this->query($query);
+                    JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
+                    JOIN labtests l ON l.labtest_id = alt.labtest_id
+                    JOIN users u ON a.patient_id = u.user_id
+                    JOIN users d ON a.doctor_id = d.user_id
+                    WHERE a.status = 'Completed' AND a.appointment_id = :appointment_id 
+                    GROUP BY a.appointment_id
+                    ORDER BY a.appointment_date DESC";
+        return $this->query($query, ['appointment_id' => $appointment_id]);
     }
     
+    public function getLabTestReport($appointment_id, $labtest_id) {
+        $query = "SELECT labtest_report, labtest_pdfname
+                  FROM appointment_labtests
+                  WHERE appointment_id = :appointment_id AND labtest_id = :labtest_id";
+        return $this->query($query, ['appointment_id' => $appointment_id, 'labtest_id' => $labtest_id])[0] ?? null;
+    }
+
+    public function removeLabTestReportPath($appointment_id, $labtest_id) {
+        $query = "UPDATE appointment_labtests
+                  SET labtest_report = NULL, labtest_pdfname = NULL
+                  WHERE appointment_id = :appointment_id AND labtest_id = :labtest_id";
+        return $this->query($query, ['appointment_id' => $appointment_id, 'labtest_id' => $labtest_id]);
+    }
+
     public function getAppointmentsByDate($date) {
         $query = "SELECT 
                     a.appointment_id, u.nic, a.appointment_date
@@ -109,9 +138,9 @@ return $this->query($query, ['appointment_id' => $appointment_id]);
                 a.doctor_id, 
                 CONCAT(d.firstName,' ', d.lastName) AS doctor_name,
                 alt.labtest_id, 
-                l.labtest_name AS prescription, 
-                alt.labtest_report,
-                alt.labtest_pdfname
+                l.labtest_name,
+                 alt.labtest_report, 
+            alt.labtest_pdfname
             FROM appointments a
             JOIN users u ON a.patient_id = u.user_id
             JOIN users d ON a.doctor_id = d.user_id
@@ -120,6 +149,69 @@ return $this->query($query, ['appointment_id' => $appointment_id]);
             WHERE a.appointment_id = :appointment_id";
 
         return $this->query($query, ['appointment_id' => $appointment_id]);
+        
     }
+
+    public function uploadReport($appointment_id, $labtest_id, $reportPath, $pdfName) {
+        $query = "UPDATE appointment_labtests
+                  SET labtest_report = :reportPath, labtest_pdfname = :pdfName
+                  WHERE appointment_id = :appointment_id AND labtest_id = :labtest_id";
+        $params = [
+            'reportPath' => $reportPath,
+            'pdfName' => $pdfName,
+            'appointment_id' => $appointment_id,
+            'labtest_id' => $labtest_id
+        ];
+        return $this->query($query, $params);
+        
+    }
+
+    public function updateAppointmentStatus($appointment_id,$status){
+        $query = "UPDATE appointments 
+                    SET status = :status
+                    WHERE appointment_id = :appointment_id";
+        return $this->query($query, [
+                'appointment_id' => $appointment_id, 
+                'status' => $status]);
+    }
+
+    
+public function getPendingLabAppointments($appointment_id) {
+    $query = "SELECT 
+                a.appointment_id, 
+                u.nic, 
+                a.appointment_date,
+                u.age,
+                u.gender,
+                a.doctor_id,
+                CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
+                alt.labtest_id,
+                l.labtest_name,
+                alt.labtest_pdfname,
+                alt.labtest_report
+              FROM appointments a
+              JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
+              JOIN labtests l ON l.labtest_id = alt.labtest_id
+              JOIN users u ON a.patient_id = u.user_id
+              JOIN users d ON a.doctor_id = d.user_id
+              WHERE a.status = 'Pending' ";
+            $params = [];  
+    if ($appointment_id !== null) {
+        $query .= " AND a.appointment_id = :appointment_id";
+        $params['appointment_id'] = $appointment_id;
+    }
+
+    $query .= " ORDER BY a.appointment_date DESC";
+    return $this->query($query, $params);
+}
+public function setAppointmentStatus($appointment_id, $status) {
+    $query = "UPDATE appointments 
+              SET status = :status
+              WHERE appointment_id = :appointment_id";
+    return $this->query($query, [
+        'appointment_id' => $appointment_id, 
+        'status' => $status
+    ]);
+}
 
 }

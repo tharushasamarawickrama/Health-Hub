@@ -25,18 +25,14 @@ class ScheduleTime
         return $this->query($query, ['doctor_id' => $doctor_id, 'date' => $date]);
     }
 
-    public function getScheduleByDoctor($doctor_id, $start_date = null, $end_date = null)
-    {
+    // public function getScheduleByDoctor($doctor_id, $start_date, $end_date){
+    //     $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id AND date >= :start_date AND date <= :end_date";
+    //     return $this->query($query, ['doctor_id' => $doctor_id, 'start_date' => $start_date, 'end_date' => $end_date]);
+    // }
+
+    public function getScheduleByDoctor($doctor_id){
         $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id";
-        $params = ['doctor_id' => $doctor_id];
-
-        if ($start_date && $end_date) {
-            $query .= " AND date >= :start_date AND date <= :end_date";
-            $params['start_date'] = $start_date;
-            $params['end_date'] = $end_date;
-        }
-
-        return $this->query($query, $params);
+        return $this->query($query, ['doctor_id' => $doctor_id]);
     }
 
     public function getPastSchedulesByDoctor($doctor_id)
