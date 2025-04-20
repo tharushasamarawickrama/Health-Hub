@@ -275,6 +275,7 @@ class PatientRegister
                 $patient = new Patient;
                 $referal = new Patient_Referal;
                 $data = [
+
                     'title' => $_POST['Title'] ?? '',
                     'firstName' => $_POST['FirstName'] ?? '',
                     'lastName' => $_POST['LastName'] ?? '',
@@ -285,6 +286,7 @@ class PatientRegister
                     'password' => $_POST['Password'], // Should hash password (see security note below)
                     'address' => $_POST['Address'] ?? '',
                     'age' => $_POST['Age'] ?? '',
+
                     'user_role' => 'patient'
                 ];
 
@@ -299,10 +301,7 @@ class PatientRegister
                     $login = $user->first($arr);
                     $patientData = ['patient_id' => $login['user_id']];
                     $patient->insert($patientData);
-                    // $arr['email'] = $_POST['Email'] ?? '';
-                    // $row = $user->first($arr);
-                    // $mereferalid = $row['user_id'];
-                    // $referal->insertReferal($mereferalid);
+
                     $data['registration_success'] = true; // Set the success flag
                 }
 
