@@ -188,3 +188,30 @@
     background-color: #007bff;
     color: white;
 }
+
+.ongoing-banner {
+    top: 80px;
+    right: 20px;
+    position: fixed;
+    background-color: #e0ffe0;
+    padding: 10px 15px;
+    margin: 0px;
+    border: 1px solid #2ecc71;
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#ongoing-id::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}

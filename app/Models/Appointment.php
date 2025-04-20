@@ -12,8 +12,11 @@ class Appointment
         'patient_id',
         'referal_id',
         'appointment_No',
+        'title',
         'p_firstName',
         'p_lastName',
+        'age',
+        'gender',
         'nic',
         'phoneNumber',
         'email',
@@ -60,14 +63,14 @@ class Appointment
 
     public function getAppointmentsByDoctorId($doctorId)
     {
-        $sql = "SELECT appointment_id, appointment_No, patient_id, appointment_date, appointment_time, status FROM appointments WHERE doctor_id = :doctor_id
+        $sql = "SELECT * FROM appointments WHERE doctor_id = :doctor_id
                 ORDER BY appointment_date ASC, appointment_time ASC, appointment_No ASC"; 
         return $this->query($sql, ['doctor_id' => $doctorId]);
     }
 
     public function getPatientAndDateByAppointmentId($appointmentId)
     {
-        $sql = "SELECT patient_id, appointment_date FROM appointments WHERE appointment_id = :appointment_id";
+        $sql = "SELECT patient_id, referal_id, appointment_date FROM appointments WHERE appointment_id = :appointment_id";
         return $this->query($sql, ['appointment_id' => $appointmentId]);
     }
 
@@ -77,7 +80,7 @@ class Appointment
         $today = (new DateTime())->format('Y-m-d');
 
         // SQL query with a placeholder for the date
-        $sql = "SELECT appointment_id, patient_id 
+        $sql = "SELECT appointment_id, appointment_No, title, p_firstName, p_lastName
                 FROM appointments 
                 WHERE doctor_id = :doctor_id 
                 AND appointment_date = :appointment_date";
@@ -88,24 +91,6 @@ class Appointment
             'appointment_date' => $today,
         ]);
     }
-
-    // public function getLimitedPastAppointments($doctorId)
-    // {
-    //     // Format today's date in 'Y-m-d' format
-    //     $today = (new DateTime())->format('Y-m-d');
-
-    //     // SQL query with a placeholder for the date
-    //     $sql = "SELECT appointment_id, patient_id 
-    //             FROM appointments 
-    //             WHERE doctor_id = :doctor_id 
-    //             AND appointment_date < :appointment_date";
-
-    //     // Execute the query and return the results
-    //     return $this->query($sql, [
-    //         'doctor_id' => $doctorId,
-    //         'appointment_date' => $today,
-    //     ]);
-    // }
 
     public function getLimitedPastAppointments($doctorId)
     {
@@ -143,12 +128,17 @@ class Appointment
         return $result ? $result : null;
     }
 
-    public function getPrevAppointment($doctorId, $patientId, $appointmentDate)
+    public function getPrevAppointment($doctorId, $patientId, $referalId, $appointmentDate)
     {
         $sql = "SELECT * FROM appointments
-                WHERE doctor_id = :doctor_id AND patient_id = :patient_id AND appointment_date < :appointment_date
+                WHERE doctor_id = :doctor_id AND patient_id = :patient_id AND referal_id = :referal_id AND appointment_date < :appointment_date
                 ORDER BY appointment_date DESC LIMIT 1";
-        $result = $this->query($sql, ['doctor_id' => $doctorId, 'patient_id' => $patientId, 'appointment_date' => $appointmentDate]);
+        $result = $this->query($sql, [
+            'doctor_id' => $doctorId,
+            'patient_id' => $patientId,
+            'referal_id' => $referalId,
+            'appointment_date' => $appointmentDate
+        ]);
 
         return $result ? $result : null;
     }

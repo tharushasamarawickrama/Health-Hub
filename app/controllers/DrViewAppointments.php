@@ -11,7 +11,6 @@ class DrViewAppointments
 
         // Initialize models
         $appointmentModel = new Appointment();
-        $userModel = new User();
 
         // Fetch all appointments for the doctor
         $appointments = $appointmentModel->getAppointmentsByDoctorId($doctorId);
@@ -26,13 +25,12 @@ class DrViewAppointments
 
         if (is_array($appointments) && !empty($appointments)) {
             foreach ($appointments as $appointment) {
-                $patientDetails = $userModel->getUserById($appointment['patient_id']);
-                if ($patientDetails) {
+                if ($appointment) {
                     $formattedAppointment = [
                         'id' => $appointment['appointment_id'],
                         'appointment_No' => $appointment['appointment_No'],
                         'appointment_time' => $appointment['appointment_time'],
-                        'name' => $patientDetails['title'] . '. ' . $patientDetails['firstName'] . ' ' . $patientDetails['lastName'],
+                        'name' => $appointment['title'] . '. ' . $appointment['p_firstName'] . ' ' . $appointment['p_lastName'],
                         'date' => $appointment['appointment_date'],
                         'status' => $appointment['status'],
                     ];

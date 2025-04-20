@@ -174,7 +174,10 @@ require APPROOT . '/views/Components/drNavbar.php';
                     <?php if (!empty($prevAppointmentData['medications'])) : ?>
                         <?php foreach ($prevAppointmentData['medications'] as $medication) : ?>
                             <li>
-                                <?php echo "{$medication['name']} - {$medication['quantity']} {$medication['measurement']} - {$medication['sig_codes']} ({$medication['duration']})"; ?>
+                                <?php 
+                                $formattedDuration = str_replace(',', '/', $medication['duration']);
+                                echo "{$medication['name']} - {$medication['quantity']} {$medication['measurement']} - {$medication['sig_codes']} ({$formattedDuration})";
+                                ?>
                             </li>
                         <?php endforeach; ?>
                         <?php else : ?>

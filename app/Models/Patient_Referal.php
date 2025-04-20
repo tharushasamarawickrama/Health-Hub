@@ -8,7 +8,8 @@ class Patient_Referal
 
     protected $Allowedcolumns = [
         'referal_id',
-        'user_id'
+        'user_id',
+        'medical_history'
     ];
 
     public function getReferalByUserId($user_id)
@@ -42,5 +43,16 @@ class Patient_Referal
 
         // Execute the query with the provided data
         return $this->query($query, ['user_id' => $user_id]);
+    }
+
+    public function getMedicalHistory($userId, $referalId){
+        $sql = ("SELECT medical_history FROM `$this->table` WHERE user_id = :user_id AND referal_id = :referal_id");
+        return $this->query($sql, ['user_id' => $userId, 'referal_id' => $referalId] );
+    }
+
+    public function updateMedicalHistory($userId, $referalId, $medicalHistory)
+    {
+        $sql = "UPDATE `$this->table` SET medical_history = :medical_history WHERE user_id = :user_id AND referal_id = :referal_id";
+        return $this->query($sql, ['medical_history' => $medicalHistory, 'user_id' => $userId, 'referal_id' => $referalId]);
     }
 }

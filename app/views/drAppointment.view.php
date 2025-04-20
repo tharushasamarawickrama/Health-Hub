@@ -8,7 +8,8 @@ require APPROOT . '/views/Components/drNavbar.php';
         <div class="appointment-container">
             
             <div class="appointment-details">
-                <h2>Appointment: <?php echo $data['id']; ?></h2>
+                <h3><?php echo $data['appointment_date']; ?></h3>
+                <h2>Appointment: <?= '#' . str_pad($data['appointment_No'], 4, '0', STR_PAD_LEFT) ?></h2>
                 <p><strong>Patient Information:</strong></p>
                 <ul>
                     <li>Full name - <?php echo $data['patient_name']; ?></li>

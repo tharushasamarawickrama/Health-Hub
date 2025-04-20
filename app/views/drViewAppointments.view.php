@@ -85,6 +85,11 @@ if ($filter === 'today' && $doctorType === 'specialist') {
 ?>
 
 <div class="dr-view-appointments-container">
+    <!-- Ongoing Appointment Banner -->
+<div id="ongoing-appointment" class="ongoing-banner" style="display: none;">
+    <span id="ongoing-id"></span>
+    <span id="ongoing-name"></span>
+</div>
     <!-- Toast Notification -->
     <div id="toast" class="toast-message">
         <img src="<?php echo URLROOT; ?>assets/images/check-green.png" alt="Success" class="toast-icon">
@@ -156,7 +161,7 @@ if ($filter === 'today' && $doctorType === 'specialist') {
                                     <?php foreach ($paginatedSlot as $appointment): ?>
                                         <div class="view-appointment-card" data-id="<?= $appointment['id'] ?>" data-status="<?= $appointment['status'] ?>">
                                             <a href="<?= URLROOT; ?>drAppointment?appointment_id=<?= $appointment['id']; ?>" class="card-link">
-                                                <span class="appointment-id"><?= '#' . str_pad($appointment['appointment_No'], 4, '0', STR_PAD_LEFT) ?></span>
+                                                <span class="appointment-No"><?= '#' . str_pad($appointment['appointment_No'], 4, '0', STR_PAD_LEFT) ?></span>
                                                 <span class="appointment-name"><?= $appointment['name'] ?></span>
                                             </a>
                                             <div class="appointment-action-icons">
@@ -197,7 +202,7 @@ if ($filter === 'today' && $doctorType === 'specialist') {
                     <div class="view-appointment-card">
                         <a href="<?= URLROOT; ?>drAppointment?appointment_id=<?= $appointment['id']; ?>" class="card-link">
                             <div class="appointment-date"><?= date('d M Y', strtotime($appointment['date'])) ?></div>
-                            <span class="appointment-id"><?= '#' . str_pad($appointment['appointment_No'], 4, '0', STR_PAD_LEFT) ?></span>
+                            <span class="appointment-No"><?= '#' . str_pad($appointment['appointment_No'], 4, '0', STR_PAD_LEFT) ?></span>
                             <span class="appointment-name"><?= $appointment['name'] ?></span>
                         </a>
                         <div class="appointment-action-icons">

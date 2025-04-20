@@ -10,7 +10,6 @@ class DrDashboard
 
         // Initialize models
         $appointmentModel = new Appointment();
-        $userModel = new User();
         $doctorModel = new Doctor();
 
         // Fetch the doctor type
@@ -26,11 +25,10 @@ class DrDashboard
         if (is_array($appointments) && !empty($appointments)) {
             // Fetch patient details for the appointments
             foreach ($appointments as $appointment) {
-                $patientDetails = $userModel->getUserById($appointment['patient_id']);
-                if ($patientDetails) {
+                if ($appointment) {
                     $appointmentsToday[] = [
                         'id' => '#' . str_pad($appointment['appointment_id'], 4, '0', STR_PAD_LEFT),
-                        'name' => $patientDetails['title'] . ' ' . $patientDetails['firstName'] . ' ' . $patientDetails['lastName']
+                        'name' => $appointment['title'] . ' ' . $appointment['p_firstName'] . ' ' . $appointment['p_lastName']
                     ];
                 }
             }
