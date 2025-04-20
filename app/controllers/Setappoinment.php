@@ -11,6 +11,12 @@ class Setappoinment
 
         $appoinment = new Appointment;
         $referal = $appoinment->getDistinctReferalAndUserDetails($_SESSION['user']['user_id']);
+        $referal = array_filter($referal, function ($item) {
+            return $item['referal_id'] != 0;
+        });
+        
+        // Re-index the array to maintain sequential keys
+        $referal = array_values($referal);
         // show($referal);
         // Handle form submission for appointment
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

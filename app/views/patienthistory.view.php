@@ -24,7 +24,7 @@
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No prescriptions found.</p>
+            <p class="patienthistorynopresc">No prescriptions found.</p>
         <?php endif; ?>
     </div>
 </div>
@@ -41,7 +41,7 @@
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No lab reports found.</p>
+            <p class="patienthistorynopresc">No lab reports found.</p>
         <?php endif; ?>
     </div>
 </div>

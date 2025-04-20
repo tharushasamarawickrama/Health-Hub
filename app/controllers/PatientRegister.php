@@ -273,31 +273,35 @@ class PatientRegister
                 // Registration logic
                 $user = new User;
                 $patient = new Patient;
+                $referal = new Patient_Referal;
                 $data = [
-                    'Title' => $_POST['Title'] ?? '',
-                    'FirstName' => $_POST['FirstName'] ?? '',
-                    'LastName' => $_POST['LastName'] ?? '',
-                    'Email' => $_POST['Email'] ?? '',
-                    'PhoneNumber' => $_POST['PhoneNumber'] ?? '',
-                    'NIC' => $_POST['NIC'] ?? '',
-                    'Gender' => $_POST['gender'] ?? '',
-                    'Password' => $_POST['Password'], // Should hash password (see security note below)
-                    'Address' => $_POST['Address'] ?? '',
-                    'Age' => $_POST['Age'] ?? '',
+
+                    'title' => $_POST['Title'] ?? '',
+                    'firstName' => $_POST['FirstName'] ?? '',
+                    'lastName' => $_POST['LastName'] ?? '',
+                    'email' => $_POST['Email'] ?? '',
+                    'phoneNumber' => $_POST['PhoneNumber'] ?? '',
+                    'nic' => $_POST['NIC'] ?? '',
+                    'gender' => $_POST['gender'] ?? '',
+                    'password' => $_POST['Password'], // Should hash password (see security note below)
+                    'address' => $_POST['Address'] ?? '',
+                    'age' => $_POST['Age'] ?? '',
+
                     'user_role' => 'patient'
                 ];
 
-                $arr['Email'] = $_POST['Email'] ?? '';
+                $arr['email'] = $_POST['Email'] ?? '';
                 $row = $user->first($arr);
 
                 if ($row) {
-                    $user->errors['Email'] = "Email already exists, please login";
+                    $user->errors['email'] = "Email already exists, please login";
                     $data['errors'] = $user->errors;
                 } else {
                     $user->insert($data);
                     $login = $user->first($arr);
                     $patientData = ['patient_id' => $login['user_id']];
                     $patient->insert($patientData);
+
                     $data['registration_success'] = true; // Set the success flag
                 }
 
