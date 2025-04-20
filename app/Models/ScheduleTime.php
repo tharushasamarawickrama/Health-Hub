@@ -54,6 +54,13 @@ class ScheduleTime
         ]);
     }
 
+    public function getTodaysSlotsByDoctor($doctor_id){
+        $today = (new DateTime())->format('Y-m-d');
+
+        $sql = "SELECT start_time, end_time, filled_slots FROM $this->table WHERE doctor_id = :doctor_id AND date = :date ORDER BY start_time ASC";
+        return $this->query($sql, ['doctor_id'=> $doctor_id, 'date'=> $today]);
+    }
+
     public function getOccupiedSlots($doctor_id, $start_date, $end_date)
     {
         $query = "SELECT date, start_time, end_time

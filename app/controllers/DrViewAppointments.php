@@ -7,10 +7,10 @@ class DrViewAppointments
     public function index()
     {
         $doctorId = $_SESSION['user']['user_id'];
+        $doctorType = $_SESSION['doctor_type'];
 
         // Initialize models
         $appointmentModel = new Appointment();
-        $userModel = new User();
 
         // Fetch all appointments for the doctor
         $appointments = $appointmentModel->getAppointmentsByDoctorId($doctorId);
@@ -25,12 +25,14 @@ class DrViewAppointments
 
         if (is_array($appointments) && !empty($appointments)) {
             foreach ($appointments as $appointment) {
-                $patientDetails = $userModel->getUserById($appointment['patient_id']);
-                if ($patientDetails) {
+                if ($appointment) {
                     $formattedAppointment = [
                         'id' => $appointment['appointment_id'],
-                        'name' => $patientDetails['title'] . '. ' . $patientDetails['firstName'] . ' ' . $patientDetails['lastName'],
-                        'date' => $appointment['appointment_date']
+                        'appointment_No' => $appointment['appointment_No'],
+                        'appointment_time' => $appointment['appointment_time'],
+                        'name' => $appointment['title'] . '. ' . $appointment['p_firstName'] . ' ' . $appointment['p_lastName'],
+                        'date' => $appointment['appointment_date'],
+                        'status' => $appointment['status'],
                     ];
 
                     // Add to all appointments
@@ -48,12 +50,47 @@ class DrViewAppointments
             }
         }
 
+        $schedules = [];
+        if($doctorType == 'specialist'){
+            $ScheduleTimeModel = new ScheduleTime();
+            $schedules = $ScheduleTimeModel->getSchedule($doctorId, $today);
+            array_multisort(array_column($schedules, 'start_time'), SORT_ASC, $schedules);
+        }
+        // var_dump($schedules);
+        // exit();
+
         // Send data to view
         $this->view('drViewAppointments', [
             'allAppointments' => $allAppointments,
             'todaysAppointments' => $todaysAppointments,
             'upcomingAppointments' => $upcomingAppointments,
-            'pastAppointments' => $pastAppointments
+            'pastAppointments' => $pastAppointments,
+            'doctorType' => $doctorType,
+            'schedules' => $schedules,
         ]);
     }
+
+    public function markCompleted()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $appointmentId = $_POST['appointmentId'] ?? null;
+
+        if ($appointmentId) {
+            $appointmentModel = new Appointment();
+
+            $success = $appointmentModel->updateCompleteStatus($appointmentId);
+
+            if ($success) {
+                echo json_encode(['status' => 'success']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Could not update status']);
+            }
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Appointment ID missing']);
+        }
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
+    }
+}
+
 }

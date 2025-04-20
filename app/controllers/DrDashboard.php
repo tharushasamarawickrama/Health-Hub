@@ -10,11 +10,11 @@ class DrDashboard
 
         // Initialize models
         $appointmentModel = new Appointment();
-        $userModel = new User();
         $doctorModel = new Doctor();
 
         // Fetch the doctor type
         $doctorType = $doctorModel->getDoctorTypeById($doctorId)[0]['type'];
+        $_SESSION['doctor_type'] = $doctorType; // Store doctor type in session
         
         // Fetch appointments for the doctor
         $appointments = $appointmentModel->getTodaysAppointments($doctorId);
@@ -25,16 +25,17 @@ class DrDashboard
         if (is_array($appointments) && !empty($appointments)) {
             // Fetch patient details for the appointments
             foreach ($appointments as $appointment) {
-                $patientDetails = $userModel->getUserById($appointment['patient_id']);
-                if ($patientDetails) {
+                if ($appointment) {
                     $appointmentsToday[] = [
                         'id' => '#' . str_pad($appointment['appointment_id'], 4, '0', STR_PAD_LEFT),
-                        'name' => $patientDetails['title'] . ' ' . $patientDetails['firstName'] . ' ' . $patientDetails['lastName']
+                        'name' => $appointment['title'] . ' ' . $appointment['p_firstName'] . ' ' . $appointment['p_lastName']
                     ];
                 }
             }
         }
 
+        $todaysSlots = [];
+        $calendarSchedules = [];
         // Fetch past appointments for the doctor
         $pastAppointments = [];
         if($doctorType == 'opd') {
@@ -48,11 +49,13 @@ class DrDashboard
                 ));
             }
         }
-        elseif($doctorType == 'regular'){
+        elseif($doctorType == 'specialist'){
             $ScheduleTimeModel = new ScheduleTime();
             $schedules = $ScheduleTimeModel->getPastSchedulesByDoctor($doctorId);
+            $todaysSlots = $ScheduleTimeModel->getTodaysSlotsByDoctor($doctorId);
+            $calendarSchedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
             
-            // var_dump($schedules);
+            // var_dump($calendarSchedules);
             // exit();
 
             if($schedules){
@@ -74,7 +77,10 @@ class DrDashboard
         // Load the view and pass the data
         $this->view('drDashboard',[
             'appointmentsToday' => $appointmentsToday,
-            'pastAppointments' => $pastAppointments
+            'pastAppointments' => $pastAppointments,
+            'todaysSlots' => $todaysSlots,
+            'schedules' => $calendarSchedules,
+            'doctorType' => $doctorType,
         ]);
     }
 }
