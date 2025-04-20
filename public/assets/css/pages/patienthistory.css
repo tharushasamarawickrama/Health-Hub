@@ -239,3 +239,17 @@
     margin-right: 400px;
     padding: 20px;
 }
+
+.lab-report-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    background-color: #f0f0f0;
+    margin-left: 400px;
+    margin-right: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    direction: none;
+}

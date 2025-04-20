@@ -36,7 +36,12 @@
                     <div class="pt-history-div2">
                         <span class="pt-history-span">Lab Report-<?php echo $index + 1; ?></span>
                         <span class="pt-history-span">Appo: <?php echo $item['appointment']['appointment_id']; ?></span>
-                        <button class="pt-history-button">View</button>
+                        <div class="lab-report-details">
+                            <?php foreach ($item['appointmentlabtest'] as $item1): ?>
+                                <span class="pt-history-span">Test: <?php echo $item1['labtest_pdfname']; ?></span>
+                                <a href="<?php echo URLROOT . '/' . $item1['labtest_report']; ?>" class="pt-history-button" target="_blank">View</a>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -204,7 +209,7 @@
 
             // Function to add footer
             function addFooter(startX, startY) {
-                
+
 
                 // Add the logo
                 const logoWidth = 50; // Adjust the width as needed
@@ -215,12 +220,12 @@
                 // Add the text "HealthHub"
                 doc.setFontSize(12);
                 doc.setTextColor(0, 0, 0); // Black text
-                doc.text("HealthHub", startX + logoWidth , startY + 40); // Position the text next to the logo
+                doc.text("HealthHub", startX + logoWidth, startY + 40); // Position the text next to the logo
 
                 // Add the text "Health Care Facility System"
                 doc.setFontSize(8);
                 doc.setTextColor(100, 100, 100); // Gray text
-                doc.text("Health Care Facility System", startX + logoWidth , startY + 45); // Position the text below "HealthHub"
+                doc.text("Health Care Facility System", startX + logoWidth, startY + 45); // Position the text below "HealthHub"
             }
 
             // Main logic to generate the PDF
