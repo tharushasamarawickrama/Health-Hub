@@ -60,7 +60,8 @@ class Appointment
 
     public function getAppointmentsByDoctorId($doctorId)
     {
-        $sql = "SELECT appointment_id, patient_id, appointment_date FROM appointments WHERE doctor_id = :doctor_id";
+        $sql = "SELECT appointment_id, appointment_No, patient_id, appointment_date, appointment_time, status FROM appointments WHERE doctor_id = :doctor_id
+                ORDER BY appointment_date ASC, appointment_time ASC, appointment_No ASC"; 
         return $this->query($sql, ['doctor_id' => $doctorId]);
     }
 
@@ -162,5 +163,16 @@ class Appointment
 
         // Execute the query and return the results
         return $this->query($sql, ['user_id' => $user_id]);
+    }
+
+    public function updateCompleteStatus($appointmentId)
+    {
+        // SQL query to update the status of an appointment
+        $sql = "UPDATE $this->table SET status = 'completed' WHERE appointment_id = :appointment_id";
+
+        // Execute the query with the provided parameters
+        return $this->query($sql, [
+            'appointment_id' => $appointmentId,
+        ]);
     }
 }

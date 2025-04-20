@@ -15,6 +15,7 @@ class DrDashboard
 
         // Fetch the doctor type
         $doctorType = $doctorModel->getDoctorTypeById($doctorId)[0]['type'];
+        $_SESSION['doctor_type'] = $doctorType; // Store doctor type in session
         
         // Fetch appointments for the doctor
         $appointments = $appointmentModel->getTodaysAppointments($doctorId);
