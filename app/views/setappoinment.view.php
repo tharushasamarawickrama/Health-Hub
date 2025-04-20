@@ -9,20 +9,21 @@
             </a>
         </div>
         <div>
-            
+
             <div class="channeltextdiv">
                 <span class="channeldoctortext">Channel Your Doctor</span>
             </div>
             <form action="<?php echo URLROOT; ?>setappoinment?id=<?php echo $_GET['id']; ?>&sch_id=<?php echo $_GET['sch_id']; ?>" method="POST" id="channelform">
                 <div class="dropdown-div">
-                
-                
+
+
 
                     <span class="titletext1">Select Patient</span><br>
                     <select class="patient-select" name="patientType" id="patientType" required>
+                        <option value="" disabled selected hidden>Select Patient</option>
                         <option value="0">Me</option>
                         <!-- <option value="another">Another User</option> -->
-                         <?php foreach ($referal as $referal1): ?>
+                        <?php foreach ($referal as $referal1): ?>
                             <option value="<?php echo $referal1['referal_id']; ?>"><?php echo $referal1['p_firstName'] . ' ' . $referal1['p_lastName']; ?></option>
                         <?php endforeach; ?>
                         <option value="new" selected>New User</option>
@@ -102,44 +103,54 @@
 <script>
     const referal = <?php echo json_encode($referal); ?>;
     // console.log(referal);
-    document.addEventListener("DOMContentLoaded", function () {
-    const patientTypeDropdown = document.getElementById("patientType");
-    const patientFirstNameInput = document.getElementById("pfirstname");
-    const patientLastNameInput = document.getElementById("plastname");
-    const patientEmailInput = document.getElementById("email");
-    const patientPhoneInput = document.getElementById("phoneNumber");
-    const idNumberInput = document.getElementById("nic");
-    const title = document.getElementById("Title");
-    const patientAddress = document.getElementById("address");
+    document.addEventListener("DOMContentLoaded", function() {
+        const patientTypeDropdown = document.getElementById("patientType");
+        const patientFirstNameInput = document.getElementById("pfirstname");
+        const patientLastNameInput = document.getElementById("plastname");
+        const patientEmailInput = document.getElementById("email");
+        const patientPhoneInput = document.getElementById("phoneNumber");
+        const idNumberInput = document.getElementById("nic");
+        const title = document.getElementById("Title");
+        const patientAddress = document.getElementById("address");
 
-    // Update form fields based on selected referal_id
-    patientTypeDropdown.addEventListener("change", function () {
-        const selectedReferalId = patientTypeDropdown.value;
+        // Update form fields based on selected referal_id
+        patientTypeDropdown.addEventListener("change", function() {
+            const selectedReferalId = patientTypeDropdown.value;
+            if (selectedReferalId == "0") {
+                patientFirstNameInput.value = "<?php echo $_SESSION['user']['firstName']; ?>";
+                patientLastNameInput.value = "<?php echo $_SESSION['user']['lastName']; ?>";
+                patientEmailInput.value = "<?php echo $_SESSION['user']['email']; ?>";
+                patientPhoneInput.value = "<?php echo $_SESSION['user']['phoneNumber']; ?>";
+                idNumberInput.value = "<?php echo $_SESSION['user']['nic']; ?>";
+                title.value = "<?php echo $_SESSION['user']['title']; ?>";
+                patientAddress.value = "<?php echo $_SESSION['user']['address']; ?>";
+            } else {
 
-        // Find the selected referal in the referal array
-        const selectedReferal = referal.find(r => r.referal_id == selectedReferalId);
+                // Find the selected referal in the referal array
+                const selectedReferal = referal.find(r => r.referal_id == selectedReferalId);
 
-        if (selectedReferal) {
-            // Update form fields with the selected referal's data
-            patientFirstNameInput.value = selectedReferal.p_firstName || "";
-            patientLastNameInput.value = selectedReferal.p_lastName || "";
-            patientEmailInput.value = selectedReferal.email || "";
-            patientPhoneInput.value = selectedReferal.phoneNumber || "";
-            idNumberInput.value = selectedReferal.nic || "";
-            title.value = selectedReferal.title || "";
-            patientAddress.value = selectedReferal.address || "";
-        } else {
-            // Clear the form fields if no referal is selected
-            patientFirstNameInput.value = "";
-            patientLastNameInput.value = "";
-            patientEmailInput.value = "";
-            patientPhoneInput.value = "";
-            idNumberInput.value = "";
-            title.value = "";
-            patientAddress.value = "";
-        }
+                if (selectedReferal) {
+                    // Update form fields with the selected referal's data
+                    patientFirstNameInput.value = selectedReferal.p_firstName || "";
+                    patientLastNameInput.value = selectedReferal.p_lastName || "";
+                    patientEmailInput.value = selectedReferal.email || "";
+                    patientPhoneInput.value = selectedReferal.phoneNumber || "";
+                    idNumberInput.value = selectedReferal.nic || "";
+                    title.value = selectedReferal.title || "";
+                    patientAddress.value = selectedReferal.address || "";
+                } else {
+                    // Clear the form fields if no referal is selected
+                    patientFirstNameInput.value = "";
+                    patientLastNameInput.value = "";
+                    patientEmailInput.value = "";
+                    patientPhoneInput.value = "";
+                    idNumberInput.value = "";
+                    title.value = "";
+                    patientAddress.value = "";
+                }
+            }
+        });
     });
-});
 </script>
 
 <?php require APPROOT . '/views/Components/footer.php' ?>

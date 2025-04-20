@@ -20,14 +20,17 @@ $currentDate = new DateTime();
 </script>
 <!-- Pending Appointments Section -->
 <div id="pending-appointments-section">
+    <?php if (!$appointments): ?>
+        <span class="pendingpastnoappo">No Pending Appointments yet</span>
+    <?php endif; ?>
     <?php foreach ($appointments as $appointment): ?>
         <?php
         // Convert the appointment date from string to DateTime object
         $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
-        
+
         // Check if the appointment status is 'pending' or 'paid'
         $appointmentStatus = $appointment['appointment']['payment_status'];
-        
+
         // Display appointments only if the current date is less than the appointment date
         if ($currentDate < $appointmentDate && $appointmentStatus == 'paid'): ?>
             <div class="pt-pending-div2-main">
@@ -56,6 +59,9 @@ $currentDate = new DateTime();
 
 <!-- Past Appointments Section -->
 <div id="past-appointments-section" style="display: none;">
+    <?php if (!$appointments): ?>
+        <span class="pendingpastnoappo">No Past Appointments yet</span>
+    <?php endif; ?>
     <?php foreach ($appointments as $appointment): ?>
         <?php
         // Convert the appointment date from string to DateTime object
@@ -72,7 +78,7 @@ $currentDate = new DateTime();
                     <button
                         class="pt-pending-button view-btn"
                         data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">View</button>
-                    
+
                 </div>
             </div>
         <?php endif; ?>
@@ -100,34 +106,34 @@ $currentDate = new DateTime();
             <h1>Channel Details</h1>
             <form method="POST">
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Patient's Name  :</span> <span id="modal-patient-name"></span>
+                    <span class="pending-view-span">Patient's Name :</span> <span id="modal-patient-name"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">NIC  :</span> <span id="modal-nic"></span>
+                    <span class="pending-view-span">NIC :</span> <span id="modal-nic"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Phone Number  :</span> <span id="modal-phone"></span>
+                    <span class="pending-view-span">Phone Number :</span> <span id="modal-phone"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Email  :</span> <span id="modal-email"></span>
+                    <span class="pending-view-span">Email :</span> <span id="modal-email"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Doctor's Name  : </span><span id="modal-doctor-name"></span>
+                    <span class="pending-view-span">Doctor's Name : </span><span id="modal-doctor-name"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Specialization  :</span> <span id="modal-specialization"></span>
+                    <span class="pending-view-span">Specialization :</span> <span id="modal-specialization"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">SLMC NO  :</span> <span id="modal-slmc"></span>
+                    <span class="pending-view-span">SLMC NO :</span> <span id="modal-slmc"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Session Date  :</span> <span id="modal-session-date"></span>
+                    <span class="pending-view-span">Session Date :</span> <span id="modal-session-date"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Session Time  :</span> <span id="modal-session-time"></span>
+                    <span class="pending-view-span">Session Time :</span> <span id="modal-session-time"></span>
                 </div>
                 <div class="pending-view-div">
-                    <span class="pending-view-span">Appointment No  :</span> <span id="modal-appointment-no"></span>
+                    <span class="pending-view-span">Appointment No :</span> <span id="modal-appointment-no"></span>
                 </div>
 
             </form>
