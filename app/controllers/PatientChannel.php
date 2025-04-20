@@ -8,6 +8,7 @@ class PatientChannel {
     use Controller;
 
     public function index() {
+        
         // Initialize models
         $appointment = new Appointment;
         $doctor = new Doctor;
@@ -44,17 +45,21 @@ class PatientChannel {
             
             
             if($_SESSION['appointment']['referal_id'] == 'new'){
+
                 $referal = new Patient_Referal;
                 $arr2=[
                     'user_id' => $_SESSION['user']['user_id'],
                 ];
-                $referal->insertReferal($arr2);    
+                $referal->insertReferal($arr2['user_id']);    
                 $lastreferal = $referal->getLastReferalByUserId($_SESSION['user']['user_id']);
+                echo $lastreferal;
                 $_SESSION['appointment']['referal_id'] = $lastreferal;
                 $appointment->insert($_SESSION['appointment']);
-            }else{   
+            }else{  
+                // echo $_SESSION['user']['user_id']; 
                 $appointment->insert($_SESSION['appointment']);
             }
+            
             // Insert appointment data into the database
 
             // Fetch the latest appointment data

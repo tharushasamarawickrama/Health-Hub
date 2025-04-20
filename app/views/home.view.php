@@ -13,13 +13,11 @@
         </a>
 
         <a href="<?php echo URLROOT; ?>home" class="navitems">Home</a>
-        <a href="#" class="navitems">About</a>
-        <a href="#" class="navitems">Contact</a>
+        <a href="#about" class="navitems">About</a>
+        <a href="#contact" class="navitems">Contact</a>
 
-        <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== '' ): ?>
-
+        <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== ''): ?>
             <a href="#" class="logname dropdown-toggle">
-
                 <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['photo_path']); ?>" class="loginlogo">
             </a>
         <?php else: ?>
@@ -28,10 +26,7 @@
         <?php if (isset($_SESSION['user'])): ?>
             <!-- User dropdown -->
             <div class="dropdown">
-
-
                 <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
-
                 <div class="dropdown-content">
                     <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
                     <a href="<?php echo URLROOT; ?>pendingappointment">Pending Appointment</a>
@@ -52,7 +47,6 @@
                 <a href="<?php if (isset($_SESSION['user'])): ?> <?php echo URLROOT; ?>searchappoinment <?php else: ?> <?php echo URLROOT; ?>Prevlog <?php endif; ?>">
                     <button class=" headline-button">Make An Appointment</button>
                 </a>
-
             </div>
         </div>
 
@@ -73,15 +67,14 @@
                 </div>
             </div>
         </div>
+
         <div class="home-child3">
             <div>
                 <div class="home-child3-subdiv">
                     <div class="home-child3-div1">
                         <div class="home-child3-div1-1">
                             <img src="<?php echo URLROOT; ?>assets/images/mach.png">
-
                         </div>
-
                     </div>
 
                     <div class="home-child3-div1">
@@ -91,7 +84,7 @@
                     </div>
                 </div>
             </div>
-            <div class="asdf">
+            <div class="asdf" id="about">
                 <div>
                     <h1 class="home-child3-subdiv-h1">Specialized Care Matching</h1>
                     <p class="home-child3-subdiv-p">Find the right specialist based on your<br>unique needs for the best<br> personalized care.</p>
@@ -123,10 +116,9 @@
                     <p class="home-child3-subdiv-p">Receive prescriptions and lab results<br> directly on your device—no more<br> paperwork.</p>
                 </div>
             </div>
-
-
         </div>
-        <div class="home-child4">
+
+        <div class="home-child4" id="contact">
             <h1 class="home-child4-h1">Get in Touch With Us</h1>
             <p class="home-child4-p">We're here to help! Reach out with any questions, feedback, or support needs. Our<br> dedicated team is available to provide assistance and ensure a smooth experience on<br> Health Hub.</p>
             <div class="home-child4-div1">
@@ -134,38 +126,54 @@
                     <img src="<?php echo URLROOT; ?>/assets/images/call.png" class="home-child4-image1">
                     <h3>011-2242312</h3>
                 </div>
-
             </div>
             <div class="home-child4-div1">
                 <div class="home-child4-div2">
                     <img src="<?php echo URLROOT; ?>/assets/images/email.png" class="home-child4-image1">
                     <h3>healthhub@gmail.com</h3>
                 </div>
-
             </div>
             <div class="home-child4-div1">
                 <div class="home-child4-div2">
                     <img src="<?php echo URLROOT; ?>/assets/images/location.png" class="home-child4-image1">
                     <h3>No.14, Inner Flower Road, Colombo.</h3>
                 </div>
-
             </div>
         </div>
+
         <div class="home-child5">
             <div class="home-child5-div1">
                 <img src="<?php echo URLROOT; ?>/assets/images/socialmedia.png" class="home-child5-image">
-
             </div>
             <div class="home-child5-div2">
                 <h2 class="">
                     2024 HealthHub All Rights Reserved.
                 </h2>
             </div>
-
         </div>
-
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add smooth scrolling to all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener("click", function(e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute("href").substring(1); // Get the target ID
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        // Scroll to the target element smoothly
+                        targetElement.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

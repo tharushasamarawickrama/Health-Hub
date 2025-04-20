@@ -8,7 +8,7 @@ class User {
 
     protected $Allowedcolumns = [
         'title',
-        'tirstName',
+        'firstName',
         'lastName',
         'email',
         'phoneNumber',

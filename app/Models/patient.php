@@ -7,6 +7,7 @@ class Patient {
     protected $table = "patients";
 
     protected $Allowedcolumns = [
+        'patient_id',
         "medical_history"
     ];
 
