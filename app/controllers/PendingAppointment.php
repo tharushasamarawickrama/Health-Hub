@@ -40,8 +40,10 @@ class PendingAppointment
             // Handle form submission for appointment deletion
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm-ok'])) {
                 $appointmentId = $_POST['appointment_id'];
+
                 $appointment->update($appointmentId, ['isdeleted' => 1], 'appointment_id'); // Soft delete the appointment
                 // $appointment->delete($appointmentId, 'appointment_id');
+
                 redirect('pendingappointment'); // Redirect to refresh the page
             }
         }

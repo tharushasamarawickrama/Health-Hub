@@ -57,7 +57,7 @@ class Setappoinment
                 redirect('patientchannel');
             }
         }
-        // show($referal);
+        show($referal);
         // Load the view without any pre-filled data
         $this->view('setappoinment', ['referal' => $referal]);
     }
