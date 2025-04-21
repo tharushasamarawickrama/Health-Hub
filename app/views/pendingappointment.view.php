@@ -30,9 +30,10 @@ $currentDate = new DateTime();
 
         // Check if the appointment status is 'pending' or 'paid'
         $appointmentStatus = $appointment['appointment']['payment_status'];
+        $isdeleted = $appointment['appointment']['isdeleted'];
 
         // Display appointments only if the current date is less than the appointment date
-        if ($currentDate < $appointmentDate && $appointmentStatus == 'paid'): ?>
+        if ($currentDate < $appointmentDate && $appointmentStatus == 'paid' && $isdeleted == 0): ?>
             <div class="pt-pending-div2-main">
                 <div class="pt-pending-div2">
                     <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
@@ -46,6 +47,30 @@ $currentDate = new DateTime();
                         data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
                         Cancel
                     </button>
+
+                    <!-- <div class="pt-pending-div2-upload">
+                        <button class="pt-pending-button">Upload Document</button>
+                    </div> -->
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if($currentDate < $appointmentDate && $appointmentStatus == 'pending'): ?>
+            <div class="pt-pending-div2-main">
+                <div class="pt-pending-div2">
+                    <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
+                    <button
+                        class="pt-pending-button view-btn"
+                        data-appointment-id="<?php echo $appointment['appointment']['appointment_id'];?>"?>View</button>
+                    <button
+                        class="pt-pending-button cancel-btn"
+                        data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
+                        Cancel
+                    </button>
+                    <a href="<?php echo URLROOT; ?>patientpaymentdetails?appo_id=<?php echo $appointment['appointment']['appointment_id']; ?>">
+                        <button class="pt-pending-button">Pay Now</button>  
+                    </a>
 
                     <!-- <div class="pt-pending-div2-upload">
                         <button class="pt-pending-button">Upload Document</button>

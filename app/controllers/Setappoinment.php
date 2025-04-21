@@ -41,6 +41,8 @@ class Setappoinment
                     'patient_id' => $_SESSION['user']['user_id'],
                     'payment_status' => 'pending',
                     'referal_id' => $_POST['patientType'],
+                    'isdeleted' => 0,
+                    'status' => 'new',
 
                 ];
 

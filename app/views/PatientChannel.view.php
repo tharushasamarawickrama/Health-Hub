@@ -14,7 +14,7 @@
             <span class="ptc-div2-span">Doctor's Name:<span class="ptc-div2-span2">Dr. <?php echo $data['firstName'] . " " . $data['lastName']; ?></span></span>
             <span class="ptc-div2-span">Specialization:<span class="ptc-div2-span2"><?php echo $data['specialization']; ?></span></span>
             <span class="ptc-div2-span">SLMC NO:<span class="ptc-div2-span2"><?php echo $data['slmcNo']; ?></span></span>
-            <span class="ptc-div2-span">Session Date:<span class="ptc-div2-span2"><?php echo $data['date']; ?></span></span>
+            <span class="ptc-div2-span">Session Date:<span class="ptc-div2-span2"><?php echo $data['weekday']; ?></span></span>
             <span class="ptc-div2-span">Session Time:<span class="ptc-div2-span2"><?php echo $data['start_time']; ?></span></span>
             <span class="ptc-div2-span">appointment No:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['appointment_No']; ?></span></span>
 

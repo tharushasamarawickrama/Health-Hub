@@ -36,7 +36,9 @@ class PatientChannel {
         if ($scheduleData) {
             $data = array_merge($data, $scheduleData);
         }
-
+        $sameMonthAppointmentCount = $appointment->getSameMonthAndReferalAppointmentCount($userId, $_SESSION['appointment']['referal_id'], date('m'), date('Y'));   
+        show($sameMonthAppointmentCount); 
+        $_SESSION['appointment']['sameMonthAppointmentCount'] = $sameMonthAppointmentCount;
         // Handle form submission
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmbtn'])) {
             // Update filled slots in the schedule
@@ -67,6 +69,7 @@ class PatientChannel {
             $_SESSION['appo_id'] = $appointmentdata['appointment_id'];
 
 
+        
         // Render the view
         redirect('Patientpaymentdetails');
     }
