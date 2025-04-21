@@ -146,7 +146,7 @@ class Appointment
     public function getDistinctReferalAndUserDetails($user_id)
     {
         // SQL query to retrieve distinct referal_id and user details
-        $sql = "SELECT referal_id, p_firstName, p_lastName, nic, phoneNumber, email, address
+        $sql = "SELECT referal_id, p_firstName, p_lastName, nic, phoneNumber, email, address, title, age, gender
             FROM $this->table
             WHERE patient_id = :user_id
             GROUP BY referal_id";

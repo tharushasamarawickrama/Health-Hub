@@ -61,6 +61,10 @@
                                 <span class="pnumber">Patient's Contact Number</span><br>
                                 <input type="text" class="pnumberinput" placeholder="Enter Contact Number" name="phoneNumber" id="phoneNumber" required>
                             </div>
+                            <div>
+                                <span class="pnumber">Patient's Age</span><br>
+                                <input type="text" class="pnumberinput" placeholder="Enter Age" name="age" id="age" required>   
+                            </div>    
                         </div>
                         <div class="div2">
                             <div>
@@ -71,6 +75,15 @@
                                 <span class="pnumber">Patient's Email</span><br>
                                 <input type="email" class="pnumberinput" placeholder="Enter Email" name="email" id="email" required>
                             </div>
+                            <div>
+                                <span class="titletext">Gender</span><br>
+                                <select class="titleselect" name="gender" id="gender" required>
+                                    <option value="" disabled selected hidden>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -112,6 +125,8 @@
         const idNumberInput = document.getElementById("nic");
         const title = document.getElementById("Title");
         const patientAddress = document.getElementById("address");
+        const age = document.getElementById("age");
+        const gender = document.getElementById("gender");
 
         // Update form fields based on selected referal_id
         patientTypeDropdown.addEventListener("change", function() {
@@ -124,6 +139,8 @@
                 idNumberInput.value = "<?php echo $_SESSION['user']['nic']; ?>";
                 title.value = "<?php echo $_SESSION['user']['title']; ?>";
                 patientAddress.value = "<?php echo $_SESSION['user']['address']; ?>";
+                age.value = "<?php echo $_SESSION['user']['age']; ?>";
+                gender.value = "<?php echo $_SESSION['user']['gender']; ?>";
             } else {
 
                 // Find the selected referal in the referal array
@@ -138,6 +155,8 @@
                     idNumberInput.value = selectedReferal.nic || "";
                     title.value = selectedReferal.title || "";
                     patientAddress.value = selectedReferal.address || "";
+                    age.value = selectedReferal.age || "";
+                    gender.value = selectedReferal.gender || "";
                 } else {
                     // Clear the form fields if no referal is selected
                     patientFirstNameInput.value = "";
@@ -147,6 +166,8 @@
                     idNumberInput.value = "";
                     title.value = "";
                     patientAddress.value = "";
+                    age.value = "";
+                    gender.value = "";
                 }
             }
         });

@@ -7,6 +7,7 @@ class PatientHistory
     {
         $id = $_SESSION['user']['user_id'];
         $appointment = new Appointment;
+        $referaluser = $appointment->getDistinctReferalAndUserDetails($id);
         $appointments = $appointment->getAppointmentsByUserId($id);
         if ($appointments) {
 
@@ -21,12 +22,24 @@ class PatientHistory
                 $labtestdata = $labtest->first($arr1);
                 $appointmentlabtestdata = $appointmentlabtest->getLabTestByAppointmentId($appointment['appointment_id']);
                 $prescriptiondata2 = $prescriptionMed->getmedicatesInprescription($appointment['prescription_id']);
+                if($appointment['referal_id']== 0){
+                    $patient = new Patient;
+                    $arr2['patient_id'] = $appointment['patient_id'];
+                    $patientdata = $patient->getMedicalHistoryByPatientId($appointment['patient_id']);
+       
+                }else{
+                    $patient = new Patient_Referal;
+                    // $arr2['patient_id'] = $appointment['patient_id'];
+                    $arr2['referal_id'] = $appointment['referal_id'];
+                    $patientdata = $patient->getMedicalHistory($appointment['patient_id'], $appointment['referal_id']);
+                }
                 $combinedData = [
                     'appointment' => $appointment,
                     'prescription' => $prescriptiondata1,
                     'prescriptionMed' => $prescriptiondata2,
                     'labtest' => $labtestdata,
                     'appointmentlabtest' => $appointmentlabtestdata,
+                    'patient' => $patientdata,
                 ];
                 $data[] = $combinedData;
                 // show($data);  
@@ -42,6 +55,6 @@ class PatientHistory
 
 
 
-        $this->view('patienthistory', ['data' => $data]);
+        $this->view('patienthistory', ['data' => $data, 'referaluser' => $referaluser]);
     }
 }
