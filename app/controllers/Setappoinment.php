@@ -41,6 +41,8 @@ class Setappoinment
                     'patient_id' => $_SESSION['user']['user_id'],
                     'payment_status' => 'pending',
                     'referal_id' => $_POST['patientType'],
+                    'isdeleted' => 0,
+                    'status' => 'new',
 
                 ];
 
@@ -55,7 +57,7 @@ class Setappoinment
                 redirect('patientchannel');
             }
         }
-        show($referal);
+        // show($referal);
         // Load the view without any pre-filled data
         $this->view('setappoinment', ['referal' => $referal]);
     }
