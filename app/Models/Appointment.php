@@ -155,14 +155,15 @@ class Appointment
         return $this->query($sql, ['user_id' => $user_id]);
     }
 
-    public function updateCompleteStatus($appointmentId)
+    public function updateCompleteStatus($appointmentId, $appointmentStatus)
     {
         // SQL query to update the status of an appointment
-        $sql = "UPDATE $this->table SET status = 'completed' WHERE appointment_id = :appointment_id";
+        $sql = "UPDATE $this->table SET status = :appointmentStatus WHERE appointment_id = :appointment_id";
 
         // Execute the query with the provided parameters
         return $this->query($sql, [
             'appointment_id' => $appointmentId,
+            'appointmentStatus' => $appointmentStatus
         ]);
     }
 }

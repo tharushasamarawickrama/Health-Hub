@@ -123,24 +123,41 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Mark appointment as completed
-  document.querySelectorAll(".mark-complete").forEach((link) => {
+  document.querySelectorAll(".mark-status").forEach((link) => {
     link.onclick = (e) => {
       e.preventDefault();
       const id = link.dataset.id;
+      const currentStatus = link.dataset.status;
+
+      // Toggle status
+      const newStatus = currentStatus === "new" ? "completed" : "new";
 
       fetch(
         "http://localhost/Health-Hub/public/drViewAppointments/markCompleted",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: "appointmentId=" + encodeURIComponent(id),
+          body:
+            "appointmentId=" +
+            encodeURIComponent(id) +
+            "&appointmentStatus=" +
+            encodeURIComponent(newStatus),
         }
       )
         .then((r) => r.json())
         .then((data) => {
           if (data.status === "success") {
             link.closest(".view-appointment-card")?.remove();
-            showToast("Appointment marked as completed!");
+            let toastMsg = "";
+            if(newStatus === "completed") {
+              localStorage.removeItem("ongoingAppointment");
+              document.getElementById("ongoing-appointment").style.display = "none";
+              toastMsg = "Appointment marked as completed!";
+            }
+            else{
+              toastMsg = "Appointment marked as new!";
+            }
+            showToast(toastMsg);
           } else {
             alert("Error: " + (data.message || "Update failed"));
           }
@@ -160,28 +177,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ONGOING APPOINTMENT BANNER LOGIC
-  const ongoingBanner = document.getElementById('ongoing-appointment');
-  const ongoingIdSpan = document.getElementById('ongoing-id');
-  const ongoingNameSpan = document.getElementById('ongoing-name');
+  const ongoingBanner = document.getElementById("ongoing-appointment");
+  const ongoingIdSpan = document.getElementById("ongoing-id");
+  const ongoingNameSpan = document.getElementById("ongoing-name");
 
-  function showOngoingAppointment(id, name) {
-    ongoingBanner.style.display = 'flex';
-    ongoingIdSpan.textContent = `Ongoing Appointment: #${id}`;
+  function showOngoingAppointment(no, name) {
+    ongoingBanner.style.display = "flex";
+    ongoingIdSpan.textContent = `Ongoing Appointment: #${no}`;
     ongoingNameSpan.textContent = `${name}`;
   }
 
-  const ongoingAppointment = localStorage.getItem('ongoingAppointment');
+  const ongoingAppointment = localStorage.getItem("ongoingAppointment");
   if (ongoingAppointment) {
-    const { id, name } = JSON.parse(ongoingAppointment);
-    showOngoingAppointment(id, name);
+    const { no, name } = JSON.parse(ongoingAppointment);
+    showOngoingAppointment(no, name);
   }
 
-  document.querySelectorAll('.view-appointment-card .card-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-      const card = this.closest('.view-appointment-card');
-      const id = card.getAttribute('data-id');
-      const name = card.querySelector('.appointment-name')?.textContent || "Unknown";
-      localStorage.setItem('ongoingAppointment', JSON.stringify({ id, name }));
+  document
+    .querySelectorAll(".view-appointment-card .card-link")
+    .forEach((link) => {
+      link.addEventListener("click", function (e) {
+        const card = this.closest(".view-appointment-card");
+        const no = card.getAttribute("data-no");
+        const name =
+          card.querySelector(".appointment-name")?.textContent || "Unknown";
+        localStorage.setItem(
+          "ongoingAppointment",
+          JSON.stringify({ no, name })
+        );
+      });
     });
-  });
 });

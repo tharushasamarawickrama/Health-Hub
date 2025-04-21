@@ -19,7 +19,9 @@ class DrLabTests {
         $appointmentModel = new Appointment();
 
         //fetch appointment date
-        $appointmentDate = $appointmentModel->getAppointmentById($appointmentId)['appointment_date'];
+        $appointmentDetails = $appointmentModel->getAppointmentById($appointmentId);
+        $appointmentDate = $appointmentDetails['appointment_date'];
+        $appointmentStatus = $appointmentDetails['status'];
         // var_dump($appointmentDate);
         // exit;
 
@@ -71,6 +73,7 @@ class DrLabTests {
             'labReports' => $mappedLabReports,
             'appointment_id' => $appointmentId,
             'appointment_date' => $appointmentDate,
+            'appointment_status' => $appointmentStatus,
         ];
 
         $this->view('drLabTests', $data);

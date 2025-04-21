@@ -74,11 +74,12 @@ class DrViewAppointments
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $appointmentId = $_POST['appointmentId'] ?? null;
+        $appointmentSatus = $_POST['appointmentStatus'] ?? null;
 
-        if ($appointmentId) {
+        if ($appointmentId && $appointmentSatus) {
             $appointmentModel = new Appointment();
 
-            $success = $appointmentModel->updateCompleteStatus($appointmentId);
+            $success = $appointmentModel->updateCompleteStatus($appointmentId, $appointmentSatus);
 
             if ($success) {
                 echo json_encode(['status' => 'success']);

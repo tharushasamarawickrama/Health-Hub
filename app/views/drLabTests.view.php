@@ -9,6 +9,7 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
 
 $today = date('Y-m-d');
 $isPastAppointment = strtotime($appointment_date) < strtotime($today);
+$notEditable = $isPastAppointment || $data['appointment_status'] === 'completed';
 ?>
 
 <div class="dr-labtest-container">
@@ -19,15 +20,15 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
     <div class="tabs-container">
     <div class="tabs">
         <button 
-            class="tab-link <?= $isPastAppointment ? '' : 'active' ?>" 
-            onclick="<?= $isPastAppointment ? 'return false;' : 'switchTab(event, \'order-tests\')' ?>" 
-            <?= $isPastAppointment ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : '' ?>
+            class="tab-link <?= $notEditable ? '' : 'active' ?>" 
+            onclick="<?= $notEditable ? 'return false;' : 'switchTab(event, \'order-tests\')' ?>" 
+            <?= $notEditable ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : '' ?>
         >
             Order Lab Test
         </button>
 
         <button 
-            class="tab-link <?= $isPastAppointment ? 'active' : '' ?>" 
+            class="tab-link <?= $notEditable ? 'active' : '' ?>" 
             onclick="switchTab(event, 'lab-reports')"
         >
             Lab Reports
@@ -35,7 +36,7 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
     </div>
 
         <!-- Order Lab Tests Section -->
-        <div id="order-tests" class="tab-content <?= $isPastAppointment ? '' : 'active' ?>">
+        <div id="order-tests" class="tab-content <?= $notEditable ? '' : 'active' ?>">
             <h3>Order Lab Test</h3>
             <!-- Display Selected Lab Tests -->
         <div id="selected-tests" class="lab-tests-display">
@@ -86,7 +87,7 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
         </div>
 
         <!-- Lab Reports Section -->
-        <div id="lab-reports" class="tab-content <?= $isPastAppointment ? 'active' : '' ?>">
+        <div id="lab-reports" class="tab-content <?= $notEditable ? 'active' : '' ?>">
             <h3>Lab Reports</h3>
             <div class="lab-report-list">
                 <?php foreach ($labReports as $labTestName => $labTestReport): 

@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Colombo');
 // Start the session to enable session management
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

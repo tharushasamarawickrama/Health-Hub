@@ -30,6 +30,12 @@ class DrPrescription {
         $medicationModel = new Prescribed_Medications();
         $medications = $medicationModel->findWhere(['prescription_id' => $prescriptionId]);
 
-        $this->view('drPrescription', ['prescription' => $prescription, 'medications' => $medications, 'appointment_id' => $appointmentId, 'appointment_date' => $appointmentDate] );
+        $this->view('drPrescription', [
+            'prescription' => $prescription,
+            'medications' => $medications,
+            'appointment_id' => $appointmentId,
+            'appointment_date' => $appointmentDate,
+            'appointment_status' => $appointment['status'],
+            ] );
     }
 }

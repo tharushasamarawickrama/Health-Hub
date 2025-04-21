@@ -5,11 +5,6 @@ class DrEditPrescription {
 
     public function index() {
 
-        // if (!isset($_GET['prescription_id'])) {
-        //     redirect('drViewprescriptions');
-        // }
-        
-        //$prescriptionId = $_GET['prescription_id'];
         $appointmentId = $_GET['appointment_id'];
 
         $appointmentModel = new Appointment();

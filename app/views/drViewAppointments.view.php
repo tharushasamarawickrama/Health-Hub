@@ -85,11 +85,6 @@ if ($filter === 'today' && $doctorType === 'specialist') {
 ?>
 
 <div class="dr-view-appointments-container">
-    <!-- Ongoing Appointment Banner -->
-<div id="ongoing-appointment" class="ongoing-banner" style="display: none;">
-    <span id="ongoing-id"></span>
-    <span id="ongoing-name"></span>
-</div>
     <!-- Toast Notification -->
     <div id="toast" class="toast-message">
         <img src="<?php echo URLROOT; ?>assets/images/check-green.png" alt="Success" class="toast-icon">
@@ -128,6 +123,11 @@ if ($filter === 'today' && $doctorType === 'specialist') {
 
     <div class="view-appointments-list">
         <?php if ($filter === 'today' && $doctorType === 'specialist' && !$dateFilter): ?>
+            <!-- Ongoing Appointment Banner -->
+            <div id="ongoing-appointment" class="ongoing-banner" style="display: none;">
+                <span id="ongoing-id"></span>
+                <span id="ongoing-name"></span>
+            </div>
             <?php if (!empty($groupedAppointments)): ?>
                 <div class="slot-tab-headings">
                     <?php $slotIndex = 0;
@@ -159,16 +159,21 @@ if ($filter === 'today' && $doctorType === 'specialist') {
                                 data-slot="<?= $slotIndex ?>" data-status="<?= $statusTab ?>">
                                 <?php if (!empty($paginatedSlot)): ?>
                                     <?php foreach ($paginatedSlot as $appointment): ?>
-                                        <div class="view-appointment-card" data-id="<?= $appointment['id'] ?>" data-status="<?= $appointment['status'] ?>">
+                                        <div class="view-appointment-card" data-id="<?= $appointment['id'] ?>" data-no="<?= $appointment['appointment_No'] ?>" data-status="<?= $appointment['status'] ?>">
                                             <a href="<?= URLROOT; ?>drAppointment?appointment_id=<?= $appointment['id']; ?>" class="card-link">
                                                 <span class="appointment-No"><?= '#' . str_pad($appointment['appointment_No'], 4, '0', STR_PAD_LEFT) ?></span>
                                                 <span class="appointment-name"><?= $appointment['name'] ?></span>
                                             </a>
                                             <div class="appointment-action-icons">
                                                 <?php if ($appointment['status'] === 'new'): ?>
-                                                    <a href="#" class="mark-complete" data-id="<?= $appointment['id'] ?>"><img src="<?= URLROOT; ?>assets/images/check-black.png" alt="Check Icon" class="appointment-check-icon"></a>
+                                                    <a href="#" class="mark-status" data-id="<?= $appointment['id'] ?>" data-status="<?= $appointment['status'] ?>">
+                                                        <img src="<?= URLROOT; ?>assets/images/check-black.png" alt="Check Icon" class="appointment-check-icon">
+                                                    </a>
+                                                <?php else: ?>
+                                                    <a href="#" class="mark-status" data-id="<?= $appointment['id'] ?>" data-status="<?= $appointment['status'] ?>">
+                                                        <img src="<?= URLROOT; ?>assets/images/xmark-black.png" alt="Cross Icon" class="appointment-check-icon">
+                                                    </a>
                                                 <?php endif; ?>
-                                                <a href="#"><img src="<?= URLROOT; ?>assets/images/xmark-black.png" alt="Cross Icon" class="appointment-check-icon"></a>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
