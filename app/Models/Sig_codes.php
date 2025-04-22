@@ -21,7 +21,7 @@ class Sig_codes {
     }
 
     public function getFrequencyBySigCode($sig_code) {
-        $query = "SELECT frequencyperday FROM $this->table WHERE code = :code";
-        return $this->query($query, ['code' => $sig_code]);
+        $query = "SELECT frequencyperday FROM $this->table WHERE sigcode = :sigcode";
+        return $this->query($query, ['sigcode' => $sig_code]);
     }
 }

@@ -40,16 +40,16 @@
             }
         }
         
-        public function calculateIssuedMedication() {
+        public function issuedMedication() {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $medications = $_POST['medications'];
                 $appointment_id = $_POST['appointment_id'];
     
-                $calculatedAmounts = [];
+                $noofunits = [];
     
                 foreach ($medications as $index => $medication) {
                     $medication_name = trim($medication['name']); // Trim whitespace
-                    $issuedDays = $medication['issued_duration'];
+                    $issuedDays = $medication['preferred_duration'];
                     $sigCode = $medication['sig_codes'];
                     $measurement = $medication['measurement'];
                     $quantityPrescribed = $medication['quantity'];
@@ -70,7 +70,7 @@
     
                     // Final calculation
                     $amount = ($frequencyPerDay * $issuedDays * $quantityPrescribed) / $quantityPerUnit;
-                    $calculatedAmounts[$index] = [
+                    $noofunits[$index] = [
                         'name' => $medication_name,
                         'amount' => ceil($amount)
                     ];
@@ -78,9 +78,15 @@
     
                 // Get full appointment data for the view
                 $appointmentDetails = $this->pharmacistModel->getPrescriptionDetails($appointment_id);
-    
+                
+                foreach ($appointmentDetails as $i => &$med) {
+                    if (isset($medications[$i]['preferred_duration'])) {
+                        $med['preferred_duration'] = $medications[$i]['preferred_duration'];
+                    }
+                }
+                
                 $this->view('phprescriptionappointment', [
-                    'calculatedAmounts' => $calculatedAmounts,
+                    'noofunits' => $noofunits,
                     'appointment_id' => $appointment_id,
                     'nic' => $appointmentDetails[0]['nic'] ?? 'N/A',
                     'age' => $appointmentDetails[0]['age'] ?? 'N/A',
@@ -92,5 +98,6 @@
                 ]);
             }
         }
+        
     }
     

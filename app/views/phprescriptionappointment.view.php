@@ -56,19 +56,24 @@
             <?php endif; ?>
         </table>
         </div>
+        <br>
+        <br>
 
+        <div >
+            <h2>Calculate no.of units to be issued</h2>
+        </div>
         <!-- Only one form, not nested -->
-        <form method="POST" action="<?php echo URLROOT; ?>/phprescriptionappointment/calculateIssuedMedication">
+        <form method="POST" action="<?php echo URLROOT; ?>/phprescriptionappointment/issuedMedication">
             <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
-            <table class="ph-pres-app-issue-table">
+            <table class="ph-pres-app-prescription-table">
                 <tr>
                     <th>Medicine</th>
                     <th>Qty</th>
                     <th>Measurement</th>
                     <th>Sig Code</th>
                     <th>Prescribed Duration</th>
-                    <th>Issued Duration (days)</th>
-                    <th>Calculated Amount</th>
+                    <th>preferred duration(days)</th>
+                    <th>No.of units to be issued</th>
                 </tr>
                 <?php foreach ($data['medications'] as $index => $medication): ?>
                     <tr>
@@ -88,13 +93,16 @@
                             <?php echo htmlspecialchars($medication['sig_codes']); ?>
                             <input type="hidden" name="medications[<?php echo $index; ?>][sig_codes]" value="<?php echo htmlspecialchars($medication['sig_codes']); ?>">
                         </td>
-                        <td><?php echo htmlspecialchars($medication['duration']); ?></td>
                         <td>
-                            <input type="number" name="medications[<?php echo $index; ?>][issued_duration]" min="1" required>
+                            <?php echo htmlspecialchars($medication['duration']); ?>
                         </td>
                         <td>
-                            <?php if (isset($data['calculatedAmounts'][$index])): ?>
-                                <?php echo $data['calculatedAmounts'][$index]['amount']; ?>
+                            <input type="number" name="medications[<?php echo $index; ?>][preferred_duration]" min="1" required 
+                            value="<?php echo isset($medication['preferred_duration']) ? htmlspecialchars($medication['preferred_duration']) : ''; ?>">
+                        </td>
+                        <td>
+                            <?php if (isset($data['noofunits'][$index])): ?>
+                                <?php echo $data['noofunits'][$index]['amount']; ?>
                             <?php else: ?>
                                 <span id="calculated_<?php echo $index; ?>"></span>
                             <?php endif; ?>
@@ -109,5 +117,6 @@
         </form>
     </div>
 </div>
+
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>
