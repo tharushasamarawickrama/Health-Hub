@@ -30,6 +30,8 @@ class Appointment
         'updated_at',
         'prescription_id',
         'labtest_id',
+        'isdeleted',
+        'status',
 
     ];
 
@@ -64,7 +66,7 @@ class Appointment
     public function getAppointmentsByDoctorId($doctorId)
     {
         $sql = "SELECT * FROM appointments WHERE doctor_id = :doctor_id
-                ORDER BY appointment_date ASC, appointment_time ASC, appointment_No ASC"; 
+                ORDER BY appointment_date ASC, appointment_time ASC, appointment_No ASC";
         return $this->query($sql, ['doctor_id' => $doctorId]);
     }
 
@@ -164,5 +166,27 @@ class Appointment
         return $this->query($sql, [
             'appointment_id' => $appointmentId,
         ]);
+    }
+
+    public function getSameMonthAndReferalAppointmentCount($userId, $referalId, $month, $year)
+    {
+        // SQL query to count appointments in the same month and with the same referral ID
+        $sql = "SELECT COUNT(*) AS appointment_count
+                FROM $this->table
+                WHERE patient_id = :user_id
+                AND referal_id = :referal_id
+                AND MONTH(appointment_date) = :month
+                AND YEAR(appointment_date) = :year";
+
+        // Execute the query with the provided parameters
+        $result = $this->query($sql, [
+            'user_id' => $userId,
+            'referal_id' => $referalId,
+            'month' => $month,
+            'year' => $year,
+        ]);
+
+        // Return the count if the result is found, otherwise return 0
+        return $result[0]['appointment_count'] ?? 0;
     }
 }

@@ -1,10 +1,6 @@
 <?php
 
-
-
-
-
-class PatientChannel {
+class RePatientChannel {
     use Controller;
 
     public function index() {
@@ -36,46 +32,53 @@ class PatientChannel {
         if ($scheduleData) {
             $data = array_merge($data, $scheduleData);
         }
-        $sameMonthAppointmentCount = $appointment->getSameMonthAndReferalAppointmentCount($userId, $_SESSION['appointment']['referal_id'], date('m'), date('Y'));   
+
+        // Get the count of same-month appointments
+        $sameMonthAppointmentCount = $appointment->getSameMonthAndReferalAppointmentCount(
+            $userId, 
+            $_SESSION['appointment']['referal_id'], 
+            date('m'), 
+            date('Y')
+        );   
         show($sameMonthAppointmentCount); 
         $_SESSION['appointment']['sameMonthAppointmentCount'] = $sameMonthAppointmentCount;
+
         // Handle form submission
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmbtn'])) {
             // Update filled slots in the schedule
             $data['filled_slots'] = $data['filled_slots'] + 1;
             $schedule->update($data['schedule_id'], $data, 'schedule_id');
             
-            
-            if($_SESSION['appointment']['referal_id'] == 'new'){
+            // Set the appointment date from the form submission
+            if (isset($_POST['appointment_date'])) {
+                $_SESSION['appointment']['appointment_date'] = $_POST['appointment_date'];
+            } else {
+                die('Appointment date is missing.');
+            }
 
+            // Handle referral logic
+            if ($_SESSION['appointment']['referal_id'] == 'new') {
                 $referal = new Patient_Referal;
-                $arr2=[
+                $arr2 = [
                     'user_id' => $_SESSION['user']['user_id'],
                 ];
                 $referal->insertReferal($arr2['user_id']);    
                 $lastreferal = $referal->getLastReferalByUserId($_SESSION['user']['user_id']);
-                echo $lastreferal;
                 $_SESSION['appointment']['referal_id'] = $lastreferal;
                 $appointment->insert($_SESSION['appointment']);
-            }else{  
-                // echo $_SESSION['user']['user_id']; 
+            } else {  
                 $appointment->insert($_SESSION['appointment']);
             }
             
-            // Insert appointment data into the database
-
             // Fetch the latest appointment data
             $appointmentdata = $appointment->getLastAppointmentByUserId($userId);
             $_SESSION['appo_id'] = $appointmentdata['appointment_id'];
 
+            // Redirect to the payment details page
+            redirect('repatientpaymentdetails');
+        }
 
-        
         // Render the view
-        redirect('Patientpaymentdetails');
+        $this->view('repatientchannel', $data);
     }
-    $this->view('PatientChannel', $data);
-
-    
-}
-
 }

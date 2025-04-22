@@ -9,11 +9,12 @@ class ScheduleTime
     protected $Allowedcolumns = [
         'schedule_id',
         'doctor_id',
-        'date',
+        'weekday',
         'start_time',
         'end_time',
         'total_slots',
         'filled_slots',
+        'is_cancelled',
         'created_at',
         'updated_at'
 

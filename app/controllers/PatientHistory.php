@@ -5,6 +5,7 @@ class PatientHistory
     use Controller;
     public function index()
     {
+        $labtest =[];
         $id = $_SESSION['user']['user_id'];
         $appointment = new Appointment;
         $referaluser = $appointment->getDistinctReferalAndUserDetails($id);
@@ -17,10 +18,16 @@ class PatientHistory
                 $prescriptionMed = new Prescribed_Medications;
                 $appointmentlabtest = new Appointment_LabTest;
                 $arr['prescription_id'] = $appointment['prescription_id'];
-                $arr1['labtest_id'] = $appointment['labtest_id'];
+                // $arr1['appointment_id'] = $appointment['appointment_id'];
                 $prescriptiondata1 = $prescription->first($arr);
-                $labtestdata = $labtest->first($arr1);
+                // $labtestdata = $labtest->first($arr1);
                 $appointmentlabtestdata = $appointmentlabtest->getLabTestByAppointmentId($appointment['appointment_id']);
+                foreach($appointmentlabtestdata as $appolab){
+                    $arr1['labtest_id'] = $appolab['labtest_id'];
+                    $labtestdata[] = $labtest->first($arr1);
+                
+                }
+                // show($labtestdata);
                 $prescriptiondata2 = $prescriptionMed->getmedicatesInprescription($appointment['prescription_id']);
                 if($appointment['referal_id']== 0){
                     $patient = new Patient;

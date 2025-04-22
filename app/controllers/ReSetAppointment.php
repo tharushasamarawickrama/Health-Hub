@@ -1,6 +1,6 @@
 <?php
 
-class Setappoinment
+class ReSetappointment
 {
     use Controller;
 
@@ -9,8 +9,8 @@ class Setappoinment
         $id = $_GET['id'] ?? null;
         $sch_id = $_GET['sch_id'] ?? null;
 
-        $appoinment = new Appointment;
-        $referal = $appoinment->getDistinctReferalAndUserDetails($_SESSION['user']['user_id']);
+        $appointment = new Appointment;
+        $referal = $appointment->getDistinctReferalAndUserDetails($_SESSION['user']['user_id']);
         $referal = array_filter($referal, function ($item) {
             return $item['referal_id'] != 0;
         });
@@ -54,11 +54,10 @@ class Setappoinment
                 $_SESSION['appointment'] = $data;
 
                 // Redirect to the next page
-                redirect('patientchannel');
+                redirect('repatientchannel');
             }
         }
-        show($referal);
         // Load the view without any pre-filled data
-        $this->view('setappoinment', ['referal' => $referal]);
+        $this->view('resetappointment', ['referal' => $referal]);
     }
 }
