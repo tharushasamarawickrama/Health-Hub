@@ -31,4 +31,5 @@ class Channel
         // print_r($data2);
         $this->view('channel', $data, $data2);
     }
+
 }

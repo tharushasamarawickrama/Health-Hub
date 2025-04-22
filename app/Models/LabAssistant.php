@@ -20,10 +20,10 @@ class LabAssistant {
     }
     public function getLabAppointments() {
         $query = "SELECT a.appointment_id, 
-                         a.appointment_date, a.appointment_time, a.status, u.nic
+                         a.appointment_date, a.appointment_time, a.lab_status, u.nic
                   FROM appointments a
                   JOIN users u ON a.patient_id = u.user_id
-                  WHERE a.status = 'planned'
+                  WHERE a.lab_status = 'planned'
                   ";
                   
         return $this->query($query);
@@ -68,7 +68,7 @@ class LabAssistant {
                     JOIN labtests l ON l.labtest_id = alt.labtest_id
                     JOIN users u ON a.patient_id = u.user_id
                     JOIN users d ON a.doctor_id = d.user_id
-                    WHERE a.status = 'Completed' AND a.appointment_id = :appointment_id 
+                    WHERE a.lab_status = 'Completed' AND a.appointment_id = :appointment_id 
                     GROUP BY a.appointment_id
                     ORDER BY a.appointment_date DESC";
         return $this->query($query, ['appointment_id' => $appointment_id]);
@@ -93,7 +93,7 @@ class LabAssistant {
                     a.appointment_id, u.nic, a.appointment_date
                     FROM appointments a
                     JOIN users u ON a.patient_id = u.user_id
-                    WHERE a.status = 'Completed' AND a.appointment_date = :appointment_date
+                    WHERE a.lab_status = 'Completed' AND a.appointment_date = :appointment_date
                     ORDER BY a.appointment_date DESC";
         return $this->query($query, ['appointment_date' => $date]);
     }
@@ -116,11 +116,11 @@ class LabAssistant {
     public function searchLabAppointments($appointment_id){
         $query = "SELECT 
             a.appointment_id, 
-            a.status, 
+            a.lab_status, 
             u.nic 
           FROM appointments a
           JOIN users u ON a.patient_id = u.user_id 
-          WHERE a.appointment_id = :appointment_id AND a.status = 'Planned'";
+          WHERE a.appointment_id = :appointment_id AND a.lab_status = 'Planned'";
           
 return $this->query($query, ['appointment_id' => $appointment_id]);
 
@@ -131,7 +131,7 @@ return $this->query($query, ['appointment_id' => $appointment_id]);
                 a.appointment_id, 
                 a.appointment_date,
                 a.appointment_time, 
-                a.status,
+                a.lab_status,
                 a.patient_id,
                 u.nic, 
                 u.age, u.gender, u.phoneNumber,
@@ -166,13 +166,13 @@ return $this->query($query, ['appointment_id' => $appointment_id]);
         
     }
 
-    public function updateAppointmentStatus($appointment_id,$status){
+    public function updateAppointmentStatus($appointment_id,$lab_status){
         $query = "UPDATE appointments 
-                    SET status = :status
+                    SET lab_status = :lab_status
                     WHERE appointment_id = :appointment_id";
         return $this->query($query, [
                 'appointment_id' => $appointment_id, 
-                'status' => $status]);
+                'lab_status' => $lab_status]);
     }
 
     
@@ -194,7 +194,7 @@ public function getPendingLabAppointments($appointment_id) {
               JOIN labtests l ON l.labtest_id = alt.labtest_id
               JOIN users u ON a.patient_id = u.user_id
               JOIN users d ON a.doctor_id = d.user_id
-              WHERE a.status = 'Pending' ";
+              WHERE a.lab_status = 'Pending' ";
             $params = [];  
     if ($appointment_id !== null) {
         $query .= " AND a.appointment_id = :appointment_id";
@@ -204,13 +204,13 @@ public function getPendingLabAppointments($appointment_id) {
     $query .= " ORDER BY a.appointment_date DESC";
     return $this->query($query, $params);
 }
-public function setAppointmentStatus($appointment_id, $status) {
+public function setAppointmentStatus($appointment_id, $lab_status) {
     $query = "UPDATE appointments 
-              SET status = :status
+              SET lab_status = :lab_status
               WHERE appointment_id = :appointment_id";
     return $this->query($query, [
         'appointment_id' => $appointment_id, 
-        'status' => $status
+        'lab_status' => $lab_status
     ]);
 }
 
