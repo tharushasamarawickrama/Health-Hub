@@ -90,7 +90,7 @@ class AdminRecepRegister  {
         return;
         
         
-    }
+        }
         $this->view('AdminRecepRegister');
     }
     

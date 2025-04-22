@@ -9,11 +9,13 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="firstName">First Name</label>
-                    <input class="AdminInput" type="text" id="firstName" name="firstName" required>
+                    <input class="AdminInput" type="text" id="firstName" name="firstName" value="<?php echo $data['firstName'] ?? ''; ?>" required>
+                    <span class="error"><?php echo $data['errors']['firstName'] ?? ''; ?></span>
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="lastName">Last Name</label>
-                    <input class="AdminInput" type="text" id="lastName" name="lastName" >
+                    <input class="AdminInput" type="text" id="lastName" name="lastName" value="<?php echo $data['lastName'] ?? ''; ?>">
+                    <span class="error"><?php echo $data['errors']['lastName'] ?? ''; ?></span>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -52,7 +54,7 @@
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="dob">Date of Birth</label>
-                    <input class="AdminInput" type="date" id="dob" name="dob" >
+                    <input class="AdminInput" type="date" id="dob" name="dob" required >
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -74,7 +76,7 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group-full-width">
                     <label class="AdminLabel" for="photo">Lab Assistant's Photo</label>
-                    <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" >
+                    <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" required >
                 </div>
             </div>
             <div class="AdminRegister-form-row">

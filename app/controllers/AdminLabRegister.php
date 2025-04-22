@@ -24,6 +24,19 @@ class AdminLabRegister  {
                 
             ];
 
+              // Validate First Name
+              if (empty($data['firstName'])) {
+                $data['errors']['firstName'] = "First name is required.";
+            } elseif (!preg_match('/^[a-zA-Z]+$/', $data['firstName'])) {
+                $data['errors']['firstName'] = "First name can only contain letters.";
+            }
+
+            // Validate Last Name
+            if (empty($data['lastName'])) {
+                $data['errors']['lastName'] = "Last name is required.";
+            } elseif (!preg_match('/^[a-zA-Z]+$/', $data['lastName'])) {
+                $data['errors']['lastName'] = "Last name can only contain letters.";
+            }
            
 
             if (!empty($data['dob'])) {
