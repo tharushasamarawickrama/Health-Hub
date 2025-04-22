@@ -20,9 +20,10 @@ class Medications {
 
         return $this->query($query, ['med_name' => $medication_name]);
     }
+    
     public function getMedicationDetails($med_name) {
-        $query = "SELECT quantity FROM $this->table WHERE name = :name";
-        return $this->query($query, ['name' => $med_name]);
+        $query = "SELECT quantity FROM $this->table WHERE med_name = :med_name";
+        return $this->query($query, ['med_name' => $med_name]);
     }
     
     
