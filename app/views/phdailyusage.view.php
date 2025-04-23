@@ -19,5 +19,8 @@
         <div id="ph-usage-calendarDates" class="ph-usage-calendar-dates"></div>
     </div>
 </div>
+<script>
+    const URLROOT = "<?php echo URLROOT; ?>";
+</script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
 <script src="<?php echo URLROOT;?>/assets/js/PhDailyUsage.js"></script>
