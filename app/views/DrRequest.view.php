@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
         <h1>Request Form</h1>
@@ -107,9 +107,9 @@
                 </div>
             </div>
             <div class="AdminRegister-form-row">
-                
-                    <button type="submit"  class="add-doctor-btn">Send Request</button>
-                
+                    <a href="<?php echo URLROOT;?>patientregister"><button  class="add-doctor-btn" type="button" id="dr-req-btn-left">BACK</button></a>
+                    <!-- <button type="button" class="add-doctor-btn" id="dr-req-btn-left" onclick="window.location.href='<?php echo URLROOT; ?>/patientregister';">BACK</button> -->
+                    <button type="submit"  class="add-doctor-btn" id="dr-req-btn-right">Send Request</button>
             </div>
         </form>
         

@@ -35,4 +35,10 @@ class Pharmacist {
         return $this->query($query, $data);
     }
 
+    public function getPharmacistsCount() {
+        $query = "SELECT COUNT(*) AS pharmacists_count FROM pharmacists;";
+        $result = $this->query($query);
+        return $result[0]['pharmacists_count'] ?? 0;
+    }
+
 }

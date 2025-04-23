@@ -34,5 +34,11 @@ class Receptionist {
         return $this->query($query, $data);
     }
 
+    public function getReceptionistsCount() {
+        $query = "SELECT COUNT(*) AS receptionists_count FROM receptionists;";
+        $result = $this->query($query);
+        return $result[0]['receptionists_count'] ?? 0;
+    }
+
     
 }

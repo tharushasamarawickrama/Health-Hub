@@ -85,7 +85,7 @@ class Doctor
         return $this->query($query, ['doctor_id' => $doctor_id]);
     }
 
-    public function get_doctors_Count() {
+    public function getDoctorsCount() {
         $query = "SELECT COUNT(*) AS doctors_count FROM doctors;";
         $result = $this->query($query);
         return $result[0]['doctors_count'] ?? 0;

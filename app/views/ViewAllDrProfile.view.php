@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?> 
+<?php require APPROOT . '/views/Components/AdminSidebar.php' ?>
 
     
 

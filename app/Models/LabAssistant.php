@@ -127,7 +127,14 @@ class LabAssistant {
           JOIN users u ON a.patient_id = u.user_id 
           WHERE a.appointment_id = :appointment_id AND a.status = 'planned'";
           
-return $this->query($query, ['appointment_id' => $appointment_id]);
+        return $this->query($query, ['appointment_id' => $appointment_id]);
 
+    }
+
+    
+    public function getLabAssistantsCount() {
+        $query = "SELECT COUNT(*) AS labassistants_count FROM labassistants;";
+        $result = $this->query($query);
+        return $result[0]['labassistants_count'] ?? 0;
     }
 }

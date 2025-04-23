@@ -4,7 +4,11 @@ class EditReProfiledetails
 {
     use Controller;
     public function index()
-    {
+    {   
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            die("Error: Missing or invalid receptionist ID.");
+        }
+
         $id = $_GET['id'];
         $receptionist = new Receptionist;
         $user = new User;
@@ -12,6 +16,11 @@ class EditReProfiledetails
         $arr2['user_id'] = $id;
         $data1 = $receptionist->first($arr);
         $data2 = $user->first($arr2);
+
+        if (!$data1 || !$data2) {
+            die("Error: Receptionist or user data not found.");
+        }
+
         $data = array_merge($data1, $data2);
         if (!$data) {
             
@@ -35,7 +44,7 @@ class EditReProfiledetails
                 
             ];
 
-            print_r($_FILES);
+            
             if(isset($_FILES['photo_path']) && $_FILES['photo_path']['error'] == 0){
                     $target_dir = "profile-Photos/";
                 if(!is_dir($target_dir)){
@@ -59,7 +68,10 @@ class EditReProfiledetails
                 }else{
                         $this->view('EditReProfiledetails', $data);
                         return;
-                    }}
+                }}
+                else{
+                    $data['photo_path'] = $data2['photo_path'];
+                }
             // print_r($doctor->update($id, $data, 'doctor_id'));
             
             $result=$user->update($id, $data, 'user_id');

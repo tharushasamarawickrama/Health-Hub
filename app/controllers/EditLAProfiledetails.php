@@ -60,6 +60,9 @@ class EditLAProfiledetails
                         $this->view('EditLAProfiledetails', $data);
                         return;
                     }}
+                else{
+                    $data['photo_path'] = $data2['photo_path'];
+                }
             // print_r($doctor->update($id, $data, 'doctor_id'));
             
             $result=$user->update($id, $data, 'user_id');

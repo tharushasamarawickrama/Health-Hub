@@ -1,104 +1,140 @@
-
 /* Sidebar Styles */
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #64A7B3; /* Adjusted to match existing button color */
-    color: white;
+    background-color: #06468f; /* New dark blue background */
+    color: #FFFFFF; /* White text */
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 20px;
+    padding-top: 10px; /* Reduced padding to move items up */
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .sidebar h2 {
     text-align: center;
-    font-size: 22px;
-    margin-bottom: 20px;
-    margin-top: 80px;
+    font-size: 24px;
+    margin-bottom: 20px; /* Reduced margin to move items up */
+    margin-top: 10px; /* Reduced margin to move items up */
+    font-weight: bold;
+    color: #FFFFFF; /* White text */
 }
 
 .sidebar ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
-    padding: 12px 20px;
-    transition: background 0.3s;
+    padding: 12px 20px; /* Reduced padding to move items up */
+    transition: background 0.3s, padding-left 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .sidebar ul li a {
-    color: white;
+    color: #FFFFFF; /* White text for sidebar links */
     text-decoration: none;
-    display: block;
     font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     transition: all 0.3s ease;
 }
 
 .sidebar ul li:hover {
-    background: #55c5d9; /* Slightly darker shade for hover effect */
+    background: #39CABB; /* Teal hover effect */
+    cursor: pointer;
 }
 
 .sidebar ul li a:hover {
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
-/* Sidebar Styles */
+.sidebar ul li i {
+    font-size: 20px;
+    color: #FFFFFF; /* White icons */
+}
 
+/* Footer Section in Sidebar */
+.sidebar-footer {
+    text-align: center;
+    padding: 10px; /* Reduced padding to move footer up */
+    font-size: 14px;
+    color: #FFFFFF; /* White text for footer */
+    border-top: 1px solid #39CABB; /* Teal border for footer */
+    margin-top: auto; /* Ensures the footer stays at the bottom of the content */
+}
 
-
-
-
+/* Dashboard Styles */
 .admin-dashboard {
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    padding: 20px;
+    margin-left: 250px; /* Adjust for sidebar */
     background-color: #f4f4f4;
-    background-image: url(../../images/background.png);
+    min-height: 100vh;
 }
 
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-
-
-
+.dashboard-header h1 {
+    font-size: 2.5em;
+    color: #333;
+}
 
 .dashboard-container {
-    
-    gap: 20px;
+    display: flex;
     flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
 }
-.admin-card {
-    width: 250px;
+
+.dashboard-card {
+    width: 300px;
     padding: 20px;
     text-align: center;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
-    margin-left: 50px;
-    box-shadow: 10px 10px 30px rgba(93, 84, 84, 0.5);  
 }
-.admin-card:hover {
-    transform: scale(1.15);
+
+.dashboard-card:hover {
+    transform: scale(1.1);
 }
-.admin-card h3 {
+
+.dashboard-card h3 {
     margin: 0 0 10px;
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: #333;
 }
-.admin-card p {
+
+.dashboard-card p {
     color: #777;
-    font-size: 0.9em;
+    font-size: 1.2em;
     margin-bottom: 20px;
 }
-.admin-card button {
+
+.dashboard-card .count {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #64A7B3;
+}
+
+.dashboard-card button {
     background-color: #58b4e2;
     color: white;
     border: none;
@@ -108,11 +144,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
-.admin-card button:hover {
-    background-color: #58b4e2;
-}
 
-.up-row{
-    margin-top: 50px;
-    display: flex;
+.dashboard-card button:hover {
+    background-color: #55c5d9;
 }

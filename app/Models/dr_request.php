@@ -40,7 +40,7 @@ class dr_request {
         return $this->query($query);
     }
 
-    public function get_dr_requestCount() {
+    public function getRequestCount() {
         $query = "SELECT COUNT(*) AS request_count FROM dr_requests;";
         $result = $this->query($query);
         return $result[0]['request_count'] ?? 0;

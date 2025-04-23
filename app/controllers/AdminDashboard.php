@@ -1,17 +1,24 @@
 <?php
 
-class AdminDashboard{
+class AdminDashboard {
     use Controller;
-    public function index(){
-        // $dr_request = new dr_request();
-        // $requestCount1 = $dr_request->get_dr_requestCount();
-        // echo "Total Doctor Requests: " . $requestCount1;
-        // $doctor = new Doctor();
-        // $requestCount2 = $doctor->get_doctors_Count();
-        // echo "  Total Doctors: " . $requestCount2;
-        $this->view('Admindashboard');
-    }
-    
-}
 
+    public function index() {
+        $dr_request = new dr_request();
+        $doctor = new Doctor();
+        $receptionist = new Receptionist();
+        $lab_assistant = new LabAssistant();
+        $pharmacist = new Pharmacist();
+
+       
+        $data['doctor_requests_count'] = $dr_request->getRequestCount();
+        $data['doctors_count'] = $doctor->getDoctorsCount();
+        $data['receptionists_count'] = $receptionist->getReceptionistsCount();
+        $data['lab_assistants_count'] = $lab_assistant->getLabAssistantsCount();
+        $data['pharmacists_count'] = $pharmacist->getPharmacistsCount();
+
+        
+        $this->view('Admindashboard', $data);
+    }
+}
 ?>
