@@ -147,4 +147,22 @@ class Pharmacist {
                 'units_issued' => ceil($units_issued)]);
     }
     
+    public function getUsageByDate($issued_date) {
+        $query = "SELECT issued_date
+                    FROM prescribed_medications
+                    WHERE  issued_date = :issued_date
+                    ORDER BY issued_date DESC";
+        return $this->query($query, ['issued_date' => $issued_date]);
+    }
+
+    public function getphusagedate($issued_date) {
+        $query = "SELECT 
+                    pm.name, 
+                    SUM(pm.units_issued) As totalUnitsIssued, 
+                    pm.issued_date
+                    FROM prescribed_medications pm
+                    WHERE pm.issued_date = :issued_date
+                    GROUP BY pm.name";
+        return $this->query($query, ['issued_date' => $issued_date]);
+    }
 }
