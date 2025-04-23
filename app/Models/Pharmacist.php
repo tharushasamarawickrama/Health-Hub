@@ -60,6 +60,8 @@ class Pharmacist {
                     WHERE a.appointment_id = :appointment_id";
     
         return $this->query($query, ['appointment_id' => $appointment_id]);
+        return $result ?: []; // Return an empty array if no data is found
+
     }
 
     public function updateAppointmentStatus($appointment_id,$ph_status){
@@ -106,5 +108,20 @@ class Pharmacist {
         return $this->query($query, ['appointment_date' => $date]);
     }
     
+    public function updateUnitsIssued($appointment_id,$name,$units_issued){
+        $prescriptionquery = "SELECT prescription_id FROM appointments WHERE appointment_id = :appointment_id";
+        $result = $this->query($prescriptionquery, ['appointment_id' => $appointment_id]);
+        if (!$result) {
+            return false; // No prescription found for the given appointment ID
+        }
+        $prescription_id = $result[0]['prescription_id'];
+        $updatequery = "UPDATE prescribed_medications 
+                    SET units_issued = :units_issued
+                    WHERE prescription_id = :prescription_id AND name = :name";
+        return $this->query($updatequery, [
+                'prescription_id' => $prescription_id, 
+                'name' => $name,
+                'units_issued' => ceil($units_issued)]);
+    }
     
 }

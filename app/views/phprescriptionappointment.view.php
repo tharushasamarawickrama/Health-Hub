@@ -41,19 +41,19 @@
                 <th>Sig codes</th>
                 <th>Duration</th>
             </tr>
-            <?php if (!empty($data['medications'])): ?>
-                <?php foreach ($data['medications'] as $medication): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($medication['medication_name'] ?? 'N/A'); ?></td>
-                    <td><?php echo htmlspecialchars($medication['quantity'] ?? 'N/A'); ?></td>
-                    <td><?php echo htmlspecialchars($medication['measurement'] ?? 'N/A'); ?></td>
-                    <td><?php echo htmlspecialchars($medication['sig_codes'] ?? 'N/A'); ?></td>
-                    <td><?php echo htmlspecialchars($medication['duration'] ?? 'N/A'); ?></td>
-                </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="5">No medications found</td></tr>
-            <?php endif; ?>
+            <?php if (!empty($data['medications']) && is_array($data['medications'])): ?>
+    <?php foreach ($data['medications'] as $medication): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($medication['medication_name'] ?? 'N/A'); ?></td>
+            <td><?php echo htmlspecialchars($medication['quantity'] ?? 'N/A'); ?></td>
+            <td><?php echo htmlspecialchars($medication['measurement'] ?? 'N/A'); ?></td>
+            <td><?php echo htmlspecialchars($medication['sig_codes'] ?? 'N/A'); ?></td>
+            <td><?php echo htmlspecialchars($medication['duration'] ?? 'N/A'); ?></td>
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <tr><td colspan="5">No medications found</td></tr>
+<?php endif; ?>
         </table>
         </div>
         <br>
@@ -75,40 +75,44 @@
                     <th>preferred duration(days)</th>
                     <th>No.of units to be issued</th>
                 </tr>
-                <?php foreach ($data['medications'] as $index => $medication): ?>
-                    <tr>
-                        <td>
-                            <?php echo htmlspecialchars($medication['medication_name']); ?>
-                            <input type="hidden" name="medications[<?php echo $index; ?>][name]" value="<?php echo htmlspecialchars($medication['medication_name']); ?>">
-                        </td>
-                        <td>
-                            <?php echo htmlspecialchars($medication['quantity']); ?>
-                            <input type="hidden" name="medications[<?php echo $index; ?>][quantity]" value="<?php echo htmlspecialchars($medication['quantity']); ?>">
-                        </td>
-                        <td>
-                            <?php echo htmlspecialchars($medication['measurement']); ?>
-                            <input type="hidden" name="medications[<?php echo $index; ?>][measurement]" value="<?php echo htmlspecialchars($medication['measurement']); ?>">
-                        </td>
-                        <td>
-                            <?php echo htmlspecialchars($medication['sig_codes']); ?>
-                            <input type="hidden" name="medications[<?php echo $index; ?>][sig_codes]" value="<?php echo htmlspecialchars($medication['sig_codes']); ?>">
-                        </td>
-                        <td>
-                            <?php echo htmlspecialchars($medication['duration']); ?>
-                        </td>
-                        <td>
-                            <input type="number" name="medications[<?php echo $index; ?>][preferred_duration]" min="1" required 
-                            value="<?php echo isset($medication['preferred_duration']) ? htmlspecialchars($medication['preferred_duration']) : ''; ?>">
-                        </td>
-                        <td>
-                            <?php if (isset($data['noofunits'][$index])): ?>
-                                <?php echo $data['noofunits'][$index]['amount']; ?>
-                            <?php else: ?>
-                                <span id="calculated_<?php echo $index; ?>"></span>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                <?php if (!empty($data['medications']) && is_array($data['medications'])): ?>
+    <?php foreach ($data['medications'] as $index => $medication): ?>
+        <tr>
+            <td>
+                <?php echo htmlspecialchars($medication['medication_name']); ?>
+                <input type="hidden" name="medications[<?php echo $index; ?>][name]" value="<?php echo htmlspecialchars($medication['medication_name']); ?>">
+            </td>
+            <td>
+                <?php echo htmlspecialchars($medication['quantity']); ?>
+                <input type="hidden" name="medications[<?php echo $index; ?>][quantity]" value="<?php echo htmlspecialchars($medication['quantity']); ?>">
+            </td>
+            <td>
+                <?php echo htmlspecialchars($medication['measurement']); ?>
+                <input type="hidden" name="medications[<?php echo $index; ?>][measurement]" value="<?php echo htmlspecialchars($medication['measurement']); ?>">
+            </td>
+            <td>
+                <?php echo htmlspecialchars($medication['sig_codes']); ?>
+                <input type="hidden" name="medications[<?php echo $index; ?>][sig_codes]" value="<?php echo htmlspecialchars($medication['sig_codes']); ?>">
+            </td>
+            <td>
+                <?php echo htmlspecialchars($medication['duration']); ?>
+            </td>
+            <td>
+                <input type="number" name="medications[<?php echo $index; ?>][preferred_duration]" min="1" required 
+                value="<?php echo isset($medication['preferred_duration']) ? htmlspecialchars($medication['preferred_duration']) : ''; ?>">
+            </td>
+            <td>
+                <?php if (isset($data['noofunits'][$index])): ?>
+                    <?php echo $data['noofunits'][$index]['amount']; ?>
+                <?php else: ?>
+                    <span id="calculated_<?php echo $index; ?>"></span>
+                <?php endif; ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <tr><td colspan="7">No medications found</td></tr>
+<?php endif; ?>
             </table>
 
             <div class="ph-pres-app-buttons-container">
