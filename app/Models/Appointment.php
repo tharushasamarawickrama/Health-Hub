@@ -148,7 +148,7 @@ class Appointment
     public function getDistinctReferalAndUserDetails($user_id)
     {
         // SQL query to retrieve distinct referal_id and user details
-        $sql = "SELECT referal_id, p_firstName, p_lastName, nic, phoneNumber, email, address
+        $sql = "SELECT referal_id, p_firstName, p_lastName, nic, phoneNumber, email, address, title, age, gender
             FROM $this->table
             WHERE patient_id = :user_id
             GROUP BY referal_id";
@@ -167,5 +167,27 @@ class Appointment
             'appointment_id' => $appointmentId,
             'appointmentStatus' => $appointmentStatus
         ]);
+    }
+
+    public function getSameMonthAndReferalAppointmentCount($userId, $referalId, $month, $year)
+    {
+        // SQL query to count appointments in the same month and with the same referral ID
+        $sql = "SELECT COUNT(*) AS appointment_count
+                FROM $this->table
+                WHERE patient_id = :user_id
+                AND referal_id = :referal_id
+                AND MONTH(appointment_date) = :month
+                AND YEAR(appointment_date) = :year";
+
+        // Execute the query with the provided parameters
+        $result = $this->query($sql, [
+            'user_id' => $userId,
+            'referal_id' => $referalId,
+            'month' => $month,
+            'year' => $year,
+        ]);
+
+        // Return the count if the result is found, otherwise return 0
+        return $result[0]['appointment_count'] ?? 0;
     }
 }

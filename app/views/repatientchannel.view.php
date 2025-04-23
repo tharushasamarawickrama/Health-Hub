@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<?php require APPROOT . '/views/Components/Navbar.php' ?>
+<?php require APPROOT . '/views/Components/ReNavbar.php' ?>
 
 <div class="ptc-div1">
     
@@ -16,16 +16,16 @@
             <span class="ptc-div2-span">SLMC NO:<span class="ptc-div2-span2"><?php echo $data['slmcNo']; ?></span></span>
             <span class="ptc-div2-span">Session Date:<span class="ptc-div2-span2"><?php echo $data['weekday']; ?></span></span>
             <span class="ptc-div2-span">Session Time:<span class="ptc-div2-span2"><?php echo $data['start_time']; ?></span></span>
-            <span class="ptc-div2-span">appointment No:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['appointment_No']; ?></span></span>
+            <span class="ptc-div2-span">Appointment No:<span class="ptc-div2-span2"><?php echo $_SESSION['appointment']['appointment_No']; ?></span></span>
 
-
-
+            <!-- Add a hidden input field for the session date -->
+            <input type="hidden" name="appointment_date" value="<?php echo $data['weekday']; ?>">
 
             <div class="ptc-div2-button-div">
                 
                     <button type="button" class="ptc-div2-button" onclick="window.history.back()">Edit</button>
                 
-                <a href="<?php echo URLROOT; ?>/patientpaymentdetails">
+                <a href="<?php echo URLROOT; ?>/repatientpaymentdetails">
                     <button type="submit" name="confirmbtn" class="ptc-div2-button">Confirm</button>
                 </a>
 

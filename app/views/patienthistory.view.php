@@ -11,43 +11,157 @@
         <p class="pt-history-div1-h1">Others</p>
     </div>
 </div>
+
+<!-- Referral Filter Dropdown -->
+<div style="margin: 20px;">
+    <label for="referralFilter">Filter by Referral:</label>
+    <select id="referralFilter">
+        <option value="all">All</option>
+        <?php if (!empty($referaluser)): ?>
+            <?php foreach ($referaluser as $referal): ?>
+                <option value="<?= $referal['referal_id'] ?>"><?= $referal['p_firstName'] . ' ' . $referal['p_lastName'] ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </select>
+</div>
+<!-- Content Sections -->
 <div id="prescriptionContent" class="content-section">
-    <div>
-        <?php if (!empty($data)): ?>
-            <?php foreach ($data as $index => $item): ?>
-                <div class="pt-history-div2-main">
-                    <div class="pt-history-div2">
-                        <span class="pt-history-span">Prescription-<?php echo $index + 1; ?></span>
-                        <span class="pt-history-span">Appo: <?php echo $item['appointment']['appointment_id']; ?></span>
-                        <button class="pt-history-button view-button" data-index="<?php echo $index; ?>">View</button>
-                    </div>
+    <?php if (!empty($data)): ?>
+        <?php foreach ($data as $index => $item): ?>
+            <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
+                <div class="pt-history-div2">
+                    <span class="pt-history-span">Prescription-<?= $index + 1 ?></span>
+                    <span class="pt-history-span">Appo: <?= $item['appointment']['appointment_id'] ?></span>
+                    <button class="pt-history-button view-button" data-index="<?= $index ?>">View</button>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="patienthistorynopresc">No prescriptions found.</p>
-        <?php endif; ?>
-    </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="patienthistorynopresc">No prescriptions found.</p>
+    <?php endif; ?>
 </div>
+
 <div id="labReportsContent" class="content-section" style="display: none;">
-    <div>
-        <?php if (!empty($data)): ?>
-            <?php foreach ($data as $index => $item): ?>
-                <div class="pt-history-div2-main">
-                    <div class="pt-history-div2">
-                        <span class="pt-history-span">Lab Report-<?php echo $index + 1; ?></span>
-                        <span class="pt-history-span">Appo: <?php echo $item['appointment']['appointment_id']; ?></span>
-                        <button class="pt-history-button">View</button>
+    <!-- Lab Reports Display -->
+    <?php if (!empty($data)): ?>
+        <?php foreach ($data as $index => $item): ?>
+            <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
+                <div class="pt-history-div2">
+                    <span class="pt-history-span">Lab Report-<?= $index + 1 ?></span>
+                    <span class="pt-history-span">Appo ID: <?= $item['appointment']['appointment_id'] ?></span>
+                    <div class="lab-report-details">
+                        <?php foreach ($item['appointmentlabtest'] as $labTest): ?>
+                            <div class="lab-test-item">
+                                <span class="pt-history-span">Test: <?= $labTest['labtest_pdfname'] ?></span>
+
+                                <?php foreach ($item['labtest'] as $labtest1): ?>
+                                    <?php if ($labtest1['labtest_id'] == $labTest['labtest_id']): ?>
+                                        <span class="pt-history-span"><?php echo $labtest1['labtest_name'] ?></span>
+                                        <span class="pt-history-span"><?php echo $labtest1['labtest_category'] ?></span>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+
+                                <a href="<?= URLROOT . '/' . $labTest['labtest_report'] ?>" class="pt-history-button" target="_blank">View</a>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="patienthistorynopresc">No lab reports found.</p>
-        <?php endif; ?>
-    </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="patienthistorynopresc">No lab reports found.</p>
+    <?php endif; ?>
 </div>
+
+
 <div id="otherContent" class="content-section" style="display: none;">
-    Other
+    <!-- Medical History Display -->
+    <?php if (!empty($data)): ?>
+        <?php foreach ($data as $index => $item): ?>
+            <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
+                <div class="pt-history-div2">
+                    <span class="pt-history-span">Medical History-<?= $index + 1 ?></span>
+                    <span class="pt-history-span">Appo ID: <?= $item['appointment']['appointment_id'] ?></span>
+                    <div class="other-details">
+                        <h4>Patient Medical History</h4>
+                        <?php
+                        $medicalHistory = json_decode($item['patient'][0]['medical_history'], true);
+                        ?>
+                        <p><strong>Allergies:</strong></p>
+                        <?php if (!empty($medicalHistory['allergies'])): ?>
+                            <ul>
+                                <?php foreach ($medicalHistory['allergies'] as $allergy => $reaction): ?>
+                                    <li><?= $allergy ?>: <?= $reaction ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            <p>No allergies reported.</p>
+                        <?php endif; ?>
+
+                        <p><strong>Chronic Conditions:</strong></p>
+                        <?php if (!empty($medicalHistory['chronic_conditions'])): ?>
+                            <ul>
+                                <?php foreach ($medicalHistory['chronic_conditions'] as $condition): ?>
+                                    <li><?= $condition ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            <p>No chronic conditions reported.</p>
+                        <?php endif; ?>
+
+                        <p><strong>Past Surgeries:</strong></p>
+                        <?php if (!empty($medicalHistory['past_surgeries'])): ?>
+                            <ul>
+                                <?php foreach ($medicalHistory['past_surgeries'] as $surgery): ?>
+                                    <li><?= $surgery ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            <p>No past surgeries reported.</p>
+                        <?php endif; ?>
+
+                        <p><strong>Immunizations:</strong></p>
+                        <?php if (!empty($medicalHistory['immunizations'])): ?>
+                            <ul>
+                                <?php foreach ($medicalHistory['immunizations'] as $immunization): ?>
+                                    <li><?= $immunization ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            <p>No immunizations reported.</p>
+                        <?php endif; ?>
+
+                        <p><strong>Family Medical History:</strong></p>
+                        <?php if (!empty($medicalHistory['family_medical_history'])): ?>
+                            <ul>
+                                <?php foreach ($medicalHistory['family_medical_history'] as $relative => $condition): ?>
+                                    <li><?= $relative ?>: <?= $condition ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            <p>No family medical history reported.</p>
+                        <?php endif; ?>
+
+                        <p><strong>Other Notes:</strong></p>
+                        <?php if (!empty($medicalHistory['others'])): ?>
+                            <ul>
+                                <?php foreach ($medicalHistory['others'] as $note): ?>
+                                    <li><?= $note ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            <p>No additional notes reported.</p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="patienthistorynopresc">No medical history found.</p>
+    <?php endif; ?>
 </div>
+
+
 <!-- Modal Structure -->
 <div id="viewModal" class="modal">
     <div class="modal-content">
@@ -68,6 +182,74 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const referralFilter = document.getElementById("referralFilter");
+        const prescriptionContent = document.getElementById("prescriptionContent");
+
+        // Add event listener to the referral filter dropdown
+        referralFilter.addEventListener("change", function() {
+            const selectedReferralId = this.value; // Get the selected referral ID
+            const allEntries = prescriptionContent.querySelectorAll(".pt-history-div2-main");
+
+            // Loop through all entries and show/hide based on the selected referral
+            allEntries.forEach((entry) => {
+                const entryReferralId = entry.getAttribute("data-referal-id");
+                if (selectedReferralId === "all" || entryReferralId == selectedReferralId) {
+                    entry.style.display = "block";
+                } else {
+                    entry.style.display = "none";
+                }
+            });
+        });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const referralFilter = document.getElementById("referralFilter");
+        const otherContent = document.getElementById("otherContent");
+
+        // Add event listener to the referral filter dropdown
+        referralFilter.addEventListener("change", function() {
+            const selectedReferralId = this.value; // Get the selected referral ID
+            const allEntries = otherContent.querySelectorAll(".pt-history-div2-main");
+
+            // Loop through all entries and show/hide based on the selected referral
+            allEntries.forEach((entry) => {
+                const entryReferralId = entry.getAttribute("data-referal-id");
+                if (selectedReferralId === "all" || entryReferralId == selectedReferralId) {
+                    entry.style.display = "block";
+                } else {
+                    entry.style.display = "none";
+                }
+            });
+        });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const referralFilter = document.getElementById("referralFilter");
+        const labReportsContent = document.getElementById("labReportsContent");
+
+        // Add event listener to the referral filter dropdown
+        referralFilter.addEventListener("change", function() {
+            const selectedReferralId = this.value; // Get the selected referral ID
+            const allEntries = labReportsContent.querySelectorAll(".pt-history-div2-main");
+
+            // Loop through all entries and show/hide based on the selected referral
+            allEntries.forEach((entry) => {
+                const entryReferralId = entry.getAttribute("data-referal-id");
+                if (selectedReferralId === "all" || entryReferralId == selectedReferralId) {
+                    entry.style.display = "block";
+                } else {
+                    entry.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -204,7 +386,7 @@
 
             // Function to add footer
             function addFooter(startX, startY) {
-                
+
 
                 // Add the logo
                 const logoWidth = 50; // Adjust the width as needed
@@ -215,12 +397,12 @@
                 // Add the text "HealthHub"
                 doc.setFontSize(12);
                 doc.setTextColor(0, 0, 0); // Black text
-                doc.text("HealthHub", startX + logoWidth , startY + 40); // Position the text next to the logo
+                doc.text("HealthHub", startX + logoWidth, startY + 40); // Position the text next to the logo
 
                 // Add the text "Health Care Facility System"
                 doc.setFontSize(8);
                 doc.setTextColor(100, 100, 100); // Gray text
-                doc.text("Health Care Facility System", startX + logoWidth , startY + 45); // Position the text below "HealthHub"
+                doc.text("Health Care Facility System", startX + logoWidth, startY + 45); // Position the text below "HealthHub"
             }
 
             // Main logic to generate the PDF

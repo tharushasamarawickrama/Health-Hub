@@ -97,7 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Remove "No timeslots selected." message
+            else{
+                // Remove "No timeslots selected." message
             const noSlotsMessage = selectedContainer.querySelector('p');
             if (noSlotsMessage) noSlotsMessage.remove();
 
@@ -110,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             selectedContainer.appendChild(newTag);
             btn.classList.add('selected');
+            }
         }
 
         updateHiddenInput();

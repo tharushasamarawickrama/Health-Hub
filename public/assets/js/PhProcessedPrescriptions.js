@@ -82,9 +82,10 @@ class Calendar {
                 document.querySelectorAll('.ph-pp-calendar-date').forEach(d => d.classList.remove('ph-pp-selected'));
                 // Add selected class to clicked date
                 e.target.classList.add('ph-pp-selected');
-                // Here you can add code to fetch appointments for the selected date
+    
+                // Fetch appointments for the selected date
                 const selectedDate = e.target.dataset.date;
-                // Add your appointment fetching logic here
+                fetchAppointments(selectedDate);
             });
         });
     }
@@ -94,3 +95,28 @@ class Calendar {
 document.addEventListener('DOMContentLoaded', () => {
     new Calendar();
 });
+function fetchAppointments(date) {
+    fetch(`${URLROOT}/PhProcessedPrescriptions/getAppointmentsByDate?date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            const appointmentsContainer = document.getElementById('appointments-container');
+            appointmentsContainer.innerHTML = ''; // Clear previous results
+
+            if (data.length > 0) {
+                data.forEach(appointment => {
+                    const appointmentCard = `
+                        <a href="${URLROOT}/phprocessedappointment?appointment_id=${appointment.appointment_id}" class="ph-pp-result-item">
+                            <div class="ph-pp-appointment-card">
+                                <div class="ph-pp-appointment-id">Appointment ID: ${appointment.appointment_id}</div>
+                                <div>NIC: ${appointment.nic}</div>
+                            </div>
+                        </a>
+                    `;
+                    appointmentsContainer.innerHTML += appointmentCard;
+                });
+            } else {
+                appointmentsContainer.innerHTML = '<div class="no-appointments">No completed appointments found for this date</div>';
+            }
+        })
+        .catch(error => console.error('Error fetching appointments:', error));
+}

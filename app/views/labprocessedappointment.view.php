@@ -47,7 +47,8 @@
                     <img src="<?php echo URLROOT; ?>/assets/images/pdf-icon.png" alt="PDF Icon"> 
                     <span><?php echo htmlspecialchars($pdfName); ?></span>
                     <a href="<?php echo URLROOT; ?>/<?php echo htmlspecialchars($pdfPaths[$index]); ?>" target="_blank">View</a>                </div>
-                    <button onclick="confirmDelete('<?php echo $labtest_id[$index]; ?>', '<?php echo $data['appointment_id']; ?>')">Delete</button>                    <?php endforeach; ?>
+                    <button onclick="confirmDelete('<?php echo $labtest_id[$index]; ?>', '<?php echo $data['appointment_id']; ?>')">Delete</button>                    
+                    <?php endforeach; ?>
                 <?php else: ?>
                     <p>No reports uploaded.</p>
                 <?php endif; ?>

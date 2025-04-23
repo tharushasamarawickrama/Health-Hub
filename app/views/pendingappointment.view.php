@@ -30,9 +30,10 @@ $currentDate = new DateTime();
 
         // Check if the appointment status is 'pending' or 'paid'
         $appointmentStatus = $appointment['appointment']['payment_status'];
+        $isdeleted = $appointment['appointment']['isdeleted'];
 
         // Display appointments only if the current date is less than the appointment date
-        if ($currentDate < $appointmentDate && $appointmentStatus == 'paid'): ?>
+        if ($currentDate < $appointmentDate && $appointmentStatus == 'paid' && $isdeleted == 0): ?>
             <div class="pt-pending-div2-main">
                 <div class="pt-pending-div2">
                     <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
@@ -46,6 +47,30 @@ $currentDate = new DateTime();
                         data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
                         Cancel
                     </button>
+
+                    <!-- <div class="pt-pending-div2-upload">
+                        <button class="pt-pending-button">Upload Document</button>
+                    </div> -->
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if($currentDate < $appointmentDate && $appointmentStatus == 'pending'): ?>
+            <div class="pt-pending-div2-main">
+                <div class="pt-pending-div2">
+                    <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
+                    <button
+                        class="pt-pending-button view-btn"
+                        data-appointment-id="<?php echo $appointment['appointment']['appointment_id'];?>"?>View</button>
+                    <button
+                        class="pt-pending-button cancel-btn"
+                        data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
+                        Cancel
+                    </button>
+                    <a href="<?php echo URLROOT; ?>patientpaymentdetails?appo_id=<?php echo $appointment['appointment']['appointment_id']; ?>">
+                        <button class="pt-pending-button">Pay Now</button>  
+                    </a>
 
                     <!-- <div class="pt-pending-div2-upload">
                         <button class="pt-pending-button">Upload Document</button>
@@ -88,16 +113,30 @@ $currentDate = new DateTime();
 <div id="deleteconfirmation-modal" class="pending-updatemodal" style="display: none;">
     <div class="pending-updatemodal-content">
         <h2>Are you sure?</h2>
-        <p>Do you really want to delete this appointment? This process cannot be undone.</p>
+        <p>Do you really want to cancel this appointment? This process cannot be undone.</p>
         <form id="delete-form" method="POST">
-            <input type="hidden" name="appointment_id" id="appointment-id-input" value="">
+            
             <div class="pending-updatemodal-buttons">
-                <button type="submit" name="confirm-delete-btn" class="pending-updateyes-btn">Yes</button>
+                <button type="button" id="confirm-delete-btn" class="pending-updateyes-btn">Yes</button>
                 <button type="button" onclick="closeModal()" class="pending-updateno-btn">No</button>
             </div>
         </form>
     </div>
 </div>
+
+<form action="" method="POST">
+<div id="success-modal" class="pending-updatemodal" style="display: none;">
+<input type="hidden" name="appointment_id" id="appointment-id-input" value="">
+    <div class="pending-updatemodal-content">
+    <h2>Appointment Cancelled</h2>
+    <p>Your appointment fee is refunded within 24 hours.</p>
+        <button type="submit" id="success-ok-btn" class="pending-updateyes-btn" name="confirm-ok">OK</button>
+    </div>
+</div>
+</form>
+
+
+
 
 <div id="details-modal" class="modal" style="display: none;">
     <div class="view-modal-content">
@@ -141,8 +180,6 @@ $currentDate = new DateTime();
     </div>
 </div>
 
-
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const sections = document.querySelectorAll(".pt-pending-div1");
@@ -175,8 +212,6 @@ $currentDate = new DateTime();
         });
     });
 
-
-
     let selectedAppointmentId = null;
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -189,23 +224,65 @@ $currentDate = new DateTime();
                 // Set the value of the hidden input field in the modal
                 document.getElementById('appointment-id-input').value = selectedAppointmentId;
 
-                // Show the modal
+                // Show the confirmation modal
                 showModal();
             });
         });
+
+        // Handle "Yes" button click in the confirmation modal
+        document.getElementById('confirm-delete-btn').addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Simulate deletion logic
+            deleteAppointment(selectedAppointmentId);
+
+            // Close the confirmation modal
+            closeModal();
+
+            // Show the success modal
+            showSuccessModal();
+        });
+
+        // Handle "OK" button click in the success modal
+        document.getElementById('success-ok-btn').addEventListener('click', () => {
+            closeSuccessModal();
+        });
     });
 
-    // Show the modal
+    // Function to simulate appointment deletion
+    function deleteAppointment(appointmentId) {
+        // Find the appointment element and remove it from the DOM
+        const appointmentElement = document.querySelector(`[data-appointment-id="${appointmentId}"]`).closest('.pt-pending-div2-main');
+        if (appointmentElement) {
+            appointmentElement.remove();
+        }
+        console.log(`Appointment with ID ${appointmentId} deleted.`);
+    }
+
+    // Show the confirmation modal
     function showModal() {
         const modal = document.getElementById('deleteconfirmation-modal');
         modal.style.display = 'flex';
     }
 
-    // Close the modal
+    // Close the confirmation modal
     function closeModal() {
         const modal = document.getElementById('deleteconfirmation-modal');
         modal.style.display = 'none';
         selectedAppointmentId = null; // Reset the selected appointment ID
+    }
+
+    // Show the success modal
+    function showSuccessModal() {
+        const modal = document.getElementById('success-modal');
+        modal.style.display = 'flex';
+    }
+
+    // Close the success modal and refresh the page
+    function closeSuccessModal() {
+        const modal = document.getElementById('success-modal');
+        modal.style.display = 'none';
+        location.reload(); // Reload the page to update the appointments list
     }
 
     document.addEventListener("DOMContentLoaded", () => {

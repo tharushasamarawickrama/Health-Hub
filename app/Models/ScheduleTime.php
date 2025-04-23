@@ -126,7 +126,7 @@ class ScheduleTime
         ]);
     }
 
-    public function handleAddedSchedules($doctorId, $dayName, $startTime, $endTime)
+    public function handleAddedSchedules($doctorId, $dayName, $startTime, $endTime, $noSchedules)
     {
         $scheduleDetails = $this->getScheduleBySlot($doctorId, $dayName, $startTime, $endTime)[0] ?? null;
         if (!$scheduleDetails) return false;
@@ -157,14 +157,22 @@ class ScheduleTime
             }
         } else {
             // Reactivate a previously cancelled slot or take over if available
-            $query3 = "UPDATE $this->table 
-                   SET doctor_id = :doctorId, is_cancelled = :is_cancelled 
-                   WHERE schedule_id = :scheduleId AND (doctor_id = 0 OR doctor_id = :doctorId)";
-            $updated = $this->query($query3, [
-                'doctorId' => $doctorId,
-                'is_cancelled' => 'false',
-                'scheduleId' => $scheduleId
-            ]);
+            if ($noSchedules) {
+                $query3 = "UPDATE $this->table SET doctor_id = :doctorId
+                           WHERE schedule_id = :scheduleId AND doctor_id = 0";
+                $updated = $this->query($query3, [
+                    'doctorId' => $doctorId,
+                    'scheduleId' => $scheduleId
+                ]);
+            } else {
+                $query3 = "UPDATE $this->table 
+                   SET is_cancelled = :is_cancelled WHERE schedule_id = :scheduleId AND doctor_id = :doctorId";
+                $updated = $this->query($query3, [
+                    'doctorId' => $doctorId,
+                    'is_cancelled' => 'false',
+                    'scheduleId' => $scheduleId
+                ]);
+            }
             if (!$updated) return false;
 
             // Ensure one available dummy row exists

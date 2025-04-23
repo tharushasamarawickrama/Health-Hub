@@ -1,10 +1,10 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<?php require APPROOT . '/views/Components/Navbar.php' ?>
+<?php require APPROOT . '/views/Components/ReNavbar.php' ?>
 
 <div class="screen">
     <div class="outrectangle">
         <div>
-            <a href="<?php echo URLROOT; ?>searchappoinment">
+            <a href="<?php echo URLROOT; ?>redashboard">
                 <img src="<?php echo URLROOT; ?>/assets/images/backarrow.png" class="backimg">
             </a>
         </div>
@@ -13,7 +13,7 @@
             <div class="channeltextdiv">
                 <span class="channeldoctortext">Channel Your Doctor</span>
             </div>
-            <form action="<?php echo URLROOT; ?>setappoinment?id=<?php echo $_GET['id']; ?>&sch_id=<?php echo $_GET['sch_id']; ?>" method="POST" id="channelform">
+            <form action="<?php echo URLROOT; ?>resetappointment?id=<?php echo $_GET['id']; ?>&sch_id=<?php echo $_GET['sch_id']; ?>" method="POST" id="channelform">
                 <div class="dropdown-div">
 
 

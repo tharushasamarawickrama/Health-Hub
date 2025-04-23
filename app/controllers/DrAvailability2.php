@@ -7,7 +7,6 @@ class DrAvailability2
     public function index()
     {
         $doctorId = $_SESSION['user']['user_id'];
-        $isFirstLogin = ($_SESSION['user']['last_login'] == NULL) ? true : false;
         $ScheduleTimeModel = new ScheduleTime();
 
         function getDateOfWeekday(string $weekday): string
@@ -18,6 +17,15 @@ class DrAvailability2
         }
 
         $today = date('l');
+
+        // to check for existence of any schedule for the doctor
+        $noSchedules = false;
+        $fetchedSlots = [];
+        $fetchedSlots = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
+        
+        if(empty($fetchedSlots)){
+            $noSchedules = true;
+        }
 
         // Handle POST request to save updated timeslots
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -68,20 +76,18 @@ class DrAvailability2
                     $startTime = DateTime::createFromFormat('gA', trim(explode(' - ', $slot[1])[0]))->format('H:i:s');
                     $endTime = DateTime::createFromFormat('gA', trim(explode(' - ', $slot[1])[1]))->format('H:i:s');
 
-                    $ScheduleTimeModel->handleAddedSchedules($doctorId, $dayName, $startTime, $endTime);
+                    $ScheduleTimeModel->handleAddedSchedules($doctorId, $dayName, $startTime, $endTime, $noSchedules);
                 }
             }
             $_SESSION['success_message'] = 'Availability updated successfully!';
             redirect('drAvailability2');
             }
 
-        $fetchedSlots = [];
         $availableSlots = [];
         $doctorSlots = [];
         $optionalSlots = [];
         $occupiedSlots = [];
 
-        $fetchedSlots = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
         $availableSlots = $ScheduleTimeModel->getAvailableSlots();
 
         if ($fetchedSlots) {
@@ -106,7 +112,7 @@ class DrAvailability2
                 $timeslot = [$formattedDate, "$startTime - $endTime"];
 
                 if ($slot['is_cancelled'] === 'optional') $optionalSlots[] = $timeslot;
-                if ($isFirstLogin) {
+                if ($noSchedules) {
                     if ($slot['is_cancelled'] != 'optional') $doctorSlots[] = $timeslot;
                 }
             }

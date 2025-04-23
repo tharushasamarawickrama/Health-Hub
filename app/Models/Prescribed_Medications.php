@@ -14,6 +14,7 @@ class Prescribed_Medications
         "measurement",
         "sig_codes",
         "duration",
+        "units_issued"
     ];
 
     // Method to find medications by prescription_id

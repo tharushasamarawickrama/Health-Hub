@@ -8,24 +8,31 @@
                 <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
                 Back
             </a>
-        </div>  
+        </div> 
+        <form method="POST" action="<?php echo URLROOT; ?>/phprescriptionappointment/markCompleted">
+            <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
+            <button type="submit" class="btn">Mark as Completed</button>
+        </form>
+                 
+        <?php if(isset($data['appointment_id'])): ?>
 
-        <?php 
-            $appointment = $data['appointment_details'] ?? []; 
-            $medications = $data['medications'] ?? [];
-        ?>
-
-        <div class="ph-pres-app-prescription-header">
-            <p>Appointment ID: <b><?php echo isset($appointment['appointment_id']) ? htmlspecialchars($appointment['appointment_id']) : 'N/A'; ?></b></p>
-            <p>Patient NIC: <b><?php echo isset($appointment['nic']) ? htmlspecialchars($appointment['nic']) : 'N/A'; ?></b></p>
-            <p>Age: <b><?php echo isset($appointment['age']) ? htmlspecialchars($appointment['age']) : 'N/A'; ?></b></p>
-            <p>Gender: <b><?php echo isset($appointment['gender']) ? htmlspecialchars($appointment['gender']) : 'N/A'; ?></b></p>
-            <p>Date: <b><?php echo isset($appointment['appointment_date']) ? date('F j, Y', strtotime($appointment['appointment_date'])) : 'N/A'; ?></b>
-            Time: <b><?php echo isset($appointment['appointment_time']) ? date('H:i', strtotime($appointment['appointment_time'])) : 'N/A'; ?></b></p>
-            <p>Doc ID: <b><?php echo isset($appointment['doctor_id']) ? htmlspecialchars($appointment['doctor_id']) : 'N/A'; ?></b></p>
-            <p>Doc Name: <b><?php echo isset($appointment['doctor_name']) ? htmlspecialchars($appointment['doctor_name']) : 'N/A'; ?></b></p>
-        </div>
-
+        <div class="ph-pres-app-prescription-details">
+            <div class ="ph-pres-app-details-left">
+                <p><strong>Appointment ID: </strong> <?php echo htmlspecialchars($data['appointment_id']?? 'N/A'); ?></p>            
+                <p><strong>Patient NIC: </strong><?php echo htmlspecialchars($data['nic']) ?? 'N/A'; ?></p>
+                <p><strong>Age: </strong><?php echo htmlspecialchars($data['age']) ?? 'N/A'; ?></p>
+                <p><strong>Gender: </strong><?php echo htmlspecialchars($data['gender']) ?? 'N/A'; ?></p>
+            </div>
+            <div class ="ph-pres-app-details-right">
+                <p><strong>Date:</strong> <?php echo htmlspecialchars($data['appointment_date']); ?></p>
+                <p><strong>Doc ID: </strong><?php echo htmlspecialchars($data['doctor_id']) ??'N/A'; ?></p>
+                <p><strong>Doc Name: </strong><?php echo htmlspecialchars($data['doctor_name']) ?? 'N/A'; ?></p>
+            </div>
+        
+        <?php else: ?>
+            <div class="error-message">No prescription found for this appointment ID.</div>
+        <?php endif; ?>
+        
         <table class="ph-pres-app-prescription-table">
             <tr>
                 <th>Name</th>
@@ -34,8 +41,8 @@
                 <th>Sig codes</th>
                 <th>Duration</th>
             </tr>
-            <?php if (!empty($medications)): ?>
-                <?php foreach ($medications as $medication): ?>
+            <?php if (!empty($data['medications'])): ?>
+                <?php foreach ($data['medications'] as $medication): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($medication['medication_name'] ?? 'N/A'); ?></td>
                     <td><?php echo htmlspecialchars($medication['quantity'] ?? 'N/A'); ?></td>
@@ -48,36 +55,68 @@
                 <tr><td colspan="5">No medications found</td></tr>
             <?php endif; ?>
         </table>
+        </div>
+        <br>
+        <br>
 
-        <form class="ph-pres-app-inventory-form">
-            <div class="ph-pres-app-inventory-row">
-                <input type="text" placeholder="Medicine Name" name="medicineName">
-                <input type="number" name="qty" placeholder="Quantity" min="0" required>
-                <select name="measurement">
-                    <option value="Tablet">Tablet</option>
-                    <option value="ml">ml</option>
-                    <option value="mg">mg</option>
-                </select>
-                <input type="text" name="sig" placeholder="Sig (Dosage Instructions)" required>
-                <select name="code">
-                    <option value="BD">BD</option>
-                    <option value="TID">TDS</option>
-                    <option value="Daily">Daily</option>
-                    <option value="SOS">SOS</option>
-                </select>
-                <input type="number" name="durationDays" placeholder="Days" min="0" required>
-            </div>
+        <div >
+            <h2>Calculate no.of units to be issued</h2>
+        </div>
+        <!-- Only one form, not nested -->
+        <form method="POST" action="<?php echo URLROOT; ?>/phprescriptionappointment/issuedMedication">
+            <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
+            <table class="ph-pres-app-prescription-table">
+                <tr>
+                    <th>Medicine</th>
+                    <th>Qty</th>
+                    <th>Measurement</th>
+                    <th>Sig Code</th>
+                    <th>Prescribed Duration</th>
+                    <th>preferred duration(days)</th>
+                    <th>No.of units to be issued</th>
+                </tr>
+                <?php foreach ($data['medications'] as $index => $medication): ?>
+                    <tr>
+                        <td>
+                            <?php echo htmlspecialchars($medication['medication_name']); ?>
+                            <input type="hidden" name="medications[<?php echo $index; ?>][name]" value="<?php echo htmlspecialchars($medication['medication_name']); ?>">
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($medication['quantity']); ?>
+                            <input type="hidden" name="medications[<?php echo $index; ?>][quantity]" value="<?php echo htmlspecialchars($medication['quantity']); ?>">
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($medication['measurement']); ?>
+                            <input type="hidden" name="medications[<?php echo $index; ?>][measurement]" value="<?php echo htmlspecialchars($medication['measurement']); ?>">
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($medication['sig_codes']); ?>
+                            <input type="hidden" name="medications[<?php echo $index; ?>][sig_codes]" value="<?php echo htmlspecialchars($medication['sig_codes']); ?>">
+                        </td>
+                        <td>
+                            <?php echo htmlspecialchars($medication['duration']); ?>
+                        </td>
+                        <td>
+                            <input type="number" name="medications[<?php echo $index; ?>][preferred_duration]" min="1" required 
+                            value="<?php echo isset($medication['preferred_duration']) ? htmlspecialchars($medication['preferred_duration']) : ''; ?>">
+                        </td>
+                        <td>
+                            <?php if (isset($data['noofunits'][$index])): ?>
+                                <?php echo $data['noofunits'][$index]['amount']; ?>
+                            <?php else: ?>
+                                <span id="calculated_<?php echo $index; ?>"></span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
 
             <div class="ph-pres-app-buttons-container">
-                <div class="ph-pres-app-buttons">
-                    <button type="button" onclick="addRow()">Add more...</button>
-                    <button type="reset">Clear</button>
-                    <button type="submit">Done</button>
-                </div>
+                <button type="submit">Calculate</button>
             </div>
         </form>
     </div>
 </div>
 
+
 <?php require APPROOT . '/views/Components/footer.php'; ?>
-,
