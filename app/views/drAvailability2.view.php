@@ -1,30 +1,15 @@
 <?php
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
-
-// Define available times for each day
-$timeSlotsPerDay = [
-    "8AM - 11AM",
-    "4PM - 7PM",
-    "12PM - 2PM"
-];
-
-// Generate the upcoming 12 days (two 6-day weeks)
-$allDates = [];
-for ($i = 0; $i < 14; $i++) {
-    $date = new DateTime();
-    $date->modify("+$i day");
-    $allDates[] = $date->format("d/m/Y");
-}
-
-// Initialize selected slots
-// $fetchedTimeslots = [
-//     ["25/01/2025", "8AM - 11AM"],
-//     ["29/01/2025", "4PM - 7PM"]
-// ];
 ?>
 
 <div class="unique-availability-container">
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-message">
+        <img src="<?php echo URLROOT; ?>assets/images/check-green.png" alt="Success" class="toast-icon"> 
+        <span id="toast-text"></span>
+    </div>
+
     <div class="unique-availability-header">
         <a href="<?php echo URLROOT; ?>drDashboard" class="unique-back-arrow">
             <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
@@ -34,41 +19,79 @@ for ($i = 0; $i < 14; $i++) {
     </div>
 
     <div class="unique-timeslots-container">
+        <!-- Left section: Selected timeslots -->
         <div class="unique-left-section">
             <div id="unique-selected-timeslots" class="unique-selected-slots">
-                <?php if (!empty($fetchedTimeslots)): ?>
-                    <?php foreach ($fetchedTimeslots as $timeslot): ?>
-                        <span class="unique-timeslot-tag">
-                            <?php echo htmlspecialchars($timeslot[0]) . " " . htmlspecialchars($timeslot[1]); ?>
-                            <button class="unique-remove-btn" onclick="removeUniqueTimeslot('<?php echo htmlspecialchars($timeslot[0]); ?>', '<?php echo htmlspecialchars($timeslot[1]); ?>')">&times;</button>
-                        </span>
-                    <?php endforeach; ?>
+                <?php if(!empty($occupiedSlots)): ?>
+                <?php foreach ($occupiedSlots as $slot): ?>
+                    <?php 
+                        $display = $slot[0] . ' - ' . $slot[1];
+                        $value = htmlspecialchars(json_encode($slot)); // store original format safely
+                    ?>
+                    <div class="unique-timeslot-tag" data-value='<?= $value ?>'>
+                        <?= $display ?>
+                        <span class="unique-remove-btn" onclick="removeSlot(this)">✖</span>
+                    </div>
+                <?php endforeach; ?>
                 <?php else: ?>
-                    <p id="unique-no-slots-msg">No timeslots selected.</p>
+                    <p>No timeslots selected.</p>
                 <?php endif; ?>
             </div>
+
             <div class="unique-actions">
-                <button class="unique-clear-btn" onclick="clearUniqueTimeslots()">Clear</button>
-                <button class="unique-save-btn" onclick="saveUniqueTimeslots()">Save</button>
+                <form id="unique-timeslot-form" method="POST" action="<?php echo URLROOT ?>drAvailability2">
+                    <input type="hidden" name="selectedTimeslots" id="selectedTimeslotsInput">
+                    <input type="hidden" name="originalOccupiedSlots" id="originalOccupiedSlotsInput" value='<?php echo htmlspecialchars(json_encode($occupiedSlots)); ?>'>
+                    <button type="button" class="unique-clear-btn" onclick="clearUniqueTimeslots()">Clear</button>
+                    <button type="submit" class="unique-save-btn" onclick="saveUniqueTimeslots()">Save</button>
+                </form>
             </div>
         </div>
 
-        <div class="unique-header">
-            <button id="unique-prev-week" onclick="changeUniqueWeek(-1)" disabled>← Previous</button>
-            <h3 id="unique-week-range-title"></h3>
-            <button id="unique-next-week" onclick="changeUniqueWeek(1)">Next →</button>
-        </div>
+        <!-- Right section: Doctor slots + optional slots -->
 
         <div id="unique-options" class="unique-options">
-            <!-- Slots will be dynamically populated by JavaScript -->
+            <!-- Doctor's available slots -->
+            <div class="unique-slot-group">
+            <h4>Your Weekly Slots</h4>
+            <?php if (!empty($doctorSlots)): ?>
+                    <?php foreach ($doctorSlots as $slot): ?>
+                        <?php 
+                            $display = $slot[0] . ' - ' . $slot[1];
+                            $value = htmlspecialchars(json_encode($slot));
+                        ?>
+                        <div class="unique-slot-btn" data-value='<?= $value ?>' onclick="toggleSlot(this)">
+                            <?= $display ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No slots available.</p>  
+            <?php endif; ?>
+            </div>
+
+            <!-- Optional system-generated slots -->
+            <div class="unique-slot-group">
+            <h4>Suggested Optional Slots</h4>
+            <?php if (!empty($optionalSlots)): ?>
+                    <?php foreach ($optionalSlots as $slot): ?>
+                        <?php 
+                            $display = $slot[0] . ' - ' . $slot[1];
+                            $value = htmlspecialchars(json_encode($slot));
+                        ?>
+                        <div class="unique-slot-btn optional-slot" data-value='<?= $value ?>' onclick="toggleSlot(this)">
+                            <?= $display ?>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>No optional slots available.</p>
+            <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>
 <script>
-    const allDates = <?php echo json_encode($allDates); ?>;
-    const timeSlotsPerDay = <?php echo json_encode($timeSlotsPerDay); ?>;
-    const selectedTimeslots = <?php echo json_encode($fetchedTimeslots); ?>;
+    const successMessage = "<?php echo $_SESSION['success_message'] ?? ''; ?>";
 </script>
-<script src="<?php echo URLROOT; ?>assets/js/drAvailability2.js?v=<?php echo time(); ?>"></script>
-
+<script src="<?php echo URLROOT; ?>js/drAvailability2.js?v=<?php echo time(); ?>"></script>
+<?php unset($_SESSION['success_message']); ?>
 <?php require APPROOT . '/views/Components/footer.php'; ?>

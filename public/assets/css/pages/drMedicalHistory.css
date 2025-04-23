@@ -1,9 +1,5 @@
 .medical-history-container{
-    background-image: url("../../../assets/images/background.png");
-    background-repeat: repeat;
-    background-size: 80vh;
-    background-position: top left;
-    font-family: 'Poppins', sans-serif;
+    font-family: Nunito, sans-serif;
     background-color: #f9f9f9;
     color: #333;
     margin-top: 60px;
@@ -58,7 +54,8 @@
     margin-bottom: 0.5em;
 }
 
-.edit-button, .save-button {
+.edit-button, .save-button, .cancel-button {
+    font-family: Nunito, sans-serif;
     background-color: #54a1b4;
     color: white;
     border: none;
@@ -70,7 +67,7 @@
     transition: ease 0.2s;
 }
 
-.edit-button:hover, .save-button:hover {
+.edit-button:hover, .save-button:hover, .cancel-button:hover {
     background-color: #327ac7;
 }
 
@@ -79,6 +76,7 @@
 }
 
 .edit-mode input{
+    font-family: Nunito, sans-serif;
     padding: 5px;
     border-radius: 10px;
     min-width: 40%;

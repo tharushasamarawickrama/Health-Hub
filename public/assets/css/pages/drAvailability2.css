@@ -1,6 +1,5 @@
 .unique-availability-container {
-    background-size: 80vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: Nunito;
     background-color: #f9f9f9;
     color: #333;
     margin-top: 30px;
@@ -20,11 +19,6 @@
     cursor: pointer;
     width: 30px;
     height: 30px;
-}
-
-.unique-header{
-    text-align: center;
-    margin-left: 600px;
 }
 
 .unique-select-timeslots {
@@ -60,22 +54,21 @@
 }
 
 .unique-timeslot-tag {
-    display: inline-block;
+    display: flex;
     background-color: rgba(160, 208, 226, 0.8);
     color: #000;
     padding: 5px 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     margin: 5px;
     font-size: 0.9em;
+    justify-content: space-between;
 }
 
 .unique-remove-btn {
-    background: none;
-    border: none;
-    color: #666;
+    color: #de3535;
     cursor: pointer;
-    margin-left: 250px;
     font-size: 0.9em;
+    margin: 0;
 }
 
 .unique-actions {
@@ -120,39 +113,38 @@
 .unique-options {
     position: absolute;
     right: 50px;
-    max-width: 500px;
+    min-width: 500px;
     padding: 20px;
     background-color: #ffffff;
     border: 2px solid #b3d7ff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for 3 slots per day */
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     min-height: 60vh;
 }
 
+.unique-slot-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .unique-slot-btn {
     background-color: rgba(160, 208, 226, 0.8);
-    color: #333;
     border: none;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 0.9em;
+    font-family: Nunito;
     text-align: center; /* Ensure proper alignment */
     transition: background-color 0.3s;
     min-width: unset; /* Allow buttons to fit into grid cells */
 }
 
-
-.unique-slot-btn.disabled {
-    background-color: #e0e0e0;
-    color: #999;
-    cursor: not-allowed;
-}
-
-.unique-slot-btn:not(.disabled):hover {
+.unique-slot-btn:hover {
     background-color: #d9edf7;
 }
 
@@ -160,4 +152,32 @@
     font-size: 1em;
     color: #999;
     margin-top: 10px;
+}
+
+.toast-icon{
+    height: 20px;
+    width: 20px;
+}
+
+.toast-message {
+    visibility: hidden;
+    display: flex;
+    min-width: 250px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 15px;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.toast-message.show {
+    visibility: visible;
+    opacity: 1;
 }

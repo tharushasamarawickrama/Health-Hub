@@ -6,6 +6,10 @@ require APPROOT . '/views/Components/drNavbar.php';
 $allLabTests = $data['labTests']; // Categorized lab tests
 $uncategorizedTests = $data['uncategorizedTests']; // Uncategorized lab tests
 $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current appointment
+
+$today = date('Y-m-d');
+$isPastAppointment = strtotime($appointment_date) < strtotime($today);
+$notEditable = $isPastAppointment || $data['appointment_status'] === 'completed';
 ?>
 
 <div class="dr-labtest-container">
@@ -13,10 +17,28 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
         <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
     </a>
 
-    <div class="labtests-container">
-        <h2>Lab Tests</h2>
+    <div class="tabs-container">
+    <div class="tabs">
+        <button 
+            class="tab-link <?= $notEditable ? '' : 'active' ?>" 
+            onclick="<?= $notEditable ? 'return false;' : 'switchTab(event, \'order-tests\')' ?>" 
+            <?= $notEditable ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : '' ?>
+        >
+            Order Lab Test
+        </button>
 
-        <!-- Display Selected Lab Tests -->
+        <button 
+            class="tab-link <?= $notEditable ? 'active' : '' ?>" 
+            onclick="switchTab(event, 'lab-reports')"
+        >
+            Lab Reports
+        </button>
+    </div>
+
+        <!-- Order Lab Tests Section -->
+        <div id="order-tests" class="tab-content <?= $notEditable ? '' : 'active' ?>">
+            <h3>Order Lab Test</h3>
+            <!-- Display Selected Lab Tests -->
         <div id="selected-tests" class="lab-tests-display">
             <?php if (!empty($fetchedLabTests)): ?>
                 <?php foreach ($fetchedLabTests as $test): ?>
@@ -58,9 +80,29 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
             <?php endforeach; ?>
         </div>
 
-        <div class="labtest-actions">
-            <button class="labtest-button" onclick="clearTests()">Clear</button>
-            <button class="labtest-button" onclick="saveTests()">Save</button>
+            <div class="labtest-actions">
+                <button class="labtest-button" onclick="clearTests()">Clear</button>
+                <button class="labtest-button" onclick="saveTests()">Save</button>
+            </div>
+        </div>
+
+        <!-- Lab Reports Section -->
+        <div id="lab-reports" class="tab-content <?= $notEditable ? 'active' : '' ?>">
+            <h3>Lab Reports</h3>
+            <div class="lab-report-list">
+                <?php foreach ($labReports as $labTestName => $labTestReport): 
+                    $filePath = APPROOT . "/../public/assets/" . $labTestReport;
+                ?>
+                    <div class="lab-report-item">
+                        <p><?php echo htmlspecialchars($labTestName); ?></p>
+                        <?php if ($labTestReport): ?>
+                            <button class="view-report-btn" onclick="window.open('<?php echo URLROOT . 'assets/'. htmlspecialchars($labTestReport); ?>', '_blank')">View</button>
+                        <?php else: ?>
+                            <p class="missing-report">Report Not Available</p>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </div>
@@ -70,6 +112,6 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
         return $test['labtest_name'];
     }, $fetchedLabTests)); ?>
 </script>
-<script src="<?php echo URLROOT; ?>assets/js/drLabTests.js"></script>
+<script src="<?php echo URLROOT; ?>js/drLabTests.js?v=<?php echo time(); ?>"></script>
 
 <?php require APPROOT . '/views/Components/footer.php'; ?>

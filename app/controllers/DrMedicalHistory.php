@@ -1,9 +1,11 @@
 <?php
 
-class DrMedicalHistory {
+class DrMedicalHistory
+{
     use Controller;
 
-    public function index() {
+    public function index()
+    {
         if (isset($_SESSION['success_message'])) {
             echo "<script>alert('" . $_SESSION['success_message'] . "');</script>";
             unset($_SESSION['success_message']);
@@ -12,83 +14,72 @@ class DrMedicalHistory {
         $appointmentId = $_GET['appointment_id'];
 
         $appointmentModel = new Appointment();
+        $patientModel = new Patient();
+        $patientReferalModel = new Patient_Referal();
 
         // Get patient ID
-        $patientData = $appointmentModel->getPatientByAppointmentId($appointmentId);
-        $patientId = $patientData ? $patientData[0]['patient_id'] : null;
+        $appointmentData = $appointmentModel->getPatientAndDateByAppointmentId($appointmentId);
+        $patientId = $appointmentData ? $appointmentData[0]['patient_id'] : null;
+        $referalId = $appointmentData ? $appointmentData[0]['referal_id'] : null;
 
-        $patientModel = new Patient();
-        $history = $patientId ? $patientModel->getMedicalHistoryByPatientId($patientId) : [];
-        // echo "<pre>";
-        // echo "Categorized Lab Tests:\n";
-        // print_r($history);
-        // echo "</pre>";
-        // exit;
+        if ($referalId == 0) $fetchedHistory = $patientModel->getMedicalHistoryByPatientId($patientId);
+        else $fetchedHistory = $patientReferalModel->getMedicalHistory($patientId, $referalId);
 
-        // Fetch last appointment details
-        $lastAppointmentData = [];
+        $formattedHistory = $fetchedHistory ? json_decode($fetchedHistory[0]['medical_history'], true) : [];
+
+        // Fetch prev appointment details
+        $prevAppointmentData = [];
+        $appointmentDate = $appointmentData ? $appointmentData[0]['appointment_date'] : null;
         if ($patientId) {
-            $lastAppointmentRecord = $appointmentModel->getLastAppointment($_SESSION['user']['user_id'], $patientId);
-            if (!empty($lastAppointmentRecord)) {
-                $lastAppointmentId = $lastAppointmentRecord[0]['appointment_id'];
-                $lastAppointment = $appointmentModel->getAppointmentById($lastAppointmentId);
+            $prevAppointment = $appointmentModel->getPrevAppointment($_SESSION['user']['user_id'], $patientId, $referalId, $appointmentDate);
+            if (!empty($prevAppointment)) {
+                $prescriptionModel = new Prescription();
+                $diagnosis = $prescriptionModel->first(['prescription_id' => $prevAppointment[0]['prescription_id']])['diagnosis'] ?? 'No diagnosis available';
 
-                if ($lastAppointment) {
-                    $prescriptionModel = new Prescription();
-                    $diagnosis = $prescriptionModel->first(['prescription_id' => $lastAppointment['prescription_id']])['diagnosis'] ?? 'No diagnosis available';
+                $medicationModel = new Prescribed_Medications();
+                $medications = $medicationModel->findWhere(['prescription_id' => $prevAppointment[0]['prescription_id']]) ?? [];
 
-                    $medicationModel = new Prescribed_Medications();
-                    $medications = $medicationModel->findWhere(['prescription_id' => $lastAppointment['prescription_id']]) ?? [];
+                // var_dump($prevAppointment);
+                // exit();
 
-                    $lastAppointmentData = [
-                        'appointment_date' => $lastAppointment['appointment_date'] ?? 'No appointment date available',
-                        'diagnosis' => $diagnosis,
-                        'medications' => $medications
-                    ];
-                }
+                $prevAppointmentData = [
+                    'prev_appointment_id' => $prevAppointment[0]['appointment_id'],
+                    'appointment_date' => $prevAppointment[0]['appointment_date'],
+                    'diagnosis' => $diagnosis,
+                    'medications' => $medications
+                ];
             }
-        }
-
-        if (empty($lastAppointmentData)) {
-            $lastAppointmentData = [];
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $updatedHistory = [];
-        
+
             // Build arrays from keys and values
             foreach (['allergies', 'chronic_conditions', 'past_surgeries', 'immunizations', 'family_medical_history', 'others'] as $section) {
                 $keys = $_POST["{$section}_keys"] ?? [];
                 $values = $_POST["{$section}_values"] ?? [];
                 $updatedHistory[$section] = array_combine($keys, $values);
             }
-        
-            
-        
-            //$blah = $this->saveMedicalHistory($patientId, $updatedHistory);
+
             $encodedUpdatedHistory = json_encode($updatedHistory);
-            if($patientModel->update($patientId, ['medical_history' => $encodedUpdatedHistory], 'patient_id')){
+            if ($referalId == 0) $status = $patientModel->update($patientId, ['medical_history' => $encodedUpdatedHistory], 'patient_id');
+            else $status = $patientReferalModel->updateMedicalHistory($patientId, $referalId, $encodedUpdatedHistory);
+            
+            if ($status) {
                 $_SESSION['success_message'] = 'Medical history updated successfully!';
             }
-            // Debug the results
-            // echo "<pre>";
-            // echo "Updated History:\n";
-            // print_r($blah);
-            // echo "</pre>";
-            // exit;
-            $history = $updatedHistory; // Update the history in view after saving
+            $formattedHistory = $updatedHistory; // Update the history in view after saving
+
+            // Redirect to the same page to avoid form resubmission
+            redirect('drMedicalHistory/?appointment_id=' . $appointmentId);
         }
-        
+
 
         // Pass data to the view
         $this->view('drMedicalHistory', [
-            'history' => $history,
-            'lastAppointmentData' => $lastAppointmentData,
+            'history' => $formattedHistory,
+            'prevAppointmentData' => $prevAppointmentData,
             'appointmentId' => $appointmentId,
         ]);
-    }
-
-    private function saveMedicalHistory($patientId, $updatedHistory) {
-        return json_encode($updatedHistory);
     }
 }

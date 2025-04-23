@@ -8,7 +8,18 @@ class LabAssistant {
 
     protected $Allowedcolumns = [
         'lab_assistant_id',
-        'employeeNo'
+        'firstName',
+        'lastName',
+        'password',
+        'phoneNumber',
+        'email',
+        'gender',
+        'dob',
+        'employeeNo',
+        'nic',
+        'address',
+        'photo_path',
+        'created_at'
         
     ];
 
@@ -36,11 +47,11 @@ class LabAssistant {
 
     public function getLabAppointments() {
         $query = "SELECT a.appointment_id, 
-                         a.appointment_date, a.appointment_time, a.status, u.nic
+                         a.appointment_date, a.appointment_time, a.lab_status, u.nic
                   FROM appointments a
                   JOIN users u ON a.patient_id = u.user_id
-                  WHERE a.status = 'planned'
-                  ORDER BY a.appointment_date DESC";
+                  WHERE a.lab_status = 'planned'
+                  ";
                   
         return $this->query($query);
     }
@@ -55,52 +66,63 @@ class LabAssistant {
             CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
             u.gender,
             u.age,
-            alt.labtest_type
+            l.labtest_name
         FROM appointments a
         JOIN users u ON a.patient_id = u.user_id
         JOIN users d ON a.doctor_id = d.user_id
-        LEFT JOIN appointment_labtests alt ON a.labtest_id = alt.labtest_id
+        JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
+        JOIN labtests l ON l.labtest_id = alt.labtest_id
         WHERE a.appointment_id = :appointment_id";
         
         return $this->query($query, ['appointment_id' => $appointment_id]);
     }
-      
-
-    public function getCompletedLabAppointments() {
+    
+    public function getCompletedLabAppointments($appointment_id) {
         $query = "SELECT 
-                    a.appointment_id, u.nic, a.appointment_date
-                    FROM appointments a,
-                    users u
-                    WHERE a.status = 'Completed' ORDER BY a.appointment_date DESC";
-        return $this->query($query);
+                    a.appointment_id, 
+                    u.nic, 
+                    a.appointment_date,
+                    u.age,
+                    u.gender,
+                    a.doctor_id,
+                    CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
+                    GROUP_CONCAT(alt.labtest_id) AS labtest_id,
+                    GROUP_CONCAT(l.labtest_name) AS labtest_name,
+                    GROUP_CONCAT(alt.labtest_pdfname) AS labtest_pdfname,
+                    GROUP_CONCAT(alt.labtest_report) AS labtest_report
+                    FROM appointments a
+                    JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
+                    JOIN labtests l ON l.labtest_id = alt.labtest_id
+                    JOIN users u ON a.patient_id = u.user_id
+                    JOIN users d ON a.doctor_id = d.user_id
+                    WHERE a.lab_status = 'Completed' AND a.appointment_id = :appointment_id 
+                    GROUP BY a.appointment_id
+                    ORDER BY a.appointment_date DESC";
+        return $this->query($query, ['appointment_id' => $appointment_id]);
     }
     
+    public function getLabTestReport($appointment_id, $labtest_id) {
+        $query = "SELECT labtest_report, labtest_pdfname
+                  FROM appointment_labtests
+                  WHERE appointment_id = :appointment_id AND labtest_id = :labtest_id";
+        return $this->query($query, ['appointment_id' => $appointment_id, 'labtest_id' => $labtest_id])[0] ?? null;
+    }
 
+    public function removeLabTestReportPath($appointment_id, $labtest_id) {
+        $query = "UPDATE appointment_labtests
+                  SET labtest_report = NULL, labtest_pdfname = NULL
+                  WHERE appointment_id = :appointment_id AND labtest_id = :labtest_id";
+        return $this->query($query, ['appointment_id' => $appointment_id, 'labtest_id' => $labtest_id]);
+    }
 
-
-    public function getAppointmentDetails($appointment_id) {
+    public function getAppointmentsByDate($date) {
         $query = "SELECT 
-                a.appointment_id, 
-                a.appointment_date,
-                a.appointment_time, 
-                a.status,
-                u.nic, 
-                u.firstName AS patient_first_name, 
-                u.lastName AS patient_last_name, 
-                u.age, u.gender, u.phoneNumber,
-                d.doctor_id, 
-                CONCAT(d.firstName,' ', d.lastName) AS doctor_name,
-                alt.labtest_id, 
-                alt.labtest_type, 
-                alt.labtest_report,
-                alt.labtest_pdfname
-            FROM appointments a
-            LEFT JOIN users u ON a.patient_id = u.user_id
-            LEFT JOIN doctors d ON a.doctor_id = d.doctor_id
-            LEFT JOIN appointment_labtests alt ON a.labtest_id = alt.labtest_id
-            WHERE a.appointment_id = :appointment_id;
-        ";
-        return $this->query($query, ['appointment_id' => $appointment_id]);
+                    a.appointment_id, u.nic, a.appointment_date
+                    FROM appointments a
+                    JOIN users u ON a.patient_id = u.user_id
+                    WHERE a.lab_status = 'Completed' AND a.appointment_date = :appointment_date
+                    ORDER BY a.appointment_date DESC";
+        return $this->query($query, ['appointment_date' => $date]);
     }
     
     public function deleteLabTestReport($labtest_id) {
@@ -121,20 +143,13 @@ class LabAssistant {
     public function searchLabAppointments($appointment_id){
         $query = "SELECT 
             a.appointment_id, 
-            a.status, 
+            a.lab_status, 
             u.nic 
           FROM appointments a
           JOIN users u ON a.patient_id = u.user_id 
-          WHERE a.appointment_id = :appointment_id AND a.status = 'planned'";
+          WHERE a.appointment_id = :appointment_id AND a.lab_status = 'Planned'";
           
         return $this->query($query, ['appointment_id' => $appointment_id]);
 
-    }
-
-    
-    public function getLabAssistantsCount() {
-        $query = "SELECT COUNT(*) AS labassistants_count FROM labassistants;";
-        $result = $this->query($query);
-        return $result[0]['labassistants_count'] ?? 0;
     }
 }

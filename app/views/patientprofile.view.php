@@ -8,8 +8,8 @@
         </a>
 
         <a href="<?php echo URLROOT; ?>home" class="navitems">Home</a>
-        <a href="#" class="navitems">About</a>
-        <a href="#" class="navitems">Contact</a>
+        <a href="<?php echo URLROOT; ?>searchappoinment" class="navitems">Appointment</a>
+        <a href="<?php echo URLROOT; ?>patienthistory" class="navitems">History</a>
 
         <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== ''): ?>
             <a href="#" class="logname dropdown-toggle">
@@ -28,6 +28,7 @@
 
                 <div class="dropdown-content">
                     <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
+                    <a href="<?php echo URLROOT; ?>pendingappointment">Pending Appointment</a>
                     <a href="?action=logout">Logout</a>
                 </div>
             </div>
@@ -213,80 +214,80 @@
             </form>
         </div>
     </div>
+</div>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select elements
+        const profileImage = document.getElementById('modalProfileImage');
+        const fileInput = document.getElementById('modalFile');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Select elements
-            const profileImage = document.getElementById('modalProfileImage');
-            const fileInput = document.getElementById('modalFile');
+        if (profileImage && fileInput) {
+            // Trigger file input when image is clicked
+            profileImage.addEventListener('click', () => {
+                fileInput.click();
+            });
 
-            if (profileImage && fileInput) {
-                // Trigger file input when image is clicked
-                profileImage.addEventListener('click', () => {
-                    fileInput.click();
-                });
+            // Preview selected image
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
 
-                // Preview selected image
-                fileInput.addEventListener('change', (event) => {
-                    const file = event.target.files[0];
-
-                    if (file) {
-                        // Check if the file is an image
-                        if (file.type.startsWith('image/')) {
-                            const reader = new FileReader();
-                            reader.onload = (e) => {
-                                profileImage.src = e.target.result; // Preview the image
-                            };
-                            reader.readAsDataURL(file);
-                        } else {
-                            alert('Please upload a valid image file.');
-                        }
+                if (file) {
+                    // Check if the file is an image
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            profileImage.src = e.target.result; // Preview the image
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert('Please upload a valid image file.');
                     }
-                });
-            }
-        });
-    </script>
-
-
-    <script>
-        function openconfirmdeleteModal() {
-            document.getElementById('deleteconfirmation-modal').style.display = 'block';
-            modal.style.display = 'flex'; // Use flex for centering modal
+                }
+            });
         }
+    });
+</script>
 
-        function closeconfirmdeleteModal() {
-            document.getElementById('deleteconfirmation-modal').style.display = 'none';
+
+<script>
+    function openconfirmdeleteModal() {
+        document.getElementById('deleteconfirmation-modal').style.display = 'block';
+        modal.style.display = 'flex'; // Use flex for centering modal
+    }
+
+    function closeconfirmdeleteModal() {
+        document.getElementById('deleteconfirmation-modal').style.display = 'none';
+    }
+
+    function confirmDelete(id) {
+        window.location.href = '../../patientprofile?id=' + id;
+        // successToast("Advertisement deleted successfully");
+    }
+</script>
+
+<script>
+    function openUpdateModal() {
+        document.getElementById('updateProfileModal').style.display = 'block';
+    }
+
+    function closeUpdateModal() {
+        document.getElementById('updateProfileModal').style.display = 'none';
+    }
+
+    // Close the modal if the user clicks outside the modal content
+    window.onclick = function(event) {
+        const modal = document.getElementById('updateProfileModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
         }
-
-        function confirmDelete(id) {
-            window.location.href = '../../patientprofile?id=' + id;
-            // successToast("Advertisement deleted successfully");
-        }
-    </script>
-
-    <script>
-        function openUpdateModal() {
-            document.getElementById('updateProfileModal').style.display = 'block';
-        }
-
-        function closeUpdateModal() {
-            document.getElementById('updateProfileModal').style.display = 'none';
-        }
-
-        // Close the modal if the user clicks outside the modal content
-        window.onclick = function(event) {
-            const modal = document.getElementById('updateProfileModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
-    </script>
+    };
+</script>
 
 
 
 
 
 
-    <?php require APPROOT . '/views/Components/footer.php' ?>
+<?php require APPROOT . '/views/Components/footer.php' ?>

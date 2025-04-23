@@ -2,15 +2,8 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
-// Simulated fetched data (commented out for example)
-// $prescription = [
-//     'diagnosis' => 'Patient suffering from severe back pain due to muscle strain.',
-// ];
-
-// $medications = [
-//     ["name" => "Paracetamol", "quantity" => 1000, "measurement" => "mg", "sig_codes" => "po,mane", "duration" => "7,365"],
-//     ["name" => "Ibuprofen", "quantity" => 300, "measurement" => "mg", "sig_codes" => "bid", "duration" => "5,365"],
-// ];
+$today = date('Y-m-d');
+$isPastAppointment = strtotime($appointment_date) < strtotime($today);
 
 ?>
 
@@ -62,7 +55,9 @@ require APPROOT . '/views/Components/drNavbar.php';
                 </table>
             <?php endif; ?>
         </div>
-        <a href="<?php echo URLROOT; ?>drEditPrescription?appointment_id=<?php echo $appointment_id; ?>"><button class="prescription-actions">Edit</button></a>
+        <?php if(!$isPastAppointment && $appointment_status === 'new'): ?>
+            <a href="<?php echo URLROOT; ?>drEditPrescription?appointment_id=<?php echo $appointment_id; ?>"><button class="prescription-actions">Edit</button></a>
+        <?php endif; ?>
     </div>
 </div>
 

@@ -70,7 +70,10 @@ $userData = $userData ?? [];
                 <input type="email" name="email" id="email" class="form-control" value="<?php echo htmlspecialchars($userData['email']); ?>">
             </div>
 
-            <button type="submit" class="dr-profile-btn">Save Changes</button>
+            <div class="dr-profile-actions">
+                <button type="button" class="dr-profile-cancel-btn" onclick="window.location.href='<?php echo URLROOT; ?>drProfile'">Cancel</button>
+                <button type="submit" class="dr-profile-save-btn">Save Changes</button>
+            </div>
         </form>
     </div>
 </div>

@@ -14,6 +14,7 @@ class Prescribed_Medications
         "measurement",
         "sig_codes",
         "duration",
+        "units_issued"
     ];
 
     // Method to find medications by prescription_id
@@ -30,6 +31,7 @@ class Prescribed_Medications
             $medications = [];
             foreach ($result as $medication) {
                 $medications[] = [
+                    "prescription_id" => $medication['prescription_id'],
                     "name" => $medication['name'],
                     "quantity" => $medication['quantity'],
                     "measurement" => $medication['measurement'],
@@ -73,5 +75,11 @@ class Prescribed_Medications
             error_log("Error in deleteWhere: " . $e->getMessage());
             return false; // Return false if query execution fails
         }
-    }    
+    } 
+    
+    public function getmedicatesInprescription($prescription_id){
+        $query = "SELECT * FROM $this->table WHERE prescription_id = :prescription_id";
+        $result = $this->query($query, ['prescription_id' => $prescription_id]);
+        return $result;
+    }
 }    

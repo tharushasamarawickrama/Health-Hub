@@ -1,6 +1,19 @@
 // Initialize selected tests from the controller's data
 const selectedTests = JSON.parse(document.getElementById("selected-tests-data").textContent);
 
+// Tab switching function
+function switchTab(event, tabId) {
+    let tabs = document.querySelectorAll(".tab-content");
+    let tabLinks = document.querySelectorAll(".tab-link");
+
+    tabs.forEach(tab => tab.classList.remove("active"));
+    tabLinks.forEach(link => link.classList.remove("active"));
+
+    document.getElementById(tabId).classList.add("active");
+    event.currentTarget.classList.add("active");
+}
+
+
 function addTest(testName, displayName) {
     if (!selectedTests.includes(testName)) {
         selectedTests.push(testName);

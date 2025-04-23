@@ -1,34 +1,9 @@
-<?php require APPROOT . '/views/Components/header.php'; ?>
-<?php require APPROOT . '/views/Components/drNavbar.php'; ?>
+<?php 
+require APPROOT . '/views/Components/header.php';
+require APPROOT . '/views/Components/drNavbar.php';
+require APPROOT . '/views/Components/drCalendarComponent.php';
 
-<?php
-// Randomly fetched values for demonstration
-// $appointmentsToday = [
-//     ["id" => "#0001", "name" => "Mr. G. Peiris"],
-//     ["id" => "#0002", "name" => "Mr. Asitha Perera"],
-//     ["id" => "#0003", "name" => "Mrs. Malithi Fonseka"],
-//     ["id" => "#0004", "name" => "Mrs. Raveesha de Silva"],
-// ];
 $numberOfAppointmentsToday = count($appointmentsToday);
-
-// Check ongoing appointment based on time (placeholder logic)
-$currentAppointment = "#0002 - Mr.Kusal Perera";
-
-// Random values for appointments in past 4 time slots
-// $pastAppointments = [
-//     "10/11 8AM-11AM" => rand(5, 15),
-//     "12/11 8AM-11AM" => rand(5, 15),
-//     "13/11 8AM-11AM" => rand(5, 15),
-//     "14/11 8AM-11AM" => rand(5, 15),
-// ];
-
-// $pastAppointments = array_combine(
-//     array_column($pastAppointments, 'appointment_date'),
-//     array_column($pastAppointments, 'appointment_count')
-// );
-
-
-
 ?>
 
 <div class="dr-dashboard">
@@ -40,14 +15,25 @@ $currentAppointment = "#0002 - Mr.Kusal Perera";
                     <img src="<?php echo URLROOT; ?>assets/images/appointments.png" alt="appointments" class="appointments-icon">
                     <h3><?php echo $numberOfAppointmentsToday; ?> Appointments for Today</h3>
                 </div>
-                <div class="ongoing-appointment">
-                    <div class="ongoing-header">
-                        <img src="<?php echo URLROOT; ?>assets/images/clock.png" alt="clock" class="clock-icon">
-                        <h3>Ongoing:</h3>
-                    </div>
-                    <hr>
-                    <?php echo $currentAppointment; ?>
+                <?php if($doctorType == 'specialist'): ?>
+                <div class="todays-slots">
+                    <h3>Today's Slots</h3>
+                    <?php if($todaysSlots): ?>
+                    <ul id="slotsList">
+                        <?php foreach ($todaysSlots as $slot): ?>
+                            <li style="font-family: monospace; white-space: pre;"><?php echo 
+                                date("gA", strtotime($slot["start_time"])) . " - " . 
+                                date("gA", strtotime($slot["end_time"])) . 
+                                "\t=>    " . $slot["filled_slots"] . " appointments"; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php else: ?>
+                        <p>No slots available for today.</p>
+                    <?php endif; ?>
                 </div>
+                <?php endif; ?>
+                
             </div>
 
             <div class="appointments-list">
@@ -70,8 +56,14 @@ $currentAppointment = "#0002 - Mr.Kusal Perera";
 
         <!-- Right Section -->
         <div class="right-section">
+            <div>
+            <div class="mini-calendar-wrapper">
+                <h3>Schedule Overview</h3>
+                <?php generateCalendar($schedules, $month, $year, true); ?>
+            </div>
+            </div>
             <div class="appointments-chart">
-                <h3>Appointments in the Past 4 Slots</h3>
+                <h3>Appointments in the Past Few Slots</h3>
                 <canvas id="appointmentsChart"></canvas>
             </div>
         </div>

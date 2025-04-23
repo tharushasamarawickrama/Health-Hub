@@ -31,19 +31,12 @@ class Labtest
         return $this->query($sql);
     }
 
-    public function getLabTestIdsAsCommaString(string $idsString) {
-        $testNames = explode(',', $idsString);
+    public function getLabTestIdsByNames(string $namesString) {
+        $testNames = explode(',', $namesString);
         $placeholders = implode(',', array_fill(0, count($testNames), '?'));
     
         $sql = "SELECT labtest_id FROM labtests WHERE labtest_name IN ($placeholders)";
-        $result = $this->query($sql, $testNames);
-    
-        // Convert the result to a comma-separated string
-        $idArray = array_map(function ($row) {
-            return $row['labtest_id'];
-        }, $result);
-    
-        return implode(',', $idArray);
+        return $this->query($sql, $testNames);
     }
 
 }

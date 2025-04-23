@@ -1,12 +1,7 @@
 
 .lab-pres-app-appcontent {
     padding: 20px;
-    margin-top: 50px;
-    background-image: url("../../../assets/images/background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;    
+    margin-top: 50px;   
 }
 
 .lab-pres-app-prescription-details {

@@ -84,6 +84,10 @@ class Doctor
         $query = "select type from $this->table where doctor_id = :doctor_id";
         return $this->query($query, ['doctor_id' => $doctor_id]);
     }
+    public function getAllAvailabilitySlots($doctor_id){
+        $query = "SELECT availability FROM $this->table where doctor_id != :doctor_id";
+        return $this->query($query, ['doctor_id' => $doctor_id]);
+    }
 
     public function getDoctorsCount() {
         $query = "SELECT COUNT(*) AS doctors_count FROM doctors;";
