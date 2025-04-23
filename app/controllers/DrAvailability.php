@@ -14,9 +14,12 @@ class DrAvailability {
         }
 
         $doctorType = $doctorModel->getDoctorTypeById($doctorId)[0]['type'];
-        if($doctorType != 'opd'){
+        if($doctorType === 'specialist'){
             redirect('drAvailability2');
         }
+
+        // Fetch doctor's current data
+        $doctorData = $doctorModel->first(['doctor_id' => $doctorId]);
 
         // Handle POST request to save updated timeslots
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,6 +42,15 @@ class DrAvailability {
                     }
                 }
 
+                $OpdNotifModel = new Opd_Notifications();
+                $oroginalAvailability = explode(',', $doctorData['availability']);
+
+                $removedSlots = array_diff($oroginalAvailability, $timeslotIds);
+
+                foreach($removedSlots as $slot){
+                    $OpdNotifModel->insert(['schedule_id' => $slot, 'doctor_id' => $doctorId]);
+                }                
+
                 // Convert selected timeslot IDs to a comma-separated string
                 $timeslotIdsString = implode(',', $timeslotIds);
 
@@ -50,8 +62,7 @@ class DrAvailability {
             }
         }
 
-        // Fetch doctor's current data
-        $doctorData = $doctorModel->first(['doctor_id' => $doctorId]);
+        
 
         $currentDay = date('l'); // Current day name (e.g., 'Thursday')
         $currentDate = new DateTime();

@@ -30,6 +30,7 @@ class Appointment
         'updated_at',
         'prescription_id',
         'labtest_id',
+        'isdeleted'
 
     ];
 
@@ -46,7 +47,7 @@ class Appointment
     {
         // Query using a subquery to get the row with the maximum appointment_id
         $query = "SELECT * FROM $this->table 
-                  WHERE patient_id = :patient_id 
+                  WHERE patient_id = :patient_id AND isdeleted = 0
                   AND appointment_id = (SELECT MAX(appointment_id) FROM $this->table WHERE patient_id = :patient_id)";
 
         $result = $this->query($query, ['patient_id' => $user_id]);
@@ -63,7 +64,7 @@ class Appointment
 
     public function getAppointmentsByDoctorId($doctorId)
     {
-        $sql = "SELECT * FROM appointments WHERE doctor_id = :doctor_id
+        $sql = "SELECT * FROM appointments WHERE doctor_id = :doctor_id AND isdeleted = 0
                 ORDER BY appointment_date ASC, appointment_time ASC, appointment_No ASC"; 
         return $this->query($sql, ['doctor_id' => $doctorId]);
     }
@@ -82,7 +83,7 @@ class Appointment
         // SQL query with a placeholder for the date
         $sql = "SELECT appointment_id, appointment_No, title, p_firstName, p_lastName
                 FROM appointments 
-                WHERE doctor_id = :doctor_id 
+                WHERE doctor_id = :doctor_id AND isdeleted = 0
                 AND appointment_date = :appointment_date";
 
         // Execute the query and return the results
@@ -100,7 +101,7 @@ class Appointment
         // SQL query with a placeholder for the date
         $sql = "SELECT appointment_date, COUNT(appointment_id) AS appointment_count 
                 FROM appointments 
-                WHERE doctor_id = :doctor_id 
+                WHERE doctor_id = :doctor_id AND isdeleted = 0
                 AND appointment_date < :appointment_date
                 GROUP BY appointment_date ORDER BY appointment_date DESC LIMIT 4";
 
@@ -121,7 +122,7 @@ class Appointment
     {
         $today = (new DateTime())->format('Y-m-d');
         $sql = "SELECT appointment_id FROM appointments
-                WHERE doctor_id = :doctor_id AND patient_id = :patient_id AND appointment_date < :appointment_date
+                WHERE doctor_id = :doctor_id AND isdeleted = 0 AND patient_id = :patient_id AND appointment_date < :appointment_date
                 ORDER BY appointment_date DESC LIMIT 1";
         $result = $this->query($sql, ['doctor_id' => $doctorId, 'patient_id' => $patientId, 'appointment_date' => $today]);
 
@@ -131,7 +132,8 @@ class Appointment
     public function getPrevAppointment($doctorId, $patientId, $referalId, $appointmentDate)
     {
         $sql = "SELECT * FROM appointments
-                WHERE doctor_id = :doctor_id AND patient_id = :patient_id AND referal_id = :referal_id AND appointment_date < :appointment_date
+                WHERE doctor_id = :doctor_id AND isdeleted = 0 
+                AND patient_id = :patient_id AND referal_id = :referal_id AND appointment_date < :appointment_date
                 ORDER BY appointment_date DESC LIMIT 1";
         $result = $this->query($sql, [
             'doctor_id' => $doctorId,

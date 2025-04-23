@@ -4,9 +4,6 @@ require APPROOT . '/views/Components/drNavbar.php';
 require APPROOT . '/views/Components/drCalendarComponent.php';
 
 $numberOfAppointmentsToday = count($appointmentsToday);
-
-// Check ongoing appointment based on time (placeholder logic)
-$currentAppointment = "#0002 - Mr.Kusal Perera";
 ?>
 
 <div class="dr-dashboard">

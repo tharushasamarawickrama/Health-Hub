@@ -18,7 +18,8 @@ class User {
         'address',
         'age',
         'photo_path',
-        'user_role'
+        'user_role',
+        'last_login',
     ];
 
     // public function validate($data){

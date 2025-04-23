@@ -51,10 +51,23 @@ class DrViewAppointments
         }
 
         $schedules = [];
-        if($doctorType == 'specialist'){
+        if ($doctorType == 'specialist') {
             $ScheduleTimeModel = new ScheduleTime();
-            $schedules = $ScheduleTimeModel->getSchedule($doctorId, $today);
+            $schedules = $ScheduleTimeModel->getTodaysSlotsByDoctor($doctorId);
             array_multisort(array_column($schedules, 'start_time'), SORT_ASC, $schedules);
+
+            function getDateOfWeekday(string $weekday): string
+            {
+                $date = new DateTime();
+                $date->modify("this week $weekday");
+                return $date->format('Y-m-d');
+            }
+
+            if ($schedules) {
+                foreach ($schedules as &$schedule) {
+                    $schedule["date"] = getDateOfWeekday($schedule["weekday"]);
+                }
+            }
         }
         // var_dump($schedules);
         // exit();
@@ -71,27 +84,26 @@ class DrViewAppointments
     }
 
     public function markCompleted()
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $appointmentId = $_POST['appointmentId'] ?? null;
-        $appointmentSatus = $_POST['appointmentStatus'] ?? null;
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $appointmentId = $_POST['appointmentId'] ?? null;
+            $appointmentSatus = $_POST['appointmentStatus'] ?? null;
 
-        if ($appointmentId && $appointmentSatus) {
-            $appointmentModel = new Appointment();
+            if ($appointmentId && $appointmentSatus) {
+                $appointmentModel = new Appointment();
 
-            $success = $appointmentModel->updateCompleteStatus($appointmentId, $appointmentSatus);
+                $success = $appointmentModel->updateCompleteStatus($appointmentId, $appointmentSatus);
 
-            if ($success) {
-                echo json_encode(['status' => 'success']);
+                if ($success) {
+                    echo json_encode(['status' => 'success']);
+                } else {
+                    echo json_encode(['status' => 'error', 'message' => 'Could not update status']);
+                }
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Could not update status']);
+                echo json_encode(['status' => 'error', 'message' => 'Appointment ID missing']);
             }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Appointment ID missing']);
+            echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
         }
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
     }
-}
-
 }

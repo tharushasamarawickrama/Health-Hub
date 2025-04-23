@@ -19,7 +19,7 @@ require APPROOT . '/views/Components/drNavbar.php';
                     <?php foreach ($data['fetchedTimeslots'] as $timeslot): ?>
                         <span class="timeslot-tag">
                             <?php echo htmlspecialchars($timeslot); ?>
-                            <button class="timeslot-remove-btn" data-timeslot="<?php echo htmlspecialchars($timeslot); ?>">×</button>
+                            <button class="timeslot-remove-btn" data-timeslot="<?php echo htmlspecialchars($timeslot); ?>">✖</button>
                         </span>
                     <?php endforeach; ?>
                 <?php else: ?>
