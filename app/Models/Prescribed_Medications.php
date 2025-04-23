@@ -31,6 +31,7 @@ class Prescribed_Medications
             $medications = [];
             foreach ($result as $medication) {
                 $medications[] = [
+                    "prescription_id" => $medication['prescription_id'],
                     "name" => $medication['name'],
                     "quantity" => $medication['quantity'],
                     "measurement" => $medication['measurement'],

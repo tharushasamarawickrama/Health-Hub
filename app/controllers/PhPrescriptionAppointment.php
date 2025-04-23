@@ -74,10 +74,17 @@
                         'name' => $medication_name,
                         'amount' => ceil($amount)
                     ];
+                    $appointmentDetails = $this->pharmacistModel->updateUnitsIssued($appointment_id, $medication_name, $amount);
+
                 }
+
     
                 // Get full appointment data for the view
                 $appointmentDetails = $this->pharmacistModel->getPrescriptionDetails($appointment_id);
+                if (!$appointmentDetails) {
+                    $appointmentDetails = []; // Ensure it's an array
+                }
+
                 
                 foreach ($appointmentDetails as $i => &$med) {
                     if (isset($medications[$i]['preferred_duration'])) {
