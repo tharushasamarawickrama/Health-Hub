@@ -58,6 +58,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/ViewAllProfile.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Profiledetails.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/PrevLog.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/slmc.css">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -5,17 +5,30 @@ class EditDrProfiledetails
     use Controller;
     public function index()
     {
+        if (!isset($_GET['id']) || empty($_GET['id'])) {
+            die("Error: Missing or invalid doctor ID.");
+        }
+
         $id = $_GET['id'];
         $doctor = new Doctor;
+        $user = new User;
         $arr['doctor_id'] = $id;
-        $data = $doctor->first($arr);
+        $arr2['user_id'] = $id;
+        $data1 = $doctor->first($arr);
+        $data2 = $user->first($arr2);
+
+        if (!$data1 || !$data2) {
+            die("Error: Doctor or user data not found.");
+        }
+
+        $data = array_merge($data1, $data2);
         if (!$data) {
             
             $this->view('EditDrProfiledetails');
         }
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['drbutton'])) {
-            $doctor = new Doctor;
+            
             $data = [
                 'firstName' => $_POST['firstName'] ?? '',
                 'lastName' => $_POST['lastName'] ?? '',
@@ -32,37 +45,46 @@ class EditDrProfiledetails
                 
             ];
 
-            print_r($_FILES);
-            if(isset($_FILES['photo_path']) && $_FILES['photo_path']['error'] == 0){
-                    $target_dir = "profile-Photos/";
-                if(!is_dir($target_dir)){
-                        mkdir($target_dir,0777,true);
-                    }
-                    $file_name = basename($_FILES['photo_path']['name']);
-                    $target_file = $target_dir . uniqid() . '_' . $file_name;
-                
-                    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-                if(!in_array($file_type, $allowed_types)){
-                       $this->view('EditDrProfiledetails', $data);
-                   return;
+            // show($data);
+            
+            if (isset($_FILES['photo_path']) && $_FILES['photo_path']['error'] == 0) {
+                $target_dir = "profile-Photos/";
+                if (!is_dir($target_dir)) {
+                    mkdir($target_dir, 0777, true);
                 }
-                if(getimagesize($_FILES['photo_path']['tmp_name']) === false){
-                        $this->view('EditDrProfiledetails', $data);
+                $file_name = basename($_FILES['photo_path']['name']);
+                $target_file = $target_dir . uniqid() . '_' . $file_name;
+
+                $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+                if (!in_array($file_type, $allowed_types)) {
+                    $data['error'] = "Invalid file type. Only JPG, JPEG, PNG, and GIF are allowed.";
+                    $this->view('EditDrProfiledetails', $data);
                     return;
                 }
-                if(move_uploaded_file($_FILES['photo_path']['tmp_name'], $target_file)){
-                    $data['photo_path'] = $target_file;
-                }else{
-                        $this->view('EditDrProfiledetails', $data);
-                        return;
-                    }}
-            // print_r($doctor->update($id, $data, 'doctor_id'));
-            
-            $result=$doctor->update($id, $data, 'doctor_id');
+                if (getimagesize($_FILES['photo_path']['tmp_name']) === false) {
+                    $data['error'] = "The uploaded file is not a valid image.";
+                    $this->view('EditDrProfiledetails', $data);
+                    return;
+                }
+                if (move_uploaded_file($_FILES['photo_path']['tmp_name'], $target_file)) {
+                    $data['photo_path'] = $target_file; // Save the new file path
+                } else {
+                    $data['error'] = "Failed to upload the file.";
+                    $this->view('EditDrProfiledetails', $data);
+                    return;
+                }
+            } else {
+                // Retain the old photo_path if no new file is uploaded
+                $data['photo_path'] = $data2['photo_path'] ?? '';
+            }
+                        // print_r($doctor->update($id, $data, 'doctor_id'));
+            // show($data);
+            $result=$user->update($id, $data,'user_id');
+                    echo $result;
             if ($result) {
                 redirect('DrProfiledetails', $id);  
-                exit(); // Always add exit after redirecting
+                // exit(); // Always add exit after redirecting
             } 
             else {
                 echo "Update failed.";

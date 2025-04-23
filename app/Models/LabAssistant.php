@@ -9,15 +9,31 @@ class LabAssistant {
     protected $Allowedcolumns = [
         'lab_assistant_id',
         'employeeNo'
+
     ];
 
     public function findAlldata()
     {
 
-        $query = "select * from $this->table ";
+        $query = "SELECT u.*, l.*
+                  FROM users u
+                  INNER JOIN labassistants l ON u.user_id = l.lab_assistant_id;";
 
         return $this->query($query);
     }
+
+
+    public function searchLabAssistants($searchTerm) {
+        $query = "SELECT u.*, l.*
+                  FROM users u
+                  INNER JOIN labassistants l ON u.user_id = l.lab_assistant_id
+                  WHERE u.firstName LIKE :term 
+                     OR u.lastName LIKE :term 
+                     OR l.employeeNo LIKE :term";
+        $data = ['term' => "%$searchTerm%"];
+        return $this->query($query, $data);
+    }
+
     public function getLabAppointments() {
         $query = "SELECT a.appointment_id, 
                          a.appointment_date, a.appointment_time, a.lab_status, u.nic
@@ -122,8 +138,16 @@ class LabAssistant {
           JOIN users u ON a.patient_id = u.user_id 
           WHERE a.appointment_id = :appointment_id AND a.lab_status = 'Planned'";
           
-return $this->query($query, ['appointment_id' => $appointment_id]);
+        return $this->query($query, ['appointment_id' => $appointment_id]);
 
+    }
+
+
+    
+    public function getLabAssistantsCount() {
+        $query = "SELECT COUNT(*) AS labassistants_count FROM labassistants;";
+        $result = $this->query($query);
+        return $result[0]['labassistants_count'] ?? 0;
     }
 
     public function getAppointmentDetails($appointment_id) {
@@ -203,6 +227,7 @@ public function getPendingLabAppointments($appointment_id) {
 
     $query .= " ORDER BY a.appointment_date DESC";
     return $this->query($query, $params);
+
 }
 public function setAppointmentStatus($appointment_id, $lab_status) {
     $query = "UPDATE appointments 

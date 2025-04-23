@@ -8,16 +8,37 @@ class Receptionist {
 
     protected $Allowedcolumns = [
         'receptionist_id',
-        'employeeNo',        
+        'employeeNo'
+        
     ];
 
     public function findAlldata()
     {
 
-        $query = "select * from $this->table ";
+        $query = "SELECT u.*, r.*
+                  FROM users u
+                  INNER JOIN receptionists r ON u.user_id = r.receptionist_id;";
 
         return $this->query($query);
     }
 
 
+    public function searchReceptionists($searchTerm) {
+        $query = "SELECT u.*, r.*
+                  FROM users u
+                  INNER JOIN receptionists r ON u.user_id = r.receptionist_id
+                  WHERE u.firstName LIKE :term 
+                     OR u.lastName LIKE :term 
+                     OR r.employeeNo LIKE :term";
+        $data = ['term' => "%$searchTerm%"];
+        return $this->query($query, $data);
+    }
+
+    public function getReceptionistsCount() {
+        $query = "SELECT COUNT(*) AS receptionists_count FROM receptionists;";
+        $result = $this->query($query);
+        return $result[0]['receptionists_count'] ?? 0;
+    }
+
+    
 }

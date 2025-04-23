@@ -1,7 +1,17 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<?php require APPROOT . '/views/Components/AdminSidebar.php' ?>
+
 <div class="ViewProfile-body">
     <div class="ViewProfile-container">
+            <!-- Searchbar start -->
+            <div class="search-bar-container">
+                        <form action="<?php echo URLROOT; ?>ViewAllPharmProfile/index" method="get">
+                            <input type="text" name="search" placeholder="Search by name or SLMC number..." class="search-input">
+                            <button type="submit" class="search-btn">Search</button>
+                        </form>
+            </div>
+            <!-- Searchbar end -->
             <h1>Pharmacists List</h1>
             <?php foreach ($data as $pharmacist): ?>
             <div class="ViewProfile-doctor-card">

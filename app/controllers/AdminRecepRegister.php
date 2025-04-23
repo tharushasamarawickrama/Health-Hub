@@ -4,8 +4,11 @@ class AdminRecepRegister  {
     use Controller;
     public function index(){
         $receptionist = new Receptionist;
+        $user = new User;
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = [
+                'title' => $_POST['title'] ?? '',
                 'firstName' => $_POST['firstName'] ?? '',
                 'lastName' => $_POST['lastName'] ?? '',
                 'password' => $_POST['password'] ?? '',
@@ -17,9 +20,19 @@ class AdminRecepRegister  {
                 'nic' => $_POST['nic'] ?? '',
                 'address' => $_POST['address'] ?? '',
                 'photo_path' => $_POST['photo_path'] ?? '',
+                'user_role' =>  'receptionist',
                 
             ];
 
+
+            if (!empty($data['dob'])) {
+                $dob = new DateTime($data['dob']);
+                $today = new DateTime();
+                $age = $today->diff($dob)->y; 
+                $data['age'] = $age;
+            } else {
+                $data['age'] = null; 
+            }
            
 
             if(isset($_FILES['photo_path'])){
@@ -47,11 +60,37 @@ class AdminRecepRegister  {
                     return;
                 }}
 
-            if($receptionist->insert($data)){
-                header('Location: ' . URLROOT . '/AdminRecepRegister');
+        //         if($receptionist->insert($data)){
+        //             header('Location: ' . URLROOT . '/AdminRecepRegister');
+        //         }
+        //         else{
+        //             //failed massage
+        //         }
+        //    redirect('AdminRecepRegister');
+        //     return;
+               
+        $user_id = $user->insert($data);
+        
+        if ($user_id) {
+            
+            $dataid = $user->getLastUserId();
+            
+            
+            if ($receptionist->insert(['receptionist_id' => $dataid, 'employeeNo' => $data['employeeNo']])) {
+                
+                $data['success'] = "Receptionist added successfully!";
+                $this->view('AdminRecepRegister', $data);
+
+                //redirect('AdminRecepRegister');
+                return;
+            }
         }
-        redirect('AdminRecepRegister');
-    }
+
+        $this->view('AdminRecepRegister', $data);
+        return;
+        
+        
+        }
         $this->view('AdminRecepRegister');
     }
     

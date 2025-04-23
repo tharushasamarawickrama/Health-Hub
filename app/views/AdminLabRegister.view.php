@@ -1,5 +1,7 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<?php require APPROOT . '/views/Components/AdminSidebar.php' ?> 
+
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
         <h1>New Lab Assistant</h1>
@@ -7,11 +9,13 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="firstName">First Name</label>
-                    <input class="AdminInput" type="text" id="firstName" name="firstName" required>
+                    <input class="AdminInput" type="text" id="firstName" name="firstName" value="<?php echo $data['firstName'] ?? ''; ?>" required>
+                    <span class="error"><?php echo $data['errors']['firstName'] ?? ''; ?></span>
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="lastName">Last Name</label>
-                    <input class="AdminInput" type="text" id="lastName" name="lastName" >
+                    <input class="AdminInput" type="text" id="lastName" name="lastName" value="<?php echo $data['lastName'] ?? ''; ?>">
+                    <span class="error"><?php echo $data['errors']['lastName'] ?? ''; ?></span>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -29,6 +33,15 @@
                     <label class="AdminLabel" for="email">Email</label>
                     <input class="AdminInput" type="email" id="email" name="email" >
                 </div>
+                <div class="AdminRegister-form-group">
+                    <label class="AdminLabel" for="title">Title</label>
+                    <select class="AdminSelect" id="title" name="title" >
+                        <option value="Mr">Mr</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                    </select>
+                </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
@@ -41,7 +54,7 @@
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="dob">Date of Birth</label>
-                    <input class="AdminInput" type="date" id="dob" name="dob" >
+                    <input class="AdminInput" type="date" id="dob" name="dob" required >
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -63,7 +76,7 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group-full-width">
                     <label class="AdminLabel" for="photo">Lab Assistant's Photo</label>
-                    <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" >
+                    <input class="AdminFileInput" type="file" id="photo" name="photo_path" accept="image/*" required >
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -74,3 +87,9 @@
 </div>
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
+
+<?php if (isset($data['success'])): ?>
+    <script>
+        alert("<?php echo $data['success']; ?>");
+    </script>
+<?php endif; ?>

@@ -2,13 +2,13 @@
 .AdminRegister-body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url(../../images/background.png);
+    /* background-image: url(../../images/background.png); */
 }
 
 /* Form Container */
@@ -32,11 +32,13 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    position: relative;
 }
 
 .AdminRegister-form-row {
     display: flex;
     gap: 20px;
+    justify-content: space-between;
 }
 
 .AdminRegister-form-group {
@@ -175,3 +177,44 @@
     cursor: pointer;
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 }
+
+
+#dr-req-btn-left{
+    padding-right: 20px;
+}
+/* 
+#dr-req-btn-left {
+    position: absolute;
+    bottom: 20px; 
+    left: 20px; 
+    background-color: #64A7B3;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#dr-req-btn-left:hover {
+    background-color: #4bc1d5;
+}
+
+#dr-req-btn-right {
+    position: absolute;
+    bottom: 20px; 
+    right: 20px; 
+    background-color: #64A7B3;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#dr-req-btn-right:hover {
+    background-color: #4bc1d5;
+} */
