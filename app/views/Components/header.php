@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set('Asia/Colombo');
 // Start the session to enable session management
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -58,6 +58,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/ViewAllProfile.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/Profiledetails.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/PrevLog.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/slmc.css">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

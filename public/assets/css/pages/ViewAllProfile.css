@@ -3,13 +3,16 @@
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
-    background-image: url(../../images/background.png);
+    /* background-image: url(../../images/background.png); */
     height: 100vh;
 }
 
 .ViewProfile-container {
-    width: 80%;
-    margin: 30px auto;
+    width: 60%;
+    /* margin: 30px auto; */
+    margin-top: 50px;
+    margin-left: 20%;
+    margin-right: 20%;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -144,3 +147,36 @@ h1{
 .updatemodal-buttons button:hover {
     opacity: 0.8;
 }
+
+
+
+ /* searchbar.css */
+.search-bar-container {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    
+}
+
+.search-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.search-btn:hover {
+    background-color: #218838;
+} 

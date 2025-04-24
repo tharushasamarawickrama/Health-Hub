@@ -18,7 +18,6 @@ class DrDashboard
         
         // Fetch appointments for the doctor
         $appointments = $appointmentModel->getTodaysAppointments($doctorId);
-        //var_dump($appointments);
         
         // Check if $appointments is valid
         $appointmentsToday = [];
@@ -40,8 +39,6 @@ class DrDashboard
         $pastAppointments = [];
         if($doctorType == 'opd') {
             $pastAppointments = $appointmentModel->getLimitedPastAppointments($doctorId);
-            // var_dump($pastAppointments);
-            // exit();
             if($pastAppointments){
                 $pastAppointments = array_reverse(array_combine(
                     array_column($pastAppointments, 'appointment_date'),
@@ -58,17 +55,28 @@ class DrDashboard
             // var_dump($calendarSchedules);
             // exit();
 
+            function getDateOfWeekday(string $weekday): string {
+                $date = new DateTime();
+                $date->modify("this week $weekday");
+                return $date->format('Y-m-d');
+            }
+
             if($schedules){
                 foreach ($schedules as $schedule) {
+                    $date = getDateOfWeekday($schedule["weekday"]);
                     // Format date (remove leading zeros in day/month)
-                    $date = date("j/n/y", strtotime($schedule["date"]));
+                    $formattedDate = date("j/n/y", strtotime($date));
                     // Format start and end times
                     $startTime = date("gA", strtotime($schedule["start_time"]));
                     $endTime = date("gA", strtotime($schedule["end_time"]));
                     // Combine into key and assign filled slots as value
-                    $key = "$date | $startTime-$endTime";
+                    $key = "$formattedDate | $startTime-$endTime";
                     $pastAppointments[$key] = $schedule["filled_slots"];
                 }
+            }
+
+            if($calendarSchedules){
+                foreach($calendarSchedules as &$schedule){ $schedule["date"] = getDateOfWeekday($schedule["weekday"]); }
             }
         }
         

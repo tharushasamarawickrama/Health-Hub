@@ -55,7 +55,7 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
                 </table>
             <?php endif; ?>
         </div>
-        <?php if(!$isPastAppointment): ?>
+        <?php if(!$isPastAppointment && $appointment_status === 'new'): ?>
             <a href="<?php echo URLROOT; ?>drEditPrescription?appointment_id=<?php echo $appointment_id; ?>"><button class="prescription-actions">Edit</button></a>
         <?php endif; ?>
     </div>

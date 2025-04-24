@@ -1,20 +1,24 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/labNavbar.php'; ?>
 <div class="lab-pend-app-container">
-    <div class="lab-pend-app-content">
-        <div class="lab-pend-app-prescription-details">
+        <div class="lab-pend-app-content">        
+<div class="lab-pend-app-header">
         <div class="lab-pend-app-back-button-container">
             <a href="<?php echo URLROOT; ?>/labpendingprescriptions" class="lab-pend-app-back-button">
                 <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
                 Back
             </a>
         </div> 
-        <div class="mark-as-completed-container">
+        <div class="lab-pend-app-action-buttons">            
             <form action="<?php echo URLROOT; ?>/labpendingappointment/markAsCompleted" method="POST">
             <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
-            <button type="submit" class="mark-as-completed-btn">Mark as Completed</button>
+            <button type="submit" class="lab-pend-app-action-btn lab-pend-app-complete-btn">Mark as Completed</button>
             </form>
         </div>
+        </div>
+        
+        <div class="lab-pend-app-prescription-details">
+
         <div class="lab-pend-app-details">
             <div class="lab-pend-app-left">
                 <p><strong>Appointment ID:</strong> <?php echo htmlspecialchars($data['appointment_id']); ?></p>
@@ -47,6 +51,8 @@
                     <a href="<?php echo URLROOT . '/' . htmlspecialchars($test['labtest_report']); ?>" target="_blank">
                         <?php echo htmlspecialchars($test['labtest_pdfname']); ?>
                     </a>
+                    <button onclick="confirmDelete('<?php echo htmlspecialchars($test['labtest_id']); ?>', '<?php echo htmlspecialchars($data['appointment_id']); ?>')">Delete</button>
+
                     </p>
                 <?php else: ?>
                     <!-- Show the upload button if no report is uploaded -->
@@ -66,4 +72,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    const URLROOT = "<?php echo URLROOT; ?>";
+</script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
+<script src="<?php echo URLROOT;?>/assets/js/LabPendingAppointment.js"></script>

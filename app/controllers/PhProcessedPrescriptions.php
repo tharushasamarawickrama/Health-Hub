@@ -2,17 +2,23 @@
 
 class PhProcessedPrescriptions {
     use Controller;
-    public function index(){
-        $this->view('phprocessedprescriptions');
+    private $pharmacistModel;
+
+    public function __construct() {
+        $this->pharmacistModel = new Pharmacist();
+    }
+    public function index($appointment_id = null){
+        $completedAppointments = $this->pharmacistModel->getCompletedPhAppointments($appointment_id);
+        $data = [
+            'appointments' => $completedAppointments
+        ];
+        $this->view('phprocessedprescriptions',$data);
     }
 
 
-public function getAppointmentData() {
-    $date = $_GET['date'] ?? date('Y-m-d');
-    $data = [
-        'appointment_id' => '123', // Replace with actual database query
-        'nic' => 'ABC123' // Replace with actual database query
-    ];
-    echo json_encode($data);
-}
+    public function getAppointmentsByDate() {
+        $date = $_GET['date'] ?? date('Y-m-d');
+        $appointments = $this->pharmacistModel->getAppointmentsByDate($date);
+            echo json_encode($appointments);
+    }
 }

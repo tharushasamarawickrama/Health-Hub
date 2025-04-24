@@ -1,5 +1,7 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<?php require APPROOT . '/views/Components/AdminSidebar.php' ?>
+
 <div class="DrProfiledetails-body">
     <div class="DrProfiledetails-profile-container">
         <div class="DrProfiledetails-profile-header">
@@ -57,7 +59,9 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" class="save-btn">Update</button>
+                <a href="<?php echo URLROOT;?>EditLAProfiledetails?id=<?php echo $data['lab_assistant_id'] ?>">
+                    <button type="button" class="save-btn">Edit Profile</button>
+                </a>
             </div>
         </form>
     </div>

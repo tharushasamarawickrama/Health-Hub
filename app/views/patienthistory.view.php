@@ -55,12 +55,14 @@
                         <?php foreach ($item['appointmentlabtest'] as $labTest): ?>
                             <div class="lab-test-item">
                                 <span class="pt-history-span">Test: <?= $labTest['labtest_pdfname'] ?></span>
+
                                 <?php foreach ($item['labtest'] as $labtest1): ?>
                                     <?php if ($labtest1['labtest_id'] == $labTest['labtest_id']): ?>
                                         <span class="pt-history-span"><?php echo $labtest1['labtest_name'] ?></span>
                                         <span class="pt-history-span"><?php echo $labtest1['labtest_category'] ?></span>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
+
                                 <a href="<?= URLROOT . '/' . $labTest['labtest_report'] ?>" class="pt-history-button" target="_blank">View</a>
                             </div>
                         <?php endforeach; ?>

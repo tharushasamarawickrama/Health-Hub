@@ -29,13 +29,13 @@
             <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
 
             <div class="dropdown-content">
-                <a href="">Profile</a>
+                
                 <a href="?action=logout">Logout</a>
             </div>
         </div>
     <?php else: ?>
         <!-- Show "Login" link if no user is logged in -->
-        <a href="<?php echo URLROOT; ?>/Prevlog" class="login">Login</a>
+        <a href="<?php echo URLROOT; ?>/patientregister" class="login">Login</a>
     <?php endif; ?>
            <!-- <p class="Adminlogin">Admin</p> -->
     

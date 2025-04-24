@@ -77,4 +77,5 @@ class Channel
         // show($data2);
         $this->view('channel', $data, $data2);
     }
+
 }

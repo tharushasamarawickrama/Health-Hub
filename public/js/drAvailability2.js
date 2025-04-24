@@ -1,351 +1,121 @@
-let currentWeekIndex = 0;
-const maxSlots = 6;
-const maxSlotsPerWeek = 3;
-const today = formatDate(new Date());
-
-document.addEventListener("DOMContentLoaded", function () {
-    displayUniqueSelectedSlots();
+document.addEventListener('DOMContentLoaded', () => {
+    const selectedContainer = document.getElementById('unique-selected-timeslots');
+    const allSlotButtons = document.querySelectorAll('.unique-slot-btn');
+    const selectedInput = document.getElementById('selectedTimeslotsInput');
     if (successMessage.trim() !== "") {
         showToast(successMessage);
     }
-});
 
-function showToast(message) {
-    const toast = document.getElementById("toast");
-    document.getElementById("toast-text").textContent = message;
-    toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 3000);
-}
+    // Convert dataset to slot string (used for matching and comparing)
+    const slotToString = (slot) => `${slot[0]} - ${slot[1]}`;
 
-function initializeUniqueTimeslots() {
-    setCurrentWeekIndex();
-    updateUniqueWeek();
-    populateUniqueSlots();
-}
+    // Parse slot from stringified data-value
+    const parseSlot = (el) => JSON.parse(el.dataset.value);
 
-function setCurrentWeekIndex() {
-    const index = allDates.indexOf(today);
-    if (index !== -1) {
-        currentWeekIndex = Math.floor(index / 7);
-    }
-}
-
-function formatDate(date) {
-    return `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()}`;
-}
-
-function updateUniqueWeek() {
-    const weekStart = allDates[currentWeekIndex * 7];
-    const weekEnd = allDates[Math.min((currentWeekIndex + 1) * 7 - 1, allDates.length - 1)];
-    document.getElementById("unique-week-range-title").textContent = `${weekStart} - ${weekEnd}`;
-}
-
-function populateUniqueSlots() {
-    const optionsContainer = document.getElementById("unique-options");
-    optionsContainer.innerHTML = "";
-    
-    const weekStartIndex = currentWeekIndex * 7;
-    const occupiedSlots = Array.isArray(occupiedTimeslots) ? occupiedTimeslots : [];
-    const todayDate = new Date();
-    todayDate.setHours(0, 0, 0, 0);
-
-    for (let i = weekStartIndex; i < weekStartIndex + 7 && i < allDates.length; i++) {
-        const dateStr = allDates[i];
-        const [day, month, year] = dateStr.split("/");
-        const dateObj = new Date(year, month - 1, day);
-
-        timeSlotsPerDay.forEach((time) => {
-            const slotElement = document.createElement("button");
-            slotElement.className = "unique-slot-btn";
-            slotElement.textContent = `${dateStr} ${time}`;
-            
-            if (occupiedSlots.some(slot => slot.date === dateStr && slot.time === time) || dateObj <= todayDate) {
-                slotElement.classList.add("disabled");
-            }
-            
-            slotElement.onclick = () => toggleUniqueSlot(dateStr, time);
-            if (selectedTimeslots.some(s => s[0] === dateStr && s[1] === time)) {
-                slotElement.classList.add("selected");
-            }
-            
-            optionsContainer.appendChild(slotElement);
+    // Check if slot is already selected
+    const isSlotSelected = (slotStr) => {
+        return Array.from(selectedContainer.querySelectorAll('.unique-timeslot-tag')).some(child => {
+            const childSlot = JSON.parse(child.dataset.value);
+            return slotToString(childSlot) === slotStr;
         });
+    };
+
+    // Initialize selected state from already rendered slots
+    const initSelectedSlots = () => {
+        const selectedSlotStrings = Array.from(selectedContainer.querySelectorAll('.unique-timeslot-tag'))
+            .map(el => slotToString(JSON.parse(el.dataset.value)));
+
+        allSlotButtons.forEach(btn => {
+            const slot = parseSlot(btn);
+            const str = slotToString(slot);
+            if (selectedSlotStrings.includes(str)) {
+                btn.classList.add('selected');
+            }
+        });
+
+        updateHiddenInput();
+    };
+
+    // Update hidden input field
+    const updateHiddenInput = () => {
+        const selected = Array.from(selectedContainer.querySelectorAll('.unique-timeslot-tag')).map(el =>
+            JSON.parse(el.dataset.value)
+        );
+        selectedInput.value = JSON.stringify(selected);
+    };
+
+    // Remove slot
+    window.removeSlot = (icon) => {
+        const tag = icon.parentElement;
+        const slotStr = slotToString(JSON.parse(tag.dataset.value));
+        tag.remove();
+
+        // Unhighlight from the right section
+        allSlotButtons.forEach(btn => {
+            const btnSlotStr = slotToString(parseSlot(btn));
+            if (btnSlotStr === slotStr) {
+                btn.classList.remove('selected');
+            }
+        });
+
+        updateHiddenInput();
+    };
+
+    // Clear all slots
+    window.clearUniqueTimeslots = () => {
+        selectedContainer.innerHTML = '<p>No timeslots selected.</p>';
+        allSlotButtons.forEach(btn => btn.classList.remove('selected'));
+        updateHiddenInput();
+    };
+
+    function showToast(message) {
+        const toast = document.getElementById("toast");
+        document.getElementById("toast-text").textContent = message;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3000);
     }
-}
 
-function toggleUniqueSlot(date, time) {
-    const slotIndex = selectedTimeslots.findIndex(s => s[0] === date && s[1] === time);
-    const slotWeekIndex = Math.floor(allDates.indexOf(date) / 7);
-    const selectedInWeek = selectedTimeslots.filter(s => Math.floor(allDates.indexOf(s[0]) / 7) === slotWeekIndex).length;
-
-    if (slotIndex !== -1) {
-        selectedTimeslots.splice(slotIndex, 1);
-    } else if (selectedTimeslots.length < maxSlots && selectedInWeek < maxSlotsPerWeek) {
-        selectedTimeslots.push([date, time]);
-    } else {
-        alert(selectedInWeek >= maxSlotsPerWeek ? `You can only select up to ${maxSlotsPerWeek} slots per week.` : `You can only select up to ${maxSlots} slots in total.`);
+    function saveUniqueTimeslots() {
+        document.getElementById("selectedTimeslotsInput").value = JSON.stringify(selectedTimeslots);
+        document.getElementById("unique-timeslot-form").submit();
     }
-    
-    populateUniqueSlots();
-    displayUniqueSelectedSlots();
-}
 
-function displayUniqueSelectedSlots() {
-    const selectedContainer = document.getElementById("unique-selected-timeslots");
-    selectedContainer.innerHTML = selectedTimeslots.length ? "" : `<p id="unique-no-slots-msg">No timeslots selected.</p>`;
-    
-    selectedTimeslots.forEach(([date, time]) => {
-        const selectedDate = new Date(date.split("/").reverse().join("-"));
-        const tagElement = document.createElement("span");
-        tagElement.className = "unique-timeslot-tag";
-        tagElement.textContent = `${date} ${time}`;
-        
-        if (selectedDate > new Date()) {
-            const removeBtn = document.createElement("button");
-            removeBtn.className = "unique-remove-btn";
-            removeBtn.innerHTML = "&times;";
-            removeBtn.onclick = () => removeUniqueTimeslot(date, time);
-            tagElement.appendChild(removeBtn);
+    // Add or remove slot
+    window.toggleSlot = (btn) => {
+        const slot = parseSlot(btn);
+        const slotStr = slotToString(slot);
+
+        const alreadySelected = isSlotSelected(slotStr);
+        let selectedTags = Array.from(selectedContainer.querySelectorAll('.unique-timeslot-tag'));
+
+        if (alreadySelected) {
+            alert("This timeslot is already selected.");
+            return;
+        } else {
+            if (selectedTags.length >= 3) {
+                alert("You can only select up to 3 timeslots.");
+                return;
+            }
+
+            else{
+                // Remove "No timeslots selected." message
+            const noSlotsMessage = selectedContainer.querySelector('p');
+            if (noSlotsMessage) noSlotsMessage.remove();
+
+            const newTag = document.createElement('div');
+            newTag.className = 'unique-timeslot-tag';
+            newTag.dataset.value = JSON.stringify(slot);
+            newTag.innerHTML = `
+                ${slotStr}
+                <span class="delete-icon" onclick="removeSlot(this)">✖</span>
+            `;
+            selectedContainer.appendChild(newTag);
+            btn.classList.add('selected');
+            }
         }
-        
-        selectedContainer.appendChild(tagElement);
-    });
-}
 
-function removeUniqueTimeslot(date, time) {
-    selectedTimeslots = selectedTimeslots.filter(s => !(s[0] === date && s[1] === time));
-    populateUniqueSlots();
-    displayUniqueSelectedSlots();
-}
+        updateHiddenInput();
+    };
 
-function clearUniqueTimeslots() {
-    selectedTimeslots = selectedTimeslots.filter(([date]) => new Date(date.split("/").reverse().join("-")) <= new Date());
-    displayUniqueSelectedSlots();
-}
-
-function saveUniqueTimeslots() {
-    document.getElementById("selectedTimeslotsInput").value = JSON.stringify(selectedTimeslots);
-    document.getElementById("unique-timeslot-form").submit();
-}
-
-function changeUniqueWeek(offset) {
-    currentWeekIndex += offset;
-    document.getElementById("unique-prev-week").disabled = currentWeekIndex === 0;
-    document.getElementById("unique-next-week").disabled = currentWeekIndex >= Math.floor(allDates.length / 7);
-    updateUniqueWeek();
-    populateUniqueSlots();
-}
-
-initializeUniqueTimeslots();
-
-
-
-// let currentWeekIndex = 0;
-// const maxSlots = 6;
-// const maxSlotsPerWeek = 3;
-// const today = formatDate(new Date());
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     displayUniqueSelectedSlots();
-//     if (successMessage.trim() !== "") {
-//         showToast(successMessage);
-//     }
-// });
-
-// function showToast(message) {
-//     var toast = document.getElementById("toast");
-//     var toastText = document.getElementById("toast-text");
-//     toastText.textContent = message;
-//     toast.classList.add("show");
-
-//     setTimeout(function () {
-//         toast.classList.remove("show");
-//     }, 3000); // Hide after 3 seconds
-// }
-
-
-// // Populate initial week and slots
-// function initializeUniqueTimeslots() {
-//     setCurrentWeekIndex();
-//     updateUniqueWeek();
-//     populateUniqueSlots();
-// }
-
-// // Set current week index
-// function setCurrentWeekIndex() {
-//     // Find the closest week to today
-//     for (let i = 0; i < allDates.length; i++) {
-//         if (allDates[i] === today) {
-//             currentWeekIndex = Math.floor(i / 7); // Set the current week index based on the found date
-//             break;
-//         }
-//     }
-// }
-
-// // Format date to "dd/mm/yyyy"
-// function formatDate(date) {
-//     const day = String(date.getDate()).padStart(2, "0");
-//     const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
-//     const year = date.getFullYear();
-//     return `${day}/${month}/${year}`;
-// }
-
-// // Update week range title
-// function updateUniqueWeek() {
-//     const weekStart = allDates[currentWeekIndex * 7];
-//     const weekEnd = allDates[Math.min((currentWeekIndex + 1) * 7 - 1, allDates.length - 1)];
-//     document.getElementById("unique-week-range-title").textContent = `${weekStart} - ${weekEnd}`;
-// }
-
-// // Populate slots for the current week
-// function populateUniqueSlots() {
-//     const optionsContainer = document.getElementById("unique-options");
-//     optionsContainer.innerHTML = ""; // Clear previous slots
-
-//     const weekStartIndex = currentWeekIndex * 7;
-//     const today = new Date(); // Get today's date
-//     today.setHours(0, 0, 0, 0); // Normalize time for comparison
-
-//     // Ensure occupiedTimeslots is an array (handle null/undefined cases)
-//     const occupiedSlots = Array.isArray(occupiedTimeslots) ? occupiedTimeslots : [];
-
-//     for (let i = weekStartIndex; i < weekStartIndex + 7 && i < allDates.length; i++) {
-//         const dateStr = allDates[i]; // e.g., "05/02/2025"
-//         const dateParts = dateStr.split('/'); // Assuming format is "dd/mm/yyyy"
-//         const dateObj = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]); // Convert to Date object
-
-//         timeSlotsPerDay.forEach((time) => {
-//             const slotElement = document.createElement("button");
-//             slotElement.className = "unique-slot-btn";
-
-//             // Check if the slot is occupied or in the past
-//             const isDisabled = occupiedSlots.some(slot => slot.date === dateStr && slot.time === time) || dateObj <= today;
-//             if (isDisabled) {
-//                 slotElement.classList.add("disabled");
-//             }
-
-//             slotElement.textContent = `${dateStr} ${time}`;
-//             slotElement.onclick = () => toggleUniqueSlot(dateStr, time);
-
-//             // Check if slot is already selected
-//             if (selectedTimeslots.some((s) => s[0] === dateStr && s[1] === time)) {
-//                 slotElement.classList.add("selected");
-//             }
-
-//             optionsContainer.appendChild(slotElement);
-//         });
-//     }
-// }
-
-
-
-// // Toggle slot selection
-// function toggleUniqueSlot(date, time) {
-//     const slotElement = [...document.querySelectorAll(".unique-slot-btn")].find(
-//         btn => btn.textContent.includes(date) && btn.textContent.includes(time)
-//     );
-
-//     // Prevent clicking on disabled slots
-//     if (slotElement.classList.contains("disabled")) {
-//         return;
-//     }
-
-//     // Determine the week index of the selected date
-//     const slotWeekIndex = Math.floor(allDates.findIndex((d) => d === date) / 7);
-
-//     // Count the number of selected slots in the same week
-//     const selectedInWeek = selectedTimeslots.filter((s) => {
-//         const weekIndex = Math.floor(allDates.findIndex((d) => d === s[0]) / 7);
-//         return weekIndex === slotWeekIndex;
-//     }).length;
-
-//     // Check if the slot is already selected
-//     const slotIndex = selectedTimeslots.findIndex((s) => s[0] === date && s[1] === time);
-
-//     if (slotIndex !== -1) {
-//         // If the slot is already selected, remove it
-//         selectedTimeslots.splice(slotIndex, 1);
-//     } else if (selectedTimeslots.length < maxSlots && selectedInWeek < maxSlotsPerWeek) {
-//         // Add slot if it doesn't exceed overall or per-week limits
-//         selectedTimeslots.push([date, time]);
-//     } else if (selectedInWeek >= maxSlotsPerWeek) {
-//         alert(`You can only select up to ${maxSlotsPerWeek} slots per week.`);
-//     } else {
-//         alert(`You can only select up to ${maxSlots} slots in total.`);
-//     }
-
-//     populateUniqueSlots();
-//     displayUniqueSelectedSlots();
-// }
-
-
-// // Display selected slots
-// function displayUniqueSelectedSlots() {
-//     const selectedContainer = document.getElementById("unique-selected-timeslots");
-//     selectedContainer.innerHTML = "";
-
-//     if (selectedTimeslots.length === 0) {
-//         selectedContainer.innerHTML = `<p id="unique-no-slots-msg">No timeslots selected.</p>`;
-//     } else {
-//         selectedTimeslots.forEach(([date, time]) => {
-//             const today = new Date(); // Get the current date
-//             const selectedDate = new Date(date.split("/").reverse().join("-")); // Convert date to YYYY-MM-DD format
-//             const tagElement = document.createElement("span");
-//             tagElement.className = "unique-timeslot-tag";
-//             tagElement.textContent = `${date} ${time}`;
-
-//             if (selectedDate > today) {
-//                 const removeBtn = document.createElement("button");
-//                 removeBtn.className = "unique-remove-btn";
-//                 removeBtn.innerHTML = "&times;";
-//                 removeBtn.onclick = () => removeUniqueTimeslot(date, time);
-
-//                 tagElement.appendChild(removeBtn);
-//             }
-
-//             selectedContainer.appendChild(tagElement);
-//         });
-//     }
-// }
-
-
-// // Remove slot
-// function removeUniqueTimeslot(date, time) {
-//     const slotIndex = selectedTimeslots.findIndex((s) => s[0] === date && s[1] === time);
-//     if (slotIndex !== -1) {
-//         selectedTimeslots.splice(slotIndex, 1);
-//         populateUniqueSlots();
-//         displayUniqueSelectedSlots();
-//     }
-// }
-
-// // Clear only future slots
-// function clearUniqueTimeslots() {
-//     selectedTimeslots = selectedTimeslots.filter(([date, _]) => {
-//         const today = new Date(); // Get the current date
-//         const selectedDate = new Date(date.split("/").reverse().join("-"));
-//         return selectedDate <= today; // Keep only past or today's slots
-//     });
-
-//     displayUniqueSelectedSlots();
-// }
-
-// // Save slots (stub for back-end integration)
-// function saveUniqueTimeslots() {
-//     // Set the value of the hidden input field to send to the backend
-//     const hiddenInput = document.getElementById("selectedTimeslotsInput");
-//     hiddenInput.value = JSON.stringify(selectedTimeslots);
-//     document.getElementById("unique-timeslot-form").submit();
-// }
-
-// // Change week
-// function changeUniqueWeek(offset) {
-//     currentWeekIndex += offset;
-//     document.getElementById("unique-prev-week").disabled = currentWeekIndex === 0;
-//     document.getElementById("unique-next-week").disabled = currentWeekIndex >= Math.floor(allDates.length / 7);
-//     updateUniqueWeek();
-//     populateUniqueSlots();
-// }
-
-// // Initialize on load
-// initializeUniqueTimeslots();
+    initSelectedSlots();
+});

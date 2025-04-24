@@ -9,6 +9,7 @@ class Doctor
     protected $table = "doctors"; // Database table name
     protected $Allowedcolumns = [
         "slmcNo",
+        "doctor_id",
         "description",
         "experience",
         "specialization",
@@ -20,11 +21,25 @@ class Doctor
     public function findAlldata()
     {
 
-        $query = "select * from $this->table ";
+        $query = "SELECT u.*, d.*
+                  FROM users u
+                  INNER JOIN doctors d ON u.user_id = d.doctor_id;";
 
         return $this->query($query);
     }
 
+    public function searchDoctors($searchTerm) {
+        $query = "SELECT u.*, d.*
+                  FROM users u
+                  INNER JOIN doctors d ON u.user_id = d.doctor_id
+                  WHERE u.firstName LIKE :term 
+                     OR u.lastName LIKE :term 
+                     OR d.slmcNo LIKE :term";
+        $data = ['term' => "%$searchTerm%"];
+        return $this->query($query, $data);
+    }
+    
+   
 
 
 
@@ -115,4 +130,10 @@ class Doctor
         $result = $this->query($query, $data);
         return $result ?: []; // Return an empty array if no results are found
     }
+    public function getDoctorsCount() {
+        $query = "SELECT COUNT(*) AS doctors_count FROM doctors;";
+        $result = $this->query($query);
+        return $result[0]['doctors_count'] ?? 0;
+    }
+
 }

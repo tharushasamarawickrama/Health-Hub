@@ -117,8 +117,8 @@ class Setappoinment
                 redirect('patientchannel');
             }
         }
-
-        // Load the view with errors and referal data
-        $this->view('setappoinment', ['referal' => $referal, 'errors' => $errors]);
+        show($referal);
+        // Load the view without any pre-filled data
+        $this->view('setappoinment', ['referal' => $referal]);
     }
 }

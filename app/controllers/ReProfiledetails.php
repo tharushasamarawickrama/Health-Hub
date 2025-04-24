@@ -6,8 +6,12 @@ class ReProfiledetails  {
         
         $id = $_GET['id'];
         $receptionist = new Receptionist;
+        $user = new User;
         $arr['receptionist_id'] = $id;
-        $data = $receptionist->first($arr);
+        $arr2['user_id'] = $id;
+        $data1 = $receptionist->first($arr);
+        $data2 = $user->first($arr2);
+        $data = array_merge($data1, $data2);
       
        if($data){
             $this->view('ReProfiledetails', $data);
