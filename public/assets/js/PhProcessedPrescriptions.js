@@ -13,6 +13,9 @@ class Calendar {
         document.getElementById('ph-pp-prevMonth').addEventListener('click', () => this.previousMonth());
         document.getElementById('ph-pp-nextMonth').addEventListener('click', () => this.nextMonth());
         this.generateCalendar();
+    
+        const todayDateString = this.getTodayDateString();
+        fetchAppointments(todayDateString);
     }
 
     isToday(day) {
@@ -20,6 +23,12 @@ class Calendar {
         return day === today.getDate() && 
                this.currentMonth === today.getMonth() && 
                this.currentYear === today.getFullYear();
+    }
+
+    getTodayDateString() {
+        // Helper function to get today's date in YYYY-MM-DD format
+        const today = this.currentDate;
+        return `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
     }
 
     generateCalendar() {
