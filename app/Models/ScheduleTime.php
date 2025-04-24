@@ -20,10 +20,10 @@ class ScheduleTime
 
     ];
 
-    public function getSchedule($doctor_id, $date)
+    public function getSchedule($doctor_id, $weekday)
     {
-        $query = "select * from $this->table where doctor_id = :doctor_id AND date = :date";
-        return $this->query($query, ['doctor_id' => $doctor_id, 'date' => $date]);
+        $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id AND weekday = :weekday";
+        return $this->query($query, ['doctor_id' => $doctor_id, 'weekday' => $weekday]);
     }
 
     // public function getScheduleByDoctor($doctor_id, $start_date, $end_date){

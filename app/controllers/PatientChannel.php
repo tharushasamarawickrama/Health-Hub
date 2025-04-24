@@ -30,15 +30,16 @@ class PatientChannel {
         }
 
         // Fetch schedule details
-        $arr['schedule_id'] = $_SESSION['sch_id'];
+        $arr['schedule_id'] = $_SESSION['appointment']['schedule_id'];
         $scheduleData = $schedule->first($arr);
 
         if ($scheduleData) {
             $data = array_merge($data, $scheduleData);
         }
-        $sameMonthAppointmentCount = $appointment->getSameMonthAndReferalAppointmentCount($userId, $_SESSION['appointment']['referal_id'], date('m'), date('Y'));   
-        show($sameMonthAppointmentCount); 
+        $sameMonthAppointmentCount = $appointment->getSameMonthAndReferalAppointmentCount($userId, $_SESSION['appointment']['referal_id'], $_SESSION['appointment']['appointment_date']);   
+        // show($sameMonthAppointmentCount); 
         $_SESSION['appointment']['sameMonthAppointmentCount'] = $sameMonthAppointmentCount;
+        $data['appointment_date'] = $_SESSION['appointment']['appointment_date'];
         // Handle form submission
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmbtn'])) {
             // Update filled slots in the schedule
@@ -58,7 +59,7 @@ class PatientChannel {
                 $_SESSION['appointment']['referal_id'] = $lastreferal;
                 $appointment->insert($_SESSION['appointment']);
             }else{  
-                // echo $_SESSION['user']['user_id']; 
+                 
                 $appointment->insert($_SESSION['appointment']);
             }
             
@@ -69,10 +70,11 @@ class PatientChannel {
             $_SESSION['appo_id'] = $appointmentdata['appointment_id'];
 
 
-        
-        // Render the view
-        redirect('Patientpaymentdetails');
-    }
+            // Render the view
+            redirect('Patientpaymentdetails');
+        }
+        // show($data);
+
     $this->view('PatientChannel', $data);
 
     

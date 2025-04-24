@@ -91,7 +91,6 @@ const inputFields = [
     { fieldName: "PhoneNumber", regex: /^\d{10}$/, errorId: "phoneError", message: "Please enter a valid 10-digit phone number." },
     { fieldName: "NIC", regex: /^(?:\d{9}[vVxX]|\d{12})$/, errorId: "nicError", message: "Please enter a valid NIC number." },
     { fieldName: "Password", regex: /^.{8,}$/, errorId: "passwordError", message: "Password must be at least 8 characters long." },
-    { fieldName: "Age", regex: /^[0-9]+$/, errorId: "ageError", message: "Please enter a valid age." },
     { fieldName: "Address", regex: /.+/, errorId: "addressError", message: "Please enter an address." }
 ];
 
