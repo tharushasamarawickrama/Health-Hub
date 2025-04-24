@@ -76,13 +76,24 @@ class Calendar {
 
     addDateListeners() {
         const dates = document.querySelectorAll('.ph-usage-calendar-date');
+        const today = new Date(); // Get today's date
+
         dates.forEach(dateElement => {
-            dateElement.style.cursor = 'pointer';
-            dateElement.onclick = function() {
-                const selectedDate = this.getAttribute('data-date');
-                // Append the selected date as a query parameter
-                window.location.href = `http://localhost/Health-Hub/public/phusagedate?date=${selectedDate}`;
-            };
+            const selectedDate = new Date(dateElement.getAttribute('data-date'));
+
+            if (selectedDate > today) {
+                // Disable future dates
+                dateElement.style.cursor = 'not-allowed';
+                dateElement.classList.add('ph-usage-disabled'); // Add a class for styling
+            } else {
+                // Enable past and today's dates
+                dateElement.style.cursor = 'pointer';
+                dateElement.onclick = function () {
+                    const selectedDate = this.getAttribute('data-date');
+                    // Append the selected date as a query parameter
+                    window.location.href = `http://localhost/Health-Hub/public/phusagedate?date=${selectedDate}`;
+                };
+            }
         });
     }
     
