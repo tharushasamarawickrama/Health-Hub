@@ -23,6 +23,11 @@
                 <i class="fas fa-pills"></i> Pharmacists
             </a>
         </li>
+        <li>
+            <a href="<?php echo URLROOT; ?>AdminPhRegister">
+                <i class="fas fa-pills"></i> Dr profile update request
+            </a>
+        </li>
     </ul>
     <div class="sidebar-footer">
         &copy; <?php echo date('Y'); ?> Health Hub

@@ -5,9 +5,11 @@
 <div class="ViewProfile-body">
     <div class="ViewProfile-container">
 
-           
-            <h1>Doctor's Requests List</h1>
-            
+        <h1>Doctor's Requests List</h1>
+        
+        <?php if (empty($data)): ?>
+            <p>No doctor's requests available.</p>
+        <?php else: ?>
             <?php foreach ($data as $dr_request): ?>
             <div class="ViewProfile-doctor-card">
                 <span class="ViewProfile-doctor-info">SLMC NO <?php echo $dr_request['slmcNo'] ?> - <?php echo $dr_request['firstName']  ?> <?php echo $dr_request['lastName']  ?></span>
@@ -17,10 +19,10 @@
                 </div>
             </div>
             <?php endforeach ?> 
-            
+        <?php endif; ?>
+        
     </div>
 </div>
-
 
 <?php require APPROOT . '/views/Components/footer.php' ?>
 
