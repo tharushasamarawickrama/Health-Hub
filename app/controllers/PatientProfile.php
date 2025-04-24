@@ -82,25 +82,41 @@ class PatientProfile
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['resetButton'])) {
             $data = [
-                'Title' => '',
-                'FirstName' => '',
-                'LastName' => '',
-                'Email' => '',
-                'PhoneNumber' => '',
-                'NIC' => '',
-                'Gender' => '',
-                'Age' => '',
-                'Address' => '',
-                'photo_path' => '',
+                'user_role' => 'disabled',
             ];
-
+            show($data);
             $id = $_SESSION['user']['user_id'];
             if ($UpdatePatient->update($id, $data, 'user_id')) {
                 $arr['user_id'] = $id;
                 $updateduser = $UpdatePatient->first($arr);
+                if($updateduser['user_role'] == 'disabled'){
+                    $appointment = new Appointment;
+                    $arr2['patient_id'] = $id;
+                    $disabledata = $appointment->getAppointmentsByUserId($arr2['patient_id']);
+                    // show($disabledata);
+                    foreach($disabledata as $appo){
+                        // show($appo);
+                        $arr3['appointment_id'] = $appo['appointment_id'];
+                        $appointment->delete($appo['appointment_id'], 'appointment_id');
+                        $prescription = new Prescription;
+                        $arr4['prescription_id'] = $appo['prescription_id'];
+                        $prescription->delete($appo['prescription_id'], 'prescription_id');
+                        $appointmentlabtest = new Appointment_LabTest;
+                        $arr5['appointment_id'] = $appo['appointment_id'];
+                        $appointmentlabtest->delete($appo['appointment_id'], 'appointment_id');
+                        
+                    }
+                    $patientreferal = new Patient_Referal;
+                    $arr6['user_id'] = $id;
+                    
+                    $patientreferal->delete1($id, 'user_id');
+                    $patient = new Patient;
+                    $arr7['patient_id'] = $id;
+                    $patient->delete($id, 'patient_id');
+                }
                 $_SESSION['user'] = $updateduser;
                 $_SESSION['success'] = "Profile Reset successfully.";
-                redirect('patientprofile');
+                redirect('patientregister');
             } else {
                 $_SESSION['error'] = "Failed to Reset profile.";
             }

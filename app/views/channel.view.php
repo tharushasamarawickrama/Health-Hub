@@ -12,7 +12,7 @@
         <span class="availabletext">Available Times</span>
         <?php if (!empty($data2)): ?>
             <?php foreach ($data2 as $schedule): ?>
-                <?php if ($schedule['is_cancelled'] == 'false'): ?>
+                <?php if ($schedule['is_cancelled'] !== 'true'): ?>
                     <?php require APPROOT . '/views/Components/timeslot.php' ?>
                 <?php endif; ?>
             <?php endforeach; ?>

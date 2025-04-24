@@ -46,34 +46,55 @@
                             <div>
                                 <span class="pname">Patient's First Name</span><br>
                                 <input type="text" class="pnameinput" placeholder="Enter First Name" name="p_firstName" id="pfirstname" required>
+                                <?php if (!empty($errors['p_firstName'])): ?>
+                        <span class="error"><?php echo $errors['p_firstName']; ?></span>
+                    <?php endif; ?>
                             </div>
                             <div>
                                 <span class="pname">Patient's Last Name</span><br>
                                 <input type="text" class="pnameinput" placeholder="Enter Last Name" name="p_lastName" id="plastname" required>
+                                <?php if (!empty($errors['p_lastName'])): ?>
+                        <span class="error"><?php echo $errors['p_lastName']; ?></span>
+                    <?php endif; ?>
                             </div>
                         </div>
                         <div class="div2">
                             <div>
                                 <span class="pnic">Patient's NIC</span><br>
                                 <input type="text" class="pnicinput" placeholder="Enter NIC" name="nic" id="nic" required>
+                                <?php if (!empty($errors['nic'])): ?>
+                        <span class="error"><?php echo $errors['nic']; ?></span>
+                    <?php endif; ?>
                             </div>
                             <div>
                                 <span class="pnumber">Patient's Contact Number</span><br>
                                 <input type="text" class="pnumberinput" placeholder="Enter Contact Number" name="phoneNumber" id="phoneNumber" required>
+                                <?php if (!empty($errors['phoneNumber'])): ?>
+                        <span class="error"><?php echo $errors['phoneNumber']; ?></span>
+                    <?php endif; ?>
                             </div>
                             <div>
                                 <span class="pnumber">Patient's Age</span><br>
-                                <input type="text" class="pnumberinput" placeholder="Enter Age" name="age" id="age" required>   
-                            </div>    
+                                <input type="text" class="pnumberinput" placeholder="Enter Age" name="age" id="age" required>
+                                <?php if (!empty($errors['age'])): ?>
+                        <span class="error"><?php echo $errors['age']; ?></span>
+                    <?php endif; ?>
+                            </div>
                         </div>
                         <div class="div2">
                             <div>
                                 <span class="pnic">Patient's Address</span><br>
                                 <input type="text" class="pnicinput" placeholder="Enter Address" name="address" id="address" required>
+                                <?php if (!empty($errors['address'])): ?>
+                        <span class="error"><?php echo $errors['address']; ?></span>
+                    <?php endif; ?>
                             </div>
                             <div>
                                 <span class="pnumber">Patient's Email</span><br>
                                 <input type="email" class="pnumberinput" placeholder="Enter Email" name="email" id="email" required>
+                                <?php if (!empty($errors['email'])): ?>
+                        <span class="error"><?php echo $errors['email']; ?></span>
+                    <?php endif; ?>
                             </div>
                             <div>
                                 <span class="titletext">Gender</span><br>
@@ -83,7 +104,7 @@
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -91,6 +112,9 @@
                 <div class="div3">
                     <input type="checkbox" value="yes" class="checkbox" name="addservice" required>
                     <span class="checkboxtext">Add service Charge</span>
+                    <?php if (!empty($errors['add_service'])): ?>
+                    <span class="error"><?php echo $errors['add_service']; ?></span>
+                <?php endif; ?>
                 </div>
 
                 <div>

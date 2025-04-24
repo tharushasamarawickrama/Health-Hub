@@ -11,7 +11,7 @@
         <p class="pt-history-div1-h1">Others</p>
     </div>
 </div>
-
+<!-- <?php show($data) ?> -->
 <!-- Referral Filter Dropdown -->
 <div style="margin: 20px;">
     <label for="referralFilter">Filter by Referral:</label>
@@ -30,6 +30,8 @@
         <?php foreach ($data as $index => $item): ?>
             <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
                 <div class="pt-history-div2">
+                    <span>Date-<?= $item['appointment']['appointment_date'] ?>, <span><?= $item['schedule']['weekday'] ?></span></span>
+
                     <span class="pt-history-span">Prescription-<?= $index + 1 ?></span>
                     <span class="pt-history-span">Appo: <?= $item['appointment']['appointment_id'] ?></span>
                     <button class="pt-history-button view-button" data-index="<?= $index ?>">View</button>
@@ -161,8 +163,8 @@
 
 
 <!-- Modal Structure -->
-<div id="viewModal" class="modal">
-    <div class="modal-content">
+<div id="viewModal" class="modal1">
+    <div class="modal-content1">
         <!-- Header Section with Close Button -->
         <div class="modal-header">
             <h4>Prescription Details</h4>
