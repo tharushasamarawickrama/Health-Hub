@@ -14,7 +14,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     session_destroy();
 
     // Redirect to the login page or homepage
-    header("Location: " . URLROOT . "/Prevlog");
+    header("Location: " . URLROOT . "/patientregister");
     exit; // Ensure no further code is executed after redirect
 }
 ?>
@@ -36,7 +36,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
                 <div class="dropdown">
                     <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
                     <div class="dropdown-content">
-                        <a href="?action=logout">Logout</a>
+                        <a href="<?php echo URLROOT; ?>/patientregister">Logout</a>
                     </div>
                 </div>
             <?php else: ?>

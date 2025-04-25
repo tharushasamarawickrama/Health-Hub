@@ -80,7 +80,7 @@ public function deleteReport() {
         return;
     }
 
-    $filePath = '../public/assets/' . $report['labtest_report'];
+    $filePath = APPROOT . '/../public/' . $report['labtest_report'];
 
     // 2. Delete file if it exists
     $fileDeleted = false;
