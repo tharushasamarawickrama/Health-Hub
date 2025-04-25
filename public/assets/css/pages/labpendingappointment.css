@@ -1,13 +1,50 @@
 
-.lab-pend-app-content{
-    padding: 15px;
-    max-width: 700px;
-    margin: 80px auto 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.lab-pend-app-container {
+    position: relative;
+    width: 100%;
+    padding-top: 60px; /* Add space for the fixed navbar */
 }
 
+.lab-pend-app-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    position: relative;
+}
+.lab-pend-app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 40px; /* Added more margin below to separate from content */
+    height: 60px; /* Added a specific height to ensure consistent spacing */
+}
+
+.lab-pend-app-action-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.lab-pend-app-action-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.lab-pend-app-complete-btn {
+    background-color: #1ca6a8;
+    color: white;
+}
+
+.lab-pend-app-complete-btn:hover {
+    background-color: #138686;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(28, 166, 168, 0.3);
+}
 .lab-pend-app-prescription-details {
     background: linear-gradient(to right bottom, #e6f7ff, #f0f9ff);
     padding: 80px;
@@ -127,10 +164,11 @@
 }
 .lab-pend-app-back-button-container {
     position: absolute;
-    top: 70px;
-    padding: 20px;
+    top: 20px; /* Changed from 70px to 20px to match the action buttons */
     left: 20px;
+    padding: 0; /* Removed padding that was adding extra space */
 }
+
 
 .lab-pend-app-back-button {
     display: flex;
