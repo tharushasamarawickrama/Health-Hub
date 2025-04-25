@@ -2,29 +2,6 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
-// Fetch doctor's data from the database (example data here)
-// $doctorData = [
-//     "name" => "Dr. R. S. Peiris",
-//     "description" => "Dr. Peiris is a highly experienced physician with over 5 years of practice in providing exceptional medical care. He is deeply committed to the well-being and health of his patients, offering comprehensive care across various medical specialties. Dr. Peiris is skilled in diagnosing and treating a wide range of conditions, ensuring that each patient receives personalized and effective care.",
-//     "experience" => "5+ years of medical practice",
-//     "specialties" => [
-//         "General Medicine", 
-//         "Family Medicine", 
-//         "Preventive Care", 
-//         "Chronic Disease Management", 
-//         "Pediatric Care", 
-//         "Geriatric Care"
-//     ],
-//     "certifications" => [
-//         "Board Certified in Family Medicine",
-//         "Certified in Advanced Cardiac Life Support (ACLS)",
-//         "Certified in Basic Life Support (BLS)"
-//     ],
-//     "availability" => "Monday to Friday, 8 AM - 6 PM",
-//     "phone" => "(123) 456-7890",
-//     "email" => "drpeiris@gmail.com"
-// ];
-
 $doctorData = $doctorData ?? [];
 $userData = $userData ?? [];
 ?>

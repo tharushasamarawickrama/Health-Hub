@@ -37,7 +37,13 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     ?>
 
     <a href="<?php echo URLROOT; ?>drDashboard" class="drNavitems <?php echo strpos($current_page, 'drDashboard') === 0 ? 'active' : ''; ?>">Dashboard</a>
-    <a href="<?php echo URLROOT; ?>drAvailability" class="drNavitems <?php echo strpos($current_page, 'drAvailability') === 0 ? 'active' : ''; ?>">Update Availability</a>
+    <a href="<?php echo URLROOT; ?>drSchedules" 
+        class="drNavitems <?php echo preg_match(
+            '/^dr(Schedules|Availability|Availability2)/', 
+            $current_page
+        ) ? 'active' : ''; ?>">
+        Schedules
+        </a>
     <a href="<?php echo URLROOT; ?>drViewAppointments" 
         class="drNavitems <?php echo preg_match(
             '/^dr(ViewAppointments|Appointment|Prescription|EditPrescription|MedicalHistory|LabTests)/', 
