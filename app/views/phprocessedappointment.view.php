@@ -33,6 +33,7 @@
                 <th>Measurement</th>
                 <th>Sig codes</th>
                 <th>Duration</th>
+                <th>No.of units Issued</th>
             </tr>
         
             <?php if (!empty($medications)): ?>
@@ -42,7 +43,8 @@
                 <td><?php echo htmlspecialchars($medication['quantity'] ?? 'N/A'); ?></td>
                 <td><?php echo htmlspecialchars($medication['measurement'] ?? 'N/A'); ?></td>
                 <td><?php echo htmlspecialchars($medication['sig_codes'] ?? 'N/A'); ?></td>
-                <td><?php echo htmlspecialchars($medication['duration'] ?? 'N/A'); ?></td>
+                <td><?php echo htmlspecialchars(str_replace(',', '/',$medication['duration'] ?? 'N/A')); ?></td>
+                <td><?php echo htmlspecialchars($medication['units_issued'] ?? 'N/A'); ?></td>
             </tr>
             <?php endforeach; ?>
             <?php else: ?>

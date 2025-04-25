@@ -8,6 +8,7 @@ class Appointment
 
     protected $Allowedcolumns = [
         'appointment_id',
+        'schedule_id',
         'doctor_id',
         'patient_id',
         'referal_id',
@@ -169,25 +170,47 @@ class Appointment
         ]);
     }
 
-    public function getSameMonthAndReferalAppointmentCount($userId, $referalId, $month, $year)
-    {
-        // SQL query to count appointments in the same month and with the same referral ID
-        $sql = "SELECT COUNT(*) AS appointment_count
-                FROM $this->table
-                WHERE patient_id = :user_id
-                AND referal_id = :referal_id
-                AND MONTH(appointment_date) = :month
-                AND YEAR(appointment_date) = :year";
+    public function getSameMonthAndReferalAppointmentCount($userId, $referalId, $date)
+{
+    // Extract the month, year, and day from the provided date
+    $month = date('m', strtotime($date));
+    $year = date('Y', strtotime($date));
+    $day = date('d', strtotime($date));
 
-        // Execute the query with the provided parameters
-        $result = $this->query($sql, [
-            'user_id' => $userId,
-            'referal_id' => $referalId,
-            'month' => $month,
-            'year' => $year,
-        ]);
+    // SQL query to count appointments in the same month, year, and day with the same referral ID
+    $sql = "SELECT COUNT(*) AS appointment_count
+            FROM $this->table
+            WHERE patient_id = :user_id
+            AND referal_id = :referal_id
+            AND MONTH(appointment_date) = :month
+            AND YEAR(appointment_date) = :year
+            AND DAY(appointment_date) = :day"; // Add a condition for the day
 
-        // Return the count if the result is found, otherwise return 0
-        return $result[0]['appointment_count'] ?? 0;
-    }
+    // Execute the query with the provided parameters
+    $result = $this->query($sql, [
+        'user_id' => $userId,
+        'referal_id' => $referalId,
+        'month' => $month,
+        'year' => $year,
+        'day' => $day,
+    ]);
+
+    // Return the count if the result is found, otherwise return 0
+    return $result[0]['appointment_count'] ?? 0;
+}
+
+public function getAppointmentsByScheduleAndDoctor($schedule_id, $doctor_id) {
+    $query = "SELECT appointment_id, p_firstName, p_lastName, phoneNumber 
+              FROM {$this->table} 
+              WHERE schedule_id = :schedule_id AND doctor_id = :doctor_id";
+
+    $params = [
+        'schedule_id' => $schedule_id,
+        'doctor_id' => $doctor_id,
+    ];
+
+    return $this->query($query, $params);
+}
+
+
 }

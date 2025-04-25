@@ -41,8 +41,11 @@ class Doctor
     
    
 
-    public function findDoctors($arr) {
-        if($arr['firstName'] == '' && $arr['lastName'] == '' && $arr['specialization'] == '') {
+
+
+    public function findDoctors($arr)
+    {
+        if ($arr['firstName'] == '' && $arr['lastName'] == '' && $arr['specialization'] == '') {
             return [];
         }
         if (empty($arr['firstName']) && empty($arr['lastName'])) {
@@ -77,22 +80,73 @@ class Doctor
             ];
             return $this->query($query, $data);
         }
-
     }
 
-    public function getDoctorTypeById($doctor_id){
+    public function getDoctorTypeById($doctor_id)
+    {
         $query = "select type from $this->table where doctor_id = :doctor_id";
         return $this->query($query, ['doctor_id' => $doctor_id]);
     }
-    public function getAllAvailabilitySlots($doctor_id){
+    public function getAllAvailabilitySlots($doctor_id)
+    {
         $query = "SELECT availability FROM $this->table where doctor_id != :doctor_id";
         return $this->query($query, ['doctor_id' => $doctor_id]);
     }
 
+    public function findDoctorsByDay($day)
+    {
+        $query = "SELECT * FROM doctors 
+                  JOIN users ON doctors.doctor_id = users.user_id 
+                  JOIN schedule_time ON doctors.doctor_id = schedule_time.doctor_id 
+                  WHERE schedule_time.weekday = :day";
+
+        $result = $this->query($query, ['day' => $day]);
+        return $result ?: []; // Return an empty array if no results are found
+    }
+
+    public function findDoctorsBySpecializationAndDay($specialization, $day)
+    {
+        $query = "SELECT * FROM doctors 
+                  JOIN users ON doctors.doctor_id = users.user_id 
+                  JOIN schedule_time ON doctors.doctor_id = schedule_time.doctor_id 
+                  WHERE schedule_time.weekday = :day AND doctors.specialization = :specialization";
+
+        $result = $this->query($query, ['day' => $day, 'specialization' => $specialization]);
+        return $result ?: []; // Return an empty array if no results are found
+    }
+
+    public function findDoctorsByNameAndDay($arr, $day)
+    {
+        $query = "SELECT * FROM doctors 
+                  JOIN users ON doctors.doctor_id = users.user_id 
+                  JOIN schedule_time ON doctors.doctor_id = schedule_time.doctor_id 
+                  WHERE schedule_time.weekday = :day AND (users.firstName = :firstName OR users.lastName = :lastName)";
+
+        $data = [
+            'day' => $day,
+            'firstName' => $arr['firstName'],
+            'lastName' => $arr['lastName']
+        ];
+        $result = $this->query($query, $data);
+        return $result ?: []; // Return an empty array if no results are found
+    }
     public function getDoctorsCount() {
         $query = "SELECT COUNT(*) AS doctors_count FROM doctors;";
         $result = $this->query($query);
         return $result[0]['doctors_count'] ?? 0;
+    }
+
+    public function DoctorUpdateByAdmin($id, $data, $id_column = 'doctor_id') {
+        $setClause = [];
+        foreach ($data as $key => $value) {
+            $setClause[] = "$key = :$key";
+        }
+        $setClause = implode(', ', $setClause);
+    
+        $query = "UPDATE {$this->table} SET $setClause WHERE $id_column = :id";
+        $data['id'] = $id;
+    
+        return $this->query($query, $data);
     }
 
 }

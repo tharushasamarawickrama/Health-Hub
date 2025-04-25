@@ -20,15 +20,61 @@ class Channel
             }
         }
 
+        function getDayOfWeek($dateString)
+        {
+            // Define an array of day names
+            $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            // Parse the input date string into an array
+            list($year, $month, $day) = explode('-', $dateString);
+
+            // Get the timestamp for the given date
+            $timestamp = mktime(0, 0, 0, $month, $day, $year);
+
+            // Get the day of the week as a number (0-6)
+            $dayIndex = date('w', $timestamp);
+
+            // Return the corresponding day name
+            return $daysOfWeek[$dayIndex];
+        }
+
+        function getDateForDay($dayName)
+        {
+            $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            $currentDate = new DateTime();
+            $targetDayNumber = array_search(ucfirst(strtolower($dayName)), $daysOfWeek);
+
+            if ($targetDayNumber === false) {
+                return "Invalid day name";
+            }
+
+            $currentDayNumber = (int)$currentDate->format('w');
+            $daysDifference = $targetDayNumber - $currentDayNumber;
+
+            if ($daysDifference <= 0) {
+                $daysDifference += 7;
+            }
+
+            $currentDate->modify("+$daysDifference days");
+            return $currentDate->format('Y-m-d');
+        }
+
         $scedule = new ScheduleTime;
         if ($_SESSION['appointment_date'] == '') {
             $data2 = $scedule->getScheduleByDoctor($id);
         } else {
-            $data2 = $scedule->getSchedule($id, $_SESSION['appointment_date']);
+            $data2 = $scedule->getSchedule($id, getDayOfWeek($_SESSION['appointment_date']));
         }
 
+        foreach ($data2 as &$key) {
+            $dayName = $key['weekday'];
+            $date['appo_data'] = getDateForDay($dayName);
+            if ($date) {
+                $key = array_merge($key, $date);
+            }
+        }
         //print_r($_SESSION['appointment_date']);
-        // print_r($data2);
+        // show($data2);
         $this->view('channel', $data, $data2);
     }
 

@@ -14,17 +14,21 @@
             </div>
             <!-- Searchbar end -->
             <h1>Receptionists List</h1>
-            
-            <?php foreach ($data as $receptionist): ?>
-            <div class="ViewProfile-doctor-card">
-                <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $receptionist['employeeNo'] ?> - <?php echo $receptionist['firstName'] ?></span>
-                <div class="ViewProfile-button-group">
-                    <a href="<?php echo URLROOT;?>ReProfiledetails?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
-                    <a href="<?php echo URLROOT;?>ViewAllRecepProfile/delete?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-delete-btn" >DELETE</button></a>
+            <?php if (empty($data)): ?>
+                <p>No receptionists available.</p>
+            <?php else: ?>
+
+                <?php foreach ($data as $receptionist): ?>
+                <div class="ViewProfile-doctor-card">
+                    <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $receptionist['employeeNo'] ?> - <?php echo $receptionist['firstName'] ?></span>
+                    <div class="ViewProfile-button-group">
+                        <a href="<?php echo URLROOT;?>ReProfiledetails?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
+                        <a href="<?php echo URLROOT;?>ViewAllRecepProfile/delete?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-delete-btn" >DELETE</button></a>
+                    </div>
                 </div>
-            </div>
-            <?php endforeach ?> 
-            
+                <?php endforeach ?> 
+            <?php endif; ?>
+                
     </div>
 </div>
 

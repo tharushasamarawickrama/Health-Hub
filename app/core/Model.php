@@ -96,7 +96,7 @@ trait Model
     public function delete($id, $id_column = 'id')
     {
         $data[$id_column] = $id;
-
+        // show($data);
         $query = "delete from $this->table where $id_column = :$id_column";
 
         $this->query($query, $data);

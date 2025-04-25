@@ -35,7 +35,7 @@
         
         <table class="ph-pres-app-prescription-table">
             <tr>
-                <th>Name</th>
+                <th>Medicine</th>
                 <th>Qty</th>
                 <th>Measurement</th>
                 <th>Sig codes</th>
@@ -48,8 +48,8 @@
             <td><?php echo htmlspecialchars($medication['quantity'] ?? 'N/A'); ?></td>
             <td><?php echo htmlspecialchars($medication['measurement'] ?? 'N/A'); ?></td>
             <td><?php echo htmlspecialchars($medication['sig_codes'] ?? 'N/A'); ?></td>
-            <td><?php echo htmlspecialchars($medication['duration'] ?? 'N/A'); ?></td>
-        </tr>
+            <td><?php echo htmlspecialchars(str_replace(',', '/',$medication['duration'] ?? 'N/A')); ?></td>
+            </tr>
     <?php endforeach; ?>
 <?php else: ?>
     <tr><td colspan="5">No medications found</td></tr>
@@ -101,6 +101,7 @@
                 <input type="number" name="medications[<?php echo $index; ?>][preferred_duration]" min="1" required 
                 value="<?php echo isset($medication['preferred_duration']) ? htmlspecialchars($medication['preferred_duration']) : ''; ?>">
             </td>
+            
             <td>
                 <?php if (isset($data['noofunits'][$index])): ?>
                     <?php echo $data['noofunits'][$index]['amount']; ?>

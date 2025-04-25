@@ -14,28 +14,28 @@
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="lastName">Last Name</label>
-                    <input class="AdminInput" type="text" id="lastName" name="lastName" value="<?php echo $data['lastName'] ?? ''; ?>">
+                    <input class="AdminInput" type="text" id="lastName" name="lastName" value="<?php echo $data['lastName'] ?? ''; ?>" required>
                     <span class="error"><?php echo $data['errors']['lastName'] ?? ''; ?></span>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="password">Password</label>
-                    <input class="AdminInput" type="password" id="password" name="password" >
+                    <input class="AdminInput" type="password" id="password" name="password" required>
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="phoneNumber">Phone Number</label>
-                    <input class="AdminInput" type="text" id="phoneNumber" name="phoneNumber" >
+                    <input class="AdminInput" type="text" id="phoneNumber" name="phoneNumber" required>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="email">Email</label>
-                    <input class="AdminInput" type="email" id="email" name="email" >
+                    <input class="AdminInput" type="email" id="email" name="email" required>
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="title">Title</label>
-                    <select class="AdminSelect" id="title" name="title" >
+                    <select class="AdminSelect" id="title" name="title" required>
                         <option value="Mr">Mr</option>
                         <option value="Dr">Dr</option>
                         <option value="Mrs">Mrs</option>
@@ -46,7 +46,7 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="gender">Gender</label>
-                    <select class="AdminSelect" id="gender" name="gender" >
+                    <select class="AdminSelect" id="gender" name="gender" required>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
@@ -60,17 +60,17 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="employeeNo">Employee No</label>
-                    <input class="AdminInput" type="text" id="employeeNo" name="employeeNo" >
+                    <input class="AdminInput" type="text" id="employeeNo" name="employeeNo" required>
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="nic">NIC</label>
-                    <input class="AdminInput" type="text" id="nic" name="nic" >
+                    <input class="AdminInput" type="text" id="nic" name="nic" required>
                 </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group-full-width">
                     <label class="AdminLabel" for="address">Address</label>
-                    <textarea class="AdminTextarea" id="address" name="address" rows="3" ></textarea>
+                    <textarea class="AdminTextarea" id="address" name="address" rows="3" required></textarea>
                 </div>
             </div>
             <div class="AdminRegister-form-row">

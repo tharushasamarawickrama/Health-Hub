@@ -54,5 +54,17 @@ class User {
             return $result[0]['user_id'] ?? null;
         }
         
+        public function UserUpdateByAdmin($id, $data, $id_column = 'user_id') {
+            $setClause = [];
+            foreach ($data as $key => $value) {
+                $setClause[] = "$key = :$key";
+            }
+            $setClause = implode(', ', $setClause);
+        
+            $query = "UPDATE {$this->table} SET $setClause WHERE $id_column = :id";
+            $data['id'] = $id;
+        
+            return $this->query($query, $data);
+        }
         
 }
