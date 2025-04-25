@@ -11,7 +11,7 @@ require APPROOT . '/views/Components/drNavbar.php';
     </div>
 
     <div class="unique-availability-header">
-        <a href="<?php echo URLROOT; ?>drDashboard" class="unique-back-arrow">
+        <a href="<?php echo URLROOT; ?>drSchedules" class="unique-back-arrow">
             <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
         </a>
         <h3>Selected Timeslots</h3>

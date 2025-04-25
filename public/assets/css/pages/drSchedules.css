@@ -1,0 +1,63 @@
+.dr-schedule-container {
+    font-family: "Nunito", sans-serif;
+    margin-top: 40px;
+    padding: 100px;
+}
+
+.dr-schedule-content {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-evenly;
+}
+
+.schedule-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #b3d7ff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-component {
+  white-space: pre;
+  border-bottom: rgba(0, 0, 0, 0.1) solid 3px;
+  display: flex;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin: 5px;
+  font-size: 0.9em;
+  justify-content: space-between;
+}
+
+.schedule-right {
+  width: 100%;
+  max-width: 500px;
+  padding: 5px 40px;
+  background-color: #ffffff;
+  border: 2px solid #b3d7ff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-update-btn {
+    position: absolute;
+    right: 200px;
+    bottom: 40px;
+    border-radius: 10px;
+    background-color: #CDE1E5;
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 10px;
+    transition: ease 0.4s;
+}
+
+.schedule-update-btn:hover{
+    background-color: #7cabb5;
+}
