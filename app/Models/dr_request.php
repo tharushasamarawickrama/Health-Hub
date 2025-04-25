@@ -44,6 +44,11 @@ class dr_request {
         $query = "SELECT COUNT(*) AS request_count FROM dr_requests;";
         $result = $this->query($query);
         return $result[0]['request_count'] ?? 0;
+        // if (empty($result) || !isset($result[0]['request_count'])) {
+        //     return 0;
+        // }
+    
+        // return $result[0]['request_count'];
     }
 
 
