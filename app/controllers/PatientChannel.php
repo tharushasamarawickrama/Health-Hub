@@ -16,7 +16,7 @@ class PatientChannel {
         $schedule = new ScheduleTime;
 
         // Get user and doctor IDs from session
-        $userId = $_SESSION['user']['user_id'];
+        $userId = isset($_SESSION['user']['user_id']) ? $_SESSION['user']['user_id'] : 0;
         $doctorId = $_SESSION['appointment']['doctor_id'];
 
         // Fetch doctor and user details
@@ -36,8 +36,11 @@ class PatientChannel {
         if ($scheduleData) {
             $data = array_merge($data, $scheduleData);
         }
-        $sameMonthAppointmentCount = $appointment->getSameMonthAndReferalAppointmentCount($userId, $_SESSION['appointment']['referal_id'], $_SESSION['appointment']['appointment_date']);   
-        // show($sameMonthAppointmentCount); 
+        if (isset($_SESSION['user']['user_id'])) {
+            $sameMonthAppointmentCount = $appointment->getSameMonthAndReferalAppointmentCount($userId, $_SESSION['appointment']['referal_id'], $_SESSION['appointment']['appointment_date']);   
+        } else {
+            $sameMonthAppointmentCount = 0;
+        }
         $_SESSION['appointment']['sameMonthAppointmentCount'] = $sameMonthAppointmentCount;
         $data['appointment_date'] = $_SESSION['appointment']['appointment_date'];
         // Handle form submission

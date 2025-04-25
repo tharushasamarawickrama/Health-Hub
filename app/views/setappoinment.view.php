@@ -14,10 +14,8 @@
                 <span class="channeldoctortext">Channel Your Doctor</span>
             </div>
             <form action="<?php echo URLROOT; ?>setappoinment?id=<?php echo $_GET['id']; ?>&sch_id=<?php echo $_GET['sch_id']; ?>" method="POST" id="channelform">
+                <?php if(isset($_SESSION['user'])): ?>
                 <div class="dropdown-div">
-
-
-
                     <span class="titletext1">Select Patient</span><br>
                     <select class="patient-select" name="patientType" id="patientType" required>
                         <option value="" disabled selected hidden>Select Patient</option>
@@ -29,6 +27,7 @@
                         <option value="new" selected>New User</option>
                     </select>
                 </div>
+                <?php endif; ?>
 
                 <div class="middlediv">
                     <div>

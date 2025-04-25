@@ -95,11 +95,11 @@ $hash_string = strtoupper(
 
             <input type="hidden" name="hash" value="<?php echo $hash_string; ?>">
 
-            <input type="hidden" name="first_name" value="<?php echo $_SESSION['user']['firstName']; ?>">
-            <input type="hidden" name="last_name" value="<?php echo $_SESSION['user']['lastName']; ?>">
-            <input type="hidden" name="email" value="<?php echo $_SESSION['user']['email']; ?>">
-            <input type="hidden" name="phone" value="<?php echo $_SESSION['user']['phoneNumber']; ?>">
-            <input type="hidden" name="address" value="<?php echo $_SESSION['user']['address']; ?>">
+            <input type="hidden" name="first_name" value="<?php echo isset($_SESSION['user']['firstName']) ? $_SESSION['user']['firstName'] : $data['p_firstName']; ?>">
+            <input type="hidden" name="last_name" value="<?php echo isset($_SESSION['user']['lastName']) ? $_SESSION['user']['lastName'] : $data['p_lastName']; ?>">
+            <input type="hidden" name="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : $data['email']; ?>">
+            <input type="hidden" name="phone" value="<?php echo isset($_SESSION['user']['phoneNumber']) ? $_SESSION['user']['phoneNumber'] : $data['phoneNumber']; ?>">
+            <input type="hidden" name="address" value="<?php echo isset($_SESSION['user']['address']) ? $_SESSION['user']['address'] : $data['address']; ?>">
             <input type="hidden" name="city" value="Colombo">
             <input type="hidden" name="country" value="LK">
 
