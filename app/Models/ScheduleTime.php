@@ -33,7 +33,7 @@ class ScheduleTime
 
     public function getScheduleByDoctor($doctor_id)
     {
-        $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id";
+        $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id AND is_cancelled != 'true'";
         return $this->query($query, ['doctor_id' => $doctor_id]);
     }
 

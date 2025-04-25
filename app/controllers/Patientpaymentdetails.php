@@ -19,8 +19,12 @@ class Patientpaymentdetails
             $data['appo_id'] = $appoid;
             $this->view('Patientpaymentdetails', $data);
         }else{
-
-            $this->view('Patientpaymentdetails');
+            $appoid = $_SESSION['appo_id'];
+            $appointment = new Appointment;
+            $arr['appointment_id'] = $appoid;
+            $data = $appointment->first($arr);
+            // show($data);
+            $this->view('Patientpaymentdetails', $data);
         }
     }
 }

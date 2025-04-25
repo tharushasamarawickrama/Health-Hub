@@ -10,13 +10,16 @@ class Setappoinment
         $sch_id = $_GET['sch_id'] ?? null;
 
         $appoinment = new Appointment;
-        $referal = $appoinment->getDistinctReferalAndUserDetails($_SESSION['user']['user_id']);
-        $referal = array_filter($referal, function ($item) {
-            return $item['referal_id'] != 0;
-        });
-
-        // Re-index the array to maintain sequential keys
-        $referal = array_values($referal);
+        if(isset($_SESSION['user'])){
+            $referal = $appoinment->getDistinctReferalAndUserDetails($_SESSION['user']['user_id']);
+            $referal = array_filter($referal, function ($item) {
+                return $item['referal_id'] != 0;
+            });
+    
+            // Re-index the array to maintain sequential keys
+            $referal = array_values($referal);
+        }
+        
 
         $errors = []; // Array to store validation errors
 
@@ -24,7 +27,7 @@ class Setappoinment
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize input data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+            
             $data = [
                 'p_firstName' => trim($_POST['p_firstName']),
                 'p_lastName' => trim($_POST['p_lastName']),
@@ -37,13 +40,17 @@ class Setappoinment
                 'title' => $_POST['Title'] ?? '',
                 'add_service' => $_POST['addservice'] ?? '',
                 'doctor_id' => $id,
-                'patient_id' => $_SESSION['user']['user_id'],
+                'patient_id' => isset($_SESSION['user']) ? $_SESSION['user']['user_id'] : 0,
                 'payment_status' => 'pending',
-                'referal_id' => $_POST['patientType'] ?? '',
+                'referal_id' => isset($_SESSION['user']) ? ($_POST['patientType'] ?? '') : 0,
                 'isdeleted' => 0,
                 'status' => 'new',
                 'schedule_id' => $sch_id,
             ];
+
+            if(isset($_SESSION['user'])){
+
+            }
 
             // Backend validation
             if (empty($data['p_firstName'])) {
@@ -117,8 +124,12 @@ class Setappoinment
                 redirect('patientchannel');
             }
         }
-        show($referal);
+        // show($referal);
         // Load the view without any pre-filled data
-        $this->view('setappoinment', ['referal' => $referal]);
+        if (isset($_SESSION['user'])) {
+            $this->view('setappoinment', ['referal' => $referal]);
+        } else {
+            $this->view('setappoinment');
+        }
     }
 }

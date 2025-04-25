@@ -4,8 +4,10 @@
     </a>
 
     <a href="<?php echo URLROOT; ?>home" class="navitems">Home</a>
-    <a href="<?php if (isset($_SESSION['user'])): ?> <?php echo URLROOT; ?>searchappoinment <?php else: ?> <?php echo URLROOT; ?>patientregister <?php endif; ?>" class="navitems">Appointment</a>
-    <a href="<?php if (isset($_SESSION['user'])): ?> <?php echo URLROOT; ?>patienthistory <?php else: ?> <?php echo URLROOT; ?>patientregister <?php endif; ?>" class="navitems">History</a>
+    <a href=" <?php echo URLROOT; ?>searchappoinment?>" class="navitems">Appointment</a>
+    <?php if (isset($_SESSION['user'])): ?>
+        <a href="<?php echo URLROOT; ?>patienthistory" class="navitems">History</a>
+    <?php endif; ?>
 
     <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== '' 
     ): ?>
