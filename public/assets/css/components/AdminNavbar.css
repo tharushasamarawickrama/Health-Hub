@@ -1,10 +1,11 @@
 .AdminNavbar {
-    background-color: #06468f; /* New dark blue background */
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    padding: 0 290px;
-    height: 70px;
+    font-family: 'Nunito', sans-serif;
+    background-color: #003C70;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    height: 60px;
     display: flex;
     width: 75%;
+    padding: 0 290px;
     justify-content: space-between;
     align-items: center;
     position: fixed;
@@ -19,6 +20,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .AdminNav {
@@ -28,17 +31,17 @@
 }
 
 .AdminNavitems {
-    font-size: 20px;
-    color: #FFFFFF; /* White text for navbar items */
+    flex-shrink: 0;
+    flex-grow: 0;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
     width: 150px;
     display: flex;
     justify-content: center;
-    text-decoration: none;
-    font-weight: bold;
     padding: 10px 10px;
-    border-radius: 50px;
     cursor: pointer;
-    transition: 0.7s;
+    transition: background-color 0.3s, transform 0.3s, ease 0.3s;
 }
 
 .adminlogodiv {
@@ -48,33 +51,39 @@
 }
 
 .AdminNavitems:hover {
-    background-color: #39CABB; /* Hover effect with teal color */
-    color: #000000; /* Black text on hover */
+    color: #8bc9d4;
+}
+
+.AdminNavitems.active {
+    color: #8bc9d4;
+    box-shadow: 0 0.5px 0 0 #8bc9d4;
 }
 
 .Adminlogo {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     margin-left: -280px;
 }
 
 .Adminloginlogo {
-    width: 65px;
-    height: 65px;
+    width: 40px;
+    height: 40px;
     margin-left: 120px;
     border-radius: 50%;
+    border: 1px solid #8bc9d4;
+    cursor: pointer;
 }
 
 .Adminlogin {
     text-decoration: none;
-    color: #FFFFFF; /* White text for login */
-    font-weight: bold;
+    color: #8bc9d4;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
 }
 
 /* Dropdown container */
@@ -87,18 +96,25 @@
 .adminnavbardropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    right: 0;
+    background-color: #ffffff;
     min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(39, 28, 110, 0.2);
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 /* Dropdown items */
 .adminnavbardropdown-content .adminnavbardropdown-item {
-    color: black;
+    color: #333;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    font-size: 18px;
+    border: 1px solid rgba(39, 28, 110, 0.2);
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 /* Show dropdown content on hover */
@@ -108,5 +124,16 @@
 
 /* Dropdown item hover effect */
 .adminnavbardropdown-content .adminnavbardropdown-item:hover {
-    background-color: #f1f1f1;
+    background-color: #d2caca;
+}
+
+.show {
+    display: block;
+}
+
+.admin-profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: -5px;
 }
