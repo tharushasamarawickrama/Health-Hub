@@ -198,4 +198,19 @@ class Appointment
     // Return the count if the result is found, otherwise return 0
     return $result[0]['appointment_count'] ?? 0;
 }
+
+public function getAppointmentsByScheduleAndDoctor($schedule_id, $doctor_id) {
+    $query = "SELECT appointment_id, p_firstName, p_lastName, phoneNumber 
+              FROM {$this->table} 
+              WHERE schedule_id = :schedule_id AND doctor_id = :doctor_id";
+
+    $params = [
+        'schedule_id' => $schedule_id,
+        'doctor_id' => $doctor_id,
+    ];
+
+    return $this->query($query, $params);
+}
+
+
 }
