@@ -45,6 +45,33 @@ class Prescribed_Medications
         return false; // Return false if no medications found
     }
 
+    /*trigger
+    DELIMITER $$
+
+CREATE TRIGGER trg_prescribed_med_before_insert
+BEFORE INSERT ON prescribed_medication
+FOR EACH ROW
+BEGIN
+  IF NEW.units_issued IS NOT NULL THEN
+    SET NEW.issued_date = CURDATE(); -- use NOW() if you want full timestamp
+  END IF;
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE TRIGGER trg_prescribed_med_before_update
+BEFORE UPDATE ON prescribed_medication
+FOR EACH ROW
+BEGIN
+  IF NEW.units_issued IS NOT NULL AND NEW.units_issued <> OLD.units_issued THEN
+    SET NEW.issued_date = CURDATE(); -- or NOW() for full timestamp
+  END IF;
+END$$
+
+DELIMITER ;*/
+
     public function deleteWhere($conditions) {
         // Check if the table is empty or if rows matching the conditions exist
         $keys = array_keys($conditions);

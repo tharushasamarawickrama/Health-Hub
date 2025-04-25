@@ -239,4 +239,22 @@ public function setAppointmentStatus($appointment_id, $lab_status) {
     ]);
 }
 
+public function getPendingTestNames($appointment_id) {
+    $query = "SELECT l.labtest_name,
+                a.appointment_id,
+                a.nic
+              FROM labtests l       
+              JOIN appointment_labtests al ON al.labtest_id = l.labtest_id 
+              JOIN appointments a ON a.appointment_id = al.appointment_id 
+              WHERE al.labtest_report IS NULL AND a.lab_status = 'Pending'";
+    
+    $params = [];
+    if ($appointment_id !== null) {
+        $query .= " AND a.appointment_id = :appointment_id";
+        $params['appointment_id'] = $appointment_id;
+    }
+    
+    return $this->query($query, $params);
+}
+
 }
