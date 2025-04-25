@@ -76,12 +76,24 @@ class Calendar {
 
     addDateListeners() {
         const dates = document.querySelectorAll('.ph-usage-calendar-date');
+        const today = new Date(); // Get today's date
+
         dates.forEach(dateElement => {
-            dateElement.style.cursor = 'pointer';
-            dateElement.onclick = function() {
-                const selectedDate = this.getAttribute('data-date');
-                window.location.href = 'http://localhost/Health-Hub/public/phusagedate';
-            };
+            const selectedDate = new Date(dateElement.getAttribute('data-date'));
+
+            if (selectedDate > today) {
+                // Disable future dates
+                dateElement.style.cursor = 'not-allowed';
+                dateElement.classList.add('ph-usage-disabled'); // Add a class for styling
+            } else {
+                // Enable past and today's dates
+                dateElement.style.cursor = 'pointer';
+                dateElement.onclick = function () {
+                    const selectedDate = this.getAttribute('data-date');
+                    // Append the selected date as a query parameter
+                    window.location.href = `http://localhost/Health-Hub/public/phusagedate?date=${selectedDate}`;
+                };
+            }
         });
     }
     
@@ -89,6 +101,26 @@ class Calendar {
 }
 
 // Initialize the calendar when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new Calendar();
+document.addEventListener('DOMContentLoaded', function() {
+    const calendar = new Calendar();
+
+    const today=new Date();
+    const formattedDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}`;
+    fetchAppointments(formattedDate);
+    
+    // Mark today as selected
+    setTimeout(() => {
+        const todayElement = document.querySelector('.ph-usage-today');
+        if (todayElement) {
+            todayElement.classList.add('ph-usage-selected');
+        }
+    }, 100);
 });
+function fetchAppointments(date) {
+    fetch(`${URLROOT}/PhDailyUsage/getUsageByDate?date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Or update the DOM with the appointment data
+        });
+}
+

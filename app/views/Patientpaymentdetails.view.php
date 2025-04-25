@@ -13,14 +13,17 @@
         $serviceCharge = 250.00;
         $discount = 0.00;
 
-        // Check if the appointment count is greater than 1
-        if ($_SESSION['appointment']['sameMonthAppointmentCount'] > 1) {
+        if (!isset($_SESSION['appointment']['sameMonthAppointmentCount'])) {
+            if ($data['sameMonthAppointmentCount'] >= 1) {
+                $discount = 50.00; // Example discount amount
+            }
+        } elseif ($_SESSION['appointment']['sameMonthAppointmentCount'] >= 1) {
             $discount = 50.00; // Example discount amount
             // $serviceCharge -= $discount; // Apply the discount to the service charge
         }
 
         // Calculate the total fee
-        $totalFee = $doctorFee + $hospitalFee + $serviceCharge- $discount;
+        $totalFee = $doctorFee + $hospitalFee + $serviceCharge - $discount;
         ?>
 
         <div class="paymentdetails-div2-p-div">
@@ -31,7 +34,14 @@
             <strong class="">Hospital Fee:</strong>
             <p><?= number_format($hospitalFee, 2) ?></p>
         </div>
-        <?php if ($_SESSION['appointment']['sameMonthAppointmentCount'] > 1): ?>
+        <?php if (!isset($_SESSION['appointment']['sameMonthAppointmentCount'])): ?>
+            <?php if ($data['sameMonthAppointmentCount'] >= 1): ?>
+                <div class="paymentdetails-div2-p-div">
+                    <strong class="">Discount:</strong>
+                    <p><?= number_format($discount, 2) ?></p>
+                </div>
+            <?php endif; ?>
+        <?php elseif ($_SESSION['appointment']['sameMonthAppointmentCount'] >= 1): ?>
             <div class="paymentdetails-div2-p-div">
                 <strong class="">Discount:</strong>
                 <p><?= number_format($discount, 2) ?></p>
@@ -74,7 +84,7 @@ $hash_string = strtoupper(
     <div>
         <form method="post" action="https://sandbox.payhere.lk/pay/checkout">
             <input type="hidden" name="merchant_id" value="<?= $merchant_id ?>"> <!-- Replace with your Merchant ID -->
-            <input type="hidden" name="return_url" value="<?php echo URLROOT; ?>/payment_success?appo_id=<?php echo $_SESSION['appo_id'] ?>">
+            <input type="hidden" name="return_url" value="<?php echo URLROOT; ?>/payment_success?appo_id=<?php echo !isset($_SESSION['appo_id']) ? $data['appo_id'] : $_SESSION['appo_id']; ?>">
             <input type="hidden" name="cancel_url" value="<?php echo URLROOT; ?>/payment_cancal">
             <input type="hidden" name="notify_url" value="<?php echo URLROOT; ?>/payment_notify">
 
@@ -85,11 +95,11 @@ $hash_string = strtoupper(
 
             <input type="hidden" name="hash" value="<?php echo $hash_string; ?>">
 
-            <input type="hidden" name="first_name" value="<?php echo $_SESSION['user']['firstName']; ?>">
-            <input type="hidden" name="last_name" value="<?php echo $_SESSION['user']['lastName']; ?>">
-            <input type="hidden" name="email" value="<?php echo $_SESSION['user']['email']; ?>">
-            <input type="hidden" name="phone" value="<?php echo $_SESSION['user']['phoneNumber']; ?>">
-            <input type="hidden" name="address" value="<?php echo $_SESSION['user']['address']; ?>">
+            <input type="hidden" name="first_name" value="<?php echo isset($_SESSION['user']['firstName']) ? $_SESSION['user']['firstName'] : $data['p_firstName']; ?>">
+            <input type="hidden" name="last_name" value="<?php echo isset($_SESSION['user']['lastName']) ? $_SESSION['user']['lastName'] : $data['p_lastName']; ?>">
+            <input type="hidden" name="email" value="<?php echo isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : $data['email']; ?>">
+            <input type="hidden" name="phone" value="<?php echo isset($_SESSION['user']['phoneNumber']) ? $_SESSION['user']['phoneNumber'] : $data['phoneNumber']; ?>">
+            <input type="hidden" name="address" value="<?php echo isset($_SESSION['user']['address']) ? $_SESSION['user']['address'] : $data['address']; ?>">
             <input type="hidden" name="city" value="Colombo">
             <input type="hidden" name="country" value="LK">
 

@@ -45,8 +45,8 @@
                             : URLROOT . '/assets/images/profile-men.png'; ?>" class="profileimge">
             <div class="profile-top-details">
                 <span class="profile-top-details-name"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></span><br />
-                <span>Member ID:<span>00012</span></span><br />
-                <span>Age:<span>25</span></span>
+                <span>Member ID:<span>000<?php echo htmlspecialchars($_SESSION['user']['user_id']) ?></span></span><br />
+                <span>Age:<span><?php echo htmlspecialchars($_SESSION['user']['age']) ?></span></span>
             </div>
         </div>
         <div class="profile-top-button-div">
@@ -123,7 +123,7 @@
 
                         <div>
 
-                            <button class="profile-middle-details-button2" id="" name="resetButton">Reset</button>
+                            <button class="profile-middle-details-button2" id="" name="reset" onclick="event.preventDefault(); openResetModal()">Reset</button>
 
 
                             <button class="profile-middle-details-button2" onclick="event.preventDefault(); openUpdateModal()">Update</button>
@@ -216,6 +216,19 @@
     </div>
 </div>
 
+<!-- Reset Confirmation Modal -->
+<div id="resetConfirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeResetModal()">&times;</span>
+        <h2>Are you sure you want to reset your profile details?</h2>
+        <div class="modal-button-div">
+            <form action="<?php echo URLROOT; ?>patientprofile?action=reset" method="POST">
+                <button type="submit" class="modal-save-button" name="resetButton">Yes</button>
+            </form>
+            <button type="button" class="modal-cancel-button" onclick="closeResetModal()">No</button>
+        </div>
+    </div>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -285,9 +298,24 @@
     };
 </script>
 
+<script>
+    // Open the reset confirmation modal
+    function openResetModal() {
+        document.getElementById('resetConfirmationModal').style.display = 'block';
+    }
 
+    // Close the reset confirmation modal
+    function closeResetModal() {
+        document.getElementById('resetConfirmationModal').style.display = 'none';
+    }
 
-
-
+    // Close the modal if the user clicks outside the modal content
+    window.onclick = function(event) {
+        const modal = document.getElementById('resetConfirmationModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+</script>
 
 <?php require APPROOT . '/views/Components/footer.php' ?>

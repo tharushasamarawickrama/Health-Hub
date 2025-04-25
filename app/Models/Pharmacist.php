@@ -109,7 +109,8 @@ class Pharmacist {
                     pm.quantity, 
                     pm.measurement,
                     pm.duration, 
-                    pm.sig_codes
+                    pm.sig_codes,
+                    pm.units_issued
                     FROM appointments a
                     JOIN users u ON a.patient_id = u.user_id
                     JOIN users d ON a.doctor_id = d.user_id
@@ -123,12 +124,14 @@ class Pharmacist {
 
     public function getAppointmentsByDate($date) {
         $query = "SELECT 
-                    a.appointment_id, u.nic, a.appointment_date
+                    a.appointment_id, u.nic, pm.issued_date
                     FROM appointments a
                     JOIN users u ON a.patient_id = u.user_id
-                    WHERE a.ph_status = 'Completed' AND a.appointment_date = :appointment_date
-                    ORDER BY a.appointment_date DESC";
-        return $this->query($query, ['appointment_date' => $date]);
+                    JOIN prescribed_medications pm ON a.prescription_id = pm.prescription_id
+                    WHERE a.ph_status = 'Completed' AND pm.issued_date = :issued_date
+                    GROUP BY pm.prescription_id
+                    ORDER BY pm.issued_date DESC";
+        return $this->query($query, ['issued_date' => $date]);
     }
     
     public function updateUnitsIssued($appointment_id,$name,$units_issued){
@@ -147,4 +150,22 @@ class Pharmacist {
                 'units_issued' => ceil($units_issued)]);
     }
     
+    public function getUsageByDate($issued_date) {
+        $query = "SELECT issued_date
+                    FROM prescribed_medications
+                    WHERE  issued_date = :issued_date
+                    ORDER BY issued_date DESC";
+        return $this->query($query, ['issued_date' => $issued_date]);
+    }
+
+    public function getphusagedate($issued_date) {
+        $query = "SELECT 
+                    pm.name, 
+                    SUM(pm.units_issued) As totalUnitsIssued, 
+                    pm.issued_date
+                    FROM prescribed_medications pm
+                    WHERE pm.issued_date = :issued_date
+                    GROUP BY pm.name";
+        return $this->query($query, ['issued_date' => $issued_date]);
+    }
 }

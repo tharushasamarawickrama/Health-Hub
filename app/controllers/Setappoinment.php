@@ -10,46 +10,113 @@ class Setappoinment
         $sch_id = $_GET['sch_id'] ?? null;
 
         $appoinment = new Appointment;
-        $referal = $appoinment->getDistinctReferalAndUserDetails($_SESSION['user']['user_id']);
-        $referal = array_filter($referal, function ($item) {
-            return $item['referal_id'] != 0;
-        });
+        if(isset($_SESSION['user'])){
+            $referal = $appoinment->getDistinctReferalAndUserDetails($_SESSION['user']['user_id']);
+            $referal = array_filter($referal, function ($item) {
+                return $item['referal_id'] != 0;
+            });
+    
+            // Re-index the array to maintain sequential keys
+            $referal = array_values($referal);
+        }
+        
 
-        // Re-index the array to maintain sequential keys
-        $referal = array_values($referal);
-        // show($referal);
+        $errors = []; // Array to store validation errors
+
         // Handle form submission for appointment
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Sanitize input data
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data = [
+                'p_firstName' => trim($_POST['p_firstName']),
+                'p_lastName' => trim($_POST['p_lastName']),
+                'nic' => trim($_POST['nic']),
+                'phoneNumber' => trim($_POST['phoneNumber']),
+                'age' => trim($_POST['age']),
+                'address' => trim($_POST['address']),
+                'email' => trim($_POST['email']),
+                'gender' => $_POST['gender'] ?? '',
+                'title' => $_POST['Title'] ?? '',
+                'add_service' => $_POST['addservice'] ?? '',
+                'doctor_id' => $id,
+                'patient_id' => isset($_SESSION['user']) ? $_SESSION['user']['user_id'] : 0,
+                'payment_status' => 'pending',
+                'referal_id' => isset($_SESSION['user']) ? ($_POST['patientType'] ?? '') : 0,
+                'isdeleted' => 0,
+                'status' => 'new',
+                'schedule_id' => $sch_id,
+            ];
 
-            // If the form is being submitted for appointment creation
-            if (isset($_POST['p_firstName'])) {
+            if(isset($_SESSION['user'])){
 
+            }
+
+            // Backend validation
+            if (empty($data['p_firstName'])) {
+                $errors['p_firstName'] = 'First name is required.';
+            }
+            if (empty($data['p_lastName'])) {
+                $errors['p_lastName'] = 'Last name is required.';
+            }
+            if (
+                empty($data['nic']) ||
+                !preg_match('/^[0-9]{9}[vVxX]$/', $data['nic']) &&
+                !preg_match('/^[0-9]{12}$/', $data['nic'])
+            ) {
+                $errors['nic'] = 'Valid NIC is required.';
+            }
+            if (empty($data['phoneNumber']) || !preg_match('/^7[0-9]{8}$/', $data['phoneNumber'])) {
+                $errors['phoneNumber'] = 'Valid phone number is required.';
+            }
+            if (empty($data['age']) || !is_numeric($data['age']) || $data['age'] <= 0) {
+                $errors['age'] = 'Valid age is required.';
+            }
+            if (empty($data['address'])) {
+                $errors['address'] = 'Address is required.';
+            }
+            if (empty($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors['email'] = 'Valid email is required.';
+            }
+            if (empty($data['gender'])) {
+                $errors['gender'] = 'Gender is required.';
+            }
+            if (empty($data['title'])) {
+                $errors['title'] = 'Title is required.';
+            }
+            if (empty($data['add_service'])) {
+                $errors['add_service'] = 'You must agree to add the service charge.';
+            }
+
+            // If there are no errors, proceed with appointment creation
+            if (empty($errors)) {
                 $schedule = new ScheduleTime;
-
-                $data = [
-                    'p_firstName' => $_POST['p_firstName'],
-                    'p_lastName' => $_POST['p_lastName'],
-                    'nic' => $_POST['nic'],
-                    'phoneNumber' => $_POST['phoneNumber'],
-                    'age' => $_POST['age'],
-                    'address' => $_POST['address'],
-                    'email' => $_POST['email'],
-                    'gender' => $_POST['gender'],
-                    'title' => $_POST['Title'],
-                    'add_service' => $_POST['addservice'],
-                    'doctor_id' => $id,
-                    'patient_id' => $_SESSION['user']['user_id'],
-                    'payment_status' => 'pending',
-                    'referal_id' => $_POST['patientType'],
-                    'isdeleted' => 0,
-                    'status' => 'new',
-
-                ];
-
-                $_SESSION['sch_id'] = $sch_id;
                 $scheduleData = $schedule->first(['schedule_id' => $sch_id]);
                 $data['appointment_No'] = $scheduleData['filled_slots'] + 1;
-                $data['appointment_date'] = $scheduleData['date'];
+
+                function getDateForDay($dayName)
+                {
+                    $daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    $currentDate = new DateTime();
+                    $targetDayNumber = array_search(ucfirst(strtolower($dayName)), $daysOfWeek);
+
+                    if ($targetDayNumber === false) {
+                        return "Invalid day name";
+                    }
+
+                    $currentDayNumber = (int)$currentDate->format('w');
+                    $daysDifference = $targetDayNumber - $currentDayNumber;
+
+                    if ($daysDifference <= 0) {
+                        $daysDifference += 7;
+                    }
+
+                    $currentDate->modify("+$daysDifference days");
+                    return $currentDate->format('Y-m-d');
+                }
+
+                $date = getDateForDay($scheduleData['weekday']);
+                $data['appointment_date'] = $date;
 
                 $_SESSION['appointment'] = $data;
 
@@ -57,8 +124,12 @@ class Setappoinment
                 redirect('patientchannel');
             }
         }
-        show($referal);
+        // show($referal);
         // Load the view without any pre-filled data
-        $this->view('setappoinment', ['referal' => $referal]);
+        if (isset($_SESSION['user'])) {
+            $this->view('setappoinment', ['referal' => $referal]);
+        } else {
+            $this->view('setappoinment');
+        }
     }
 }

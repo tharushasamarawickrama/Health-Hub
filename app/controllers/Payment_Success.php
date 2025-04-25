@@ -5,11 +5,57 @@ require_once APPROOT . '/libraries/PHPMailer/src/PHPMailer.php';
 require_once APPROOT . '/libraries/PHPMailer/src/SMTP.php';
 require_once APPROOT . '/libraries/PHPMailer/src/Exception.php';
 
+// include 'http://localhost:8081/Health-Hub/vendor/autoload.php';
+
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 class Payment_Success {
     use Controller;
+
+    /**
+     * Sends an email using PHPMailer
+     *
+     * @param string $to Recipient email address
+     * @param string $subject Email subject
+     * @param string $message Email body (HTML)
+     * @return bool True if email is sent successfully, false otherwise
+     */
+    private function sendEmail($to, $subject, $message) {
+        // require 'vendor/autoload.php'; // Load PHPMailer
+
+
+        $mail = new PHPMailer(true);
+
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com'; // Replace with your SMTP server
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'akh8130@gmail.com'; // Replace with your email
+            $mail->Password   = 'doun vgzr dpfj rhal'; // Replace with your email password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
+
+            // Recipients
+            $mail->setFrom('akh8130@gmail.com', 'healthhub'); // Replace with your app name
+            $mail->addAddress($to); // Add recipient
+
+            // Content
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body    = $message;
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+            return false;
+        }
+    }
     public function index(){
+
+        
 
         // Initialize models
         $appointment = new Appointment;
@@ -18,8 +64,11 @@ class Payment_Success {
         $schedule = new ScheduleTime;
 
         // Get user and doctor IDs from session
-        $userId = $_SESSION['user']['user_id'];
-        $doctorId = $_SESSION['appointment']['doctor_id'];
+        // $userId = $_SESSION['user']['user_id'];
+        $appo_id = $_GET['appo_id'];
+        $appo_data = $appointment->first(['appointment_id' => $appo_id]);
+        $doctorId = $appo_data['doctor_id'];
+        // $doctorId = $_SESSION['appointment']['doctor_id'];
 
         // Fetch doctor and user details
         $arr['doctor_id'] = $doctorId;
@@ -32,30 +81,43 @@ class Payment_Success {
         }
 
         // Fetch schedule details
-        $arr['schedule_id'] = $_SESSION['sch_id'];
+        // $arr['schedule_id'] = $_SESSION['sch_id'];
+        $arr['schedule_id'] = $appo_data['schedule_id'];
         $scheduleData = $schedule->first($arr);
 
         if ($scheduleData) {
             $data = array_merge($data, $scheduleData);
         }
 
-
-        $appo_id = $_SESSION['appo_id'];
-        $appointmentdata = $appointment->first(['appointment_id' => $appo_id]);
+        // show($scheduleData);
+        // $appo_id = $_SESSION['appo_id'];
+        // $appointmentdata = $appointment->first(['appointment_id' => $appo_id]);
         $arr['payment_status'] = 'paid';
         $appointment->update($appo_id, $arr, 'appointment_id');
         
         // Prepare email content
-        $patientName = $_SESSION['appointment']['p_firstName'] . " " . $_SESSION['appointment']['p_lastName'];
-        $nic = $_SESSION['appointment']['nic'];
-        $phoneNumber = $_SESSION['appointment']['phoneNumber'];
-        $email = $_SESSION['appointment']['email'];
+        // $patientName = $_SESSION['appointment']['p_firstName'] . " " . $_SESSION['appointment']['p_lastName'];
+        // $nic = $_SESSION['appointment']['nic'];
+        // $phoneNumber = $_SESSION['appointment']['phoneNumber'];
+        // $email = $_SESSION['appointment']['email'];
+        // $doctorName = "Dr. " . $data['firstName'] . " " . $data['lastName'];
+        // $specialization = $data['specialization'];
+        // $slmcNo = $data['slmcNo'];
+        // $date = $data['date'];
+        // $time = $data['start_time'];
+        // $appointmentNo = $_SESSION['appointment']['appointment_No'];
+
+        $appointmentId = $appo_id;
+        $patientName = $appo_data['p_firstName'] . " " . $appo_data['p_lastName'];
+        $nic = $appo_data['nic'];
+        $phoneNumber = $appo_data['phoneNumber'];
+        $email = $appo_data['email'];
         $doctorName = "Dr. " . $data['firstName'] . " " . $data['lastName'];
         $specialization = $data['specialization'];
         $slmcNo = $data['slmcNo'];
-        $date = $data['date'];
+        $date = date('l, j F Y', strtotime($appo_data['appointment_date']));
         $time = $data['start_time'];
-        $appointmentNo = $_SESSION['appointment']['appointment_No'];
+        $appointmentNo = $appo_data['appointment_No'];
 
         $emailBody = "
 <!DOCTYPE html>
@@ -126,6 +188,7 @@ class Payment_Success {
     <div class='content'>
         <p>Dear $patientName,</p>
         <p>Thank you for booking an appointment with us. Below are the details of your appointment:</p>
+        <p><strong>Appointment ID:</strong> $appointmentId</p>
         <p><strong>Patient's Name:</strong> $patientName</p>
         <p><strong>NIC:</strong> $nic</p>
         <p><strong>Phone Number:</strong> $phoneNumber</p>
@@ -163,47 +226,7 @@ class Payment_Success {
         $this->view('payment_success');
     }
 
-     /**
-     * Sends an email using PHPMailer
-     *
-     * @param string $to Recipient email address
-     * @param string $subject Email subject
-     * @param string $message Email body (HTML)
-     * @return bool True if email is sent successfully, false otherwise
-     */
-    private function sendEmail($to, $subject, $message) {
-        // require 'vendor/autoload.php'; // Load PHPMailer
-        include 'http://localhost/Health-Hub/vendor/autoload.php';
-
-
-        $mail = new PHPMailer(true);
-
-        try {
-            // Server settings
-            $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com'; // Replace with your SMTP server
-            $mail->SMTPAuth   = true;
-            $mail->Username   = 'akh8130@gmail.com'; // Replace with your email
-            $mail->Password   = 'doun vgzr dpfj rhal'; // Replace with your email password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = 587;
-
-            // Recipients
-            $mail->setFrom('akh8130@gmail.com', 'healthhub'); // Replace with your app name
-            $mail->addAddress($to); // Add recipient
-
-            // Content
-            $mail->isHTML(true);
-            $mail->Subject = $subject;
-            $mail->Body    = $message;
-
-            $mail->send();
-            return true;
-        } catch (Exception $e) {
-            error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
-            return false;
-        }
-    }
+     
 
     
     

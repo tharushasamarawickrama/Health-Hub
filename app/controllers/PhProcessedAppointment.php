@@ -29,6 +29,7 @@ class PhProcessedAppointment {
             'medications' => $appointmentDetails ,
             'doctor_id' => $appointmentDetails[0]['doctor_id'] ?? 'N/A',
             'doctor_name' => $appointmentDetails[0]['doctor_name'] ?? 'N/A',
+            'units_issued' => $appointmentDetails[0]['units_issued'] ?? 'N/A',
         ]);
     }
 }

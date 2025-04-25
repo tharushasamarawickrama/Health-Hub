@@ -17,6 +17,9 @@ class PatientHistory
                 $labtest = new LabTest;
                 $prescriptionMed = new Prescribed_Medications;
                 $appointmentlabtest = new Appointment_LabTest;
+                $schedule = new ScheduleTime;
+                $arr3['schedule_id'] = $appointment['schedule_id'];
+                $scheduledata = $schedule->first($arr3);
                 $arr['prescription_id'] = $appointment['prescription_id'];
                 // $arr1['appointment_id'] = $appointment['appointment_id'];
                 $prescriptiondata1 = $prescription->first($arr);
@@ -47,6 +50,7 @@ class PatientHistory
                     'labtest' => $labtestdata,
                     'appointmentlabtest' => $appointmentlabtestdata,
                     'patient' => $patientdata,
+                    'schedule' => $scheduledata,
                 ];
                 $data[] = $combinedData;
                 // show($data);  
