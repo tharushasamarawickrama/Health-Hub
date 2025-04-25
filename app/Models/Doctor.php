@@ -95,4 +95,17 @@ class Doctor
         return $result[0]['doctors_count'] ?? 0;
     }
 
+    public function DoctorUpdateByAdmin($id, $data, $id_column = 'doctor_id') {
+        $setClause = [];
+        foreach ($data as $key => $value) {
+            $setClause[] = "$key = :$key";
+        }
+        $setClause = implode(', ', $setClause);
+    
+        $query = "UPDATE {$this->table} SET $setClause WHERE $id_column = :id";
+        $data['id'] = $id;
+    
+        return $this->query($query, $data);
+    }
+
 }
