@@ -25,7 +25,11 @@
                     <?php foreach ($medications as $medication): ?>
                     <tr>
                     <td><?php echo htmlspecialchars($medication['name'] ?? 'N/A'); ?></td>
-                    <td><?php echo htmlspecialchars($medication['totalUnitsIssued'] ?? 'N/A'); ?></td>
+                    <?php if ($medication['measurement'] == 'ml'): ?>
+                        <td><?php echo htmlspecialchars($medication['totalUnitsIssued'] ?? 'N/A'); ?> bottles</td>
+                    <?php else: ?>
+                        <td><?php echo htmlspecialchars($medication['totalUnitsIssued'] ?? 'N/A'); ?> tablets</td>
+                        <?php endif; ?>
                     </tr>
                     <?php endforeach; ?>
             <?php else: ?>

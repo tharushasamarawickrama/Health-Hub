@@ -162,7 +162,8 @@ class Pharmacist {
         $query = "SELECT 
                     pm.name, 
                     SUM(pm.units_issued) As totalUnitsIssued, 
-                    pm.issued_date
+                    pm.issued_date,
+                    pm.measurement
                     FROM prescribed_medications pm
                     WHERE pm.issued_date = :issued_date
                     GROUP BY pm.name";

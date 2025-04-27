@@ -200,44 +200,44 @@ class LabAssistant {
     }
 
     
-public function getPendingLabAppointments($appointment_id) {
-    $query = "SELECT 
-                a.appointment_id, 
-                u.nic, 
-                a.appointment_date,
-                u.age,
-                u.gender,
-                a.doctor_id,
-                CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
-                alt.labtest_id,
-                l.labtest_name,
-                alt.labtest_pdfname,
-                alt.labtest_report
-              FROM appointments a
-              JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
-              JOIN labtests l ON l.labtest_id = alt.labtest_id
-              JOIN users u ON a.patient_id = u.user_id
-              JOIN users d ON a.doctor_id = d.user_id
-              WHERE a.lab_status = 'Pending' ";
-            $params = [];  
-    if ($appointment_id !== null) {
-        $query .= " AND a.appointment_id = :appointment_id";
-        $params['appointment_id'] = $appointment_id;
+    public function getPendingLabAppointments($appointment_id) {
+        $query = "SELECT 
+                    a.appointment_id, 
+                    u.nic, 
+                    a.appointment_date,
+                    u.age,
+                    u.gender,
+                    a.doctor_id,
+                    CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
+                    alt.labtest_id,
+                    l.labtest_name,
+                    alt.labtest_pdfname,
+                    alt.labtest_report
+                FROM appointments a
+                JOIN appointment_labtests alt ON a.appointment_id = alt.appointment_id
+                JOIN labtests l ON l.labtest_id = alt.labtest_id
+                JOIN users u ON a.patient_id = u.user_id
+                JOIN users d ON a.doctor_id = d.user_id
+                WHERE a.lab_status = 'Pending' ";
+                $params = [];  
+        if ($appointment_id !== null) {
+            $query .= " AND a.appointment_id = :appointment_id";
+            $params['appointment_id'] = $appointment_id;
+        }
+
+        $query .= " ORDER BY a.appointment_date DESC";
+        return $this->query($query, $params);
+
     }
-
-    $query .= " ORDER BY a.appointment_date DESC";
-    return $this->query($query, $params);
-
-}
-public function setAppointmentStatus($appointment_id, $lab_status) {
-    $query = "UPDATE appointments 
-              SET lab_status = :lab_status
-              WHERE appointment_id = :appointment_id";
-    return $this->query($query, [
-        'appointment_id' => $appointment_id, 
-        'lab_status' => $lab_status
-    ]);
-}
+    public function setAppointmentStatus($appointment_id, $lab_status) {
+        $query = "UPDATE appointments 
+                SET lab_status = :lab_status
+                WHERE appointment_id = :appointment_id";
+        return $this->query($query, [
+            'appointment_id' => $appointment_id, 
+            'lab_status' => $lab_status
+        ]);
+    }
 
 
     public function employeeExists($employeeNo) {
@@ -245,4 +245,23 @@ public function setAppointmentStatus($appointment_id, $lab_status) {
         $result = $this->query($query, ['employeeNo' => $employeeNo]);
         return !empty($result);
     }
+
+    public function getPendingTestNames($appointment_id) {
+        $query = "SELECT l.labtest_name,
+                    a.appointment_id,
+                    a.nic
+                FROM labtests l       
+                JOIN appointment_labtests al ON al.labtest_id = l.labtest_id 
+                JOIN appointments a ON a.appointment_id = al.appointment_id 
+                WHERE al.labtest_report IS NULL AND a.lab_status = 'Pending'";
+        
+        $params = [];
+        if ($appointment_id !== null) {
+            $query .= " AND a.appointment_id = :appointment_id";
+            $params['appointment_id'] = $appointment_id;
+        }
+        
+        return $this->query($query, $params);
+    }
+
 }

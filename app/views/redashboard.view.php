@@ -11,8 +11,12 @@
                 <label class="pt-selectdoctor">Select Doctor :</label>
                 <select name="doctor" id="" class="pt-searchdoctor">
                     <option value="" disabled selected hidden>--------Select Doctor--------</option>
-                    <?php foreach ($data as $doctor): ?><option value="<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?>">Dr.<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?></option><?php endforeach ?>
-                </select>
+                    <?php foreach ($data as $doctor): ?><option value="<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?>">Dr.<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?></option>
+                        <?php if ($doctor['type'] !== 'opd'): ?>
+                            <option value="<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?>">Dr.<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?></option>
+                        <?php endif; ?>
+                    <?php endforeach ?>
+                    </select>
             </div>
             <div>
                 <label class="pt-selectspecialization">Select Specialization :</label>
@@ -24,13 +28,22 @@
             </div>
             <div>
                 <label class="pt-selectdate">Select Date :</label>
-                <input type="date" class="pt-searchdate" name="appointment_date" >
+                <input type="date" 
+                class="pt-searchdate" 
+                name="appointment_date" 
+                min="<?php echo date('Y-m-d'); ?>" >
             </div>
             <div>
                 <input type="submit" value="Search" class="pt-searchbtn" name="search">
             </div>
         </form>
     </div>
+    <!-- Display message if no criteria or no results -->
+    <?php if (!empty($message)): ?>
+        <div class="message">
+            <h2><?php echo $message; ?></h2>
+        </div>
+    <?php endif; ?>
     <?php if (!empty($data2)): ?>
         <div class="doctors">
             <?php foreach ($data2 as $doctor): ?>
@@ -57,10 +70,7 @@
 </div>
             <?php endforeach ?>
         </div>
-    <?php else: ?>
-        <div class="noresults">
-            <h1>No Results Found</h1>
-        </div>
+   
     <?php endif; ?>
 
 
