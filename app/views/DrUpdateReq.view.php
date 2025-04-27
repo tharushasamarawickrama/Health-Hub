@@ -48,12 +48,12 @@
                     <!-- <a href="<?php echo URLROOT;?>AdminDrRegister?id=<?php echo $data['req_id'] ?>">
                         <button type="button" class="save-btn">Add Doctor</button>
                     </a> -->
-                    <a href="<?php echo URLROOT;?>/DrProfileUpdate" class="save-btn">Back</a>
+                    <a href="<?php echo URLROOT;?>/DrProfileUpdate" > <button type="button" class="save-btn" id="dr-req-btn-left">Back</button></a>
 
-                    <button type="submit" class="save-btn">Update Doctor</button>
+                    <button type="submit" class="save-btn" id="dr-req-btn-left">Update Doctor</button>
                     
                     <a href="<?php echo URLROOT;?>SLMCUPD?id=<?php echo $data['doctor_id'] ?>">
-                        <button type="button" class="save-btn">SLMC Certificate</button>
+                        <button type="button" class="save-btn" id="dr-req-btn-right">SLMC Certificate</button>
                     </a>
                     
             </div>

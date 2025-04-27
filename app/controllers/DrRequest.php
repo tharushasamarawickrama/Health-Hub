@@ -1,17 +1,14 @@
 <?php
 
-class DrRequest{
+class DrRequest {
     use Controller;
-    public function index(){
+
+    public function index() {
         $dr_request = new dr_request;
-       
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $user = new User;
+        $doctor = new Doctor;
 
-            // print_r($_POST);
-            // print_r($_FILES);
-            // exit;
-
-            
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'title' => 'Dr',
                 'firstName' => $_POST['firstName'] ?? '',
@@ -34,6 +31,36 @@ class DrRequest{
                 'type' => $_POST['type'] ?? '',
             ];
 
+            if ($user->emailExists($data['email']) || $dr_request->emailExists($data['email'])) {
+                $data['error'] = "The email address is already in use. Please use a different email.";
+                $this->view('DrRequest', $data);
+                return;
+            }
+
+            if ($user->nicExists($data['nic']) || $dr_request->nicExists($data['nic'])) {
+                $data['error'] = "The NIC is already in use. Please use a different NIC.";
+                $this->view('DrRequest', $data);
+                return;
+            }
+
+            if ($dr_request->slmcExists($data['slmcNo']) || $doctor->slmcExists($data['slmcNo'])) {
+                $data['error'] = "The SLMC number is already in use. Please use a different SLMC number.";
+                $this->view('DrRequest', $data);
+                return;
+            }
+
+
+            if ($data['specialization'] === 'None' && $data['type'] !== 'opd') {
+                $data['error'] = "If specialization is 'None', Doctor's Type must be 'OPD'.";
+                $this->view('DrRequest', $data);
+                return;
+            }
+
+            if ($data['specialization'] !== 'None' && $data['type'] !== 'specialist') {
+                $data['error'] = "If specialization is selected, Doctor's Type must be 'Specialist'.";
+                $this->view('DrRequest', $data);
+                return;
+            }
 
             if (!empty($data['dob'])) {
                 $dob = new DateTime($data['dob']);
@@ -41,85 +68,63 @@ class DrRequest{
                 $data['age'] = $today->diff($dob)->y;
             }
 
-            if(isset($_FILES['photo_path'])){
+            if (isset($_FILES['photo_path'])) {
                 $target_dir = "profile-Photos/";
-                if(!is_dir($target_dir)){
-                    mkdir($target_dir,0777,true);
+                if (!is_dir($target_dir)) {
+                    mkdir($target_dir, 0777, true);
                 }
                 $file_name = basename($_FILES['photo_path']['name']);
                 $target_file = $target_dir . uniqid() . '_' . $file_name;
 
                 $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
                 $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-                if(!in_array($file_type, $allowed_types)){
-                   $this->view('DrRequest', $data);
-                   return;
-                }
-                if(getimagesize($_FILES['photo_path']['tmp_name']) === false){
+                if (!in_array($file_type, $allowed_types) || getimagesize($_FILES['photo_path']['tmp_name']) === false) {
                     $this->view('DrRequest', $data);
                     return;
                 }
-                if(move_uploaded_file($_FILES['photo_path']['tmp_name'], $target_file)){
+                if (move_uploaded_file($_FILES['photo_path']['tmp_name'], $target_file)) {
                     $data['photo_path'] = $target_file;
-                }else{
+                } else {
                     $this->view('DrRequest', $data);
                     return;
-                }}
-
-
-
-                if(isset($_FILES['slmc_photo'])){
-                    $target_dir = "Certificate-images/";
-                    if(!is_dir($target_dir)){
-                        mkdir($target_dir,0777,true);
-                    }
-                    $file_name = basename($_FILES['slmc_photo']['name']);
-                    $target_file = $target_dir . uniqid() . '_' . $file_name;
-    
-                    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                    $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-                    if(!in_array($file_type, $allowed_types)){
-                       $this->view('DrRequest', $data);
-                       return;
-                    }
-                    if(getimagesize($_FILES['slmc_photo']['tmp_name']) === false){
-                        $this->view('DrRequest', $data);
-                        return;
-                    }
-                    if(move_uploaded_file($_FILES['slmc_photo']['tmp_name'], $target_file)){
-                        $data['slmc_photo'] = $target_file;
-                    }else{
-                        $this->view('DrRequest', $data);
-                        return;
-                    }}
-           
-            // if ($dr_request->insert($data)) {
-            //     $data['success'] = "Request submitted successfully!";
-            //     $this->view('DrRequest', $data);
-            //     return;
-            // } 
-
-            // $this->view('DrRequest', $data);
-            // return;
-                $dr_req_id = $dr_request->insert($data);
-                if($dr_req_id){
-                    $data['success'] = "Request submitted successfully!";
-                    $this->view('DrRequest', $data);
-                }else{
-                    $data['error'] = "Failed to submit request!";
-                    $this->view('DrRequest', $data);
                 }
-                
-                redirect('DrRequest');
-                return;
+            }
 
-           
+            if (isset($_FILES['slmc_photo'])) {
+                $target_dir = "Certificate-images/";
+                if (!is_dir($target_dir)) {
+                    mkdir($target_dir, 0777, true);
+                }
+                $file_name = basename($_FILES['slmc_photo']['name']);
+                $target_file = $target_dir . uniqid() . '_' . $file_name;
+
+                $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+                if (!in_array($file_type, $allowed_types) || getimagesize($_FILES['slmc_photo']['tmp_name']) === false) {
+                    $this->view('DrRequest', $data);
+                    return;
+                }
+                if (move_uploaded_file($_FILES['slmc_photo']['tmp_name'], $target_file)) {
+                    $data['slmc_photo'] = $target_file;
+                } else {
+                    $this->view('DrRequest', $data);
+                    return;
+                }
+            }
+
+            $dr_req_id = $dr_request->insert($data);
+            if ($dr_req_id) {
+                $data['success'] = "Request submitted successfully!";
+            } else {
+                $data['error'] = "Failed to submit request!";
+            }
+
+            $this->view('DrRequest', $data);
+            redirect('DrRequest');
+            return;
         }
 
         $this->view('DrRequest');
-
     }
-    
 }
-
 ?>

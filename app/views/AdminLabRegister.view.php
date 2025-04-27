@@ -5,33 +5,40 @@
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
         <h1>New Lab Assistant</h1>
+
+        <?php if (isset($data['error'])): ?>
+            <div class="error-message" id="error-message">
+                <p><?php echo $data['error']; ?></p>
+            </div>
+        <?php endif; ?>
+
         <form class="AdminRegister-form" id="addDoctorForm" action="" method="POST" enctype="multipart/form-data">
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="firstName">First Name</label>
-                    <input class="AdminInput" type="text" id="firstName" name="firstName" value="<?php echo $data['firstName'] ?? ''; ?>" required>
-                    <span class="error"><?php echo $data['errors']['firstName'] ?? ''; ?></span>
+                    <input class="AdminInput" type="text" id="firstName" name="firstName" pattern="[A-Za-z]+"  title="First name can only contain letters (A-Z, a-z)" required>
+                    
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="lastName">Last Name</label>
-                    <input class="AdminInput" type="text" id="lastName" name="lastName" value="<?php echo $data['lastName'] ?? ''; ?>" required>
-                    <span class="error"><?php echo $data['errors']['lastName'] ?? ''; ?></span>
+                    <input class="AdminInput" type="text" id="lastName" name="lastName" pattern="[A-Za-z]+"  title="First name can only contain letters (A-Z, a-z)" required>
+                    
                 </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="password">Password</label>
-                    <input class="AdminInput" type="password" id="password" name="password" required>
+                    <input class="AdminInput" type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" title="Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one number."   >
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="phoneNumber">Phone Number</label>
-                    <input class="AdminInput" type="text" id="phoneNumber" name="phoneNumber" required>
+                    <input class="AdminInput" type="text" id="phoneNumber" name="phoneNumber" pattern="07[0-9]{8}" title="Phone number must start with '07' and have exactly 10 digits." >
                 </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="email">Email</label>
-                    <input class="AdminInput" type="email" id="email" name="email" required>
+                    <input class="AdminInput" type="email" id="email" name="email" pattern="[a-z0-9]+@gmail\.com" title="Email must be in the format: anystring@gmail.com (lowercase letters and numbers only)" >
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="title">Title</label>
@@ -46,7 +53,7 @@
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="gender">Gender</label>
-                    <select class="AdminSelect" id="gender" name="gender" required>
+                    <select class="AdminSelect" id="gender" name="gender" >
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
@@ -54,17 +61,17 @@
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="dob">Date of Birth</label>
-                    <input class="AdminInput" type="date" id="dob" name="dob" required >
+                    <input class="AdminInput" type="date" id="dob" name="dob" max="<?php echo date('Y-m-d'); ?>"  >
                 </div>
             </div>
             <div class="AdminRegister-form-row">
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="employeeNo">Employee No</label>
-                    <input class="AdminInput" type="text" id="employeeNo" name="employeeNo" required>
+                    <input class="AdminInput" type="text" id="employeeNo" name="employeeNo" pattern="([0-9]{5})$" title="Employee Number must be 5 digits.">
                 </div>
                 <div class="AdminRegister-form-group">
                     <label class="AdminLabel" for="nic">NIC</label>
-                    <input class="AdminInput" type="text" id="nic" name="nic" required>
+                    <input class="AdminInput" type="text" id="nic" name="nic" pattern="^([0-9]{9}[V]|[0-9]{12})$" title="NIC must be 9 digits followed by 'V', or exactly 12 digits." >
                 </div>
             </div>
             <div class="AdminRegister-form-row">
@@ -80,7 +87,7 @@
                 </div>
             </div>
             <div class="AdminRegister-form-row">
-                <button type="submit" class="add-doctor-btn">Add Lab Assistant</button>
+                <button type="submit" class="add-doctor-btn" id="dr-req-btn-left">Add Lab Assistant</button>
             </div>
         </form>
     </div>

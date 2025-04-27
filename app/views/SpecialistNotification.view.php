@@ -15,9 +15,9 @@
                 <span class="ViewProfile-doctor-info">Schedule ID - <?php echo $spe_she_not['schedule_id'] ?> , Doctor ID <?php echo $spe_she_not['doctor_id']  ?></span>
                 <div class="ViewProfile-button-group">
                 <a href="<?php echo URLROOT; ?>SpecialistNotificationDetails?schedule_id=<?php echo $spe_she_not['schedule_id']; ?>&doctor_id=<?php echo $spe_she_not['doctor_id']; ?>">
-                    <button class="ViewProfile-view-btn">VIEW</button>
+                    <button class="ViewProfile-view-btn" id="dr-req-btn-left">VIEW</button>
                 </a>
-                    <a href="<?php echo URLROOT;?>SpecialistNotification/delete?schedule_id=<?php echo $spe_she_not['schedule_id'] ?>&doctor_id=<?php echo $spe_she_not['doctor_id'] ?>"><button class="ViewProfile-delete-btn">DELETE</button></a>
+                    <a href="<?php echo URLROOT;?>SpecialistNotification/delete?schedule_id=<?php echo $spe_she_not['schedule_id'] ?>&doctor_id=<?php echo $spe_she_not['doctor_id'] ?>"><button class="ViewProfile-delete-btn" id="dr-req-btn-left">DELETE</button></a>
                 </div>
             </div>
             <?php endforeach ?> 

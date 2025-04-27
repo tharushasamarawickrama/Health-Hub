@@ -32,7 +32,7 @@
             </table>
         <?php endif; ?>
 
-        <a href="<?php echo URLROOT; ?>SpecialistNotification" class="back-btn"><button class="save-btn">Back</button></a>
+        <a href="<?php echo URLROOT; ?>SpecialistNotification" class="back-btn"><button class="save-btn" id="dr-req-btn-left">Back</button></a>
     </div>
 </div>
 

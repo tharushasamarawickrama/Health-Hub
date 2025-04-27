@@ -239,4 +239,10 @@ public function setAppointmentStatus($appointment_id, $lab_status) {
     ]);
 }
 
+
+    public function employeeExists($employeeNo) {
+        $query = "SELECT * FROM {$this->table} WHERE employeeNo = :employeeNo LIMIT 1";
+        $result = $this->query($query, ['employeeNo' => $employeeNo]);
+        return !empty($result);
+    }
 }
