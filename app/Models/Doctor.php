@@ -149,4 +149,10 @@ class Doctor
         return $this->query($query, $data);
     }
 
+    public function slmcExists($slmcNo) {
+        $query = "SELECT * FROM {$this->table} WHERE slmcNo = :slmcNo LIMIT 1";
+        $result = $this->query($query, ['slmcNo' => $slmcNo]);
+        return !empty($result);
+    }
+
 }

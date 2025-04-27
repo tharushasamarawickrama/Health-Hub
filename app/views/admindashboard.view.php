@@ -16,7 +16,7 @@
         </div>
 
         <div class="dashboard-card">
-            <h3>Doctor's Profile Update Requests</h3>
+            <h3>Dr Profile Update Requests</h3>
             <p>Total Pending Requests</p>
             <div class="count"><?php echo $data['doctor_profile_update_count']; ?></div>
         </div>

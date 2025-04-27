@@ -60,7 +60,7 @@
             </div>
             <div class="form-actions">
                 <a href="<?php echo URLROOT;?>EditLAProfiledetails?id=<?php echo $data['lab_assistant_id'] ?>">
-                    <button type="button" class="save-btn">Edit Profile</button>
+                    <button type="button" class="save-btn" id="dr-req-btn-left">Edit Profile</button>
                 </a>
             </div>
         </form>

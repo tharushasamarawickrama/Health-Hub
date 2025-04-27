@@ -66,5 +66,17 @@ class User {
         
             return $this->query($query, $data);
         }
+
+
+        public function emailExists($email) {
+            $query = "SELECT * FROM {$this->table} WHERE email = :email LIMIT 1";
+            $result = $this->query($query, ['email' => $email]);
+            return !empty($result);
+        }
         
+        public function nicExists($nic) {
+            $query = "SELECT * FROM {$this->table} WHERE nic = :nic LIMIT 1";
+            $result = $this->query($query, ['nic' => $nic]);
+            return !empty($result);
+        }
 }
