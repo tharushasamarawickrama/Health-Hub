@@ -21,6 +21,8 @@
 
             <h1>Doctors List</h1>
             
+            
+            
             <?php if (empty($data)): ?>
                 <p>No doctors available.</p>
             <?php else: ?>
