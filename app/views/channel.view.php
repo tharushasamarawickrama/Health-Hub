@@ -23,7 +23,7 @@
         <?php endif; ?>
         <div>
             <a href="<?php echo URLROOT; ?>searchappoinment">
-                <button class="payment-btn2">Back</button>
+                <button class="channel-backbtn">Back</button>
             </a>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<
+
 <div class="AdminRegister-body">
     <div class="AdminRegister-form-container">
         <h1>Request Form</h1>

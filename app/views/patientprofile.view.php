@@ -57,7 +57,7 @@
             </div>
 
             <div>
-                <a href="<?php echo URLROOT; ?>searchappointment">
+                <a href="<?php echo URLROOT; ?>searchappoinment">
                     <button class="profile-top-button2">Make An Appointment</button>
                 </a>
             </div>
@@ -77,13 +77,13 @@
                     <div class="profile-middle-details-div1">
                         <span>First Name</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['firstName']); ?>">
+                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['firstName']); ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-middle-details-div1">
                         <span>Last Name</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['lastName']); ?>">
+                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['lastName']); ?>" readonly>
                         </div>
                     </div>
 
@@ -92,13 +92,13 @@
                     <div>
                         <span>Phone Number</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['phoneNumber']); ?>">
+                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['phoneNumber']); ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-middle-details-div3">
                         <span>Email</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>">
+                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>" readonly>
                         </div>
                     </div>
 
@@ -106,13 +106,13 @@
                 <div class="profile-middle-details-div4">
                     <span>Address</span>
                     <div>
-                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['address']); ?>">
+                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['address']); ?>" readonly>
                     </div>
                 </div>
                 <div class="profile-middle-details-div4">
                     <span>NIC</span>
                     <div>
-                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['nic']); ?>">
+                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['nic']); ?>" readonly>
                     </div>
                 </div>
                 <form action="" method="POST">
@@ -123,7 +123,7 @@
 
                         <div>
 
-                            <button class="profile-middle-details-button2" id="" name="reset" onclick="event.preventDefault(); openResetModal()">Reset</button>
+                            
 
 
                             <button class="profile-middle-details-button2" onclick="event.preventDefault(); openUpdateModal()">Update</button>
@@ -171,7 +171,7 @@
                         </div>
                         <div class="modal-input-div">
                             <label for="email">Email</label>
-                            <input type="email" name="email" class="modal-title" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>" required>
+                            <input type="email" name="email" class="modal-title" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>" required readonly>
 
                         </div>
                         <div class="modal-input-div">
