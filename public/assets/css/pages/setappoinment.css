@@ -153,6 +153,7 @@
     justify-content: center;
     margin-top: 40px;
     gap: 20px;
+    margin-left: 600px;
 }
 
 .continuebtn {
@@ -161,13 +162,16 @@
     background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
     box-shadow: 0 5px 10px rgba(0, 123, 255, 0.3);
+    margin-left: 500px;
 }
+
+
 
 .continuebtn:hover {
     transform: translateY(-2px);

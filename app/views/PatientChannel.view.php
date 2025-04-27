@@ -2,7 +2,7 @@
 <?php require APPROOT . '/views/Components/Navbar.php' ?>
 
 <div class="ptc-div1">
-    
+
     <div class="ptc-div2">
         <h1 class="ptc-div2-h1">Channel Details</h1>
         <form method="POST">
@@ -22,9 +22,9 @@
 
 
             <div class="ptc-div2-button-div">
-                
-                    <button type="button" class="ptc-div2-button" onclick="window.history.back()">Edit</button>
-                
+
+                <button type="button" class="ptc-div2-button" onclick="window.history.back()">Edit</button>
+
                 <a href="<?php echo URLROOT; ?>/patientpaymentdetails">
                     <button type="submit" name="confirmbtn" class="ptc-div2-button">Confirm</button>
                 </a>
