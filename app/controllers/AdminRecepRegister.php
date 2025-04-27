@@ -24,6 +24,18 @@ class AdminRecepRegister  {
                 
             ];
 
+            if ($user->emailExists($data['email']) ) {
+                $data['error'] = "The email address is already in use. Please use a different email.";
+                $this->view('AdminRecepRegister', $data);
+                return;
+            }
+
+            if ($user->nicExists($data['nic']) ) {
+                $data['error'] = "The NIC is already in use. Please use a different NIC.";
+                $this->view('AdminRecepRegister', $data);
+                return;
+            }
+
 
             if (!empty($data['dob'])) {
                 $dob = new DateTime($data['dob']);

@@ -26,6 +26,17 @@
 .lab-pres-app-prescription-details ul {
     padding-left: 20px;
 }
+.lab-pres-app-header {
+    display: flex;
+    justify-content: space-between; /* space between back button and action buttons */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lab-pres-app-action-buttons {
+    display: flex;
+    gap: 10px; /* space between the two buttons */
+}
 
 .lab-pres-app-file-upload {
     background-color: #E4F6F8;

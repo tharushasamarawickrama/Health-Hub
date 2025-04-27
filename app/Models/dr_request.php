@@ -30,13 +30,8 @@ class dr_request {
         
     ];
 
-    public function findAlldata()
-    {
-
-        $query = "SELECT *
-                  FROM dr_requests;";
-                  
-
+    public function findAlldata() {
+        $query = "SELECT * FROM dr_requests;";
         return $this->query($query);
     }
 
@@ -44,14 +39,28 @@ class dr_request {
         $query = "SELECT COUNT(*) AS request_count FROM dr_requests;";
         $result = $this->query($query);
         return $result[0]['request_count'] ?? 0;
-        // if (empty($result) || !isset($result[0]['request_count'])) {
-        //     return 0;
-        // }
-    
-        // return $result[0]['request_count'];
     }
 
 
+    public function emailExists($email) {
+        $query = "SELECT * FROM {$this->table} WHERE email = :email LIMIT 1";
+        $result = $this->query($query, ['email' => $email]);
+        return !empty($result);
+    }
+
+    public function nicExists($nic) {
+        $query = "SELECT * FROM {$this->table} WHERE nic = :nic LIMIT 1";
+        $result = $this->query($query, ['nic' => $nic]);
+        return !empty($result);
+    }
+
+    public function slmcExists($slmcNo) {
+        $query = "SELECT * FROM {$this->table} WHERE slmcNo = :slmcNo LIMIT 1";
+        $result = $this->query($query, ['slmcNo' => $slmcNo]);
+        return !empty($result);
+    }
+
+    
     // public function searchReceptionists($searchTerm) {
     //     $query = "SELECT u.*, r.*
     //               FROM users u
@@ -62,6 +71,4 @@ class dr_request {
     //     $data = ['term' => "%$searchTerm%"];
     //     return $this->query($query, $data);
     // }
-
-    
 }

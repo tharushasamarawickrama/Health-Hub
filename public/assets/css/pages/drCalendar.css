@@ -5,7 +5,6 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 100px;
 }
 
 /* Navigation bar */
@@ -46,6 +45,23 @@
     border-radius: 10px;
 }
 
+/* Weekday header */
+.day-name {
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    padding: 8px 0;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+/* Empty filler blocks for offset */
+.day.empty {
+    background: transparent;
+    border: none;
+    pointer-events: none;
+}
+
 /* Day blocks */
 .day {
     display: flex;
@@ -72,8 +88,8 @@
 }
 
 .day.today {
-    border: 1.6px solid black;
-    font-weight: semibold;
+    border: 2px solid black;
+    font-weight: 600;
 }
 
 /* Highlight occupied days */
@@ -110,10 +126,9 @@
     opacity: 1;
 }
 
-
 /* ───────────── Mini Calendar (for dashboard) ───────────── */
 
-.mini-calendar-wrapper{
+.mini-calendar-wrapper {
     align-items: center;
 }
 

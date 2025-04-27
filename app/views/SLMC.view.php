@@ -15,7 +15,7 @@
                 <p><?php echo $data['description']?></p>
             </div> -->
             <div class="slmc-image-actions">
-                <a href="<?php echo URLROOT;?>/DrReqProfile?id=<?php echo $data['req_id'] ?>" class="slmc-back-btn">Back</a>
+                <a href="<?php echo URLROOT;?>/DrReqProfile?id=<?php echo $data['req_id'] ?>" class="slmc-back-btn" id="dr-req-btn-left">Back</a>
             </div>
         </div>
     </div>

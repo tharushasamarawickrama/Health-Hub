@@ -1,12 +1,14 @@
 <?php
 
-class DrEditProfilePic {
+class DrEditProfilePic
+{
     use Controller;
 
-    public function index() {
+    public function index()
+    {
 
         $doctorId = $_SESSION['user']['user_id'];
-        
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_pic'])) {
             $file = $_FILES['profile_pic'];
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
@@ -24,15 +26,11 @@ class DrEditProfilePic {
                 $targetFile = $targetDir . $fileName;
 
                 if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-                    require_once "../app/models/User.php";
                     $userModel = new User();
-
-                    if ($userModel->update($doctorId, ['photo_path' => 'profile-images/' . $fileName], 'user_id')) {
-                        $_SESSION['success'] = 'Profile picture updated successfully!';
-                        redirect('drEditProfile');
-                    } else {
-                        $errors = 'Database update failed. Please try again.';
-                    }
+                    $doctorModel = new Doctor();
+                    $userData =  $userModel->first(['user_id' => $doctorId]);
+                    $doctorData =  $doctorModel->first(['doctor_id' => $doctorId]);
+                    $this->view('drProfile', ['doctorData' => $doctorData, 'userData' => $userData, 'photo_path' => 'profile-images/' . $fileName]);
                 } else {
                     $errors = 'Failed to upload profile picture.';
                 }
@@ -49,9 +47,10 @@ class DrEditProfilePic {
         }
     }
 
-    
 
-    private function getDoctorData($doctorId) {
+
+    private function getDoctorData($doctorId)
+    {
         require_once "../app/models/Doctor.php";
         $doctorModel = new Doctor();
         return $doctorModel->first(['doctor_id' => $doctorId]);

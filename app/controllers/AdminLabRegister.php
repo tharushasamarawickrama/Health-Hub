@@ -23,6 +23,24 @@ class AdminLabRegister  {
                 'user_role' =>  'labassistant',
                 
             ];
+            
+            if ($user->emailExists($data['email']) ) {
+                $data['error'] = "The email address is already in use. Please use a different email.";
+                $this->view('AdminLabRegister', $data);
+                return;
+            }
+
+            if ($user->nicExists($data['nic']) ) {
+                $data['error'] = "The NIC is already in use. Please use a different NIC.";
+                $this->view('AdminLabRegister', $data);
+                return;
+            }
+
+            // if ($labassistant->employeeExists($data['employeeNo'])) {
+            //     $data['error'] = "The SLMC number is already in use. Please use a different SLMC number.";
+            //     $this->view('AdminLabRegister', $data);
+            //     return;
+            // }
 
               // Validate First Name
               if (empty($data['firstName'])) {

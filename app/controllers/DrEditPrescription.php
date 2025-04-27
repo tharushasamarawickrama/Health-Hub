@@ -10,6 +10,11 @@ class DrEditPrescription {
         $appointmentModel = new Appointment();
         $appointment = $appointmentModel->getAppointmentById($appointmentId);
 
+        $sigCodesModel = new Sig_codes();
+        $sigCodes = $sigCodesModel->getSigCodes();
+
+        $sigCodes = array_column($sigCodes, 'sigcode');
+
         $prescriptionId = $appointment['prescription_id'] ?? null;
 
         $prescriptionModel = new Prescription();
@@ -51,6 +56,7 @@ class DrEditPrescription {
             $this->view('drEditPrescription', [
                 'prescription' => $prescription,
                 'medications' => $medications,
+                'stored_sig_codes' => $sigCodes,
                 'appointment_id' => $appointmentId
             ]);
         }

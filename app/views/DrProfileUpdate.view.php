@@ -14,8 +14,8 @@
             <div class="ViewProfile-doctor-card">
                 <span class="ViewProfile-doctor-info"> DR : <?php echo $dr_prop_req['firstName']  ?> <?php echo $dr_prop_req['lastName']  ?></span>
                 <div class="ViewProfile-button-group">
-                    <a href="<?php echo URLROOT;?>DrUpdateReq?id=<?php echo $dr_prop_req['doctor_id'] ?>"><button class="ViewProfile-view-btn" >VIEW</button></a>
-                    <a href="<?php echo URLROOT;?>DrProfileUpdate/delete?id=<?php echo $dr_prop_req['doctor_id'] ?>"><button class="ViewProfile-delete-btn" >DONE</button></a>
+                    <a href="<?php echo URLROOT;?>DrUpdateReq?id=<?php echo $dr_prop_req['doctor_id'] ?>"><button class="ViewProfile-view-btn" id="dr-req-btn-left">VIEW</button></a>
+                    <a href="<?php echo URLROOT;?>DrProfileUpdate/delete?id=<?php echo $dr_prop_req['doctor_id'] ?>"><button class="ViewProfile-delete-btn" id="dr-req-btn-right">DONE</button></a>
                 </div>
             </div>
             <?php endforeach ?> 

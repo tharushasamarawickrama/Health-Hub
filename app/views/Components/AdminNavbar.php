@@ -1,7 +1,7 @@
 <div class="AdminNavbar">
     <div class="fullcontainer">
 
-        <img src="<?php echo URLROOT; ?>/assets/images/hhlogo.png" class="logo">
+        <img src="<?php echo URLROOT; ?>/assets/images/logohealth.png" class="logo">
         
         <div class="AdminNav">
             <a href="<?php echo URLROOT; ?>AdminDashboard" class="AdminNavitems">Dashboard</a>
