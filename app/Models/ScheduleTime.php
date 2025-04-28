@@ -26,20 +26,18 @@ class ScheduleTime
         return $this->query($query, ['doctor_id' => $doctor_id, 'weekday' => $weekday]);
     }
 
-    // public function getScheduleByDoctor($doctor_id, $start_date, $end_date){
-    //     $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id AND date >= :start_date AND date <= :end_date";
-    //     return $this->query($query, ['doctor_id' => $doctor_id, 'start_date' => $start_date, 'end_date' => $end_date]);
-    // }
-
     public function getScheduleByDoctor($doctor_id)
     {
-        $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id AND is_cancelled != 'true'";
+        $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id";
         return $this->query($query, ['doctor_id' => $doctor_id]);
     }
 
     public function getPastSchedulesByDoctor($doctor_id)
     {
         $today = date('l');
+        if($today == 'Sunday' || $today == 'Saturday'){
+            $today = 'Friday';
+        }
 
         // Get today's schedule_id
         $sql = "SELECT schedule_id FROM schedule_time WHERE weekday = :weekday ORDER BY start_time ASC LIMIT 1";
@@ -76,15 +74,10 @@ class ScheduleTime
         return $this->query($sql, ['doctor_id' => $doctor_id, 'today' => $today]);
     }
 
-    public function getOccupiedSlots($doctor_id, $start_date, $end_date)
+    public function getValidSlotsByDoctor($doctor_id)
     {
-        $query = "SELECT date, start_time, end_time
-                  FROM $this->table 
-                  WHERE date >= :start_date AND date <= :end_date AND doctor_id != :doctor_id
-                  GROUP BY date, start_time, end_time
-                  HAVING COUNT(schedule_id) = 3";  // Only fetch sets where count is 3
-
-        return $this->query($query, ['start_date' => $start_date, 'end_date' => $end_date, 'doctor_id' => $doctor_id]);
+        $query = "SELECT * FROM $this->table WHERE doctor_id = :doctor_id AND is_cancelled != 'true'";
+        return $this->query($query, ['doctor_id' => $doctor_id]);
     }
 
     public function getAvailableSlots()
@@ -104,17 +97,6 @@ class ScheduleTime
         return $this->query($query, ['doctorId' => $doctorId, 'weekday' => $weekday, 'startTime' => $startTime, 'endTime' => $endTime]);
     }
 
-    public function setIsCancelled($scheduleId, $doctorId, $isCancelled)
-    {
-        $query = "UPDATE $this->table SET is_cancelled = :isCancelled WHERE schedule_id = :scheduleId AND doctor_id = :doctorId";
-
-        return $this->query($query, [
-            'isCancelled' => $isCancelled,
-            'scheduleId' => $scheduleId,
-            'doctorId' => $doctorId
-        ]);
-    }
-
     public function updateSomeField($scheduleId, $doctorId, $field, $newVal)
     {
         $query = "UPDATE $this->table SET $field = :newVal WHERE schedule_id = :scheduleId AND doctor_id = :doctorId";
@@ -124,6 +106,11 @@ class ScheduleTime
             'scheduleId' => $scheduleId,
             'doctorId' => $doctorId
         ]);
+    }
+
+    public function getDoctorCountBySlot($scheduleId){
+        $query = "SELECT COUNT(*) AS total FROM $this->table WHERE schedule_id = :scheduleId";
+        return $this->query($query, ['scheduleId' => $scheduleId]);
     }
 
     public function handleAddedSchedules($doctorId, $dayName, $startTime, $endTime, $noSchedules)
@@ -140,9 +127,9 @@ class ScheduleTime
             if (!$updated) return false;
 
             // Ensure at most 3 entries per schedule slot
-            $query2 = "SELECT COUNT(*) AS total FROM $this->table WHERE schedule_id = :scheduleId";
-            $countResult = $this->query($query2, ['scheduleId' => $scheduleId]);
-            $count = $countResult[0]['total'] ?? 0;
+            // $query2 = "SELECT COUNT(*) AS total FROM $this->table WHERE schedule_id = :scheduleId";
+            // $countResult = $this->query($query2, ['scheduleId' => $scheduleId]);
+            $count = $this->getDoctorCountBySlot($scheduleId)[0]['total'] ?? 0;
 
             if ($count < 3) {
                 $inserted = $this->insert([
@@ -164,6 +151,20 @@ class ScheduleTime
                     'doctorId' => $doctorId,
                     'scheduleId' => $scheduleId
                 ]);
+                if (!$updated) return false;
+
+                $count = $this->getDoctorCountBySlot($scheduleId)[0]['total'] ?? 0;
+
+                if ($count < 3) {
+                    $inserted = $this->insert([
+                        'doctor_id' => 0,
+                        'schedule_id' => $scheduleId,
+                        'weekday' => $dayName,
+                        'start_time' => $startTime,
+                        'end_time' => $endTime
+                    ]);
+                    if (!$inserted) return false;
+                }
             } else {
                 $query3 = "UPDATE $this->table 
                    SET is_cancelled = :is_cancelled WHERE schedule_id = :scheduleId AND doctor_id = :doctorId";
@@ -174,22 +175,6 @@ class ScheduleTime
                 ]);
             }
             if (!$updated) return false;
-
-            // Ensure one available dummy row exists
-            $query4 = "SELECT COUNT(*) AS total FROM $this->table WHERE schedule_id = :scheduleId AND doctor_id = 0";
-            $countResult = $this->query($query4, ['scheduleId' => $scheduleId]);
-            $count = $countResult[0]['total'] ?? 0;
-
-            if ($count == 0) {
-                $inserted = $this->insert([
-                    'doctor_id' => 0,
-                    'schedule_id' => $scheduleId,
-                    'weekday' => $dayName,
-                    'start_time' => $startTime,
-                    'end_time' => $endTime
-                ]);
-                if (!$inserted) return false;
-            }
         }
 
         return true;

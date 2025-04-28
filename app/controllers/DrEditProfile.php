@@ -17,7 +17,6 @@ class DrEditProfile
                 'lastName'      => htmlspecialchars(trim($_POST['lastName']), ENT_QUOTES, 'UTF-8'),
                 'address'       => htmlspecialchars(trim($_POST['address']), ENT_QUOTES, 'UTF-8'),
                 'phoneNumber'   => trim($_POST['phoneNumber']),
-                'email'         => trim($_POST['email']),
             ];
         
             $errors = [];
@@ -82,10 +81,6 @@ class DrEditProfile
             // === Validation ===
             if (empty($DoctorData['description'])) {
                 $errors[] = 'Description is required.';
-            }
-        
-            if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
-                $errors[] = 'Invalid email address.';
             }
         
             if (!preg_match('/^[0-9]{10}$/', $userData['phoneNumber'])) {

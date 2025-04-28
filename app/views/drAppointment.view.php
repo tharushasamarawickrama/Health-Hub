@@ -2,9 +2,16 @@
 require APPROOT . '/views/Components/header.php';
 require APPROOT . '/views/Components/drNavbar.php';
 
+if($data['last_appointment_id']){
+    $backPage = 'drMedicalHistory?appointment_id=' . $data['last_appointment_id'];
+}
+else{
+    $backPage = 'drViewAppointments';
+}
+
 ?>
     <div class="dr-appointments-container">
-        <a href="<?php echo URLROOT; ?>drViewAppointments" class="appointment-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
+        <a href="<?php echo URLROOT . $backPage; ?>" class="appointment-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
         <div class="appointment-container">
             
             <div class="appointment-details">
@@ -28,8 +35,8 @@ require APPROOT . '/views/Components/drNavbar.php';
             </div>
 
             <div class="appointment-actions">
-                <a href="<?php echo URLROOT; ?>drPrescription?appointment_id=<?php echo $data['id']; ?>" class="appointment-action">Prescription &rarr;</button>
-                <a href="<?php echo URLROOT; ?>drLabTests?appointment_id=<?php echo $data['id']; ?>" class="appointment-action">Lab Tests &rarr;</button>
+                <a href="<?php echo URLROOT; ?>drPrescription?appointment_id=<?php echo $data['id'] . "&last_appointment=" . $data['last_appointment_id']; ?>" class="appointment-action">Prescription &rarr;</button>
+                <a href="<?php echo URLROOT; ?>drLabTests?appointment_id=<?php echo $data['id'] . "&last_appointment=" . $data['last_appointment_id'];?>" class="appointment-action">Lab Tests &rarr;</button>
             </div>
         </div>
     </div>

@@ -210,10 +210,6 @@ if ($filter === 'today' && $doctorType === 'specialist') {
                             <span class="appointment-No"><?= '#' . str_pad($appointment['appointment_No'], 4, '0', STR_PAD_LEFT) ?></span>
                             <span class="appointment-name"><?= $appointment['name'] ?></span>
                         </a>
-                        <div class="appointment-action-icons">
-                            <a href="#"><img src="<?= URLROOT; ?>assets/images/check-black.png" alt="Check Icon" class="appointment-check-icon"></a>
-                            <a href="#"><img src="<?= URLROOT; ?>assets/images/xmark-black.png" alt="Cross Icon" class="appointment-check-icon"></a>
-                        </div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>

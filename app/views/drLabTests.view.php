@@ -10,10 +10,17 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
 $today = date('Y-m-d');
 $isPastAppointment = strtotime($appointment_date) < strtotime($today);
 $notEditable = $isPastAppointment || $data['appointment_status'] === 'completed';
+
+if($data['last_appointment_id']){
+    $backPage = '&last_appointment=' . $data['last_appointment_id'];
+}
+else{
+    $backPage = '';
+}
 ?>
 
 <div class="dr-labtest-container">
-    <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id; ?>" class="labtest-back-arrow">
+    <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id . $backPage; ?>" class="labtest-back-arrow">
         <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
     </a>
 
@@ -37,7 +44,6 @@ $notEditable = $isPastAppointment || $data['appointment_status'] === 'completed'
 
         <!-- Order Lab Tests Section -->
         <div id="order-tests" class="tab-content <?= $notEditable ? '' : 'active' ?>">
-            <h3>Order Lab Test</h3>
             <!-- Display Selected Lab Tests -->
         <div id="selected-tests" class="lab-tests-display">
             <?php if (!empty($fetchedLabTests)): ?>
@@ -51,8 +57,6 @@ $notEditable = $isPastAppointment || $data['appointment_status'] === 'completed'
                 <p id="no-tests-msg">No lab tests available.</p>
             <?php endif; ?>
         </div>
-
-        <h3>Order Lab Test</h3>
 
         <!-- Dropdowns for Categorized Lab Tests -->
         <div class="test-options">

@@ -2,6 +2,7 @@
     font-family: "Nunito", sans-serif;
     margin-top: 40px;
     padding: 100px;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .dr-schedule-content {
@@ -24,9 +25,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.schedule-component {
+.schedule-component, .schedule-component-cancelled{
   white-space: pre;
-  border-bottom: rgba(0, 0, 0, 0.1) solid 3px;
+  border-bottom: #003C70 solid 1px;
   display: flex;
   color: #000;
   padding: 5px 10px;
@@ -34,6 +35,10 @@
   margin: 5px;
   font-size: 0.9em;
   justify-content: space-between;
+}
+
+.schedule-component-cancelled {
+    color: #666;
 }
 
 .schedule-right {
@@ -60,4 +65,9 @@
 
 .schedule-update-btn:hover{
     background-color: #7cabb5;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }

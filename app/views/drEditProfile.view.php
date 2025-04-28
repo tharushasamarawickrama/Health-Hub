@@ -64,13 +64,6 @@ $userData = $userData ?? [];
                 <label for="phoneNumber">Phone:</label>
                 <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value="<?php echo htmlspecialchars($userData['phoneNumber']); ?>" pattern="\d{10}" title="Phone number must be 10 digits" required>
 
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" class="form-control"
-                    value="<?php echo htmlspecialchars($userData['email']); ?>"
-                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                    title="Enter a valid email address like name@example.com"
-                    required>
-
             </div>
 
             <div class="dr-profile-actions">

@@ -5,11 +5,21 @@ require APPROOT . '/views/Components/drNavbar.php';
 $today = date('Y-m-d');
 $isPastAppointment = strtotime($appointment_date) < strtotime($today);
 
+if($data['last_appointment_id']){
+    $backPage = '&last_appointment=' . $data['last_appointment_id'];
+}
+else{
+    $backPage = '';
+}
+
 ?>
 
 <div class="dr-prescription-container">
     <div class="prescription-header">
-        <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id; ?>" class="prescription-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
+        <a href="<?= URLROOT ?>drAppointment?appointment_id=<?= $appointment_id . $backPage; ?>" class="prescription-back-arrow">
+            <img src="<?= URLROOT ?>assets/images/arrow-back.png" alt="Back">
+        </a>
+
         <h2>Prescription Details</h2>
     </div>
     <div class="prescription-container">
@@ -43,19 +53,19 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
                             $duration_parts = explode(',', $duration);
                             $formatted_duration = $duration_parts[0] . '/' . $duration_parts[1];
                         ?>
-                        <tr>
-                            <td><?php echo $medication['name']; ?></td>
-                            <td><?php echo $medication['quantity']; ?></td>
-                            <td><?php echo $medication['measurement']; ?></td>
-                            <td><?php echo $medication['sig_codes']; ?></td>
-                            <td><?php echo $formatted_duration; ?></td>
-                        </tr>
+                            <tr>
+                                <td><?php echo $medication['name']; ?></td>
+                                <td><?php echo $medication['quantity']; ?></td>
+                                <td><?php echo $medication['measurement']; ?></td>
+                                <td><?php echo $medication['sig_codes']; ?></td>
+                                <td><?php echo $formatted_duration; ?></td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
             <?php endif; ?>
         </div>
-        <?php if(!$isPastAppointment && $appointment_status === 'new'): ?>
+        <?php if (!$isPastAppointment && $appointment_status === 'new'): ?>
             <a href="<?php echo URLROOT; ?>drEditPrescription?appointment_id=<?php echo $appointment_id; ?>"><button class="prescription-actions">Edit</button></a>
         <?php endif; ?>
     </div>

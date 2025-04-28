@@ -8,15 +8,26 @@ require APPROOT . '/views/Components/drCalendarComponent.php';
 <a href="<?php echo URLROOT; ?>drDashboard" class="profile-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
     <div class="dr-schedule-content">
         <div class="schedule-left">
-            <?php foreach ($schedules as $schedule) : ?>
-                <div class="schedule-component"><?php echo
-                                                $schedule['date']  . "<br>" .
+            <?php foreach ($allSchedules as $schedule) : 
+                $displayDate = $schedule['date'];
+
+                if($schedule['is_cancelled'] === 'optional') $displayDate .= " (optional slot)";
+
+                //make the cancelled slots owned by the doctor to appear shaded
+                $scheduleClass = 'schedule-component';
+                if($schedule['is_cancelled'] == 'true'){
+                    $scheduleClass .='-cancelled';
+                    $displayDate .= " (cancelled slot)";
+                }
+            ?>
+                <div class="<?php echo $scheduleClass?>"><?php echo
+                                                $displayDate  . "<br>" .
                                                     date("gA", strtotime($schedule["start_time"])) . " - " .
                                                     date("gA", strtotime($schedule["end_time"])) .
                                                     "\t=>    " . $schedule["filled_slots"] . " appointments"; ?></div>
             <?php endforeach; ?>
         </div>
-        <div class="schedule-right"><?php generateCalendar($schedules, $month, $year); ?></div>
+        <div class="schedule-right"><?php generateCalendar($validSchedules, $month, $year); ?></div>
     </div>
     <a href="<?php echo URLROOT; ?>drAvailability"><button class="schedule-update-btn">Update Availability</button></a>
 </div>
