@@ -50,7 +50,7 @@ class DrDashboard
             $ScheduleTimeModel = new ScheduleTime();
             $schedules = $ScheduleTimeModel->getPastSchedulesByDoctor($doctorId);
             $todaysSlots = $ScheduleTimeModel->getTodaysSlotsByDoctor($doctorId);
-            $calendarSchedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
+            $calendarSchedules = $ScheduleTimeModel->getValidSlotsByDoctor($doctorId);
             
             // var_dump($calendarSchedules);
             // exit();
@@ -79,7 +79,6 @@ class DrDashboard
                 foreach($calendarSchedules as &$schedule){ $schedule["date"] = getDateOfWeekday($schedule["weekday"]); }
             }
         }
-        
 
 
         // Load the view and pass the data

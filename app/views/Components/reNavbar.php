@@ -22,6 +22,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
             <img src="<?php echo URLROOT; ?>/assets/images/hhlogo.png" alt="Health Hub Logo" class="relogo">
         
             <a href="<?php echo URLROOT; ?>/redashboard" class="reNavitems">Dashboard</a> 
+            <a href="<?php echo URLROOT; ?>/reviewappointments" class="reNavitems">view appointments</a>
 
             <?php if (isset($_SESSION['user'])): ?>
             <a href="#">

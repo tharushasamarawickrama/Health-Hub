@@ -12,6 +12,12 @@ class DrLabTests {
             redirect('drViewAppointments');
         }
 
+        if(isset($_GET['last_appointment'])) {
+            $lastAppointmentId = $_GET['last_appointment'];
+        } else {
+            $lastAppointmentId = null;
+        }
+
         $appointmentId = $_GET['appointment_id'];
 
         $labtestModel = new Labtest();
@@ -74,6 +80,7 @@ class DrLabTests {
             'appointment_id' => $appointmentId,
             'appointment_date' => $appointmentDate,
             'appointment_status' => $appointmentStatus,
+            'last_appointment_id' => $lastAppointmentId,
         ];
 
         $this->view('drLabTests', $data);

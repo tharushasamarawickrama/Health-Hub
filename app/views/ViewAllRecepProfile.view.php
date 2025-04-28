@@ -20,7 +20,7 @@
 
                 <?php foreach ($data as $receptionist): ?>
                 <div class="ViewProfile-doctor-card">
-                    <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $receptionist['employeeNo'] ?> - <?php echo $receptionist['firstName'] ?></span>
+                    <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $receptionist['employeeNo'] ?> - <?php echo $receptionist['title'] ?>.<?php echo $receptionist['firstName'] ?></span>
                     <div class="ViewProfile-button-group">
                         <a href="<?php echo URLROOT;?>ReProfiledetails?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-view-btn" id="dr-req-btn-left">VIEW</button></a>
                         <a href="<?php echo URLROOT;?>ViewAllRecepProfile/delete?id=<?php echo $receptionist['receptionist_id'] ?>"><button class="ViewProfile-delete-btn" id="dr-req-btn-right">DELETE</button></a>

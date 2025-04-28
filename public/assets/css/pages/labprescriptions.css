@@ -49,7 +49,7 @@
 .lab-pres-result-item {
     display: flex;
     flex-direction: column;
-    background-color: #d4e5e5;
+    background-color: #AFD7FC  ;
     padding: 20px;
     border-radius: 10px;
     text-align: left;
@@ -67,5 +67,5 @@
 
 .lab-pres-result-item:hover{
     transform: scale(1.05);
-    background-color: #62a7c7;
+    background-color: #6CB0F3  ;
 }

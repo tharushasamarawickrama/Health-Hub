@@ -14,7 +14,7 @@
 // Get the current date
 $currentDate = new DateTime();
 $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' format
-// show($appointments);
+
 ?>
 <script>
     // Pass all appointment data to the frontend as a JavaScript object
@@ -29,6 +29,11 @@ $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' form
         <?php
         // Convert the appointment date from string to DateTime object
         $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
+        
+        if ($appointment['appointment']['appointment_date'] > $currentDateTime && strtotime($appointment['appointment']['appointment_date']) - strtotime($currentDateTime) > 7200) {
+            $gap = 1;
+        }
+
 
         if ($appointment['appointment']['appointment_date'] > $currentDateTime && strtotime($appointment['appointment']['appointment_date']) - strtotime($currentDateTime) > 7200) {
             $gap = 1;
@@ -46,6 +51,7 @@ $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' form
         if (($currentDate->format('Y-m-d') <= $appointmentDate->format('Y-m-d') && $isdeleted == 0) || ($currentDate->format('Y-m-d') <= $appointmentDate->format('Y-m-d')  && strtotime($appointment['schedules']['start_time']) - time() && $isdeleted == 0)): ?>
 
             <div class="pt-pending-div2-main">
+
                 <div class="pt-pending-div2">
                     <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
                     <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
@@ -80,6 +86,7 @@ $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' form
                 <button class="pt-pending-button">Upload Document</button>
                 </div> -->
                 </div>
+
             </div>
         <?php endif; ?>
 
@@ -102,15 +109,15 @@ $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' form
         // Check if current date is greater than the appointment date (for past appointments)
         if (($currentDate->format('Y-m-d') > $appointmentDate->format('Y-m-d') && $isdeleted == 0) || ($currentDate->format('Y-m-d') > $appointmentDate->format('Y-m-d') && strtotime($appointment['schedules']['end_time']) < time() && $isdeleted == 0)): ?>
             <div class="pt-pending-div3-main">
-                <div class="pt-pending-div2">
-                    <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
-                    <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
-                    <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
-                    <button
-                        class="pt-pending-button view-btn"
-                        data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">View</button>
+            <div class="pt-pending-div2">
+                <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
+                <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
+                <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
+                <button
+                class="pt-pending-button view-btn"
+                data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">View</button>
 
-                </div>
+            </div>
             </div>
         <?php endif; ?>
     <?php endforeach; ?>

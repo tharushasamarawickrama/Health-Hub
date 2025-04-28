@@ -1,0 +1,40 @@
+.re-view-app-container {
+    width: 100%;
+}
+
+.re-view-app-content{
+    padding: 30px;
+    margin-top: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.re-view-app-card {
+    display: flex;
+    justify-content: space-between; /* Align content left and right */
+    align-items: center; /* Center items vertically */
+    background-color: #CDE1E5;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+.re-view-app-card:hover {
+    transform: scale(1.02);
+    background-color: #62a7c7;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+}
+.re-view-app-card a {
+    text-decoration: none;
+    color: inherit;
+}
+.re-view-app-card-left {
+    flex: 1; /* Allow the left side to grow */
+}
+
+.re-view-app-card-right {
+    flex: 1; /* Allow the right side to grow */
+    text-align: left; /* Align text to the right */
+}
