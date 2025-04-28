@@ -12,15 +12,39 @@
     border: 1px solid #e0e0e0;
     position: relative;
 }
+.ph-pres-app-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
 
-.ph-pres-app-prescription-header {
-    background-color: #ffffff;
+.ph-pres-app-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     padding: 10px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    margin-top: 50px;
-    border: 2px solid #005f6b;
+    background: linear-gradient(135deg, #003C70, #004d9f);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
+.ph-pres-app-button:hover {
+    background: linear-gradient(135deg, #2b6eb0, #0066cc);
+    transform: translateY(-2px);
+}
+.ph-pres-app-action-buttons {
+    display: flex;
+    gap: 10px; /* space between the two buttons */
+    margin-bottom: 20px;
+    top: 20px;
+    margin-right: 70px;
+    margin-top: 80px;
+    position: relative;
 }
 
 .ph-pres-app-prescription-table {
@@ -72,53 +96,7 @@
     border-radius: 4px;
 }
 
-.ph-pres-app-buttons-container {
-    margin-top: 20px;
-    padding: 10px;
-}
-
 .ph-pres-app-buttons {
     display: flex;
     gap: 20px;
-}
-
-.ph-pres-app-buttons button {
-    padding: 10px 15px;
-    background-color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: #2f7a85; /* Adds subtle shadow to make boxes stand out */
-
-}
-
-
-.ph-pres-app-buttons button:hover {
-    background-color: #0e6875;
-    border-color: #002a31;
-
-}
-.ph-pres-app-back-button-container {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-.ph-pres-app-back-button {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 8px 15px;
-    background-color: #2f7a85;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.ph-pres-app-back-button:hover {
-    background-color: #0e6875;
-    border-color: #002a31;
 }
