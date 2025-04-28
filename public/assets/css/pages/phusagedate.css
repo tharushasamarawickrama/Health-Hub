@@ -2,11 +2,33 @@
     padding-top: 100px;
 }
 
+.ph-usage-date-button-container {
+    margin-bottom: 20px;
+    top: 20px;
+    margin-left: 60px;
+}
+
+.ph-usage-date-button {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    background: linear-gradient(135deg, #003C70, #004d9f);
+    transition: background 0.5s ease, transform 0.5s ease;
+}
+
+.ph-usage-date-button:hover {
+    background: linear-gradient(135deg, #2b6eb0, #0066cc);
+    transform: translateY(-2px);
+}
 .ph-usage-date-date {
-    background-color: #e0e0e0;
+    background-color: #AFD7FC ;
     padding: 10px;
     width: fit-content;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
     margin-bottom: 20px;
 }
@@ -33,7 +55,7 @@
 }
 
 .ph-usage-date-table th {
-    background-color: #d0f0f1;
+    background-color: #EAF4FE  ;
     font-weight: bold;
 }
 
@@ -45,27 +67,3 @@
     background-color: #f1f1f1;
 }
 
-.ph-usage-date-back-button-container {
-    margin-bottom: 20px;
-    top: 20px;
-    left: 20px;
-}
-
-.ph-usage-date-back-button {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 6px 12px;
-    background-color: #2f7a85;
-    border-radius: 5px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    width: fit-content;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.ph-usage-date-back-button:hover {
-    background-color: #0e6875;
-    border-color: #002a31;
-}

@@ -2,9 +2,8 @@
 <?php require APPROOT . '/views/Components/phNavbar.php'; ?>
 <div class="ph-proc-app-dashboard">
     <div class="ph-proc-app-appcontent">
-        <div class="ph-proc-app-back-button-container">
-            <a href="<?php echo URLROOT; ?>/phprocessedprescriptions" class="ph-proc-app-back-button">
-                <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+        <div class="ph-proc-app-button-container">
+            <a href="<?php echo URLROOT; ?>/phprocessedprescriptions" class="ph-proc-app-button">
                 Back
             </a>
         </div> 

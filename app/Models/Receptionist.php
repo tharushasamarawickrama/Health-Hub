@@ -40,7 +40,26 @@ class Receptionist {
         return $result[0]['receptionists_count'] ?? 0;
     }
 
-    public function getappointmentsbyreceptionist($appointment_id = null) {
+    public function getappointmentsbyreceptionist($appointment_id ) {
+        $query = "SELECT a.appointment_id, 
+                        a.patient_id,
+                        a.nic,
+                        a.doctor_id,
+                        TIME(a.created_at) AS created_at,
+                        DATE (a.created_at) AS created_date
+                  FROM appointments a
+                  JOIN receptionists r ON a.patient_id = r.receptionist_id
+                  Join users d ON a.doctor_id = d.user_id
+                  WHERE DATE(a.created_at) = CURDATE()";
+        
+        if ($appointment_id) {
+            $query .= " WHERE a.appointment_id = :appointment_id";
+            return $this->query($query, ['appointment_id' => $appointment_id]);
+        }
+    
+        return $this->query($query); // Fetch all appointments if no ID is provided
+    }
+    public function getappdetailsbyreceptionist($appointment_id ) {
         $query = "SELECT a.appointment_id, 
                         a.title,
                         a.patient_id,
@@ -55,17 +74,16 @@ class Receptionist {
                         a.doctor_id,          
                         CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
                         a.nic,
-                        TIME(a.created_at) AS created_at
+                        TIME(a.created_at) AS created_at,
+                        DATE (a.created_at) AS created_date
                   FROM appointments a
                   JOIN receptionists r ON a.patient_id = r.receptionist_id
-                  Join users d ON a.doctor_id = d.user_id";
+                  Join users d ON a.doctor_id = d.user_id
+                  WHERE DATE(a.created_at) = CURDATE() AND a.appointment_id = :appointment_id";
         
-        if ($appointment_id) {
-            $query .= " WHERE a.appointment_id = :appointment_id";
-            return $this->query($query, ['appointment_id' => $appointment_id]);
-        }
+        
     
-        return $this->query($query); // Fetch all appointments if no ID is provided
+        return $this->query($query,['appointment_id' => $appointment_id]); // Fetch all appointments if no ID is provided
     }
-    
 }
+

@@ -14,6 +14,7 @@
 // Get the current date
 $currentDate = new DateTime();
 $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' format
+
 ?>
 <script>
     // Pass all appointment data to the frontend as a JavaScript object
@@ -34,48 +35,58 @@ $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' form
         }
 
 
+        if ($appointment['appointment']['appointment_date'] > $currentDateTime && strtotime($appointment['appointment']['appointment_date']) - strtotime($currentDateTime) > 7200) {
+            $gap = 1;
+        }
+
+
         // Check if the appointment status is 'pending' or 'paid'
         $appointmentStatus = $appointment['appointment']['payment_status'];
         $isdeleted = $appointment['appointment']['isdeleted'];
         // echo $appointment['schedules']['start_time'];
-        
+
         // echo strtotime($appointment['schedules']['start_time']) - time()  . "<br>";
         // Display appointments only if the current date is less than the appointment date
         // echo $currentDate->format('Y-m-d');
         if (($currentDate->format('Y-m-d') <= $appointmentDate->format('Y-m-d') && $isdeleted == 0) || ($currentDate->format('Y-m-d') <= $appointmentDate->format('Y-m-d')  && strtotime($appointment['schedules']['start_time']) - time() && $isdeleted == 0)): ?>
 
             <div class="pt-pending-div2-main">
-            <div class="pt-pending-div2">
-                <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
-                <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
-                <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
-                <button
-                class="pt-pending-button view-btn"
-                data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">View</button>
-                <?php if ($gap == 1): ?>
-                <button
-                    class="pt-pending-button cancel-btn"
-                    data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
-                    Cancel
-                </button>
-                <?php else: ?>
-                <button
-                    class="pt-pending-button cancel-btn1"
-                    data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
-                    Cancel
-                </button>
-                <?php endif; ?>
-                <?php if ($appointmentStatus == 'pending'): ?>
-                
-                <a href="<?php echo URLROOT; ?>patientpaymentdetails?appo_id=<?php echo $appointment['appointment']['appointment_id']; ?>">
-                    <button class="pt-pending-button">Pay Now</button>
-                </a>
-                <?php endif; ?>
 
-                <!-- <div class="pt-pending-div2-upload">
+                <div class="pt-pending-div2">
+                    <span class="pt-pending-span">Dr.<?php echo $appointment['user']['firstName'] . ' ' . $appointment['user']['lastName']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['doctor']['specialization']; ?></span>
+                    <span class="pt-pending-span"><?php echo $appointment['appointment']['appointment_date']; ?></span>
+                    <div>
+                        <button
+                            class="pt-pending-button view-btn"
+                            data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">View</button>
+                        <?php if ($gap == 1): ?>
+                            <button
+                                class="pt-pending-button cancel-btn"
+                                data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
+                                Cancel
+                            </button>
+                        <?php else: ?>
+                            <button
+                                class="pt-pending-button cancel-btn1"
+                                data-appointment-id="<?php echo $appointment['appointment']['appointment_id']; ?>">
+                                Cancel
+                            </button>
+                        <?php endif; ?>
+                        <?php if ($appointmentStatus == 'pending'): ?>
+
+                            <a href="<?php echo URLROOT; ?>patientpaymentdetails?appo_id=<?php echo $appointment['appointment']['appointment_id']; ?>">
+                                <button class="pt-pending-button">Pay Now</button>
+                            </a>
+                        <?php endif; ?>
+
+                    </div>
+
+                    <!-- <div class="pt-pending-div2-upload">
                 <button class="pt-pending-button">Upload Document</button>
                 </div> -->
-            </div>
+                </div>
+
             </div>
         <?php endif; ?>
 
@@ -329,7 +340,7 @@ $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' form
                     document.getElementById('modal-specialization').textContent = appointment.doctor.specialization;
                     document.getElementById('modal-slmc').textContent = appointment.doctor.slmcNo;
                     document.getElementById('modal-session-date').textContent = appointment.appointment.appointment_date;
-                    document.getElementById('modal-session-time').textContent = appointment.appointment.appointment_time;
+                    document.getElementById('modal-session-time').textContent = appointment.schedules.start_time;
                     document.getElementById('modal-appointment-no').textContent = appointment.appointment.appointment_No;
 
                     // Show the modal

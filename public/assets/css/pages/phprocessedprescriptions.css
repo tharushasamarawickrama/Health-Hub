@@ -1,10 +1,9 @@
-
 .ph-pp-content {
     display: flex;
     padding: 30px;
     gap: 40px;
     margin-top: 80px;
-    background-color: #CDE1E5;
+    background-color: #f0f4f8;
     border-radius: 15px;
 }
 
@@ -70,7 +69,7 @@
 }
 
 .ph-pp-calendar-date:hover {
-    background-color: #3498db;
+    background-color: #4A9AEB;
     color: white;
     cursor: pointer;
     transform: translateY(-5px);
@@ -78,13 +77,13 @@
 }
 
 .ph-pp-calendar-date.ph-pp-today {
-    background-color: #e74c3c;
+    background-color: #AFD7FC;
     color: white;
     font-weight: bold;
 }
 
 .ph-pp-calendar-date.ph-pp-selected {
-    background-color: #2ecc71;
+    background-color: #1460A7;
     color: white;
 }
 
@@ -116,15 +115,19 @@
 
 .ph-pp-result-item{
     text-decoration: none;
-
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
 }
 .ph-pp-appointment-card {
     background: #f1f5f9;
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 12px;
-    border-left: 6px solid #64A7B3;
+    border-radius: 10px;
+    border-left: 6px solid #1E72C3;
     transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 60, 112, 0.08);
+
 }
 
 .ph-pp-appointment-card:hover {
@@ -137,7 +140,17 @@
     color: #4a5568;
 }
 
-.ph-pp-appointment-card .ph-pp-appointment-id {
-    font-weight: bold;
-    color: #2c3e50;
+
+.ph-pp-appointment-id {
+    font-weight: 600;
+    font-size: 16px;
+    color: #0A4E8C;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e7edf4;
+}
+.ph-pp-appointment-card div:nth-child(2) {
+    color: #4A5568;
+    font-size: 15px;
+    margin-top: 4px;
 }

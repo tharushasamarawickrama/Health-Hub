@@ -116,8 +116,8 @@
 <?php endif; ?>
             </table>
 
-            <div class="ph-pres-app-buttons-container">
-                <button type="submit">Calculate</button>
+            <div >
+                <button class= "ph-pres-app-button" type="submit">Calculate</button>
             </div>
         </form>
     </div>
