@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     font-family: 'Nunito', sans-serif;
-    padding-top: 60px;
+    padding-top: 80px; /* Add padding to prevent overlap with the buttons */
     position: relative;
 }
 .ph-pres-app-appcontent {
@@ -14,8 +14,9 @@
 }
 .ph-pres-app-button-container {
     position: absolute;
-    top: 20px;
+    top: 20px; /* Ensure enough space from the top */
     left: 20px;
+    z-index: 10;
 }
 
 .ph-pres-app-button {
@@ -38,15 +39,15 @@
     transform: translateY(-2px);
 }
 .ph-pres-app-action-buttons {
-    display: flex;
-    gap: 10px; /* space between the two buttons */
-    margin-bottom: 20px;
+    position: absolute;
     top: 20px;
-    margin-right: 70px;
-    margin-top: 80px;
-    position: relative;
+    right: 20px;
+    z-index: 10;
 }
 
+.ph-pres-app-prescription-details{
+    padding: 30px;
+}
 .ph-pres-app-prescription-table {
     width: 100%;
     border-collapse: collapse;

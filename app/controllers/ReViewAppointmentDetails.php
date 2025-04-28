@@ -9,11 +9,9 @@ class ReViewAppointmentDetails  {
     }
 
     public function index() {
-        if (!isset($_GET['appointment_id'])) {
-            die("Error: No appointment ID provided.");
-        }
         $appointment_id = $_GET['appointment_id'];
-        $appointmentDetails = $this->ReceptionistModel->getappointmentsbyreceptionist();
+
+        $appointmentDetails = $this->ReceptionistModel->getappdetailsbyreceptionist($appointment_id);
 
         if (!$appointmentDetails) {
             die("Error: No appointment details found for the given ID.");
