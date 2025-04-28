@@ -121,6 +121,18 @@
     transform: translateY(-2px);
 }
 
+.dr-request-btn{
+    position: absolute;
+    border-radius: 10px;
+    position: absolute;
+    padding: 10px;
+    right: -15px;
+    bottom: -20px;
+    background-color:cadetblue;
+    color: white;
+    pointer-events: none;
+}
+
 .dr-profile-actions{
     position: absolute;
     width: 50%;

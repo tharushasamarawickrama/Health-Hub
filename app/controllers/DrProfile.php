@@ -11,9 +11,13 @@ class DrProfile {
         }
         $userModel = new User();
         $doctorModel = new Doctor();
+        $doctorProfileUpdateModel = new Doctor_Profile_Update();
         $userData =  $userModel->first(['user_id' => $doctorId]);
         $doctorData =  $doctorModel->first(['doctor_id' => $doctorId]);
-        $this->view('drProfile', ['doctorData' => $doctorData, 'userData' => $userData]);
+        $requestExists = $doctorProfileUpdateModel->checkRequestExists($doctorId);
+        // var_dump($requestExists);
+        // exit;
+        $this->view('drProfile', ['doctorData' => $doctorData, 'userData' => $userData, 'requestExists' => $requestExists]);
     }
 }
 

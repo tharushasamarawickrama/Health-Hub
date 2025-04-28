@@ -47,7 +47,7 @@ class PatientChannel {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmbtn'])) {
             // Update filled slots in the schedule
             $data['filled_slots'] = $data['filled_slots'] + 1;
-            $schedule->update($data['schedule_id'], $data, 'schedule_id');
+            $schedule->updateSomeField($data['schedule_id'], $doctorId, 'filled_slots', $data['filled_slots']);
             
             
             if($_SESSION['appointment']['referal_id'] == 'new'){
