@@ -6,7 +6,6 @@
     <div class="ViewProfile-container">
 
         <h1>Doctor's Requests List</h1>
-        
         <?php if (empty($data)): ?>
             <p>No doctor's requests available.</p>
         <?php else: ?>

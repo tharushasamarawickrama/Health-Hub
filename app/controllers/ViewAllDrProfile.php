@@ -5,7 +5,7 @@ class ViewAllDrProfile  {
     public function index(){
        
         $doctor=new Doctor;
-         //$data=$doctor->findAlldata();
+         
         
     
        $searchQuery = $_GET['search'] ?? '';
