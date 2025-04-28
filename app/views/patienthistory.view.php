@@ -5,7 +5,7 @@
         <p class="pt-history-div1-h1 pt-thick-underline">Prescription</p>
     </div>
     <div class="pt-history-div1">
-        <p class="pt-history-div1-h1">Lab Reports</p>
+        <p class="pt-history-div1-h1 lab-report">Lab Reports</p>
     </div>
     <div class="pt-history-div1">
         <p class="pt-history-div1-h1">Others</p>
@@ -27,25 +27,26 @@
 <!-- Content Sections -->
 <div id="prescriptionContent" class="content-section">
     <?php if (!empty($data)): ?>
-        <?php 
+        <?php
         // Sort the data by appointment date in descending order
-        usort($data, function($a, $b) {
+        usort($data, function ($a, $b) {
             return strtotime($b['appointment']['appointment_date']) - strtotime($a['appointment']['appointment_date']);
         });
 
         $lastDate = null; // Variable to track the last displayed date
-        foreach ($data as $index => $item): 
+        foreach ($data as $index => $item):
             $currentDate = $item['appointment']['appointment_date'];
         ?>
             <?php if ($currentDate !== $lastDate): ?>
                 <div class="pt-history-date-header">
                     <h3><?= $currentDate ?></h3>
                 </div>
-                <?php $lastDate = $currentDate; // Update the last displayed date ?>
+                <?php $lastDate = $currentDate; // Update the last displayed date 
+                ?>
             <?php endif; ?>
             <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
                 <div class="pt-history-div2">
-                    
+
                     <span><?= $item['appointment']['p_firstName'] . " " . $item['appointment']['p_lastName'] ?></span>
                     <span class="pt-history-span">Prescription-<?= $index + 1 ?></span>
                     <span class="pt-history-span">Appo: <?= $item['appointment']['appointment_id'] ?></span>
@@ -61,21 +62,22 @@
 <div id="labReportsContent" class="content-section" style="display: none;">
     <!-- Lab Reports Display -->
     <?php if (!empty($data)): ?>
-        <?php 
+        <?php
         // Sort the data by appointment date in descending order
-        usort($data, function($a, $b) {
+        usort($data, function ($a, $b) {
             return strtotime($b['appointment']['appointment_date']) - strtotime($a['appointment']['appointment_date']);
         });
 
         $lastDate = null; // Variable to track the last displayed date
-        foreach ($data as $index => $item): 
+        foreach ($data as $index => $item):
             $currentDate = $item['appointment']['appointment_date'];
         ?>
             <?php if ($currentDate !== $lastDate): ?>
                 <div class="pt-history-date-header">
                     <h3><?= $currentDate ?></h3>
                 </div>
-                <?php $lastDate = $currentDate; // Update the last displayed date ?>
+                <?php $lastDate = $currentDate; // Update the last displayed date 
+                ?>
             <?php endif; ?>
             <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
                 <div class="pt-history-div2">
@@ -88,7 +90,16 @@
                             <div class="lab-test-item">
                                 <span class="pt-history-span">Test: <?= $labTest['labtest_pdfname'] ?></span>
 
-                                <?php foreach ($item['labtest'] as $labtest1): ?>
+
+
+
+
+                            <?php $arr= $item['labtest']; ?>
+
+
+
+
+                                <?php foreach ($arr as $labtest1): ?>
                                     <?php if ($labtest1['labtest_id'] == $labTest['labtest_id']): ?>
                                         <span class="pt-history-span"><?php echo $labtest1['labtest_name'] ?></span>
                                         <span class="pt-history-span"><?php echo $labtest1['labtest_category'] ?></span>
@@ -111,21 +122,22 @@
 <div id="otherContent" class="content-section" style="display: none;">
     <!-- Medical History Display -->
     <?php if (!empty($data)): ?>
-        <?php 
+        <?php
         // Sort the data by appointment date in descending order
-        usort($data, function($a, $b) {
+        usort($data, function ($a, $b) {
             return strtotime($b['appointment']['appointment_date']) - strtotime($a['appointment']['appointment_date']);
         });
 
         $lastDate = null; // Variable to track the last displayed date
-        foreach ($data as $index => $item): 
+        foreach ($data as $index => $item):
             $currentDate = $item['appointment']['appointment_date'];
         ?>
             <?php if ($currentDate !== $lastDate): ?>
                 <div class="pt-history-date-header">
                     <h3><?= $currentDate ?></h3>
                 </div>
-                <?php $lastDate = $currentDate; // Update the last displayed date ?>
+                <?php $lastDate = $currentDate; // Update the last displayed date 
+                ?>
             <?php endif; ?>
             <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
                 <div class="pt-history-div2">
@@ -134,7 +146,7 @@
                     <div class="other-details">
                         <h4>Patient Medical History</h4>
                         <p><strong>Patient Name:</strong></p>
-                        <span><?= $item['appointment']['p_firstName']." ". $item['appointment']['p_lastName'] ?></span>
+                        <span><?= $item['appointment']['p_firstName'] . " " . $item['appointment']['p_lastName'] ?></span>
                         <?php
                         $medicalHistory = json_decode($item['patient'][0]['medical_history'], true);
                         ?>
@@ -233,6 +245,7 @@
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -299,12 +312,10 @@
             });
         });
     });
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
     document.addEventListener("DOMContentLoaded", function() {
         const sections = document.querySelectorAll(".pt-history-div1");
+        console.log(sections);
+
         const prescriptionContent = document.getElementById("prescriptionContent");
         const labReportsContent = document.getElementById("labReportsContent");
         const otherContent = document.getElementById("otherContent");
@@ -312,6 +323,7 @@
         // Add click event listener to each section
         sections.forEach((section) => {
             section.addEventListener("click", function() {
+
                 // Remove the thick underline from all sections
                 sections.forEach((sec) => {
                     sec.querySelector(".pt-history-div1-h1").classList.remove("pt-thick-underline");

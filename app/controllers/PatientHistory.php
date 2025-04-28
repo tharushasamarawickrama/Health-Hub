@@ -28,7 +28,7 @@ class PatientHistory
                 foreach($appointmentlabtestdata as $appolab){
                     if($appolab['labtest_id']!=0){
                         $arr1['labtest_id'] = $appolab['labtest_id'];
-                        $labtestdata = $labtest->first($arr1);
+                        $labtestdata[] = $labtest->first($arr1);
                     }else{
                         $labtestdata = null;
                     }
