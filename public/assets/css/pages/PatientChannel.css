@@ -100,3 +100,7 @@ a.ptc-div2-button {
 a.ptc-div2-button:hover {
     background: linear-gradient(135deg, #27ae60, #2ecc71);
 }
+
+.ptc-div2-button-a{
+    text-decoration: none;
+}
