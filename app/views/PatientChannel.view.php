@@ -25,7 +25,7 @@
 
                 <button type="button" class="ptc-div2-button" onclick="window.history.back()">Edit</button>
 
-                <a href="<?php echo URLROOT; ?>/patientpaymentdetails">
+                <a href="<?php echo URLROOT; ?>/patientpaymentdetails" class="ptc-div2-button-a">
                     <button type="submit" name="confirmbtn" class="ptc-div2-button">Confirm</button>
                 </a>
 

@@ -119,7 +119,7 @@
                 <div>
                     <p class="para1">
                         If the appointment is cancelled, the total charge will be
-                        <span class="para2">refunded without LKR 250/= service charge (This applies only if the appointment is cancelled at least 48 hours prior to the scheduled appointment).</span>
+                        <span class="para2">refunded without LKR 250/= service charge (This applies only if the appointment is cancelled at least 2 hours prior to the scheduled appointment).</span>
                     </p>
                 </div>
 

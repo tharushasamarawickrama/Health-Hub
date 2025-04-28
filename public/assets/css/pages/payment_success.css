@@ -29,8 +29,8 @@
 .gotohome-btn{
     width: 120px;
     height: 39.65px;
-    background: linear-gradient(135deg, #2ecc71, #27ae60); /* Green gradient */
-    border-radius: 25px;
+    background: linear-gradient(145deg, #007bff, #0056b3);
+    border-radius: 10px;
     color: white;
     border: none;
     text-decoration: none;
