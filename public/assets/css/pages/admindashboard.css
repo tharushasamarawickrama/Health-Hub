@@ -2,7 +2,7 @@
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #06468f; /* New dark blue background */
+    background: linear-gradient(135deg, #003C70, #004d9f); /* Updated to match navbar background */
     color: #FFFFFF; /* White text */
     position: fixed;
     top: 0;
@@ -31,10 +31,11 @@
 
 .sidebar ul li {
     padding: 12px 20px; /* Reduced padding to move items up */
-    transition: background 0.3s, padding-left 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .sidebar ul li a {
@@ -44,16 +45,16 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s;
 }
 
 .sidebar ul li:hover {
-    background: #39CABB; /* Teal hover effect */
-    cursor: pointer;
+    background-color: #8bc9d4; /* Hover effect similar to navbar */
+    transform: scale(1.05); /* Slight scaling effect */
 }
 
 .sidebar ul li a:hover {
-    padding-left: 10px;
+    color: #003C70; /* Text color changes on hover */
 }
 
 .sidebar ul li i {
@@ -67,7 +68,7 @@
     padding: 10px; /* Reduced padding to move footer up */
     font-size: 14px;
     color: #FFFFFF; /* White text for footer */
-    border-top: 1px solid #39CABB; /* Teal border for footer */
+    border-top: 1px solid #8bc9d4; /* Teal border for footer */
     margin-top: auto; /* Ensures the footer stays at the bottom of the content */
 }
 

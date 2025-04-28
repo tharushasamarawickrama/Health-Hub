@@ -82,10 +82,10 @@
             </div>
             <div class="form-actions">
                     <a href="<?php echo URLROOT;?>AdminDrRegister?id=<?php echo $data['req_id'] ?>">
-                        <button type="button" class="save-btn">Add Doctor</button>
+                        <button type="button" class="save-btn" id="dr-req-btn-left">Add Doctor</button>
                     </a>
                     <a href="<?php echo URLROOT;?>SLMC?id=<?php echo $data['req_id'] ?>">
-                        <button type="button" class="save-btn">SLMC Certificate</button>
+                        <button type="button" class="save-btn" id="dr-req-btn-right">SLMC Certificate</button>
                     </a>
             </div>
         </form>

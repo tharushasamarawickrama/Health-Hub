@@ -21,6 +21,18 @@ class AdminPhRegister  {
                 'photo_path' => $_POST['photo_path'] ?? '',
                 'user_role' =>  'pharmacist',
             ];
+            
+            if ($user->emailExists($data['email']) ) {
+                $data['error'] = "The email address is already in use. Please use a different email.";
+                $this->view('AdminPhRegister', $data);
+                return;
+            }
+
+            if ($user->nicExists($data['nic']) ) {
+                $data['error'] = "The NIC is already in use. Please use a different NIC.";
+                $this->view('AdminPhRegister', $data);
+                return;
+            }
 
             
             if (!empty($data['dob'])) {

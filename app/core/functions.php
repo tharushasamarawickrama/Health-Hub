@@ -22,6 +22,11 @@ function redirect($path, $params = '')
     }
 
     // Redirect to the path with query string
-    header('Location: ' . URLROOT . '/' . $path . $queryString);
-    die();
+    if (!headers_sent()) {
+        header('Location: ' . URLROOT . '/' . $path . $queryString);
+        exit;
+    } else {
+        echo "<script>window.location.href='" . URLROOT . '/' . $path . $queryString . "';</script>";
+        exit;
+    }
 }

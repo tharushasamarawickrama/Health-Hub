@@ -27,11 +27,26 @@
 <!-- Content Sections -->
 <div id="prescriptionContent" class="content-section">
     <?php if (!empty($data)): ?>
-        <?php foreach ($data as $index => $item): ?>
+        <?php 
+        // Sort the data by appointment date in descending order
+        usort($data, function($a, $b) {
+            return strtotime($b['appointment']['appointment_date']) - strtotime($a['appointment']['appointment_date']);
+        });
+
+        $lastDate = null; // Variable to track the last displayed date
+        foreach ($data as $index => $item): 
+            $currentDate = $item['appointment']['appointment_date'];
+        ?>
+            <?php if ($currentDate !== $lastDate): ?>
+                <div class="pt-history-date-header">
+                    <h3><?= $currentDate ?></h3>
+                </div>
+                <?php $lastDate = $currentDate; // Update the last displayed date ?>
+            <?php endif; ?>
             <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
                 <div class="pt-history-div2">
-                    <span>Date-<?= $item['appointment']['appointment_date'] ?>, <span><?= $item['schedule']['weekday'] ?></span></span>
-
+                    
+                    <span><?= $item['appointment']['p_firstName'] . " " . $item['appointment']['p_lastName'] ?></span>
                     <span class="pt-history-span">Prescription-<?= $index + 1 ?></span>
                     <span class="pt-history-span">Appo: <?= $item['appointment']['appointment_id'] ?></span>
                     <button class="pt-history-button view-button" data-index="<?= $index ?>">View</button>
@@ -46,9 +61,26 @@
 <div id="labReportsContent" class="content-section" style="display: none;">
     <!-- Lab Reports Display -->
     <?php if (!empty($data)): ?>
-        <?php foreach ($data as $index => $item): ?>
+        <?php 
+        // Sort the data by appointment date in descending order
+        usort($data, function($a, $b) {
+            return strtotime($b['appointment']['appointment_date']) - strtotime($a['appointment']['appointment_date']);
+        });
+
+        $lastDate = null; // Variable to track the last displayed date
+        foreach ($data as $index => $item): 
+            $currentDate = $item['appointment']['appointment_date'];
+        ?>
+            <?php if ($currentDate !== $lastDate): ?>
+                <div class="pt-history-date-header">
+                    <h3><?= $currentDate ?></h3>
+                </div>
+                <?php $lastDate = $currentDate; // Update the last displayed date ?>
+            <?php endif; ?>
             <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
                 <div class="pt-history-div2">
+
+                    <span><?= $item['schedule']['weekday'] ?></span></span>
                     <span class="pt-history-span">Lab Report-<?= $index + 1 ?></span>
                     <span class="pt-history-span">Appo ID: <?= $item['appointment']['appointment_id'] ?></span>
                     <div class="lab-report-details">
@@ -79,13 +111,30 @@
 <div id="otherContent" class="content-section" style="display: none;">
     <!-- Medical History Display -->
     <?php if (!empty($data)): ?>
-        <?php foreach ($data as $index => $item): ?>
+        <?php 
+        // Sort the data by appointment date in descending order
+        usort($data, function($a, $b) {
+            return strtotime($b['appointment']['appointment_date']) - strtotime($a['appointment']['appointment_date']);
+        });
+
+        $lastDate = null; // Variable to track the last displayed date
+        foreach ($data as $index => $item): 
+            $currentDate = $item['appointment']['appointment_date'];
+        ?>
+            <?php if ($currentDate !== $lastDate): ?>
+                <div class="pt-history-date-header">
+                    <h3><?= $currentDate ?></h3>
+                </div>
+                <?php $lastDate = $currentDate; // Update the last displayed date ?>
+            <?php endif; ?>
             <div class="pt-history-div2-main" data-referal-id="<?= $item['appointment']['referal_id'] ?>">
                 <div class="pt-history-div2">
                     <span class="pt-history-span">Medical History-<?= $index + 1 ?></span>
                     <span class="pt-history-span">Appo ID: <?= $item['appointment']['appointment_id'] ?></span>
                     <div class="other-details">
                         <h4>Patient Medical History</h4>
+                        <p><strong>Patient Name:</strong></p>
+                        <span><?= $item['appointment']['p_firstName']." ". $item['appointment']['p_lastName'] ?></span>
                         <?php
                         $medicalHistory = json_decode($item['patient'][0]['medical_history'], true);
                         ?>

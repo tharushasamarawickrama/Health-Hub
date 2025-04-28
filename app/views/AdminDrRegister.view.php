@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="AdminRegister-form-row">
-                <button type="submit" class="add-doctor-btn">Add Doctor</button>
+                <button type="submit" class="add-doctor-btn" id="dr-req-btn-left">Add Doctor</button>
             </div>
         </form>
     </div>

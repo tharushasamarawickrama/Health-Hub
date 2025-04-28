@@ -1,46 +1,74 @@
+/* Enhanced Appointment Page Styling */
+
 /* General Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #f5f7fa;
+    color: #333;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 80px auto 40px;
+    padding: 0 20px;
     position: relative;
 }
 
 .pt-topic {
-    font-size: 36px;
-    font-weight: 700;
-    color: #3498db;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    margin-bottom: 40px;
+    position: relative;
 }
 
-/* Appointment Section Styling */
+.pt-topic .title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    padding-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.pt-topic .title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 2px;
+}
+
+/* Appointment Section Styling - Glass Morphism Effect */
 .pt-appoinment-section {
-    width: 650px;
-    height: auto;
-    background: linear-gradient(145deg, #ffffff, #f0f0f0);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+    width: 100%;
+    max-width: 650px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border-radius: 24px;
     margin: 0 auto;
     padding: 40px;
     backdrop-filter: blur(10px);
-    animation: fadeIn 0.5s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 0.6s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes fadeIn {
+.pt-appoinment-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation */
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -48,15 +76,43 @@ body {
     }
 }
 
-/* Labels */
+/* Form Styling */
+.pt-appoinment-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.pt-selectdoctor-div, 
+.pt-appoinment-section div {
+    position: relative;
+}
+
+/* Labels with floating effect */
 .pt-selectdoctor,
 .pt-selectspecialization,
 .pt-selectdate {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
-    color: #333;
-    margin-top: 20px;
+    color: #2c3e50;
     display: block;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 12px;
+}
+
+.pt-selectdoctor::before,
+.pt-selectspecialization::before,
+.pt-selectdate::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    height: 12px;
+    width: 3px;
+    background-color: #3498db;
+    border-radius: 3px;
 }
 
 /* Inputs and Selects */
@@ -64,60 +120,151 @@ body {
 .pt-searchspecialization,
 .pt-searchdate {
     width: 100%;
-    height: 50px;
-    border: 2px solid #39cab3;
-    border-radius: 15px;
-    padding: 10px;
+    height: 55px;
+    border: 2px solid #e0e5ec;
+    border-radius: 16px;
+    padding: 0 20px;
     font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    color: #2c3e50;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .pt-searchdoctor:focus,
 .pt-searchspecialization:focus,
 .pt-searchdate:focus {
-    border-color: #2ecc71;
-    box-shadow: 0 0 8px rgba(46, 204, 113, 0.5);
+    border-color: #3498db;
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15);
     outline: none;
+    background-color: #fff;
+}
+
+/* Add custom arrow for selects */
+.pt-searchdoctor,
+.pt-searchspecialization {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+}
+
+/* Calendar icon for date input */
+.pt-searchdate {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
 }
 
 /* Search Button */
 .pt-searchbtn {
     width: 100%;
-    height: 50px;
-    background: linear-gradient(145deg, #3498db, #2980b9);
+    height: 58px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
     color: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 16px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin-top: 30px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 15px;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 15px rgba(41, 128, 185, 0.3);
 }
 
 .pt-searchbtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    box-shadow: 0 8px 20px rgba(41, 128, 185, 0.4);
 }
 
-/* No Results Found */
-.noresults {
-    text-align: center;
-    margin-top: 50px;
+.pt-searchbtn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(41, 128, 185, 0.3);
 }
 
-.noresults h1 {
-    font-size: 28px;
-    color: #e74c3c;
-    font-weight: 600;
+/* Message Styling */
+.message {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffc107;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin: 40px auto;
+    max-width: 650px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.message h2 {
+    color: #856404;
+    font-size: 18px;
+    margin: 0;
 }
 
 /* Doctors Section */
 .doctors {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 60px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Doctor Card - You may need to add these styles to your doctorcard.php component */
+.doctor-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 300px;
+    border: 1px solid rgba(230, 230, 230, 0.8);
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+        margin-top: 60px;
+    }
+    
+    .pt-appoinment-section {
+        padding: 30px 20px;
+        width: calc(100% - 40px);
+    }
+    
+    .pt-topic .title {
+        font-size: 28px;
+    }
+    
+    .pt-selectdoctor,
+    .pt-selectspecialization,
+    .pt-selectdate {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pt-appoinment-section {
+        padding: 25px 15px;
+    }
+    
+    .pt-topic .title {
+        font-size: 24px;
+    }
+    
+    .pt-searchbtn {
+        height: 54px;
+        font-size: 16px;
+    }
 }

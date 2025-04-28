@@ -1,6 +1,6 @@
 .Navbar{
-    font-family: 'DM Sans', sans-serif;
-    background-color: rgba(0, 87, 164, 1);
+    font-family: 'Nunito', sans-serif;
+    background-color: #054c89;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     padding: 0 300px;
     height: 60px;
@@ -24,12 +24,17 @@
 
 }
 
-.navitems:hover{
-    color: #120303;
-    background-color: white;
-    border-radius: 50px;
-    
-    
+/* Active navigation item */
+.navitems.active {
+    color: rgb(150, 203, 249);
+    border-bottom: 2px solid rgb(150, 203, 249); /* Add underline to active tab */
+    padding-bottom: 5px;
+}
+
+/* Hover effect for nav items */
+.navitems:hover {
+    color: rgb(150, 203, 249);
+    cursor: pointer;
 }
 
 .logo{
