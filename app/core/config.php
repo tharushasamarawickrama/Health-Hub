@@ -1,7 +1,7 @@
 <?php
 
 if($_SERVER['SERVER_NAME'] == 'localhost') {
-    define('DBNAME','health_hub');
+    define('DBNAME','bleh');
     define('DBHOST','localhost');
     define('DBUSER','root');
     define('DBPASS','');
