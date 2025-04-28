@@ -21,7 +21,7 @@
 
                 <?php foreach ($data as $labassistant): ?>
                 <div class="ViewProfile-doctor-card">
-                    <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $labassistant['employeeNo'] ?> - Mr.<?php echo $labassistant['firstName'] ?></span>
+                    <span class="ViewProfile-doctor-info">EMPLOYEE No <?php echo $labassistant['employeeNo'] ?> -<?php echo $labassistant['title'] ?> .<?php echo $labassistant['firstName'] ?></span>
                     <div class="ViewProfile-button-group">
                         <a href="<?php echo URLROOT;?>LAProfiledetails?id=<?php echo $labassistant['lab_assistant_id'] ?>"><button class="ViewProfile-view-btn" id="dr-req-btn-left">VIEW</button></a>
                         <a href="<?php echo URLROOT;?>ViewAllLabAssiProfile/delete?id=<?php echo $labassistant['lab_assistant_id'] ?>"><button class="ViewProfile-delete-btn" id="dr-req-btn-right">DELETE</button></a>

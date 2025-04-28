@@ -1,4 +1,3 @@
-
 .lab-proc-content {
     display: flex;
     padding: 30px;
@@ -70,7 +69,7 @@
 }
 
 .lab-proc-calendar-date:hover {
-    background-color: #3498db;
+    background-color: #4A9AEB ;
     color: white;
     cursor: pointer;
     transform: translateY(-5px);
@@ -78,13 +77,13 @@
 }
 
 .lab-proc-calendar-date.lab-proc-today {
-    background-color: #e74c3c;
+    background-color: #AFD7FC ;
     color: white;
     font-weight: bold;
 }
 
 .lab-proc-calendar-date.lab-proc-selected {
-    background-color: #2ecc71;
+    background-color: #1460A7  ;
     color: white;
 }
 
@@ -115,16 +114,25 @@
 }
 
 .lab-proc-result-item{
-    text-decoration: none;
-
+ text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
 }
+.lab-proc-result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 60, 112, 0.15);
+}
+
 .lab-proc-appointment-card {
     background: #f1f5f9;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
-    border-left: 6px solid #64A7B3;
+    border-left: 6px solid #1E72C3 ;
     transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 60, 112, 0.08);
+
 }
 
 .lab-proc-appointment-card:hover {
@@ -137,7 +145,16 @@
     color: #4a5568;
 }
 
-.lab-proc-appointment-card .ph-pp-appointment-id {
-    font-weight: bold;
-    color: #2c3e50;
+.lab-proc-appointment-id {
+    font-weight: 600;
+    font-size: 16px;
+    color: #0A4E8C;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e7edf4;
+}
+.lab-proc-appointment-card div:nth-child(2) {
+    color: #4A5568;
+    font-size: 15px;
+    margin-top: 4px;
 }

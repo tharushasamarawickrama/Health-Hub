@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             newTag.dataset.value = JSON.stringify(slot);
             newTag.innerHTML = `
                 ${slotStr}
-                <span class="delete-icon" onclick="removeSlot(this)">✖</span>
+                <span class="unique-remove-btn" onclick="removeSlot(this)">✖</span>
             `;
             selectedContainer.appendChild(newTag);
             btn.classList.add('selected');

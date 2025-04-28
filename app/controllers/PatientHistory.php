@@ -26,8 +26,14 @@ class PatientHistory
                 // $labtestdata = $labtest->first($arr1);
                 $appointmentlabtestdata = $appointmentlabtest->getLabTestByAppointmentId($appointment['appointment_id']);
                 foreach($appointmentlabtestdata as $appolab){
-                    $arr1['labtest_id'] = $appolab['labtest_id'];
-                    $labtestdata[] = $labtest->first($arr1);
+                    if($appolab['labtest_id']!=0){
+                        $arr1['labtest_id'] = $appolab['labtest_id'];
+                        $labtestdata = $labtest->first($arr1);
+                    }else{
+                        $labtestdata = null;
+                    }
+                    // $arr1['labtest_id'] = $appolab['labtest_id'];
+                    // $labtestdata[] = $labtest->first($arr1);
                 
                 }
                 // show($labtestdata);
@@ -47,7 +53,7 @@ class PatientHistory
                     'appointment' => $appointment,
                     'prescription' => $prescriptiondata1,
                     'prescriptionMed' => $prescriptiondata2,
-                    'labtest' => $labtestdata,
+                    'labtest' => isset($labtestdata) ? $labtestdata : null,
                     'appointmentlabtest' => $appointmentlabtestdata,
                     'patient' => $patientdata,
                     'schedule' => $scheduledata,

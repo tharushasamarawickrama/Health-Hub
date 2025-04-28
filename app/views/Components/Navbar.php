@@ -3,28 +3,24 @@
         <img src="<?php echo URLROOT; ?>/assets/images/logohealth.png" class="logo">
     </a>
 
-    <a href="<?php echo URLROOT; ?>home" class="navitems">Home</a>
-    <a href=" <?php echo URLROOT; ?>searchappoinment?>" class="navitems">Appointment</a>
+    <a href="<?php echo URLROOT; ?>home" class="navitems <?php echo basename($_SERVER['REQUEST_URI']) == 'home' ? 'active' : ''; ?>">Home</a>
+    <a href="<?php echo URLROOT; ?>searchappoinment" class="navitems <?php echo basename($_SERVER['REQUEST_URI']) == 'searchappoinment' ? 'active' : ''; ?>">Appointment</a>
     <?php if (isset($_SESSION['user'])): ?>
-        <a href="<?php echo URLROOT; ?>patienthistory" class="navitems">History</a>
+        <a href="<?php echo URLROOT; ?>patienthistory" class="navitems <?php echo basename($_SERVER['REQUEST_URI']) == 'patienthistory' ? 'active' : ''; ?>">History</a>
     <?php endif; ?>
 
-    <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== '' 
-    ): ?>
+    <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== ''): ?>
         <a href="#" class="logname dropdown-toggle">
-
             <img src="<?php echo URLROOT . '/' . htmlspecialchars($_SESSION['user']['photo_path']); ?>" class="loginlogo">
         </a>
     <?php else: ?>
         <img src="<?php echo URLROOT; ?>/assets/images/loginlogo.jpg" class="loginlogo">
     <?php endif; ?>
+
     <?php if (isset($_SESSION['user'])): ?>
         <!-- User dropdown -->
         <div class="dropdown">
-
-
             <p class="username"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></p>
-
             <div class="dropdown-content">
                 <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
                 <a href="<?php echo URLROOT; ?>pendingappointment">Pending Appointment</a>

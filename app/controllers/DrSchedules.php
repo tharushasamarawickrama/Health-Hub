@@ -6,7 +6,8 @@ class DrSchedules {
         $doctorId = $_SESSION['user']['user_id'];
         $ScheduleTimeModel = new ScheduleTime();
 
-        $schedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
+        $validSchedules = $ScheduleTimeModel->getValidSlotsByDoctor($doctorId);
+        $allSchedules = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
         // var_dump($schedules);
         // exit;
         function getDateOfWeekday(string $weekday): string {
@@ -15,11 +16,16 @@ class DrSchedules {
             return $date->format('Y-m-d');
         }
 
-        if($schedules){
-            foreach ($schedules as &$schedule) {
+        if($validSchedules){
+            foreach ($validSchedules as &$schedule) {
                 $schedule['date'] = getDateOfWeekday($schedule["weekday"]);
             }
         }
-        $this->view('drSchedules', ['schedules' => $schedules]);
+        if($allSchedules){
+            foreach ($allSchedules as &$schedule) {
+                $schedule['date'] = getDateOfWeekday($schedule["weekday"]);
+            }
+        }
+        $this->view('drSchedules', ['validSchedules' => $validSchedules, 'allSchedules' => $allSchedules]);
     }
 }

@@ -21,7 +21,7 @@
 
                 <?php foreach ($data as $pharmacist): ?>
                 <div class="ViewProfile-doctor-card">
-                    <span class="ViewProfile-doctor-info">SLMC <?php echo $pharmacist['slmcNo'] ?> - Mr.<?php echo $pharmacist['firstName'] ?></span>
+                    <span class="ViewProfile-doctor-info"> <?php echo $pharmacist['slmcNo'] ?> - <?php echo $pharmacist['title'] ?>.<?php echo $pharmacist['firstName'] ?></span>
                     <div class="ViewProfile-button-group">
                         <a href="<?php echo URLROOT;?>PhProfiledetails?id=<?php echo $pharmacist['pharmacist_id'] ?>"><button class="ViewProfile-view-btn" id="dr-req-btn-left">VIEW</button></a>
                         <a href="<?php echo URLROOT;?>ViewAllPharmProfile/delete?id=<?php echo $pharmacist['pharmacist_id'] ?>"><button class="ViewProfile-delete-btn" id="dr-req-btn-right">DELETE</button></a>

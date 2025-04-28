@@ -22,9 +22,9 @@ class Setappoinment
         
 
         $errors = []; // Array to store validation errors
-
+        
         // Handle form submission for appointment
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {
             // Sanitize input data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             
@@ -48,9 +48,7 @@ class Setappoinment
                 'schedule_id' => $sch_id,
             ];
 
-            if(isset($_SESSION['user'])){
-
-            }
+            
 
             // Backend validation
             if (empty($data['p_firstName'])) {
@@ -66,7 +64,7 @@ class Setappoinment
             ) {
                 $errors['nic'] = 'Valid NIC is required.';
             }
-            if (empty($data['phoneNumber']) || !preg_match('/^7[0-9]{8}$/', $data['phoneNumber'])) {
+            if (empty($data['phoneNumber']) || !preg_match('/^0[0-9]{9}$/', $data['phoneNumber'])) {
                 $errors['phoneNumber'] = 'Valid phone number is required.';
             }
             if (empty($data['age']) || !is_numeric($data['age']) || $data['age'] <= 0) {
@@ -87,9 +85,9 @@ class Setappoinment
             if (empty($data['add_service'])) {
                 $errors['add_service'] = 'You must agree to add the service charge.';
             }
-
             // If there are no errors, proceed with appointment creation
             if (empty($errors)) {
+                
                 $schedule = new ScheduleTime;
                 $scheduleData = $schedule->first(['schedule_id' => $sch_id]);
                 $data['appointment_No'] = $scheduleData['filled_slots'] + 1;
@@ -124,12 +122,13 @@ class Setappoinment
                 redirect('patientchannel');
             }
         }
+
         // show($referal);
         // Load the view without any pre-filled data
         if (isset($_SESSION['user'])) {
-            $this->view('setappoinment', ['referal' => $referal]);
+            $this->view('setappoinment', ['referal' => $referal, 'errors' => $errors, 'id' => $id, 'sch_id' => $sch_id]);
         } else {
-            $this->view('setappoinment');
+            $this->view('setappoinment', ['errors' => $errors, 'id' => $id, 'sch_id' => $sch_id]);
         }
     }
 }

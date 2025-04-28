@@ -214,10 +214,10 @@ class Payment_Success {
 
         // Send confirmation email
         if ($this->sendEmail($email, "Appointment Confirmation", $emailBody)) {
-            echo "Email sent successfully!";
+            // echo "Email sent successfully!";
             
         } else {
-            echo "Failed to send email.";
+            // echo "Failed to send email.";
         }
 
         // Redirect to payment details page

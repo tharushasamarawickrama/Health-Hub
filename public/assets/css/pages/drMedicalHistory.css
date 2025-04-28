@@ -56,19 +56,20 @@
 
 .edit-button, .save-button, .cancel-button {
     font-family: Nunito, sans-serif;
-    background-color: #54a1b4;
+    background: linear-gradient(135deg, #003C70, #004d9f);
+    transition: background 0.5s ease, transform 0.5s ease;
     color: white;
     border: none;
     padding: 10px 40px;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 0.9em;
     margin-bottom: 10px;
-    transition: ease 0.2s;
 }
 
 .edit-button:hover, .save-button:hover, .cancel-button:hover {
-    background-color: #327ac7;
+    background: linear-gradient(135deg, #2b6eb0, #0066cc);
+    transform: translateY(-2px);
 }
 
 .edit-mode {

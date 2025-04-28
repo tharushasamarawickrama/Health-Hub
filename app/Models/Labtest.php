@@ -14,15 +14,15 @@ class Labtest
     ];
 
     public function getLabTestsByCategory() {
-        $sql = ("SELECT labtest_category, GROUP_CONCAT(labtest_name SEPARATOR '|') AS tests 
+        $sql = "SELECT labtest_category, GROUP_CONCAT(labtest_name SEPARATOR '|') AS tests 
                           FROM labtests 
                           WHERE labtest_category IS NOT NULL 
-                          GROUP BY labtest_category");
+                          GROUP BY labtest_category ORDER BY labtest_category ASC, tests ASC";
         return $this->query($sql);
     }
 
     public function getUncategorizedLabTests() {
-        $sql = ("SELECT labtest_name FROM labtests WHERE labtest_category IS NULL");
+        $sql = "SELECT labtest_name FROM labtests WHERE labtest_category IS NULL ORDER BY labtest_name ASC";
         return $this->query($sql);
     }
 

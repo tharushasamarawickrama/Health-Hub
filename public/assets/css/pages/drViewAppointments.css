@@ -63,9 +63,10 @@
 }
 
 .view-appointment-card {
+    background: none;
     display: flex;
     justify-content: space-between;
-    background: #d2e7ec;
+    border-bottom: 1px solid #003C70;
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -74,7 +75,7 @@
 }
 
 .view-appointment-card:hover {
-    background: #b0d4e1;
+    background: #bbd0d8;
     transform: translateY(-2px);
 }
 
@@ -115,7 +116,7 @@
 }
 
 .view-appointment-pagination a.active {
-    background-color: #003C70;
+    background: linear-gradient(135deg, #003C70, #004d9f);
     color: #fff;
 }
 
@@ -137,11 +138,11 @@
     text-decoration: none;
     padding: 10px 20px;
     border: none;
-    background-color: #d2e7ec;
+    background: #d2e7ec;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .slot-tab-btn:hover {
@@ -149,7 +150,7 @@
 }
 
 .slot-tab-btn.active {
-    background-color: #003C70;
+    background: linear-gradient(135deg, #003C70, #004d9f);
     color: white;
 }
 
@@ -185,7 +186,7 @@
 }
 
 .status-tab-btn.active {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #003C70, #004d9f);
     color: white;
 }
 

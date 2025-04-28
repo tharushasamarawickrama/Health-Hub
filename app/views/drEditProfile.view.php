@@ -29,7 +29,7 @@ $userData = $userData ?? [];
         <!-- Profile Update Form -->
         <form action="<?php echo URLROOT; ?>drEditProfile" method="POST" enctype="multipart/form-data" class="doctor-profile-form">
             <label for="profile-pic-upload" class="profile-pic-label">
-                <img id="preview-img" src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>"
+                <img id="preview-img" src="<?php echo URLROOT; ?><?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'assets/images/doctor.png'; ?>"
                     alt="Doctor Avatar" class="doctor-pic">
                 <div class="camera-overlay">
                     <img src="<?php echo URLROOT; ?>assets/images/camera-icon.png" alt="Camera">
@@ -63,13 +63,6 @@ $userData = $userData ?? [];
                 <strong>Contact:</strong><br>
                 <label for="phoneNumber">Phone:</label>
                 <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" value="<?php echo htmlspecialchars($userData['phoneNumber']); ?>" pattern="\d{10}" title="Phone number must be 10 digits" required>
-
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" class="form-control"
-                    value="<?php echo htmlspecialchars($userData['email']); ?>"
-                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                    title="Enter a valid email address like name@example.com"
-                    required>
 
             </div>
 

@@ -1,20 +1,19 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/labNavbar.php'; ?>
 <div class="lab-pend-app-container">
-        <div class="lab-pend-app-content">        
-<div class="lab-pend-app-header">
-        <div class="lab-pend-app-back-button-container">
-            <a href="<?php echo URLROOT; ?>/labpendingprescriptions" class="lab-pend-app-back-button">
-                <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
-                Back
-            </a>
-        </div> 
-        <div class="lab-pend-app-action-buttons">            
-            <form action="<?php echo URLROOT; ?>/labpendingappointment/markAsCompleted" method="POST">
-            <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
-            <button type="submit" class="lab-pend-app-action-btn lab-pend-app-complete-btn">Mark as Completed</button>
-            </form>
-        </div>
+    <div class="lab-pend-app-content">        
+        <div class="lab-pend-app-header">
+            <div class="lab-pend-app-button-container">
+                <a href="<?php echo URLROOT; ?>/labpendingprescriptions" class="lab-pend-app-button">
+                    Back
+                </a>
+            </div> 
+            <div class="lab-pend-app-action-buttons">            
+                <form action="<?php echo URLROOT; ?>/labpendingappointment/markAsCompleted" method="POST">
+                    <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
+                    <button type="submit" class="lab-pend-app-button">Mark as Completed</button>
+                </form>
+            </div>
         </div>
         
         <div class="lab-pend-app-prescription-details">
@@ -51,16 +50,17 @@
                     <a href="<?php echo URLROOT . '/' . htmlspecialchars($test['labtest_report']); ?>" target="_blank">
                         <?php echo htmlspecialchars($test['labtest_pdfname']); ?>
                     </a>
-                    <button onclick="confirmDelete('<?php echo htmlspecialchars($test['labtest_id']); ?>', '<?php echo htmlspecialchars($data['appointment_id']); ?>')">Delete</button>
-
+                    <div>
+                    <button class="lab-pend-app-button" onclick="confirmDelete('<?php echo htmlspecialchars($test['labtest_id']); ?>', '<?php echo htmlspecialchars($data['appointment_id']); ?>')">Delete</button>
+                    </div>
                     </p>
                 <?php else: ?>
                     <!-- Show the upload button if no report is uploaded -->
                     <form action="<?php echo URLROOT; ?>/labpendingappointment/uploadReport" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
-                    <input type="hidden" name="labtest_id" value="<?php echo htmlspecialchars($test['labtest_id']); ?>">
-                    <label for="reportFile_<?php echo $test['labtest_id']; ?>" class="lab-pres-app-upload-btn" style="cursor: pointer;">Upload Report</label>
-                    <input type="file" name="reportFile" id="reportFile_<?php echo $test['labtest_id']; ?>" accept="application/pdf" style="display: none;" onchange="this.form.submit()">
+                        <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
+                        <input type="hidden" name="labtest_id" value="<?php echo htmlspecialchars($test['labtest_id']); ?>">
+                        <label for="reportFile_<?php echo $test['labtest_id']; ?>" class="lab-pend-app-button" style="cursor: pointer;">Upload Report</label>
+                        <input type="file" name="reportFile" id="reportFile_<?php echo $test['labtest_id']; ?>" accept="application/pdf" style="display: none;" onchange="this.form.submit()">
                     </form>
                 <?php endif; ?>
             </div>
