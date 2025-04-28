@@ -127,8 +127,6 @@ class ScheduleTime
             if (!$updated) return false;
 
             // Ensure at most 3 entries per schedule slot
-            // $query2 = "SELECT COUNT(*) AS total FROM $this->table WHERE schedule_id = :scheduleId";
-            // $countResult = $this->query($query2, ['scheduleId' => $scheduleId]);
             $count = $this->getDoctorCountBySlot($scheduleId)[0]['total'] ?? 0;
 
             if ($count < 3) {

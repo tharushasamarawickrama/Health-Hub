@@ -100,7 +100,7 @@ else{
                     <div class="lab-report-item">
                         <p><?php echo htmlspecialchars($labTestName); ?></p>
                         <?php if ($labTestReport): ?>
-                            <button class="view-report-btn" onclick="window.open('<?php echo URLROOT . 'assets/'. htmlspecialchars($labTestReport); ?>', '_blank')">View</button>
+                            <button class="view-report-btn" onclick="window.open('<?php echo URLROOT . htmlspecialchars($labTestReport); ?>', '_blank')">View</button>
                         <?php else: ?>
                             <p class="missing-report">Report Not Available</p>
                         <?php endif; ?>

@@ -71,6 +71,8 @@ class DrEditProfile
         
             $DoctorData = [
                 'doctor_id'          => $doctorId,
+                'firstName'     => htmlspecialchars(trim($_POST['firstName']), ENT_QUOTES, 'UTF-8'),
+                'lastName'      => htmlspecialchars(trim($_POST['lastName']), ENT_QUOTES, 'UTF-8'),
                 'description'        => htmlspecialchars(trim($_POST['description']), ENT_QUOTES, 'UTF-8'),
                 'experience'         => htmlspecialchars(trim($_POST['experience']), ENT_QUOTES, 'UTF-8'),
                 'photo_path'         => $photoPath,
