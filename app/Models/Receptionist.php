@@ -40,5 +40,32 @@ class Receptionist {
         return $result[0]['receptionists_count'] ?? 0;
     }
 
+    public function getappointmentsbyreceptionist($appointment_id = null) {
+        $query = "SELECT a.appointment_id, 
+                        a.title,
+                        a.patient_id,
+                        CONCAT(a.p_firstName, ' ',a.p_lastName) as patient_name,
+                        a.phoneNumber,
+                        a.age,
+                        a.gender,
+                        a.email,
+                        a.address,
+                        a.appointment_date, 
+                        a.appointment_time, 
+                        a.doctor_id,          
+                        CONCAT(d.firstName, ' ', d.lastName) as doctor_name,
+                        a.nic,
+                        TIME(a.created_at) AS created_at
+                  FROM appointments a
+                  JOIN receptionists r ON a.patient_id = r.receptionist_id
+                  Join users d ON a.doctor_id = d.user_id";
+        
+        if ($appointment_id) {
+            $query .= " WHERE a.appointment_id = :appointment_id";
+            return $this->query($query, ['appointment_id' => $appointment_id]);
+        }
+    
+        return $this->query($query); // Fetch all appointments if no ID is provided
+    }
     
 }

@@ -85,9 +85,11 @@ if (isset($_GET['action']) && $_GET['action'] === 'logout') {
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labprocessedprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labpendingprescriptions.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labpendingappointment.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>./assets/css/pages/labdashboard.css">
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/components/renavbar.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/redashboard.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/reviewappointments.css">
 
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rechannel.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/css/pages/rescheduleappointment.css">
