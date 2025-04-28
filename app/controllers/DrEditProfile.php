@@ -54,7 +54,7 @@ class DrEditProfile
                 $fileName = $_FILES['certification_path']['name'];
                 $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
         
-                $uploadDir =  __DIR__ . '/../../public/assets/Certificate-images/';
+                $uploadDir =  __DIR__ . '/../../public/Certificate-images/';
                 $newFileName = uniqid('cert_', true) . '.' . $fileExtension;
                 $destination = $uploadDir . $newFileName;
         

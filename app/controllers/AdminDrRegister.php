@@ -36,7 +36,7 @@ class AdminDrRegister {
                 'gender' => $_POST['gender'] ?? '',
                 'dob' => $_POST['dob'] ?? '',
                 'nic' => $_POST['nic'] ?? '',
-                'password' => password_hash($_POST['password'], PASSWORD_DEFAULT), 
+                'password' => $_POST['password'] ?? '',
                 'address' => $_POST['address'] ?? '',
                 'age' => $age ?? 0, 
                 'photo_path' => $data1['photo_path'],
@@ -88,10 +88,10 @@ class AdminDrRegister {
                     'doctor_id' => $lastUserId,
                     'slmcNo' => $_POST['slmcNo'] ?? '',
                     'description' => $data1['description'] ?? '',
-                    'experience' => $_POST['experience'] ?? '',
+                    'experience' => $data1['experience'] ?? '',
                     'specialization' => $_POST['specialization'] ?? '',
                     'certifications' => $data1['certifications'] ?? '',
-                    'availability' => 'Available',
+                    'availability' => '',
                     'type' => $_POST['type'] ?? '',
                 ];
 

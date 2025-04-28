@@ -29,7 +29,7 @@ $userData = $userData ?? [];
         <!-- Profile Update Form -->
         <form action="<?php echo URLROOT; ?>drEditProfile" method="POST" enctype="multipart/form-data" class="doctor-profile-form">
             <label for="profile-pic-upload" class="profile-pic-label">
-                <img id="preview-img" src="<?php echo URLROOT; ?>assets/<?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'images/doctor.png'; ?>"
+                <img id="preview-img" src="<?php echo URLROOT; ?><?php echo !empty($userData['photo_path']) ? htmlspecialchars($userData['photo_path']) : 'assets/images/doctor.png'; ?>"
                     alt="Doctor Avatar" class="doctor-pic">
                 <div class="camera-overlay">
                     <img src="<?php echo URLROOT; ?>assets/images/camera-icon.png" alt="Camera">

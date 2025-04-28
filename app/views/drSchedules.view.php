@@ -8,6 +8,7 @@ require APPROOT . '/views/Components/drCalendarComponent.php';
 <a href="<?php echo URLROOT; ?>drDashboard" class="profile-back-arrow"><img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back"></a>
     <div class="dr-schedule-content">
         <div class="schedule-left">
+            <?php if(!empty($allSchedules)): ?>
             <?php foreach ($allSchedules as $schedule) : 
                 $displayDate = $schedule['date'];
 
@@ -26,6 +27,9 @@ require APPROOT . '/views/Components/drCalendarComponent.php';
                                                     date("gA", strtotime($schedule["end_time"])) .
                                                     "\t=>    " . $schedule["filled_slots"] . " appointments"; ?></div>
             <?php endforeach; ?>
+            <?php else: ?>
+                <div>No schedules available.</div>
+            <?php endif; ?>
         </div>
         <div class="schedule-right"><?php generateCalendar($validSchedules, $month, $year); ?></div>
     </div>
