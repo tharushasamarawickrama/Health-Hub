@@ -16,12 +16,10 @@ class DrAvailability2
             return $date->format('Y-m-d');
         }
 
-        $today = date('l');
-
-        // to check for existence of any schedule for the doctor
         $noSchedules = false;
         $fetchedSlots = [];
         $fetchedSlots = $ScheduleTimeModel->getScheduleByDoctor($doctorId);
+
         
         if(empty($fetchedSlots)){
             $noSchedules = true;
@@ -53,14 +51,25 @@ class DrAvailability2
                     $startTime = DateTime::createFromFormat('gA', trim(explode(' - ', $slot[1])[0]))->format('H:i:s');
                     $endTime = DateTime::createFromFormat('gA', trim(explode(' - ', $slot[1])[1]))->format('H:i:s');
     
-                    // Assuming you have a method to handle the cancellation
                     $scheduleDetails = $ScheduleTimeModel->getScheduleBySlot($doctorId, $dayName, $startTime, $endTime)[0];
                     $scheduleId = $scheduleDetails['schedule_id'];
                     $SpecialistNotifModel = new Specialist_Notifications();
                     $SpecialistNotifModel->insert(['schedule_id' => $scheduleId, 'doctor_id' => $doctorId]);
 
-                    if($scheduleDetails['is_cancelled'] === 'optional')
+                    if($scheduleDetails['is_cancelled'] === 'optional'){
+                        $count = $ScheduleTimeModel->getDoctorCountBySlot($scheduleId)[0]['total'] ?? 0;
+                        if($count == 3){
+                            $ScheduleTimeModel->insert([
+                                'doctor_id' => 0,
+                                'schedule_id' => $scheduleId,
+                                'weekday' => $dayName,
+                                'start_time' => $startTime,
+                                'end_time' => $endTime,
+                                'is_cancelled' => 'optional'
+                            ]);
+                        }
                         $ScheduleTimeModel->deleteOptionalSlot($doctorId, $scheduleId);
+                    }
                     else
                         $ScheduleTimeModel->updateSomeField($scheduleId, $doctorId, 'is_cancelled' , 'true');
 

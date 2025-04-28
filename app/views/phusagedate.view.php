@@ -1,9 +1,8 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/phNavbar.php'; ?>
     <div class="ph-usage-date-content">
-            <div class="ph-usage-date-back-button-container">
-                <a href="<?php echo URLROOT; ?>/phdailyusage" class="ph-usage-date-back-button">
-                <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+            <div class="ph-usage-date-button-container">
+                <a href="<?php echo URLROOT; ?>/phdailyusage" class="ph-usage-date-button">
                 Back
                 </a>
             </div>

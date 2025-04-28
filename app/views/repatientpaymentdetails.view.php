@@ -3,14 +3,7 @@
 
 <div class="paymentdetails-div">
     
-<div>
-        <a href="<?php echo URLROOT; ?>resetappoinment">
-            <button class="payment-btn">Edit</button>
-        </a>
-        <a href="<?php echo URLROOT; ?>redashboard">
-            <button class="payment-btn">Done</button>
-        </a>
-    </div>
+
     <div class="paymentdetails-div2">
         <h1>Payment Details</h1>
         <p class="paymentdetails-div2-p">Comprehensive summary of charges for your transaction</p>
@@ -55,24 +48,13 @@
             <p id="totalAmount"><?= number_format($totalFee, 2) ?></p>
         </div>
     </div>
+    <div>
+        
+        <a href="<?php echo URLROOT; ?>redashboard">
+            <button class="payment-btn">Paid</button>
+        </a>
+    </div>
 </div>
-
-<?php
-$merchant_id = "1229280";
-$merchant_secret = "Mzc1MjMxOTk3NTMzMDU5MjI1NTMxMTg4MzQwNTMzNTYzOTMwODc=";
-$order_id = 1;
-$amount = $totalFee; // Use the dynamically calculated total fee
-$curreny = "LKR";
-$hash_string = strtoupper(
-    md5(
-        $merchant_id .
-            $order_id .
-            number_format($amount, 2, '.', '') .
-            $curreny .
-            strtoupper(md5($merchant_secret))
-    )
-);
-?>
 
 
 

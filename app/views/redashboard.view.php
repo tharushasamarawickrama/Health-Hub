@@ -11,10 +11,8 @@
                 <label class="pt-selectdoctor">Select Doctor :</label>
                 <select name="doctor" id="" class="pt-searchdoctor">
                     <option value="" disabled selected hidden>--------Select Doctor--------</option>
-                    <?php foreach ($data as $doctor): ?><option value="<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?>">Dr.<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?></option>
-                        <?php if ($doctor['type'] !== 'opd'): ?>
-                            <option value="<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?>">Dr.<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?></option>
-                        <?php endif; ?>
+                    <?php foreach ($data as $doctor): ?>
+                        <option value="<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?>">Dr.<?php echo $doctor['firstName'] . " " . $doctor['lastName'] ?></option>
                     <?php endforeach ?>
                     </select>
             </div>

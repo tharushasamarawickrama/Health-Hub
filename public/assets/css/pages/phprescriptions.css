@@ -9,13 +9,12 @@
     width: 100%;
     position: relative;
     gap: 5px;
-    z-index: 1;
 }
 
 .ph-pres-search-box input[type="text"] {
     padding: 10px;
     border: 1px solid #c4aeae;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
 }
 .ph-pres-search-box button {
@@ -49,7 +48,7 @@
 .ph-pres-result-item {
     display: flex;
     flex-direction: column;
-    background-color: #d4e5e5;
+    background-color: #AFD7FC;
     padding: 20px;
     border-radius: 10px;
     text-align: left;
@@ -67,5 +66,5 @@
    
 .ph-pres-result-item:hover{
     transform: scale(1.05);
-    background-color: #62a7c7;
+    background-color: #6CB0F3;
 }

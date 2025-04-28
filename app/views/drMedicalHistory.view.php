@@ -186,7 +186,7 @@ require APPROOT . '/views/Components/drNavbar.php';
                     </ul>
                 </ul>
                 <a
-                    href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?php echo $prevAppointmentData['prev_appointment_id']; ?>">
+                    href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?php echo $prevAppointmentData['prev_appointment_id']; ?>&last_appointment=<?php echo $appointmentId; ?>">
                     Click to view
                 </a>
             <?php else : ?>

@@ -3,17 +3,17 @@
 
 <div class="ph-pres-app-dashboard">
     <div class="ph-pres-app-appcontent">
-        <div class="ph-pres-app-back-button-container">
-            <a href="<?php echo URLROOT; ?>/phprescriptions" class="ph-pres-app-back-button">
-                <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+        <div class="ph-pres-app-button-container">
+            <a href="<?php echo URLROOT; ?>/phprescriptions" class="ph-pres-app-button">
                 Back
             </a>
         </div> 
+        <div class="ph-pres-app-action-buttons">
         <form method="POST" action="<?php echo URLROOT; ?>/phprescriptionappointment/markCompleted">
             <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
-            <button type="submit" class="btn">Mark as Completed</button>
+            <button type="submit" class="ph-pres-app-button">Mark as Completed</button>
         </form>
-                 
+        </div>     
         <?php if(isset($data['appointment_id'])): ?>
 
         <div class="ph-pres-app-prescription-details">
@@ -116,8 +116,8 @@
 <?php endif; ?>
             </table>
 
-            <div class="ph-pres-app-buttons-container">
-                <button type="submit">Calculate</button>
+            <div >
+                <button class= "ph-pres-app-button" type="submit">Calculate</button>
             </div>
         </form>
     </div>

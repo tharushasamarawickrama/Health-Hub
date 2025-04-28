@@ -69,7 +69,7 @@ class DrRequest {
             }
 
             if (isset($_FILES['photo_path'])) {
-                $target_dir = "profile-Photos/";
+                $target_dir = "profile-images/";
                 if (!is_dir($target_dir)) {
                     mkdir($target_dir, 0777, true);
                 }
