@@ -29,7 +29,7 @@ class DrEditProfile
                 $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         
                 if (in_array($file['type'], $allowedTypes) && in_array($fileExtension, $allowedExtensions) && $file['size'] <= 2 * 1024 * 1024) {
-                    $targetDir = __DIR__ . '/../../public/assets/profile-images/';
+                    $targetDir = __DIR__ . '/../../public/profile-Photos/';
                     if (!is_dir($targetDir)) {
                         mkdir($targetDir, 0755, true);
                     }
@@ -38,7 +38,7 @@ class DrEditProfile
                     $targetFile = $targetDir . $fileName;
         
                     if (move_uploaded_file($file['tmp_name'], $targetFile)) {
-                        $photoPath = 'profile-images/' . $fileName;
+                        $photoPath = 'profile-Photos/' . $fileName;
                     } else {
                         $errors[] = 'Failed to upload profile picture.';
                     }

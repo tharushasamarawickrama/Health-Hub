@@ -29,7 +29,11 @@ $userData = $userData ?? [];
                     <li>Phone: <?php echo $userData['phoneNumber']; ?></li>
                     <li>Email: <a href="mailto:<?php echo $userData['email']; ?>"><?php echo $userData['email']; ?></a></li>
                 </ul>
+                <?php if(!$requestExists): ?>
                 <a href="<?php echo URLROOT; ?>drEditProfile"><button class="dr-profile-btn">Edit Profile</button></a>
+                <?php else: ?>
+                <button class="dr-request-btn">Request Sent</button>
+                <?php endif; ?>
             </div>
         </div>
     </div>

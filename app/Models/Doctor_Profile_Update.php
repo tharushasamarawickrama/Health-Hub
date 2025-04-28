@@ -40,4 +40,11 @@ class Doctor_Profile_Update {
         return $result[0]['doctors_profile_update_request_count'] ?? 0;
     }
 
+    public function checkRequestExists($doctorId) {
+        $query = "SELECT COUNT(*) AS request_exists FROM $this->table WHERE doctor_id = :doctorId";
+        $params = ['doctorId' => $doctorId];
+        $result = $this->query($query, $params);
+        return $result[0]['request_exists'] > 0;
+    }
+
 }
