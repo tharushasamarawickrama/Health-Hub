@@ -23,9 +23,10 @@
 </div>
 
     <!-- Appointments Section - Right Side -->
-    <div class="lab-proc-appointments-container" id="appointments-container">
-    <?php if (!empty($data['appointments'])): ?>
-        <?php foreach ($data['appointments'] as $appointment): ?>
+    <div class="lab-proc-appointments-container">
+        <div id="appointments-container">
+            <?php if (!empty($data['appointments'])): ?>
+            <?php foreach ($data['appointments'] as $appointment): ?>
             <a href="<?php echo URLROOT; ?>/labpendingappointment?appointment_id=<?php echo $appointment['appointment_id']; ?>" class="lab-proc-result-item">
                 <div class="lab-proc-appointment-card">
                     <div class="lab-proc-appointment-id">Appointment ID: <?php echo $appointment['appointment_id']; ?></div>
