@@ -29,7 +29,7 @@
 
                 <?php foreach ($data as $doctor): ?>
                 <div class="ViewProfile-doctor-card">
-                    <span class="ViewProfile-doctor-info"><?php echo $doctor['slmcNo'] ?> - Mr.<?php echo $doctor['firstName'] ?></span>
+                    <span class="ViewProfile-doctor-info"><?php echo $doctor['slmcNo'] ?> - Dr.<?php echo $doctor['firstName'] ?></span>
                     <div class="ViewProfile-button-group">
                         <a href="<?php echo URLROOT;?>DrProfiledetails?id=<?php echo $doctor['doctor_id'] ?>"><button class="ViewProfile-view-btn" id="dr-req-btn-left">VIEW</button></a>
                         <a href="<?php echo URLROOT;?>ViewAllDrProfile/delete?id=<?php echo $doctor['doctor_id'] ?>"><button class="ViewProfile-delete-btn" id="dr-req-btn-right" >DELETE</button></a>
