@@ -89,7 +89,9 @@ class Setappoinment
             if (empty($errors)) {
                 
                 $schedule = new ScheduleTime;
-                $scheduleData = $schedule->first(['schedule_id' => $sch_id]);
+                $arr['schedule_id'] = $sch_id;
+                $arr['doctor_id'] = $id;
+                $scheduleData = $schedule->first($arr);
                 $data['appointment_No'] = $scheduleData['filled_slots'] + 1;
 
                 function getDateForDay($dayName)

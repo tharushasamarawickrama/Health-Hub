@@ -29,7 +29,7 @@ $currentDateTime = date('Y-m-d'); // Current date and time in 'Y-m-d H:i:s' form
         <?php
         // Convert the appointment date from string to DateTime object
         $appointmentDate = new DateTime($appointment['appointment']['appointment_date']);
-        
+        $gap=0;
         if ($appointment['appointment']['appointment_date'] > $currentDateTime && strtotime($appointment['appointment']['appointment_date']) - strtotime($currentDateTime) > 7200) {
             $gap = 1;
         }
