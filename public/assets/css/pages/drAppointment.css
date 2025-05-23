@@ -24,7 +24,13 @@
     margin-bottom: 20px;
 }
 
+.appointment-details h3 {
+    font-size: 1.1em;
+    color: #505050;
+}
+
 .appointment-details h2 {
+    margin-top: -0.7em;
     font-size: 1.5em;
     color: #333;
     margin-bottom: 1em;
@@ -61,18 +67,18 @@
 }
 
 .appointment-actions .appointment-action {
-    background-color: rgba(138, 193, 215, 0.8);
-    color: black;
+    color: white;
     text-decoration: none;
-    padding: 15px 20px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1em;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    background: linear-gradient(135deg, #003C70, #004d9f);
+    transition: background 0.5s ease, transform 0.5s ease;
 }
 
 .appointment-actions .appointment-action:hover {
-    background-color: rgba(97, 169, 198, 0.8);
+    background: linear-gradient(135deg, #2b6eb0, #0066cc);
     transform: translateY(-2px);
 }

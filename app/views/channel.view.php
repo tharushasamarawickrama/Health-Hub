@@ -12,7 +12,9 @@
         <span class="availabletext">Available Times</span>
         <?php if (!empty($data2)): ?>
             <?php foreach ($data2 as $schedule): ?>
-                <?php require APPROOT . '/views/Components/timeslot.php' ?>
+                <?php if ($schedule['is_cancelled'] !== 'true'): ?>
+                    <?php require APPROOT . '/views/Components/timeslot.php' ?>
+                <?php endif; ?>
             <?php endforeach; ?>
         <?php else: ?>
             <div class="pt-noresults-div">
@@ -21,7 +23,7 @@
         <?php endif; ?>
         <div>
             <a href="<?php echo URLROOT; ?>searchappoinment">
-                <button class="payment-btn2">Back</button>
+                <button class="channel-backbtn">Back</button>
             </a>
         </div>
     </div>

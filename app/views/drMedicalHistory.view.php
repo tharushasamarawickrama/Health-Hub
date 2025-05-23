@@ -171,19 +171,22 @@ require APPROOT . '/views/Components/drNavbar.php';
                     <li><strong>Diagnosis:</strong> <?php echo $prevAppointmentData['diagnosis']; ?></li>
                     <li><strong>Medications:</strong></li>
                     <ul>
-                    <?php if (!empty($prevAppointmentData['medications'])) : ?>
-                        <?php foreach ($prevAppointmentData['medications'] as $medication) : ?>
-                            <li>
-                                <?php echo "{$medication['name']} - {$medication['quantity']} {$medication['measurement']} - {$medication['sig_codes']} ({$medication['duration']})"; ?>
-                            </li>
-                        <?php endforeach; ?>
+                        <?php if (!empty($prevAppointmentData['medications'])) : ?>
+                            <?php foreach ($prevAppointmentData['medications'] as $medication) : ?>
+                                <li>
+                                    <?php
+                                    $formattedDuration = str_replace(',', '/', $medication['duration']);
+                                    echo "{$medication['name']} - {$medication['quantity']} {$medication['measurement']} - {$medication['sig_codes']} ({$formattedDuration})";
+                                    ?>
+                                </li>
+                            <?php endforeach; ?>
                         <?php else : ?>
                             <li>No medications available.</li>
                         <?php endif; ?>
                     </ul>
                 </ul>
-                <a 
-                    href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?php echo $prevAppointmentData['prev_appointment_id']; ?>">
+                <a
+                    href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?php echo $prevAppointmentData['prev_appointment_id']; ?>&last_appointment=<?php echo $appointmentId; ?>">
                     Click to view
                 </a>
             <?php else : ?>

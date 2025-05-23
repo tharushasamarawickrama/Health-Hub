@@ -1,23 +1,25 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/labNavbar.php'; ?>
 <div class="lab-pres-app-appcontent">
+<div class="lab-pres-app-header">
+
     <div class="lab-pres-app-back-button-container">
-        <a href="<?php echo URLROOT; ?>/labprescriptions" class="lab-pres-app-back-button">
-            <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+        <a href="<?php echo URLROOT; ?>/labprescriptions" class="lab-pres-app-btn">
             Back
         </a>
     </div>
-    <div class="lab-pres-app-back-button-container">
+    <div class="lab-pres-app-action-buttons">
         <form method="POST" action="<?php echo URLROOT; ?>/labprescriptionappointment/markPending" style="display:inline;">
             <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
-            <button type="submit" class="btn btn-warning">Proceed</button>
+            <button type="submit" class="lab-pres-app-btn">Proceed</button>
         </form>
 
         <form method="POST" action="<?php echo URLROOT; ?>/labprescriptionappointment/markCompleted" style="display:inline;">
             <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
-            <button type="submit" class="btn btn-success">Mark as Completed</button>
+            <button type="submit" class="lab-pres-app-btn">Mark as Completed</button>
         </form>
     </div>
+</div>
     <?php if(isset($data['appointment_id'])): ?>
         <div class="lab-pres-app-prescription-details">
             <div class="lab-pres-app-details-left">
@@ -51,18 +53,27 @@
                 <p><strong>Uploaded Report:</strong> 
                 <a href="<?php echo URLROOT . '/' . htmlspecialchars($test['labtest_report']); ?>" target="_blank">
                     <?php echo htmlspecialchars($test['labtest_pdfname']); ?>
+
                 </a>
+                <div >
+                <button class = "lab-pres-app-btn" onclick="confirmDelete('<?php echo htmlspecialchars($test['labtest_id']); ?>', '<?php echo htmlspecialchars($data['appointment_id']); ?>')">Delete</button>
+                </div>
                 </p>
+                
             <?php else: ?>
             <!-- Show the upload button if no report is uploaded -->
                 <form action="<?php echo URLROOT; ?>/labprescriptionappointment/uploadReport" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="appointment_id" value="<?php echo htmlspecialchars($data['appointment_id']); ?>">
                     <input type="hidden" name="labtest_id" value="<?php echo htmlspecialchars($test['labtest_id']); ?>">
-                    <label for="reportFile_<?php echo $test['labtest_id']; ?>" class="lab-pres-app-upload-btn" style="cursor: pointer;">Upload Report</label>
+                    <label for="reportFile_<?php echo $test['labtest_id']; ?>" class="lab-pres-app-btn" style="cursor: pointer;">Upload Report</label>
                     <input type="file" name="reportFile" id="reportFile_<?php echo $test['labtest_id']; ?>" accept="application/pdf" style="display: none;" onchange="this.form.submit()">
                 </form>
             <?php endif; ?>
         </div>
         <?php endforeach; ?>
 </div>
+<script>
+    const URLROOT = "<?php echo URLROOT; ?>";
+</script>
 <?php require APPROOT . '/views/Components/footer.php'; ?>
+<script src="<?php echo URLROOT;?>/assets/js/LabPrescriptionAppointment.js"></script>

@@ -9,25 +9,33 @@ $fetchedLabTests = $data['fetchedLabTests']; // Lab tests linked to the current 
 
 $today = date('Y-m-d');
 $isPastAppointment = strtotime($appointment_date) < strtotime($today);
+$notEditable = $isPastAppointment || $data['appointment_status'] === 'completed';
+
+if($data['last_appointment_id']){
+    $backPage = '&last_appointment=' . $data['last_appointment_id'];
+}
+else{
+    $backPage = '';
+}
 ?>
 
 <div class="dr-labtest-container">
-    <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id; ?>" class="labtest-back-arrow">
+    <a href="<?php echo URLROOT; ?>drAppointment?appointment_id=<?= $appointment_id . $backPage; ?>" class="labtest-back-arrow">
         <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
     </a>
 
     <div class="tabs-container">
     <div class="tabs">
         <button 
-            class="tab-link <?= $isPastAppointment ? '' : 'active' ?>" 
-            onclick="<?= $isPastAppointment ? 'return false;' : 'switchTab(event, \'order-tests\')' ?>" 
-            <?= $isPastAppointment ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : '' ?>
+            class="tab-link <?= $notEditable ? '' : 'active' ?>" 
+            onclick="<?= $notEditable ? 'return false;' : 'switchTab(event, \'order-tests\')' ?>" 
+            <?= $notEditable ? 'disabled style="opacity: 0.6; cursor: not-allowed;"' : '' ?>
         >
             Order Lab Test
         </button>
 
         <button 
-            class="tab-link <?= $isPastAppointment ? 'active' : '' ?>" 
+            class="tab-link <?= $notEditable ? 'active' : '' ?>" 
             onclick="switchTab(event, 'lab-reports')"
         >
             Lab Reports
@@ -35,8 +43,7 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
     </div>
 
         <!-- Order Lab Tests Section -->
-        <div id="order-tests" class="tab-content <?= $isPastAppointment ? '' : 'active' ?>">
-            <h3>Order Lab Test</h3>
+        <div id="order-tests" class="tab-content <?= $notEditable ? '' : 'active' ?>">
             <!-- Display Selected Lab Tests -->
         <div id="selected-tests" class="lab-tests-display">
             <?php if (!empty($fetchedLabTests)): ?>
@@ -50,8 +57,6 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
                 <p id="no-tests-msg">No lab tests available.</p>
             <?php endif; ?>
         </div>
-
-        <h3>Order Lab Test</h3>
 
         <!-- Dropdowns for Categorized Lab Tests -->
         <div class="test-options">
@@ -86,7 +91,7 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
         </div>
 
         <!-- Lab Reports Section -->
-        <div id="lab-reports" class="tab-content <?= $isPastAppointment ? 'active' : '' ?>">
+        <div id="lab-reports" class="tab-content <?= $notEditable ? 'active' : '' ?>">
             <h3>Lab Reports</h3>
             <div class="lab-report-list">
                 <?php foreach ($labReports as $labTestName => $labTestReport): 
@@ -95,7 +100,7 @@ $isPastAppointment = strtotime($appointment_date) < strtotime($today);
                     <div class="lab-report-item">
                         <p><?php echo htmlspecialchars($labTestName); ?></p>
                         <?php if ($labTestReport): ?>
-                            <button class="view-report-btn" onclick="window.open('<?php echo URLROOT . 'assets/'. htmlspecialchars($labTestReport); ?>', '_blank')">View</button>
+                            <button class="view-report-btn" onclick="window.open('<?php echo URLROOT . htmlspecialchars($labTestReport); ?>', '_blank')">View</button>
                         <?php else: ?>
                             <p class="missing-report">Report Not Available</p>
                         <?php endif; ?>

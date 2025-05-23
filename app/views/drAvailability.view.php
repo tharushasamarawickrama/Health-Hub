@@ -5,7 +5,7 @@ require APPROOT . '/views/Components/drNavbar.php';
 
 <div class="dr-availability-container">
     <div class="dr-availability-header">
-        <a href="<?php echo URLROOT; ?>drDashboard" class="availability-back-arrow">
+        <a href="<?php echo URLROOT; ?>drSchedules" class="availability-back-arrow">
             <img src="<?php echo URLROOT; ?>assets/images/arrow-back.png" alt="Back">
         </a>
         <h3>Selected Timeslots</h3>
@@ -19,7 +19,7 @@ require APPROOT . '/views/Components/drNavbar.php';
                     <?php foreach ($data['fetchedTimeslots'] as $timeslot): ?>
                         <span class="timeslot-tag">
                             <?php echo htmlspecialchars($timeslot); ?>
-                            <button class="timeslot-remove-btn" data-timeslot="<?php echo htmlspecialchars($timeslot); ?>">×</button>
+                            <button class="timeslot-remove-btn" data-timeslot="<?php echo htmlspecialchars($timeslot); ?>">✖</button>
                         </span>
                     <?php endforeach; ?>
                 <?php else: ?>

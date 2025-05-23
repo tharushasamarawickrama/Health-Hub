@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+
 
 <div class="DrProfiledetails-body">
     <div class="DrProfiledetails-profile-container">
@@ -29,7 +29,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <label class="DrProfiledetails-lable" for="email">Email</label>
-                    <input class="DrProfiledetails-input" type="email" id="email" name="email" value="<?php echo $data['email']?>" style="background-color:#8ec6ed">
+                    <input class="DrProfiledetails-input" type="email" id="email" name="email" value="<?php echo $data['email']?>" readonly>
                 </div>
                 <div class="form-group">
                     <label class="DrProfiledetails-lable" for="phoneNumber">Phone Number</label>
@@ -63,7 +63,8 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button type="submit" class="save-btn" name="rebutton">Update Profile</button>
+            <a href="<?php echo URLROOT; ?>/ReProfiledetails?id=<?php echo $data['user_id'] ?>" class="back-btn"><button type="button" class="save-btn" id="dr-req-btn-left">BACK</button></a>
+                <button type="submit" class="save-btn" name="rebutton" id="dr-req-btn-right">Update Profile</button>
             </div>
         </form>
     </div>

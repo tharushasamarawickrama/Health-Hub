@@ -12,6 +12,12 @@ class DrLabTests {
             redirect('drViewAppointments');
         }
 
+        if(isset($_GET['last_appointment'])) {
+            $lastAppointmentId = $_GET['last_appointment'];
+        } else {
+            $lastAppointmentId = null;
+        }
+
         $appointmentId = $_GET['appointment_id'];
 
         $labtestModel = new Labtest();
@@ -19,7 +25,9 @@ class DrLabTests {
         $appointmentModel = new Appointment();
 
         //fetch appointment date
-        $appointmentDate = $appointmentModel->getAppointmentById($appointmentId)['appointment_date'];
+        $appointmentDetails = $appointmentModel->getAppointmentById($appointmentId);
+        $appointmentDate = $appointmentDetails['appointment_date'];
+        $appointmentStatus = $appointmentDetails['status'];
         // var_dump($appointmentDate);
         // exit;
 
@@ -71,6 +79,8 @@ class DrLabTests {
             'labReports' => $mappedLabReports,
             'appointment_id' => $appointmentId,
             'appointment_date' => $appointmentDate,
+            'appointment_status' => $appointmentStatus,
+            'last_appointment_id' => $lastAppointmentId,
         ];
 
         $this->view('drLabTests', $data);

@@ -5,17 +5,28 @@ class ViewAllRecepProfile  {
     public function index(){
         
         $receptionist=new Receptionist;
-        $data=$receptionist->findAlldata();
-        // print_r($data[0]['firstName']);
+        //$data=$receptionist->findAlldata();
+        $searchQuery = $_GET['search'] ?? '';
+
+        if (!empty($searchQuery)) {
+            $data = $receptionist->searchReceptionists($searchQuery);
+        } else {
+            $data = $receptionist->findAlldata();
+        }
+        
         $this->view('ViewAllRecepProfile',$data);
     }
 
     public function delete(){
         $id=$_GET['id'];
         $receptionist=new Receptionist;
-        if($receptionist->delete($id,$id_column='receptionist_id')){
+        $user=new User;
+        if($receptionist->delete($id,$id_column='receptionist_id') && $user->delete($id,$id_column='user_id')){
             redirect('ViewAllRecepProfile');
+            
         }
+        
+        
 
     }
     

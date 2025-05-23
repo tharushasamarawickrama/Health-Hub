@@ -88,13 +88,19 @@ class PatientRegister
                             $this->view('patientregister', $data);
                         }
                         break;
+                    case 'disabled':
+                        $user->errors['Email'] = "User is Disabled,Login as New User";
+                        $data['errors'] = $user->errors;
+                        $this->view('patientregister', $data);
+                        break;
                     default:
                         $user->errors['Email'] = "Invalid Email or Password";
                         $data['errors'] = $user->errors;
                         $this->view('patientregister', $data);
                         break;
                 }
-            }if (isset($_POST['sendOtp'])) {
+            }
+            if (isset($_POST['sendOtp'])) {
                 echo "Forgot Password logic triggered";
                 // Forgot Password logic with PHPMailer
                 $email = $_POST['email'] ?? '';
@@ -176,10 +182,11 @@ class PatientRegister
                 }
 
                 $this->view('patientregister', $data);
-            }if (isset($_POST['verifyOTP'])) {
+            }
+            if (isset($_POST['verifyOTP'])) {
                 // Verify OTP logic
                 $enteredOTP = $_POST['otp'] ?? '';
-                
+
                 // Check if OTP session exists
                 if (!isset($_SESSION['otp']) || !isset($_SESSION['otp_email'])) {
                     $data['error'] = "OTP session expired. Please request a new OTP.";
@@ -187,7 +194,7 @@ class PatientRegister
                     $this->view('patientregister', $data);
                     return;
                 }
-                
+
                 // Check if OTP has expired (10 minutes)
                 if (time() - $_SESSION['otp_time'] > 600) {
                     $data['error'] = "OTP has expired. Please request a new OTP.";
@@ -198,7 +205,7 @@ class PatientRegister
                     $this->view('patientregister', $data);
                     return;
                 }
-                
+
                 // Verify OTP
                 if ($_SESSION['otp'] != $enteredOTP) {
                     $data['error'] = "Invalid OTP. Please try again.";
@@ -206,16 +213,17 @@ class PatientRegister
                     $this->view('patientregister', $data);
                     return;
                 }
-                
+
                 // OTP is valid, mark as verified
                 $_SESSION['otp_verified'] = true;
                 $data['otp_verified'] = true;
                 $data['send'] = true;
                 // $data['check'] = true;
                 $data['success'] = "OTP verified successfully. Please set your new password.";
-                
+
                 $this->view('patientregister', $data);
-            }if (isset($_POST['resetPassword'])) {
+            }
+            if (isset($_POST['resetPassword'])) {
                 // Reset password logic
                 $data['check'] = true;
                 $data['reset'] = true;
@@ -225,17 +233,17 @@ class PatientRegister
                     $this->view('patientregister', $data);
                     return;
                 }
-                
+
                 $newPassword = $_POST['newPassword'] ?? '';
                 $confirmPassword = $_POST['confirmPassword'] ?? '';
-                
+
                 // Validate passwords
                 if (empty($newPassword) || empty($confirmPassword)) {
                     $data['error'] = "Both password fields are required.";
                     $this->view('patientregister', $data);
                     return;
                 }
-                
+
                 if ($newPassword !== $confirmPassword) {
                     $data['error'] = "Passwords do not match.";
                     $data['send'] = true;
@@ -243,16 +251,16 @@ class PatientRegister
                     $this->view('patientregister', $data);
                     return;
                 }
-                
+
                 // Update password in the database
                 $user = new User();
                 $email = $_SESSION['otp_email'];
                 $fpid = $_SESSION['fpid'];
-                
+
                 // Here, we would ideally hash the password, but following your existing pattern
                 // Important: In a production environment, passwords should always be hashed!
-                $user->update($fpid,['password' => $newPassword], 'user_id');
-                
+                $user->update($fpid, ['password' => $newPassword], 'user_id');
+
                 // Mark password reset as successful
                 $_SESSION['password_reset_success'] = true;
                 $data['send'] = true;
@@ -265,39 +273,55 @@ class PatientRegister
                 unset($_SESSION['otp_time']);
                 unset($_SESSION['otp_verified']);
                 unset($_SESSION['fpid']);
-                
+
                 $data['success'] = "Password reset successful!";
                 $data['show_success_only'] = true;
                 $this->view('patientregister', $data);
-            }else {
+            } else {
                 // Registration logic
                 $user = new User;
                 $patient = new Patient;
+                $referal = new Patient_Referal;
                 $data = [
-                    'Title' => $_POST['Title'] ?? '',
-                    'FirstName' => $_POST['FirstName'] ?? '',
-                    'LastName' => $_POST['LastName'] ?? '',
-                    'Email' => $_POST['Email'] ?? '',
-                    'PhoneNumber' => $_POST['PhoneNumber'] ?? '',
-                    'NIC' => $_POST['NIC'] ?? '',
-                    'Gender' => $_POST['gender'] ?? '',
-                    'Password' => $_POST['Password'], // Should hash password (see security note below)
-                    'Address' => $_POST['Address'] ?? '',
-                    'Age' => $_POST['Age'] ?? '',
+
+                    'title' => $_POST['Title'] ?? '',
+                    'firstName' => $_POST['FirstName'] ?? '',
+                    'lastName' => $_POST['LastName'] ?? '',
+                    'email' => $_POST['Email'] ?? '',
+                    'phoneNumber' => $_POST['PhoneNumber'] ?? '',
+                    'nic' => $_POST['NIC'] ?? '',
+                    'gender' => $_POST['gender'] ?? '',
+                    'password' => $_POST['Password'], // Should hash password (see security note below)
+                    'address' => $_POST['Address'] ?? '',
+                    'dob' => $_POST['dob'] ?? '',
+                    'age' => '',
                     'user_role' => 'patient'
                 ];
 
-                $arr['Email'] = $_POST['Email'] ?? '';
+                if (!empty($data['dob'])) {
+                    $dateOfBirth = new DateTime($data['dob']);
+                    $today = new DateTime('today');
+                    $age = $today->diff($dateOfBirth)->y;
+                    $data['age'] = $age;
+                }
+
+                $arr['email'] = $_POST['Email'] ?? '';
                 $row = $user->first($arr);
 
                 if ($row) {
-                    $user->errors['Email'] = "Email already exists, please login";
-                    $data['errors'] = $user->errors;
+                    if ($row['user_role'] == 'disabled') {
+                        $user->errors['email'] = "Can't Register This Email";
+                        $data['errors'] = $user->errors;
+                    } else {
+                        $user->errors['email'] = "Email already exists, please login";
+                        $data['errors'] = $user->errors;
+                    }
                 } else {
                     $user->insert($data);
                     $login = $user->first($arr);
                     $patientData = ['patient_id' => $login['user_id']];
                     $patient->insert($patientData);
+
                     $data['registration_success'] = true; // Set the success flag
                 }
 

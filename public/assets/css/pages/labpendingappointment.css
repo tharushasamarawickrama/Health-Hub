@@ -1,15 +1,66 @@
 
-.lab-pend-app-content{
-    padding: 15px;
-    max-width: 700px;
-    margin: 80px auto 0;
+.lab-pend-app-container {
+    position: relative;
+    width: 100%;
+    padding-top: 60px; /* Add space for the fixed navbar */
+}
+
+.lab-pend-app-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    position: relative;
+}
+.lab-pend-app-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 40px; /* Added more margin below to separate from content */
+    height: 60px; /* Added a specific height to ensure consistent spacing */
+}
+.lab-pend-app-button-container {
+    margin-bottom: 20px;
+    margin-top: 60px;
+    margin-left: 70px;
+    position: relative;
+}
+
+.lab-pend-app-button {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    background: linear-gradient(135deg, #003C70, #004d9f);
+    transition: background 0.5s ease, transform 0.5s ease;
+}
+
+.lab-pend-app-button:hover {
+    background: linear-gradient(135deg, #2b6eb0, #0066cc);
+    transform: translateY(-2px);
+}
+.lab-prpendoc-app-action-buttons {
+    display: flex;
+    gap: 10px; /* space between the two buttons */
+    margin-bottom: 20px;
+    margin-right: 70px;
+    margin-top: 80px;
+    position: relative;
+}
+
+.lab-pend-app-action-buttons {
+    position: absolute;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    right: 20px;
 }
 
 .lab-pend-app-prescription-details {
-    background: linear-gradient(to right bottom, #e6f7ff, #f0f9ff);
+    background: linear-gradient(to right bottom, #c7e2ee, #a1c4db);
     padding: 80px;
     border-radius: 10px;
     width: 80%; 
@@ -37,7 +88,7 @@
 .lab-pend-app-details p {
     margin: 12px 0;
     font-size: 1.1em;
-    color: #2c3e50;
+    color: #000000;
 }
 
 .lab-pend-app-details ul {
@@ -50,7 +101,7 @@
     margin-left: 25px;
     position: relative;
     padding: 8px 0;
-    color: #34495e;
+    color: #000000;
 }
 
 .lab-pend-app-details ul li::before {
@@ -84,13 +135,13 @@
 .lab-pend-app-report span {
     flex: 1;
     font-weight: 600;
-    color: #34495e;
+    color: #000000;
 }
 
 .lab-pend-app-report {
     margin-right: 15px;
     text-decoration: none;
-    color: #1ca6a8;
+    color: #4A9AEB ;
     font-weight: 600;
     transition: color 0.3s ease;
 }
@@ -127,41 +178,9 @@
 }
 .lab-pend-app-back-button-container {
     position: absolute;
-    top: 70px;
-    padding: 20px;
+    top: 20px; /* Changed from 70px to 20px to match the action buttons */
     left: 20px;
+    padding: 0; /* Removed padding that was adding extra space */
 }
 
-.lab-pend-app-back-button {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 8px 15px;
-    background-color: #2f7a85;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 
-.lab-pend-app-back-button:hover {
-    background-color: #0e6875;
-    border-color: #002a31;
-}
-.lab-pend-app-upload-btn {
-    background-color: #427a8893;
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.lab-pend-app-upload-btn:hover {
-    background-color: #214e68;
-}
-.lab-pend-app-upload-btn a{
-    text-decoration: none;
-    color: inherit;
-}

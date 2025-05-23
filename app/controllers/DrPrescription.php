@@ -14,6 +14,12 @@ class DrPrescription {
         if (!isset($_GET['appointment_id'])) {
             redirect('drViewAppointments');
         }
+
+        if (isset($_GET['last_appointment'])) {
+            $lastAppointmentId = $_GET['last_appointment'];
+        } else {
+            $lastAppointmentId = null;
+        }
         
         $appointmentId = $_GET['appointment_id'];
 
@@ -30,6 +36,13 @@ class DrPrescription {
         $medicationModel = new Prescribed_Medications();
         $medications = $medicationModel->findWhere(['prescription_id' => $prescriptionId]);
 
-        $this->view('drPrescription', ['prescription' => $prescription, 'medications' => $medications, 'appointment_id' => $appointmentId, 'appointment_date' => $appointmentDate] );
+        $this->view('drPrescription', [
+            'prescription' => $prescription,
+            'medications' => $medications,
+            'appointment_id' => $appointmentId,
+            'appointment_date' => $appointmentDate,
+            'appointment_status' => $appointment['status'],
+            'last_appointment_id' => $lastAppointmentId,
+            ] );
     }
 }

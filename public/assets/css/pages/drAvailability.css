@@ -1,5 +1,5 @@
 .dr-availability-container {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Nunito', sans-serif;
     background-color: #f9f9f9;
     color: #333;
     margin-top: 30px;
@@ -50,22 +50,23 @@
 }
 
 .timeslot-tag {
-    display: inline-block;
-    background-color: #e0ebf7;
-    color: #333;
+    display: flex;
+    background-color: rgba(160, 208, 226, 0.8);
+    color: #000;
     padding: 5px 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     margin: 5px;
     font-size: 0.9em;
+    justify-content: space-between;
 }
 
 .timeslot-remove-btn {
-    background: none;
     border: none;
-    color: #666;
+    background: none;
+    color: #de3535;
     cursor: pointer;
-    margin-left: 8px;
-    font-size: 0.9em;
+    font-size: 1em;
+    margin: 0;
 }
 
 .timeslot-actions {
@@ -74,12 +75,36 @@
     margin-top: auto;
 }
 
+.timeslot-button-clear {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.timeslot-button-save {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.timeslot-button-clear:hover, .timeslot-button-save:hover {
+    background-color: #999;
+}
+
+
 .timeslot-button {
-    background-color: #cccccc;
-    color: #333;
+    background-color: rgba(160, 208, 226, 0.8);
     border: none;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1em;
     min-width: 120px;
@@ -87,7 +112,7 @@
 }
 
 .timeslot-button:hover {
-    background-color: #eaeaea;
+    background-color: #d9edf7;
 }
 
 .timeslot-button.selected {
@@ -111,7 +136,7 @@
 }
 
 .timeslot-button.disabled {
-    background-color: #e0e0e0;
+    background-color: #d9edf7;
     color: #999;
     cursor: not-allowed;
 }

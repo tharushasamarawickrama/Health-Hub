@@ -47,11 +47,9 @@
     grid-template-columns: repeat(7, 1fr);
     gap: 8px;
     background: linear-gradient(to right, #f5f7fa 0%, #e9ecef 100%);
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 15px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .ph-usage-calendar-date, .empty {
@@ -71,7 +69,7 @@
 }
 
 .ph-usage-calendar-date:hover {
-    background-color: #3498db;
+    background-color: #4A9AEB;
     color: white;
     cursor: pointer;
     transform: translateY(-5px);
@@ -79,13 +77,13 @@
 }
 
 .ph-usage-calendar-date.ph-usage-today {
-    background-color: #e74c3c;
+    background-color: #AFD7FC;
     color: white;
     font-weight: bold;
 }
 
 .ph-usage-calendar-date.ph-usage-selected {
-    background-color: #2ecc71;
+    background-color: #1460A7;
     color: white;
 }
 

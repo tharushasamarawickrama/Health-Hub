@@ -63,9 +63,10 @@
 }
 
 .view-appointment-card {
+    background: none;
     display: flex;
     justify-content: space-between;
-    background: #d2e7ec;
+    border-bottom: 1px solid #003C70;
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -74,7 +75,7 @@
 }
 
 .view-appointment-card:hover {
-    background: #b0d4e1;
+    background: #bbd0d8;
     transform: translateY(-2px);
 }
 
@@ -82,6 +83,10 @@
     text-decoration: none;
     color: black;
     flex-grow: 1;
+}
+
+.card-link div{
+    font-size: 14px;
 }
 
 .appointment-check-icon{
@@ -111,6 +116,103 @@
 }
 
 .view-appointment-pagination a.active {
-    background-color: #0099ff;
+    background: linear-gradient(135deg, #003C70, #004d9f);
     color: #fff;
+}
+
+.slot-tabs-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.slot-tab-headings {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.slot-tab-btn {
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: none;
+    background: #d2e7ec;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.slot-tab-btn:hover {
+    background-color: #b0d4e1;
+}
+
+.slot-tab-btn.active {
+    background: linear-gradient(135deg, #003C70, #004d9f);
+    color: white;
+}
+
+.slot-tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.slot-tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.slot-status-tabs {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 1rem;
+}
+
+.status-tab-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status-tab-btn.active {
+    background: linear-gradient(135deg, #003C70, #004d9f);
+    color: white;
+}
+
+.ongoing-banner {
+    top: 80px;
+    right: 20px;
+    position: fixed;
+    background-color: #e0ffe0;
+    padding: 10px 15px;
+    margin: 0px;
+    border: 1px solid #2ecc71;
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#ongoing-id::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
 }

@@ -9,6 +9,7 @@ class Doctor
     protected $table = "doctors"; // Database table name
     protected $Allowedcolumns = [
         "slmcNo",
+        "doctor_id",
         "description",
         "experience",
         "specialization",
@@ -20,16 +21,31 @@ class Doctor
     public function findAlldata()
     {
 
-        $query = "select * from $this->table ";
+        $query = "SELECT u.*, d.*
+                  FROM users u
+                  INNER JOIN doctors d ON u.user_id = d.doctor_id;";
 
         return $this->query($query);
     }
 
+    public function searchDoctors($searchTerm) {
+        $query = "SELECT u.*, d.*
+                  FROM users u
+                  INNER JOIN doctors d ON u.user_id = d.doctor_id
+                  WHERE u.firstName LIKE :term 
+                     OR u.lastName LIKE :term 
+                     OR d.slmcNo LIKE :term";
+        $data = ['term' => "%$searchTerm%"];
+        return $this->query($query, $data);
+    }
     
    
 
-    public function findDoctors($arr) {
-        if($arr['firstName'] == '' && $arr['lastName'] == '' && $arr['specialization'] == '') {
+
+
+    public function findDoctors($arr)
+    {
+        if ($arr['firstName'] == '' && $arr['lastName'] == '' && $arr['specialization'] == '') {
             return [];
         }
         if (empty($arr['firstName']) && empty($arr['lastName'])) {
@@ -64,16 +80,79 @@ class Doctor
             ];
             return $this->query($query, $data);
         }
-
     }
 
-    public function getDoctorTypeById($doctor_id){
+    public function getDoctorTypeById($doctor_id)
+    {
         $query = "select type from $this->table where doctor_id = :doctor_id";
         return $this->query($query, ['doctor_id' => $doctor_id]);
     }
-    public function getAllAvailabilitySlots($doctor_id){
+    public function getAllAvailabilitySlots($doctor_id)
+    {
         $query = "SELECT availability FROM $this->table where doctor_id != :doctor_id";
         return $this->query($query, ['doctor_id' => $doctor_id]);
+    }
+
+    public function findDoctorsByDay($day)
+    {
+        $query = "SELECT * FROM doctors 
+                  JOIN users ON doctors.doctor_id = users.user_id 
+                  JOIN schedule_time ON doctors.doctor_id = schedule_time.doctor_id 
+                  WHERE schedule_time.weekday = :day";
+
+        $result = $this->query($query, ['day' => $day]);
+        return $result ?: []; // Return an empty array if no results are found
+    }
+
+    public function findDoctorsBySpecializationAndDay($specialization, $day)
+    {
+        $query = "SELECT * FROM doctors 
+                  JOIN users ON doctors.doctor_id = users.user_id 
+                  JOIN schedule_time ON doctors.doctor_id = schedule_time.doctor_id 
+                  WHERE schedule_time.weekday = :day AND doctors.specialization = :specialization";
+
+        $result = $this->query($query, ['day' => $day, 'specialization' => $specialization]);
+        return $result ?: []; // Return an empty array if no results are found
+    }
+
+    public function findDoctorsByNameAndDay($arr, $day)
+    {
+        $query = "SELECT * FROM doctors 
+                  JOIN users ON doctors.doctor_id = users.user_id 
+                  JOIN schedule_time ON doctors.doctor_id = schedule_time.doctor_id 
+                  WHERE schedule_time.weekday = :day AND (users.firstName = :firstName OR users.lastName = :lastName)";
+
+        $data = [
+            'day' => $day,
+            'firstName' => $arr['firstName'],
+            'lastName' => $arr['lastName']
+        ];
+        $result = $this->query($query, $data);
+        return $result ?: []; // Return an empty array if no results are found
+    }
+    public function getDoctorsCount() {
+        $query = "SELECT COUNT(*) AS doctors_count FROM doctors;";
+        $result = $this->query($query);
+        return $result[0]['doctors_count'] ?? 0;
+    }
+
+    public function DoctorUpdateByAdmin($id, $data, $id_column = 'doctor_id') {
+        $setClause = [];
+        foreach ($data as $key => $value) {
+            $setClause[] = "$key = :$key";
+        }
+        $setClause = implode(', ', $setClause);
+    
+        $query = "UPDATE {$this->table} SET $setClause WHERE $id_column = :id";
+        $data['id'] = $id;
+    
+        return $this->query($query, $data);
+    }
+
+    public function slmcExists($slmcNo) {
+        $query = "SELECT * FROM {$this->table} WHERE slmcNo = :slmcNo LIMIT 1";
+        $result = $this->query($query, ['slmcNo' => $slmcNo]);
+        return !empty($result);
     }
 
 }

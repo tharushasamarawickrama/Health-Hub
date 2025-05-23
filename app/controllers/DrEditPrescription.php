@@ -5,15 +5,15 @@ class DrEditPrescription {
 
     public function index() {
 
-        // if (!isset($_GET['prescription_id'])) {
-        //     redirect('drViewprescriptions');
-        // }
-        
-        //$prescriptionId = $_GET['prescription_id'];
         $appointmentId = $_GET['appointment_id'];
 
         $appointmentModel = new Appointment();
         $appointment = $appointmentModel->getAppointmentById($appointmentId);
+
+        $sigCodesModel = new Sig_codes();
+        $sigCodes = $sigCodesModel->getSigCodes();
+
+        $sigCodes = array_column($sigCodes, 'sigcode');
 
         $prescriptionId = $appointment['prescription_id'] ?? null;
 
@@ -56,6 +56,7 @@ class DrEditPrescription {
             $this->view('drEditPrescription', [
                 'prescription' => $prescription,
                 'medications' => $medications,
+                'stored_sig_codes' => $sigCodes,
                 'appointment_id' => $appointmentId
             ]);
         }

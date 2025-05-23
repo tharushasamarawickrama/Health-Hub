@@ -1,77 +1,139 @@
-.AdminNavbar{
-    background-color: #64A7B3;
+.AdminNavbar {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #003C70, #004d9f);
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
-    padding: 0 290px;
-    height: 70px;
+    height: 60px;
     display: flex;
     width: 75%;
+    padding: 0 290px;
     justify-content: space-between;
     align-items: center;
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
 }
-.fullcontainer{
+
+.fullcontainer {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
-.AdminNav{
+
+.AdminNav {
     width: fit-content;
     display: flex;
     align-items: center;
 }
-.AdminNavitems{
-    font-size: 20px;
+
+.AdminNavitems {
+    flex-shrink: 0;
+    flex-grow: 0;
+    font-size: 18px;
     color: white;
+    text-decoration: none;
     width: 150px;
     display: flex;
     justify-content: center;
-    text-decoration: none;
-    font-weight: bold;
     padding: 10px 10px;
-    border-radius: 50px;
     cursor: pointer;
-    transition: 0.7s;
-
+    transition: background-color 0.3s, transform 0.3s, ease 0.3s;
 }
-.adminlogodiv{
+
+.adminlogodiv {
     width: fit-content;
     display: flex;
     align-items: center;
 }
-.AdminNavitems:hover{
-    background-color: white;
-    color: #120303;
-    
-    
+
+.AdminNavitems:hover {
+    color: #8bc9d4;
 }
 
-.Adminlogo{
-    width: 80px;
-    height: 80px;
+.AdminNavitems.active {
+    color: #8bc9d4;
+    box-shadow: 0 0.5px 0 0 #8bc9d4;
+}
+
+.Adminlogo {
+    width: 70px;
+    height: 70px;
     margin-left: -280px;
-    /* border-radius: 50%; */
 }
 
-.Adminloginlogo{
-    width: 65px;
-    height: 65px;
+.Adminloginlogo {
+    width: 40px;
+    height: 40px;
     margin-left: 120px;
     border-radius: 50%;
+    border: 1px solid #8bc9d4;
+    cursor: pointer;
 }
 
-.Adminlogin{
+.Adminlogin {
     text-decoration: none;
-    color: black;
-    font-weight: bold;
+    color: #8bc9d4;
     font-size: 20px;
+    cursor: pointer;
 }
 
-.logo{
-    width: 100px;
-    height: 100px;
+.logo {
+    width: 70px;
+    height: 70px;
+}
+
+/* Dropdown container */
+.adminnavbardropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content (hidden by default) */
+.adminnavbardropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(39, 28, 110, 0.2);
+    z-index: 1000;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Dropdown items */
+.adminnavbardropdown-content .adminnavbardropdown-item {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    border: 1px solid rgba(39, 28, 110, 0.2);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Show dropdown content on hover */
+.adminnavbardropdown:hover .adminnavbardropdown-content {
+    display: block;
+}
+
+/* Dropdown item hover effect */
+.adminnavbardropdown-content .adminnavbardropdown-item:hover {
+    background-color: #d2caca;
+}
+
+.show {
+    display: block;
+}
+
+.admin-profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: -5px;
 }

@@ -1,6 +1,6 @@
 .drNavbar{
     font-family: 'Nunito', sans-serif;
-    background-color: #003C70;
+    background: linear-gradient(135deg, #003C70, #004d9f);
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     height: 60px;
     display: flex;
@@ -44,7 +44,7 @@
 .drloginlogo{
     width: 40px;
     height: 40px;
-    margin-left: 350px;
+    margin-left: 450px;
     margin-right: 10px;
     cursor: pointer;
     border-radius: 50%;

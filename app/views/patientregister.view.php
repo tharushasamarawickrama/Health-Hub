@@ -89,11 +89,11 @@
 
                     <div class="genderdiv">
                         <div class="subgenderdiv">
-                            <input type="radio" class="gender" name="gender" value="male" required>
+                            <input type="radio" class="gender" name="gender" value="Male" required>
                             <span class="reggender">Male</span>
                         </div>
                         <div class="subgenderdiv">
-                            <input type="radio" class="gender" name="gender" value="female" required>
+                            <input type="radio" class="gender" name="gender" value="Female" required>
                             <span class="reggender">Female</span>
                         </div>
                         <span class="error1" id="genderError"></span>
@@ -127,8 +127,8 @@
 
                     </div>
                     <div class="regaddressdiv">
-                        <span class="regaddress">Age</span><br>
-                        <input type="text" class="regaddressinput" placeholder="Enter Age" name="Age" required>
+                        <span class="regaddress">Date Of Birth</span><br>
+                        <input type="date" class="regaddressinput" placeholder="Select DOB" name="dob" max="<?php echo date('Y-m-d'); ?>" required>
                         <span class="error1" id="ageError"></span>
                     </div>
 

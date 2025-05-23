@@ -75,7 +75,7 @@
     background: linear-gradient(135deg, #007bff, #0056b3);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
@@ -99,4 +99,8 @@ a.ptc-div2-button {
 
 a.ptc-div2-button:hover {
     background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.ptc-div2-button-a{
+    text-decoration: none;
 }

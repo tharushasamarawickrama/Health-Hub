@@ -1,69 +1,39 @@
 <?php require APPROOT . '/views/Components/header.php'; ?>
 <?php require APPROOT . '/views/Components/phNavbar.php'; ?>
     <div class="ph-usage-date-content">
-            <div class="ph-usage-date-back-button-container">
-                <a href="<?php echo URLROOT; ?>/phdailyusage" class="ph-usage-date-back-button">
-                <img src="<?php echo URLROOT; ?>/assets/images/arrow-back.png" alt="Back" width="20px">
+            <div class="ph-usage-date-button-container">
+                <a href="<?php echo URLROOT; ?>/phdailyusage" class="ph-usage-date-button">
                 Back
                 </a>
             </div>
         <div class="ph-usage-date-usage">
             
-            <div class="ph-usage-date-date">28/11/2024</div>
+            <div class="ph-usage-date-date">
+            <p><strong><?php echo htmlspecialchars($data['issued_date']?? 'N/A'); ?></strong> </p>            
+
+            </div>
             <table class="ph-usage-date-table">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Tab/Bottles</th>
-                        <th>Quantity <small>(tablets/bottles)</small></th>
+                        <th>No.of units issued <small>(tablets/bottles)</small></th>
                     </tr>
                 </thead>
                 <tbody>
+                <?php if (!empty($medications)): ?>
+                    <?php foreach ($medications as $medication): ?>
                     <tr>
-                        <td>Paracetamol</td>
-                        <td>Tab</td>
-                        <td>50</td>
+                    <td><?php echo htmlspecialchars($medication['name'] ?? 'N/A'); ?></td>
+                    <?php if ($medication['measurement'] == 'ml'): ?>
+                        <td><?php echo htmlspecialchars($medication['totalUnitsIssued'] ?? 'N/A'); ?> bottles</td>
+                    <?php else: ?>
+                        <td><?php echo htmlspecialchars($medication['totalUnitsIssued'] ?? 'N/A'); ?> tablets</td>
+                        <?php endif; ?>
                     </tr>
-                    <tr>
-                        <td>Ibuprofen</td>
-                        <td>Tab</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td>Amoxicillin</td>
-                        <td>Bottles</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>Cetirizine</td>
-                        <td>Tab</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>Metformin</td>
-                        <td>Tab</td>
-                        <td>60</td>
-                    </tr>
-                    <tr>
-                        <td>Salbutamol</td>
-                        <td>Bottles</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <td>Azithromycin</td>
-                        <td>Tab</td>
-                        <td>40</td>
-                    </tr>
-                    <tr>
-                        <td>Loratadine</td>
-                        <td>Tab</td>
-                        <td>35</td>
-                    </tr>
-                    <tr>
-                        <td>Ciprofloxacin	</td>
-                        <td>Tab</td>
-                        <td>45</td>
-                    </tr>
+                    <?php endforeach; ?>
+            <?php else: ?>
+                <tr><td colspan="5">No medications found</td></tr>
+            <?php endif; ?>
                 </tbody>
             </table>
         </div>

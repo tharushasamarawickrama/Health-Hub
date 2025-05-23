@@ -1,6 +1,6 @@
 <div class="slotcard">
     <div class="timeslot">
-        <span class="date"><?php echo $schedule['date'] ?> </span>
+        <span class="date"><?php echo date('l, j F Y', strtotime($schedule['appo_data'])); ?> </span>
         <div class="inrectangle">
             <div class="slots">
                 <?php

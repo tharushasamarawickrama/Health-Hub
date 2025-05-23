@@ -8,8 +8,8 @@
         </a>
 
         <a href="<?php echo URLROOT; ?>home" class="navitems">Home</a>
-        <a href="#" class="navitems">About</a>
-        <a href="#" class="navitems">Contact</a>
+        <a href="<?php echo URLROOT; ?>searchappoinment" class="navitems">Appointment</a>
+        <a href="<?php echo URLROOT; ?>patienthistory" class="navitems">History</a>
 
         <?php if (isset($_SESSION['user']) && $_SESSION['user']['photo_path'] !== ''): ?>
             <a href="#" class="logname dropdown-toggle">
@@ -28,6 +28,7 @@
 
                 <div class="dropdown-content">
                     <a href="<?php echo URLROOT; ?>patientprofile">Profile</a>
+                    <a href="<?php echo URLROOT; ?>pendingappointment">Pending Appointment</a>
                     <a href="?action=logout">Logout</a>
                 </div>
             </div>
@@ -44,8 +45,8 @@
                             : URLROOT . '/assets/images/profile-men.png'; ?>" class="profileimge">
             <div class="profile-top-details">
                 <span class="profile-top-details-name"><?php echo htmlspecialchars($_SESSION['user']['firstName']); ?></span><br />
-                <span>Member ID:<span>00012</span></span><br />
-                <span>Age:<span>25</span></span>
+                <span>Member ID:<span>000<?php echo htmlspecialchars($_SESSION['user']['user_id']) ?></span></span><br />
+                <span>Age:<span><?php echo htmlspecialchars($_SESSION['user']['age']) ?></span></span>
             </div>
         </div>
         <div class="profile-top-button-div">
@@ -56,7 +57,7 @@
             </div>
 
             <div>
-                <a href="<?php echo URLROOT; ?>searchappointment">
+                <a href="<?php echo URLROOT; ?>searchappoinment">
                     <button class="profile-top-button2">Make An Appointment</button>
                 </a>
             </div>
@@ -76,13 +77,13 @@
                     <div class="profile-middle-details-div1">
                         <span>First Name</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['firstName']); ?>">
+                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['firstName']); ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-middle-details-div1">
                         <span>Last Name</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['lastName']); ?>">
+                            <input type="text" class="profile-middle-details-input2" value="<?php echo htmlspecialchars($_SESSION['user']['lastName']); ?>" readonly>
                         </div>
                     </div>
 
@@ -91,13 +92,13 @@
                     <div>
                         <span>Phone Number</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['phoneNumber']); ?>">
+                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['phoneNumber']); ?>" readonly>
                         </div>
                     </div>
                     <div class="profile-middle-details-div3">
                         <span>Email</span>
                         <div>
-                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>">
+                            <input type="text" class="profile-middle-details-input3" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>" readonly>
                         </div>
                     </div>
 
@@ -105,13 +106,13 @@
                 <div class="profile-middle-details-div4">
                     <span>Address</span>
                     <div>
-                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['address']); ?>">
+                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['address']); ?>" readonly>
                     </div>
                 </div>
                 <div class="profile-middle-details-div4">
                     <span>NIC</span>
                     <div>
-                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['nic']); ?>">
+                        <input type="text" class="profile-middle-details-input4" value="<?php echo htmlspecialchars($_SESSION['user']['nic']); ?>" readonly>
                     </div>
                 </div>
                 <form action="" method="POST">
@@ -122,7 +123,7 @@
 
                         <div>
 
-                            <button class="profile-middle-details-button2" id="" name="resetButton">Reset</button>
+                            
 
 
                             <button class="profile-middle-details-button2" onclick="event.preventDefault(); openUpdateModal()">Update</button>
@@ -170,7 +171,7 @@
                         </div>
                         <div class="modal-input-div">
                             <label for="email">Email</label>
-                            <input type="email" name="email" class="modal-title" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>" required>
+                            <input type="email" name="email" class="modal-title" value="<?php echo htmlspecialchars($_SESSION['user']['email']); ?>" required readonly>
 
                         </div>
                         <div class="modal-input-div">
@@ -215,78 +216,106 @@
     </div>
 </div>
 
+<!-- Reset Confirmation Modal -->
+<div id="resetConfirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeResetModal()">&times;</span>
+        <h2>Are you sure you want to reset your profile details?</h2>
+        <div class="modal-button-div">
+            <form action="<?php echo URLROOT; ?>patientprofile?action=reset" method="POST">
+                <button type="submit" class="modal-save-button" name="resetButton">Yes</button>
+            </form>
+            <button type="button" class="modal-cancel-button" onclick="closeResetModal()">No</button>
+        </div>
+    </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Select elements
-            const profileImage = document.getElementById('modalProfileImage');
-            const fileInput = document.getElementById('modalFile');
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select elements
+        const profileImage = document.getElementById('modalProfileImage');
+        const fileInput = document.getElementById('modalFile');
 
-            if (profileImage && fileInput) {
-                // Trigger file input when image is clicked
-                profileImage.addEventListener('click', () => {
-                    fileInput.click();
-                });
+        if (profileImage && fileInput) {
+            // Trigger file input when image is clicked
+            profileImage.addEventListener('click', () => {
+                fileInput.click();
+            });
 
-                // Preview selected image
-                fileInput.addEventListener('change', (event) => {
-                    const file = event.target.files[0];
+            // Preview selected image
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
 
-                    if (file) {
-                        // Check if the file is an image
-                        if (file.type.startsWith('image/')) {
-                            const reader = new FileReader();
-                            reader.onload = (e) => {
-                                profileImage.src = e.target.result; // Preview the image
-                            };
-                            reader.readAsDataURL(file);
-                        } else {
-                            alert('Please upload a valid image file.');
-                        }
+                if (file) {
+                    // Check if the file is an image
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            profileImage.src = e.target.result; // Preview the image
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert('Please upload a valid image file.');
                     }
-                });
-            }
-        });
-    </script>
-
-
-    <script>
-        function openconfirmdeleteModal() {
-            document.getElementById('deleteconfirmation-modal').style.display = 'block';
-            modal.style.display = 'flex'; // Use flex for centering modal
+                }
+            });
         }
+    });
+</script>
 
-        function closeconfirmdeleteModal() {
-            document.getElementById('deleteconfirmation-modal').style.display = 'none';
+
+<script>
+    function openconfirmdeleteModal() {
+        document.getElementById('deleteconfirmation-modal').style.display = 'block';
+        modal.style.display = 'flex'; // Use flex for centering modal
+    }
+
+    function closeconfirmdeleteModal() {
+        document.getElementById('deleteconfirmation-modal').style.display = 'none';
+    }
+
+    function confirmDelete(id) {
+        window.location.href = '../../patientprofile?id=' + id;
+        // successToast("Advertisement deleted successfully");
+    }
+</script>
+
+<script>
+    function openUpdateModal() {
+        document.getElementById('updateProfileModal').style.display = 'block';
+    }
+
+    function closeUpdateModal() {
+        document.getElementById('updateProfileModal').style.display = 'none';
+    }
+
+    // Close the modal if the user clicks outside the modal content
+    window.onclick = function(event) {
+        const modal = document.getElementById('updateProfileModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
         }
+    };
+</script>
 
-        function confirmDelete(id) {
-            window.location.href = '../../patientprofile?id=' + id;
-            // successToast("Advertisement deleted successfully");
+<script>
+    // Open the reset confirmation modal
+    function openResetModal() {
+        document.getElementById('resetConfirmationModal').style.display = 'block';
+    }
+
+    // Close the reset confirmation modal
+    function closeResetModal() {
+        document.getElementById('resetConfirmationModal').style.display = 'none';
+    }
+
+    // Close the modal if the user clicks outside the modal content
+    window.onclick = function(event) {
+        const modal = document.getElementById('resetConfirmationModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
         }
-    </script>
+    };
+</script>
 
-    <script>
-        function openUpdateModal() {
-            document.getElementById('updateProfileModal').style.display = 'block';
-        }
-
-        function closeUpdateModal() {
-            document.getElementById('updateProfileModal').style.display = 'none';
-        }
-
-        // Close the modal if the user clicks outside the modal content
-        window.onclick = function(event) {
-            const modal = document.getElementById('updateProfileModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        };
-    </script>
-
-
-
-
-
-
-    <?php require APPROOT . '/views/Components/footer.php' ?>
+<?php require APPROOT . '/views/Components/footer.php' ?>

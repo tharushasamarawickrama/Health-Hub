@@ -4,8 +4,10 @@ class AdminPhRegister  {
     use Controller;
     public function index(){
         $pharmacist = new Pharmacist;
+        $user = new User;
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = [
+                'title' => $_POST['title'] ?? '',
                 'firstName' => $_POST['firstName'] ?? '',
                 'lastName' => $_POST['lastName'] ?? '',
                 'password' => $_POST['password'] ?? '',
@@ -17,10 +19,30 @@ class AdminPhRegister  {
                 'nic' => $_POST['nic'] ?? '',
                 'address' => $_POST['address'] ?? '',
                 'photo_path' => $_POST['photo_path'] ?? '',
-                
+                'user_role' =>  'pharmacist',
             ];
+            
+            if ($user->emailExists($data['email']) ) {
+                $data['error'] = "The email address is already in use. Please use a different email.";
+                $this->view('AdminPhRegister', $data);
+                return;
+            }
+
+            if ($user->nicExists($data['nic']) ) {
+                $data['error'] = "The NIC is already in use. Please use a different NIC.";
+                $this->view('AdminPhRegister', $data);
+                return;
+            }
 
             
+            if (!empty($data['dob'])) {
+                $dob = new DateTime($data['dob']);
+                $today = new DateTime();
+                $age = $today->diff($dob)->y; 
+                $data['age'] = $age;
+            } else {
+                $data['age'] = null; 
+            }
 
             if(isset($_FILES['photo_path'])){
                 $target_dir = "profile-Photos/";
@@ -48,10 +70,25 @@ class AdminPhRegister  {
                 }}
 
 
-            if($pharmacist->insert($data)){
-                header('Location: ' . URLROOT . '/AdminPhRegister');
+        //     
+        $user_id = $user->insert($data);
+           
+        if($user_id){
+           
+            $dataid = $user->getLastUserId();
+            
+            if($pharmacist->insert(['pharmacist_id' => $dataid, 'slmcNo' => $data['slmcNo']])){
+                $data['success'] = "Pharmacist added successfully!";
+                $this->view('AdminPhRegister',$data);
+
+                //redirect('AdminPhRegister');
+                return;
+            }
         }
-        redirect('AdminPhRegister');
+
+        $this->view('AdminPhRegister', $data);
+        return;
+
     
     }
         $this->view('AdminPhRegister');

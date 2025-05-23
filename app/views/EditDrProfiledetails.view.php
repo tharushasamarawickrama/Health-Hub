@@ -1,5 +1,5 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
-<?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+
 
 <div class="DrProfiledetails-body">
     <div class="DrProfiledetails-profile-container">
@@ -67,7 +67,9 @@
                 </div>
             </div>
             <div class="form-actions">
+            <a href="<?php echo URLROOT; ?>/DrProfiledetails?id=<?php echo $data['user_id'] ?>" class="back-btn"><button type="button" class="save-btn" >BACK</button></a>
                 <button type="submit" class="save-btn" name="drbutton">Update Profile</button>
+                
             </div>
         </form>
     </div>

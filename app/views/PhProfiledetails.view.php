@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<?php require APPROOT . '/views/Components/AdminSidebar.php' ?>
 
 <div class="DrProfiledetails-body">
     <div class="DrProfiledetails-profile-container">
@@ -58,8 +59,9 @@
                 </div>
             </div>
             <div class="form-actions">
-                <button type="button" class="save-btn">Edit Profile</button>
-            </div>
+                <a href="<?php echo URLROOT;?>EditPhProfiledetails?id=<?php echo $data['pharmacist_id'] ?>">
+                    <button type="button" class="save-btn" id="dr-req-btn-left">Edit Profile</button>
+                </a>
         </form>
     </div>
 </div>

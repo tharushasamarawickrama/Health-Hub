@@ -7,35 +7,24 @@ class User {
     protected $table = "users";
 
     protected $Allowedcolumns = [
+        'user_id',
         'title',
-        'tirstName',
+        'firstName',
         'lastName',
         'email',
         'phoneNumber',
         'gender',
+        'dob',
         'nic',
         'password',
         'address',
         'age',
         'photo_path',
-        'user_role'
+        'user_role',
+        'last_login',
     ];
 
-    // public function validate($data){
-    //     $this->errors = [];
-
-    //     if(empty($data['NIC'])){
-    //         $this->errors['NIC'] = "NIC is required";
-    //     }
-    //     if(empty($data['Password'])){
-    //         $this->errors['Password'] = "Password is required";
-    //     }
-
-    //     if(empty($this->errors)){
-    //         return true;
-    //     }
-    //     return false;
-    // }
+   
 
     public function updatePhotoPath($id, $photoPath)
 {
@@ -51,9 +40,43 @@ class User {
     return $this->query($query, $params);
 }
 
-public function getUserById($userId)
-    {
-        $sql = "SELECT * FROM users WHERE user_id = :user_id";
-        return $this->query($sql, ['user_id' => $userId])[0] ?? null;
-    }
+    public function getUserById($userId)
+        {
+            $sql = "SELECT * FROM users WHERE user_id = :user_id";
+            return $this->query($sql, ['user_id' => $userId])[0] ?? null;
+        }
+
+        public function getLastUserId()
+        {
+            $sql = "SELECT user_id FROM users ORDER BY user_id DESC LIMIT 1";
+            $result = $this->query($sql);
+             show($result[0]['user_id']);
+            return $result[0]['user_id'] ?? null;
+        }
+        
+        public function UserUpdateByAdmin($id, $data, $id_column = 'user_id') {
+            $setClause = [];
+            foreach ($data as $key => $value) {
+                $setClause[] = "$key = :$key";
+            }
+            $setClause = implode(', ', $setClause);
+        
+            $query = "UPDATE {$this->table} SET $setClause WHERE $id_column = :id";
+            $data['id'] = $id;
+        
+            return $this->query($query, $data);
+        }
+
+
+        public function emailExists($email) {
+            $query = "SELECT * FROM {$this->table} WHERE email = :email LIMIT 1";
+            $result = $this->query($query, ['email' => $email]);
+            return !empty($result);
+        }
+        
+        public function nicExists($nic) {
+            $query = "SELECT * FROM {$this->table} WHERE nic = :nic LIMIT 1";
+            $result = $this->query($query, ['nic' => $nic]);
+            return !empty($result);
+        }
 }

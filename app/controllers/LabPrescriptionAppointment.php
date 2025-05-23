@@ -65,6 +65,48 @@ class LabPrescriptionAppointment {
             }
         }
     }
+    public function deleteReport() {
+        $input = json_decode(file_get_contents("php://input"), true);
+        $labtest_id = $input['labtest_id'] ?? null;
+        $appointment_id = $input['appointment_id'] ?? null;
+
+        if (!$labtest_id || !$appointment_id) {
+            echo json_encode(['success' => false, 'message' => 'Invalid labtest or appointment ID']);
+            return;
+        }
+
+        // 1. Get report path from DB using both IDs
+        $report = $this->labAssistantModel->getLabTestReport($appointment_id, $labtest_id);
+
+        if (!$report || empty($report['labtest_report'])) {
+            echo json_encode(['success' => false, 'message' => 'No report file to delete']);
+            return;
+        }
+
+        $filePath = APPROOT . '/../public/' . $report['labtest_report'];
+
+        // 2. Delete file if it exists
+        $fileDeleted = false;
+        if (file_exists($filePath)) {
+            $fileDeleted = unlink($filePath);
+        }
+
+        // 3. Clear DB fields only if the file was deleted or didn't exist
+        if ($fileDeleted || !file_exists($filePath)) {
+            $result = $this->labAssistantModel->removeLabTestReportPath($appointment_id, $labtest_id);
+
+            echo json_encode([
+                'success' => $result,
+                'message' => $result ? 'Report deleted successfully' : 'Failed to delete report in database'
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Failed to delete report file'
+            ]);
+        }
+        exit;
+    }
 
     public function markPending() {
         if($_SERVER['REQUEST_METHOD'] == 'POST'){

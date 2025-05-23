@@ -1,11 +1,13 @@
 <?php require APPROOT . '/views/Components/header.php' ?>
 <?php require APPROOT . '/views/Components/AdminNavbar.php' ?>
+<?php require APPROOT . '/views/Components/AdminSidebar.php' ?>
+
 <div class="DrProfiledetails-body">
     <div class="DrProfiledetails-profile-container">
         <div class="DrProfiledetails-profile-header">
             <h1>Doctor Profile</h1>
            
-          
+          <!-- <?php show($data) ?> -->
         </div>
         <form class="DrProfiledetails-profile-details-form">
             <div class="DrProfiledetails-profile-div">
@@ -62,8 +64,8 @@
                 </div>
             </div>
             <div class="form-actions">
-                <a href="<?php echo URLROOT;?>EditDrProfiledetails?id=<?php echo $data['doctor_id'] ?>">
-                    <button type="button" class="save-btn">Edit Profile</button>
+                <a href="<?php echo URLROOT;?>ViewAllDrProfile">
+                    <button type="button" class="save-btn" id="dr-req-btn-left">Back</button>
                 </a>
             </div>
         </form>

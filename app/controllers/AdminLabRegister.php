@@ -4,8 +4,11 @@ class AdminLabRegister  {
     use Controller;
     public function index(){
         $labassistant = new LabAssistant;
+        $user = new User;
+
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = [
+                'title' => $_POST['title'] ?? '',
                 'firstName' => $_POST['firstName'] ?? '',
                 'lastName' => $_POST['lastName'] ?? '',
                 'password' => $_POST['password'] ?? '',
@@ -17,9 +20,51 @@ class AdminLabRegister  {
                 'nic' => $_POST['nic'] ?? '',
                 'address' => $_POST['address'] ?? '',
                 'photo_path' => $_POST['photo_path'] ?? '',
+                'user_role' =>  'labassistant',
                 
             ];
+            
+            if ($user->emailExists($data['email']) ) {
+                $data['error'] = "The email address is already in use. Please use a different email.";
+                $this->view('AdminLabRegister', $data);
+                return;
+            }
 
+            if ($user->nicExists($data['nic']) ) {
+                $data['error'] = "The NIC is already in use. Please use a different NIC.";
+                $this->view('AdminLabRegister', $data);
+                return;
+            }
+
+            // if ($labassistant->employeeExists($data['employeeNo'])) {
+            //     $data['error'] = "The SLMC number is already in use. Please use a different SLMC number.";
+            //     $this->view('AdminLabRegister', $data);
+            //     return;
+            // }
+
+              // Validate First Name
+              if (empty($data['firstName'])) {
+                $data['errors']['firstName'] = "First name is required.";
+            } elseif (!preg_match('/^[a-zA-Z]+$/', $data['firstName'])) {
+                $data['errors']['firstName'] = "First name can only contain letters.";
+            }
+
+            // Validate Last Name
+            if (empty($data['lastName'])) {
+                $data['errors']['lastName'] = "Last name is required.";
+            } elseif (!preg_match('/^[a-zA-Z]+$/', $data['lastName'])) {
+                $data['errors']['lastName'] = "Last name can only contain letters.";
+            }
+           
+
+            if (!empty($data['dob'])) {
+                $dob = new DateTime($data['dob']);
+                $today = new DateTime();
+                $age = $today->diff($dob)->y; 
+                $data['age'] = $age;
+            } else {
+                $data['age'] = null; 
+            }
            
 
             if(isset($_FILES['photo_path'])){
@@ -48,14 +93,33 @@ class AdminLabRegister  {
                 }}
                 
 
-            if($labassistant->insert($data)){
-                header('Location: ' . URLROOT . '/AdminLabRegister');
-        }
-        redirect('AdminLabRegister');
+            // if($labassistant->insert($data)){
+            //     header('Location: ' . URLROOT . '/AdminLabRegister');
+            // }
+            // redirect('AdminLabRegister');
+
+            $user_id = $user->insert($data);
+           
+            if($user_id){
+               
+                $dataid = $user->getLastUserId();
+                
+                if($labassistant->insert(['lab_assistant_id' => $dataid, 'employeeNo' => $data['employeeNo']])){
+                    $data['success'] = "Lab Assistant added successfully!";
+                    $this->view('AdminLabRegister',$data);
+
+                    //redirect('AdminLabRegister');
+                    return;
+                }
+            }
+
+            $this->view('AdminLabRegister', $data);
+            return;
+
+        
     }
         $this->view('AdminLabRegister');
     }
-    
 }
 
 

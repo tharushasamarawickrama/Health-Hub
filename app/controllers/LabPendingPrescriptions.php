@@ -14,7 +14,8 @@
     
             // Get all pending lab appointments (each row has one lab test)
             $pendingAppointments = $this->labAssistantModel->getPendingLabAppointments($appointment_id);
-    
+            $pendingAppointments = $this->labAssistantModel->getPendingTestNames($appointment_id);
+
             // Group by appointment_id
             $groupedAppointments = [];
             if (is_array($pendingAppointments) || is_object($pendingAppointments)) {
@@ -32,11 +33,12 @@
     
                 $groupedAppointments[$id]['labtests'][] = $appointment['labtest_name'];
             }
+
         }
             $data = [
                 'appointments' => array_values($groupedAppointments) // reindexing the array
             ];
-    
+
             $this->view('labpendingprescriptions', $data);
         }
     }
